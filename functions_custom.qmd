@@ -1,0 +1,97 @@
+# Creating your own functions
+
+To write your own function, you need to use the function `function()`, specify argument(s) that will be used in the function (with our without defaults), and in curly brackets `{ }` specify what the function should do (referring to the argument(s)), including whether something is returned.
+
+The general form is:
+
+```{r}
+myFun <- function(arg1, arg2) {
+  ## Here you type expressions that use the arguments
+}
+```
+
+Each line inside the function is an object assignment, a function call, a subsetting, a conditional statement, an if/else statement, a for loop, etc. - basically anything you have now learned how to do in R that you want the function to do!
+
+To have the function output something, you must return something (either the value of the last command is returned or you can use `return()`).
+
+If you have multiple objects to return, you have to put them in an object container, like a list, vector, array or data.frame. It is not possible to return multiple individual objects like this:
+
+`return(x,y)`
+
+but it is possible to return them in a vector or list like this:
+
+`return(c(x,y))`
+
+`return(list(x,y)`
+
+Here are a few examples of functions with no default arguments; note the different outputs:
+
+```{r}
+do1 <- function(x, y){
+  z <- x + y
+  x
+  z
+}
+
+do1(x = 1, y = 3)
+```
+
+Note that x is not returned. Only the last expression is returned.
+
+```{r}
+do2 <- function(x, y){
+  z <- x + y 
+  return(x)
+  z
+}
+
+do2(x = 1, y = 3)
+```
+
+Note that z is not returned, if a return statement is encountered in the function anything after that statement is [not executed]{.underline}.
+
+```{r}
+
+do3 <- function(x, y){ 
+  z <- x + y 
+  return(list(x, z))
+}
+
+do3(x = 1, y = 3)
+```
+
+`x` and `z` are returned in a list
+
+Here is an example of a function with default arguments that returns a vector:
+
+```{r}
+do4 <- function(x, y = 2){ 
+  z1 <- x + y
+  z2 <- x * y 
+  return(c(z1, z2))
+} 
+
+do4(x = 1) ## uses y = 2
+do4(x = 1, y = 3) ## overwrites default value of y
+```
+
+You can create functions with a variable number of arguments using `...`. For example, here's a function that returns the mean of all the values in an arbitrary number of vectors:
+
+```{r}
+meanOfAll <- function(...) {
+  x <- mean(c(...))
+  return(x)
+}
+```
+
+The command
+
+```{r}
+usSales <- c(123,456,789)
+europeSales <- c(100,1000,10000,100000)
+otherSales <- c(50,100,150,200,250,300,350)
+
+meanOfAll(usSales, europeSales, otherSales)
+```
+
+combines the three vectors and take the mean of all the data.

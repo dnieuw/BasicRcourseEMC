@@ -1,0 +1,267 @@
+## Basic Plotting: Answers
+
+::: callout-warning
+Make sure that you try the exercises yourself first before looking at the answers
+:::
+
+Use R to do the following exercises on the BOD data
+
+::: panel-tabset
+### Question 1
+
+Display the built-in dataset called BOD by running BOD.
+
+### Answer
+
+```{r}
+BOD
+```
+:::
+
+::: panel-tabset
+### Question 2
+
+What is the data structure of BOD? What are the dimensions?
+
+### Answer
+
+```{r}
+str(BOD)
+dim(BOD)
+```
+:::
+
+::: panel-tabset
+### Question 3
+
+What are the names of BOD? Use a function other than str.
+
+### Answer
+
+```{r}
+names(BOD)
+```
+:::
+
+::: panel-tabset
+### Question 3
+
+Make a line graph of demand versus time, where the line is a deep pink dot-dashed line \[Hint: run ?par and look for the parameter lty to see the line types\]. Add a blue dashed line of 1.1 times the demand and give it a thickness of 2 using the line width parameter lwd. Make sure both lines are entirely visible by adjusting the range of y using the parameter ylim in the original plot.
+
+### Answer
+
+```{r}
+plot(BOD$Time, BOD$demand, type = "l", lty = 4,
+  col = "pink", ylim = c(0, 25))
+lines(BOD$Time, 1.1 * BOD$demand, lwd = 2, col = "blue")
+```
+:::
+
+Use R to do the following exercises on the chickwts data.
+
+::: panel-tabset
+### Question 4
+
+Display the built-in chickwts data.
+
+### Answer
+
+```{r}
+chickwts
+```
+:::
+
+::: panel-tabset
+### Question 5
+
+What are the names of chickwts? Use a function other than str
+
+### Answer
+
+```{r}
+names(chickwts)
+```
+:::
+
+::: panel-tabset
+### Question 6
+
+What are the levels of feed?
+
+### Answer
+
+```{r}
+levels(chickwts$feed)
+```
+:::
+
+::: panel-tabset
+### Question 7
+
+Make the following plots in one 2 x 2 image: - A bar chart of the feed types, each bar a different color. - A bar chart of the proportions of feed types, each bar a different color. - A boxplot of the weights by feed type, each box a different color. - A horizontal boxplot of the weights by feed type, each box a different color.
+
+### Answer
+
+```{r}
+par(mfrow = c(2, 2))
+
+barplot(table(chickwts$feed),
+  col = c("red", "orange", "yellow",
+  "green", "blue", "purple"))
+
+barplot(table(chickwts$feed)/length(chickwts$feed),
+  col = c("red", "orange", "yellow",
+  "green", "blue", "purple"))
+
+boxplot(chickwts$weight~chickwts$feed,
+  col = c("red", "orange", "yellow",
+  "green", "blue", "purple"))
+
+boxplot(chickwts$weight~chickwts$feed,
+  col = c("red", "orange", "yellow",
+  "green", "blue", "purple"),
+  horizontal = TRUE)
+```
+:::
+
+Use R to do the following exercises on the Puromycin data.
+
+::: panel-tabset
+### Question 8
+
+Display the built-in Puromycin data.
+
+### Answer
+
+```{r}
+Puromycin
+```
+:::
+
+::: panel-tabset
+### Question 9
+
+Make a scatterplot of the rate versus the concentration. Describe the relationship.
+
+### Answer
+
+```{r}
+plot(Puromycin$conc, Puromycin$rate)
+```
+
+The rate increases faster at lower concentrations than at higher concentrations.
+:::
+
+::: panel-tabset
+### Question 10
+
+Make a scatterplot of the rate versus the log of the concentration. Describe the relationship.
+
+### Answer
+
+```{r}
+plot(log(Puromycin$conc), Puromycin$rate)
+```
+
+The two variables have a linear relationship
+:::
+
+::: panel-tabset
+### Question 11
+
+Make a scatterplot of the rate versus the log of the concentration and color the points by treatment group (state). Describe what you see.
+
+### Answer
+
+```{r}
+plot(log(Puromycin$conc), Puromycin$rate, col = Puromycin$state)
+```
+
+It appears that the the treated group has higher rates than the untreated group, on average. (Note that default colors are black for the first level and red for the second level).
+:::
+
+::: panel-tabset
+### Question 12
+
+Make a scatterplot of the rate versus the log of the concentration, color the points by treatment group (state), label the x-axis "Concentration" and the y-axis "Rate", and label the plot "Puromycin".
+
+### Answer
+
+```{r}
+plot(log(Puromycin$conc), Puromycin$rate, col = Puromycin$state,
+  xlab = "Concentration", ylab = "Rate", main = "Puromycin")
+```
+:::
+
+::: panel-tabset
+### Question 13
+
+Add a legend to the above plot indicating what the points represent.
+
+### Answer
+
+```{r}
+plot(log(Puromycin$conc), Puromycin$rate, col = Puromycin$state,
+  xlab = "Concentration", ylab = "Rate", main = "Puromycin")
+
+legend("topleft",c("Treated", "Untreated"), col = 1:2, pch = 1)
+```
+:::
+
+::: panel-tabset
+### Question 14
+
+Make a boxplot of the treated versus untreated rates. Using the function pdf, save the image to a file with a width and height of 7 inches.
+
+### Answer
+
+```{r, eval = F}
+pdf("puromycin.pdf",width = 7, height = 7)
+boxplot(Puromycin$rate~Puromycin$state)
+dev.off()
+```
+:::
+
+::: panel-tabset
+### Question 15
+
+Make a histogram of the frequency of concentrations. What is the width of the bins?
+
+### Answer
+
+```{r}
+hist(Puromycin$conc)
+```
+
+The bin width is 0.20.
+:::
+
+::: panel-tabset
+### Question 16
+
+Make a histogram of the frequency of concentrations with a bin width of 0.10. How is this different from the histogram above?
+
+### Answer
+
+```{r}
+hist(Puromycin$conc, breaks = seq(0, 1.2, .10))
+```
+
+The bins are narrower, so we see in finer detail the distribution of the concentrations.
+:::
+
+::: panel-tabset
+### Question 17
+
+Plot the histograms side by side in the same graphic window and make sure they have the same range on the y-axis. Does this make it easier to answer the question of how the two histograms differ?
+
+### Answer
+
+```{r}
+par(mfrow = c(1, 2))
+hist(Puromycin$conc, ylim = c(0, 12))
+hist(Puromycin$conc, breaks = seq(0, 1.2, .10), ylim = c(0, 12))
+```
+
+In some situations it may be of use to view plots simultaneously. In this case, on the right we see clearly that more values are between 0 and 0.10 than 0.10 and 0.20 whereas the plot on the left does not display this information. In the histogram on the right we see that no concentrations fall between 0.30 and 0.50, whereas this is not apparent in the histogram on the left.
+:::

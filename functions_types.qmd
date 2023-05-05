@@ -1,0 +1,243 @@
+# Types of available functions
+
+### Arithmetic Operators
+
+R can simply be used as a *calculator*.
+
+```{r}
+x <- 10
+y <- 3
+x + y
+x - y
+x * y
+x / y
+x ^ y           # exponentiation
+x %% y          # modular arithmetic, remainder after division
+x %/% y         # integer part of a fraction
+
+```
+
+**How these functions work on vectors:**
+
+```{r, echo=FALSE}
+a_vector <- 1:10
+```
+
+```{r}
+a_vector
+
+a_vector + x                    # x is recycled without warning
+
+a_vector - y
+
+a_vector + a_vector
+
+vec_of_thr <- c(2, 4, 6)
+a_vector
+
+a_vector + vec_of_thr           # recycled with a warning
+
+vec_of_fi <- c(1, 2, 3, 4, 5)
+a_vector
+
+a_vector + vec_of_fi            # recycled without warning
+```
+
+**How these functions work on matrices:**
+
+```{r, echo=FALSE}
+ano_matrix <- matrix(1:12,ncol=4)
+```
+
+```{r}
+ano_matrix
+ano_matrix + x
+ano_matrix - y
+ano_matrix + ano_matrix
+ano_matrix * ano_matrix
+```
+
+### Relational Operators
+
+Using these functions it is possible to compare variables to other variables or to specific values.
+
+```{r}
+#Previously we defined x as 10 and y as 3
+x < y   #Smaller than
+x > y   #Larger than
+x <= y  #Smaller or equal to
+x >= y  #Larger or equal to
+x == y  #Equal to (use two '=')
+x != y  #Not equal to (! means 'not')
+```
+
+### Logical Operators
+
+R has logical operators (or Boolean operators) corresponding to "and" and "or". They're used to combine two logical expressions together to form a single compound logical expression. Another logical operator corresponding to "not" is used to negate a logical expression.
+
+These are written in R as:
+
+```{r, eval=FALSE}
+&&  # "And"   for logical scalars (single values)
+||  # "Or"    for logical scalars
+!   # "Not"   for logical scalars or vectors
+&   # "And"   for logical vectors (multiple values)
+|   # "Or"    for logical vectors
+```
+
+These operate on logical (`TRUE` or `FALSE`) expressions and return `TRUE` or `FALSE` or `TRUE`/`FALSE` vectors.
+
+The distinction between `&&` and `&`, and between `||` and `|` is that the former is for single values and the latter for multiple values.
+
+**Logical Operations on Scalar Logical Expressions**
+
+`&&` returns `TRUE` if both of the expressions are `TRUE` and it returns `FALSE` otherwise:
+
+```{r}
+TRUE && TRUE
+
+TRUE && FALSE
+```
+
+`||` returns TRUE if one or both of the expressions are TRUE and it returns FALSE otherwise:
+
+```{r}
+FALSE || TRUE
+
+FALSE || FALSE
+```
+
+As a practical example, if we want to test whether a variable `x` lies between two numbers, say 60 and 70, we type:
+
+```{r}
+x <- 75
+x > 60 && x < 70
+```
+
+and to test whether it lies outside the range 60 to 70, we type:
+
+```{r}
+x < 60 || x > 70
+```
+
+Here's an example of using `&&` in an `if()` statement:
+
+```{r}
+x <- 3
+y <- 5
+
+if(x < 10 && y < 10) {
+  print("Both less than 10")
+} else {
+  print("Not both less than 10")
+}
+```
+
+The negation operator, `!`, returns "the opposite" of a logical expression:
+
+```{r}
+!TRUE
+```
+
+```{r}
+!FALSE
+```
+
+```{r}
+!(5 < 6)
+```
+
+Pay attention to the operator precedence for `&&`, `||`, and `!`. It can be found by typing: `?Syntax` but parentheses can be used to control the order of operations.
+
+If we try to apply `&&` or `||` to vectors, R only applies it to their first elements, and you get a warning:
+
+```{r}
+c(TRUE, FALSE, TRUE) && c(TRUE, TRUE, FALSE)
+```
+
+**Logical Operations on Logical Vectors**
+
+To apply the operations "and" and "or" element-wise on two logical vectors, use `&` and `|`. For example:
+
+```{r}
+c(TRUE, FALSE, TRUE) & c(TRUE, TRUE, FALSE)
+```
+
+`&` and `|` are useful in `ifelse()` statements. (Recall that `ifelse()` operates element-wise on vectors). For example, consider the systolic and diastolic blood pressure readings:
+
+```{r}
+systolic <- c(110, 119, 111, 113, 128)
+diastolic <- c(70, 74, 88, 74, 83)
+```
+
+A blood pressure is classified as normal if the systolic level is less than 120 and the diastolic level is less than 80:
+
+```{r}
+classification <- ifelse(systolic < 120 & diastolic < 80, yes = "Normal", no = "Abnormal")
+classification
+```
+
+In the next example, we use `&` in square brackets `[ ]` to extract rows from a data frame:
+
+```{r}
+bpData <- data.frame(
+  name = c("Joe", "Katy", "Bill", "Kim", "Mark"),
+  systolic = c(110, 119, 111, 113, 128),
+  diastolic = c(70, 74, 88, 74, 83)
+)
+
+bpData
+
+bpData[bpData$systolic < 120 & bpData$diastolic < 80, ]
+
+```
+
+### Built-in Named Functions
+
+R has an extensive set of built-in functions, a few of which are listed below:
+
+Print structure of an object:
+
+```{r, eval=FALSE}
+str()
+```
+
+Print class of an object:
+
+```{r, eval=FALSE}
+class()
+```
+
+First six elements/rows:
+
+```{r, eval=FALSE}
+head()
+```
+
+Last six elements/rows:
+
+```{r, eval=FALSE}
+tail()
+```
+
+List all objects and functions that you currently made:
+
+```{r, eval=FALSE}
+ls()
+```
+
+Generate a sequence of values:
+
+```{r}
+seq(from=1, to=10, by=2)
+```
+
+Run the entire contents of a script:
+
+```{r, eval=FALSE}
+source("myScript.R")
+```
+
+For a (very long) list of all named functions available in base-R have a look at this website:
+
+<https://stat.ethz.ch/R-manual/R-patched/library/base/html/00Index.html>

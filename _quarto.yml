@@ -1,0 +1,59 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Basic R Course"
+  date-modified: "30-11-2022"
+  chapters:
+    - index.qmd
+    - part: basic_plotting_intro.qmd
+      chapters:
+        - basic_plotting.qmd
+    - part: basic_plotting_practicals_intro.qmd
+      chapters: 
+        - basic_plotting_practicals_questions.qmd
+        - basic_plotting_practicals_answers.qmd
+    - part: ggplot2_intro.qmd
+      chapters:
+        - ggplot2.qmd
+    - part: ggplot2_practicals_intro.qmd
+      chapters:
+        - ggplot2_practicals_questions.qmd
+        - ggplot2_practicals_answers.qmd
+    - part: functions_intro.qmd
+      chapters:
+        - functions_types.qmd
+        - functions_arguments.qmd
+        - functions_custom.qmd
+        - functions_conditional.qmd
+    - part: functions_practicals1_intro.qmd
+      chapters:
+        - functions_practicals1_questions.qmd
+        - functions_practicals1_answers.qmd
+    - part: functions_intro2.qmd
+      chapters:
+        - functions_scoping.qmd
+        - functions_decoration.qmd
+        - functions_looping.qmd
+        - functions_apply.qmd
+    - part: functions_practicals2_intro.qmd
+      chapters:
+        - functions_practicals2_questions.qmd
+        - functions_practicals2_answers.qmd
+  repo-url: https://github.com/dnieuw/
+  repo-actions: [edit]
+  downloads: [pdf]
+
+format:
+  html:
+    embed-resources: true
+    theme:
+      light: cosmo
+      dark: solar
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
+number-depth: 2

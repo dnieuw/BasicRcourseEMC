@@ -1,0 +1,3 @@
+# Introduction {.unnumbered}
+
+Hi, welcome to the Basic R Course manual.
