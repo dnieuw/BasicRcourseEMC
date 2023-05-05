@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Basic R Course</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/dnieuw/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/dnieuw/BasicRcourseEMC" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="./Basic-R-Course.pdf" title="Download PDF" class="sidebar-tool px-1"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#using-lapply-alternative-sapply" id="toc-using-lapply-alternative-sapply" class="nav-link" data-scroll-target="#using-lapply-alternative-sapply">Using lapply alternative sapply</a></li>
   <li><a href="#using-tapply-on-groups-of-data" id="toc-using-tapply-on-groups-of-data" class="nav-link" data-scroll-target="#using-tapply-on-groups-of-data">Using tapply on groups of data</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/edit/main/functions_apply.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/functions_apply.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -502,24 +502,24 @@ $col3
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"group"</span><span class="ot">=</span><span class="fu">paste</span>(<span class="st">'grp'</span>,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>),<span class="at">sep=</span><span class="st">'-'</span>), <span class="st">"outcome"</span><span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">12</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>patients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   group    outcome
-1  grp-1 -1.4770519
-2  grp-1 -1.1647518
-3  grp-1  0.5826209
-4  grp-1  1.1323839
-5  grp-1 -0.1326188
-6  grp-1  1.1109759
-7  grp-2 -0.7500019
-8  grp-2 -1.5924143
-9  grp-2  0.2815724
-10 grp-2  1.0569330
-11 grp-2 -1.0680512
-12 grp-2 -1.5892831</code></pre>
+<pre><code>   group     outcome
+1  grp-1  0.39760201
+2  grp-1  0.52873770
+3  grp-1 -0.47082545
+4  grp-1 -1.61394198
+5  grp-1 -0.09731613
+6  grp-1 -0.49593298
+7  grp-2  0.11222919
+8  grp-2  0.18288990
+9  grp-2  1.26240735
+10 grp-2  0.21863446
+11 grp-2 -1.71737163
+12 grp-2 -0.39445965</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, patients<span class="sc">$</span>group, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       grp-1        grp-2 
- 0.008593042 -0.610207533 </code></pre>
+<pre><code>      grp-1       grp-2 
+-0.29194614 -0.05594506 </code></pre>
 </div>
 </div>
 <p>It is also possible to use multiple factors in a list to create groups, which returns a matrix.</p>
@@ -531,8 +531,8 @@ $col3
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, <span class="fu">list</span>(patients<span class="sc">$</span>group, patients<span class="sc">$</span>serotype), mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               A          B
-grp-1 -0.5409469 -0.8562062
-grp-2  0.1801366  0.7186676</code></pre>
+grp-1 -0.1054507  0.0771747
+grp-2  0.8869284 -0.2822980</code></pre>
 </div>
 </div>
 <p>These are some (trivial) examples of how you can use the apply family of functions to quickly apply a function to your data. It is possible to do the same thing by using for loops, but apply functions are generally faster to write and read. In some cases using apply to run your function can also increase the speed of your code. More on increasing the speed of your code will follow in later lectures.</p>
