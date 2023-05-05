@@ -41,7 +41,7 @@ book:
       chapters:
         - functions_practicals2_questions.qmd
         - functions_practicals2_answers.qmd
-  repo-url: https://github.com/dnieuw/
+  repo-url: https://github.com/dnieuw/BasicRcourseEMC
   repo-actions: [edit]
   downloads: [pdf]
 
