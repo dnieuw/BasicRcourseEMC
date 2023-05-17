@@ -1,0 +1,418 @@
+# Data Cleaning {.unnumbered}
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Messy data vs tidy data
+
+The data set that you have, is often not ready to perform analyses on. You will need to perform some steps to clean up your data. 
+
+Be careful that this can be a time consuming task! The amount of time and code you will spend on the "data cleaning", can be a lot larger than the actual analysis. 
+
+An advantage of doing this in R, is that R solely works with syntax. This means that you cannot adjust data manually and you will always have code to reproduce your results. 
+
+If the source data file gets adjusted slightly; say new patients are added, or some measurements are corrected, you just have to run your code and all your data preparation steps are performed automatically! 
+
+First of all we need to make sure data is in a tidy format. Tidy format:
+
+```{r , echo = FALSE, out.width="150%", fig.align="center"}
+include_graphics("Pictures/tidy-1.png")
+```
+
+Make sure that your data is structured so that:
+
+-   Each variable forms a column
+
+-   Each observation forms a row
+
+-   Each cell is a single measurement
+
+
+::: callout-tip
+If possible; make sure you already think about your analysis when collecting the data. A protocol and statistical analysis plan are good ways to pre-specify your outcomes and variables. This way, you will probably need less data cleaning steps after data collection.
+:::
+
+
+## Prepare data set for analysis
+
+
+### First look of your data
+Let's explore a data set.
+
+We will use a standard data set available in R (mtcars). Name this data set "data".
+```{r echo = T, eval=T}
+data(mtcars)
+data <- mtcars
+```
+
+With the function `head`, the first 6 rows are printed. Here we can check out the names of the variables and the first entries.
+
+```{r echo = T, eval=T}
+head(data)
+```
+
+The number of rows can be adjusted.
+
+```{r echo = T, eval=T}
+head(data, 3)
+```
+
+`tail` reports the last 6 rows of the data set
+
+```{r echo = T, eval=T}
+tail(data)
+```
+
+Other useful functions for the first glimpse of your data set:
+
+```{r echo = T, eval=F}
+View(data)
+
+```
+
+`View` opens the data set
+
+
+```{r echo = T, eval=T}
+
+dim(data)
+
+str(data)
+```
+
+
+&nbsp;
+
+Obtain the variable names 
+```{r echo = T, eval=T}
+names(data)
+```
+&nbsp;
+
+### Rename variables
+
+In case there are inconvenient names in your variables, change them:
+
+```{r echo = T, eval=T}
+names(data)[names(data) == "carb"] <- "CARB"
+```
+
+
+:::callout-important
+Remember: never use spaces or special characters in variable names!
+:::
+
+This variable in the `test` dataset is named very inconvenient.
+```{r echo = F, eval=T}
+test <- data
+names(test)[names(test) == "mpg"] <- "miles per gallon"
+```
+
+
+```{r echo = T, eval=T}
+
+names(test)
+
+test$`miles per gallon`
+```
+
+### Change type of variable
+
+The type of your variable can be changed
+
+- From `numeric` to `factor`
+
+```{r echo = T, eval=T}
+data$vs_factor <- as.factor(data$vs)
+
+data$vs_factor
+
+str(data$vs_factor)
+```
+```{r echo = T, eval=T}
+data$vs_numeric <- as.numeric(data$vs_factor)
+
+data$vs_numeric
+
+str(data$vs_numeric)
+```
+
+Notice how the values are now `1` and `2` instead of `0` and `1`. This is because in `vs_factor` the labels are `0` and `1`, but the underlying values were changed to `1` and `2`. To solve this we use the function `paste0`. Now `as.numeric()` takes the labels as values for the new numeric variable.
+
+```{r echo = T, eval=T}
+data$vs_numeric <- as.numeric(paste0(data$vs_factor))
+
+data$vs_numeric
+
+str(data$vs_numeric)
+```
+
+### Round variables
+
+The function `round()` rounds variables to the specified number of digits. The default is 0
+```{r echo = T, eval=T}
+round(data$wt)
+
+round(data$wt, digits = 1)
+```
+Similar functions are `ceiling()` and `floor()`. Can you guess what they do?
+
+```{r echo = T, eval=T}
+ceiling(data$wt)
+
+floor(data$wt)
+```
+
+### Transform variables
+
+A new variable can be added to the data set, based on the values of an existing variable. For this we use the `$` symbol. 
+
+Some examples:
+
+```{r echo = T, eval=T}
+
+data$cyl2 <- data$cyl+2
+
+data$hp10 <- data$hp/10
+
+data$cyl2_hp10 <- data$cyl2 * data$hp10
+
+
+head(data[, c("cyl", "hp","cyl2", "hp10", "cyl2_hp10")])
+```
+
+
+### Make subset of your data
+:::callout-tip 
+Create a new data set with a new name. Otherwise you might lose important information in your data.
+:::
+
+
+Remove observations with missings (`NA`) in "mpg" and "cyl"
+```{r echo = T, eval=T}
+data2 <- subset(data, !is.na(data$mpg) & !is.na(data$cyl))
+```
+&nbsp;
+
+
+Make a new data set, including only mpg values > 20. (Don't forget the comma in the code!)
+```{r echo = T, eval=T}
+data2 <- data[data$mpg > 20, ]
+```
+&nbsp;
+
+### Remove duplicates
+This can be used if there are multiple measurement per patient, but you want to keep only the first.
+```{r echo = T, eval=T}
+data_short <- data[!duplicated(data$gear),]
+```
+&nbsp;
+
+#### Make a subset: Remove variables
+
+
+```{r echo = T, eval=T}
+data2 <- data[, -c(1, 2)]
+```
+&nbsp;
+
+Or
+
+```{r echo = T, eval=T}
+data2 <- subset(data, select = -c(mpg, cyl))
+
+```
+
+
+
+
+### Make a subset: Keep variables
+
+
+
+```{r echo = T, eval=T}
+data2 <- data[, c("mpg", "cyl")]
+```
+
+Or:
+
+
+```{r echo = T, eval=T}
+data2 <- subset(data, select = c(mpg, cyl))
+
+```
+
+&nbsp;
+
+####  Sort data
+
+
+```{r echo = T, eval=T}
+data2 <- data[order(data$mpg),]
+head(data2)
+```
+
+&nbsp;
+
+
+#### Longitudinal data
+
+With repeated measures data can be in `long format` or `wide format`. 
+
+
+Wide format:
+ 
+```{r , echo = FALSE, out.width="50%", fig.align="center"}
+include_graphics("Pictures/Wide format.png")
+```
+
+<br>
+
+Long format:
+ 
+```{r , echo = FALSE, out.width="50%", fig.align="center"}
+include_graphics("Pictures/Long format.png")
+```
+
+In wide format, the repeatedly measured variable has a new column for each measurement. In the long format, these measurements are placed in new rows. In the long format, each patient/observation will have multiple rows.
+
+Here is an example of a dataset in long format:
+```{r , echo = FALSE, eval = T}
+library(nlme)
+data("Orthodont")
+```
+
+```{r , echo = T, eval = T}
+head(Orthodont, 10)
+```
+Each subject (`M01`, `M02`, etc.) has 4 rows. 
+
+It depends on the analysis, which format is preferred and we might want to use this data in wide format. 
+Use the function `dcast()` from the `reshape2` package.
+
+- `Subject` and `Sex` are measured only at baseline
+- `age` indicates when the repeated measure is measured
+- `distance` is the value of this measurement
+
+```{r , echo = T, eval = T}
+library(reshape2)
+
+Orthodont_w <- dcast(Orthodont, Subject + Sex ~ age, value.var = "distance")
+head(Orthodont_w)
+```
+
+Notice how the variables `age` and `distance` have been replaced with their values.
+
+If I start with a data set in wide format, but need to transform it to long format, I use the function `melt()` (also from `reshape2`).
+
+
+- `id` denotes the variables that are only measured once (at baseline)
+- `measure` are the variables that you want to stack
+- `value.name` will be the variable name for the repeatedly measured variable
+- `variable.name` will denote which measurement it is (age of patient)
+
+<br>
+```{r , echo = T, eval = T}
+library(reshape2)
+
+Orthodont_L <- melt(Orthodont_w, id = c("Subject", "Sex"),
+                     measure =c("8", "10", "12", "14"), 
+                     value.name = "distance",
+                     variable.name = "age")
+head(Orthodont_L)
+```
+
+
+## Explore data set
+
+### Obtain the summaries of each variable
+```{r echo = T, eval=T}
+summary(data)
+```
+
+
+&nbsp;
+
+
+### Obtain the summaries of one variable
+With the `$` symbol we access a variable in a data set.
+```{r echo = T, eval=T}
+summary(data$mpg)
+```
+
+
+With `summary()`, we can also look at the outliers and the missings (`NA`).
+
+
+### Get the other summary statisitics
+```{r echo = T, eval=T}
+mean(data$mpg)
+sd(data$mpg)
+median(data$mpg)
+quantile(data$mpg)
+```
+
+
+### Get summary statistics per group
+Use the function aggregate to obtain your summary statistics per group. 
+
+The last element in the function specifies what you want to calculate.
+```{r echo = T, eval=T}
+aggregate(mpg ~ vs, data = data, mean)
+aggregate(mpg ~ vs, data = data, sd)
+aggregate(mpg ~ vs, data = data, median)
+aggregate(mpg ~ vs, data = data, summary)
+```
+
+### Frequency tables
+Use the function `table()` for this
+
+```{r echo = T, eval=T}
+table(data$vs)
+
+```
+
+
+`prop.table()` gives us proportions. 
+
+```{r echo = T, eval=T}
+prop.table(table(data$vs))
+```
+
+Notice how I need to use the function `table()` inside `prop.table()`. 
+
+```{r echo = T, eval=T}
+tab1 <- table(data$vs)
+prop.table(tab1)
+```
+
+Manually, I can multiply the proportions to obtain percentages.
+```{r echo = T, eval=T}
+
+round(prop.table(tab1)*100,1)
+```
+
+
+### Crosstabs
+
+To investigate two categorical variables, I again use the function `table()`.
+```{r echo = T, eval=T}
+table(data$vs, data$gear)
+```
+
+This functions do not provide me with the variable names, so can be tricky to interpret this. The function `with()` can help with that.
+
+
+```{r echo = T, eval=T}
+with(data, table(vs, gear))
+```
+Again use `prop.table()` for the proportions.
+
+```{r echo = T, eval=T}
+tab2 <- with(data, table(vs, gear))
+prop.table(tab2) # cell percentages
+prop.table(tab2, 1) # row percentages
+prop.table(tab2, 2) # column percentages
+```

@@ -1,0 +1,235 @@
+# Analysis - Practical {.unnumbered}
+
+For this practical we will use the data set `R_data2` you can find on Canvas. This is a .csv file. 
+Load the data in R. Make sure you specify the correct file path! 
+
+:::callout-important
+This is a slightly different version of the data set used in the practical on data cleaning! You can still answer the questions, but the results might differ a bit!
+:::
+
+```{r, message=F, echo = F, eval = T}
+library(readr)
+R_data <- read_csv("Data/R_data2.csv")
+```
+
+```{r, message=F, echo = T, eval = F}
+library(readr)
+R_data <- read_csv("~/R_data2.csv")
+```
+
+::: panel-tabset
+### Question 1
+In this question we will look at the variable `SAH`.
+
+
+a)
+What are the mean, median, variance and standard deviation of `SAH`?
+
+b)
+Create a histogram and a horizontal boxplot of `SAH`.
+
+c) 
+Utilize the graphs and the summary statistics to describe the shape of the distribution of `SAH`.
+
+d)
+Log-transform `SAH` (assign it to `log_SAH`).
+
+e)
+Describe the distribution of `log_SAH`, based on the same techniques.
+
+
+:::
+
+
+
+::: panel-tabset
+### Question 2
+
+Are the values of `SAH` different for the two levels of Status (normal brain development or intellectual disability)? 
+Formulate a hypothesis, test it, and make a decision about whether or not you can reject the null hypothesis. Can
+you use a t-test (either on the raw or log-transformed data)? Why or why not?
+
+
+### Hint 1
+Check the distributions with plots.
+
+### Hint 2
+For normally distributed data you can use a t-test, for non-normally distributed data you can use the Wilcoxon signed rank test (also knows as the Mann-Whitney U test).
+:::
+
+::: panel-tabset
+
+### Question 3
+
+Make a boxplot of the `SAH` values of the 2 groups and calculate the median difference
+of `SAH` between the 2 groups. 
+
+Does the difference seem clinically relevant? Why or why not?
+:::
+
+::: panel-tabset
+### Question 4
+
+We suspect that people who drink alcohol (`alcohol` is yes) might also be smokers (`smoking` is yes). Formulate a hypothesis, test it using the appropriate test, and make a decision about statistical significance. 
+
+### Hint
+use `table()`
+:::
+
+::: panel-tabset
+### Question 5
+
+In the previous practical we made a Table 1 of baseline characteristics between cases and controls (`Intellectual disability` and `Normal brain development`). Test per variable whether the groups are significantly different. 
+
+::: {style="font-size: 75%;"}
+
+|                   |                    | Intellectual disability | Normal brain development | p-value |
+|---------------------|:-------------------|:-----------------------:|:------------------------:|:---------:|
+|                   |                    | (n = *82*)              |(n = *108*)               |         |
+| BMI, median [IQR] |                    |  *24 [22 - 27]*         |   *24 [22 - 26]*         |         |
+|                   | missing (n = *0* ) |                         |                          |         |
+| Educational level | Low, n(%)          |    *31 (38%)*           |  *14 (13%)*              |         |
+|                   | Intermediate, n(%) |          *34 (41%)*     |            *48 (44%)*    |         |
+|                   | High, n(%)         |          *17 (21%)*     |            *46 (43%)*    |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| Smoking           | No, n(%)           |       *55 (67%)*        |    *96 (89%)*            |         |
+|                   | Yes, n(%)          |      *27 (33%)*         |     *12 (11%)*           |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| SAM, mean (SD)    |                    |        *72  (16)*       |         *75 (18)*        |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| SAH, median [IQR] |                    |      *16 [15 - 18]*     |      *18 [16 - 20]*      |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| Vitamin B12, median [IQR] |            |  *378 [310 - 477]*      |    *363 [305 - 449]*     |         |
+|                   | missing (n = *1*)  |                         |                          |         |
+:::
+### Hint
+First decide which test to use based on the distribution of the variable
+
+:::
+
+::: panel-tabset
+### Question 6
+
+For this question we will look at the correlation between `vitaminB12` and `homocysteine`.
+
+a) Plot a histogram of each variable to decide whether the Pearson correlation is appropriate to use. Is it?
+
+b) Make a scatterplot of `vitaminB12` and `homocysteine`. What correlation do you see in the the graph (postive, negative, none)? 
+
+c) What is the correlation between `vitaminB12` and `homocysteine`? 
+Formulate a hypothesis, do a test, and make a decision as to whether either the Pearson or Spearman correlation is statistically significant.
+:::
+
+::: panel-tabset
+### Question 7
+
+Let's see what happens when we categorize a continuous variable. 
+
+a) Cut `vitaminB12` into 4 groups, where the breaks are the 5 quantile points of `vitaminB12` Make sure you include the lowest breakpoint by specifying `incl=TRUE`. Assign the output to `catB12`. What are the levels of this new variable?
+
+b) Using the log-transformed variable of `homocysteine`, asses how `log_hc` and `catB12` relate. Make a boxplot of `log_hc` for the levels of `catB12`.
+
+c) Are the means of `log_-homocysteine_hc` equal across all levels of `catB12`? Formulate
+a hypothesis, test it, and make a decision for statistical significance.
+
+### Hint a 
+Use the function cut() for this. Running `?cut()` will give you more information on the function.
+
+### Hint c 
+Test this with an ANOVA test.
+
+:::
+
+
+::: panel-tabset
+### Question 8
+
+Repeat questions 6b and 6c, without transforming `homocysteine`.
+
+### Hint
+Which statistical test is appropriate in this case?
+:::
+
+
+::: panel-tabset
+### Question 9
+
+We previously saw that there was an association between `vitaminB12` and `homocysteine`.
+We will now quantify the magnitude of this relationship and see if we can explain the variabiliy of `homocysteine` with values of `vitaminB12`.
+
+a) We will estimate a regression model with `homocysteine` as the <b>dependent</b> variable and `vitaminB12` as the <b>independent</b> variable. Write down the equation for the regression model.
+
+b) Estimate the regression model and evaluate the residuals. Are the assumptions of the model met?
+
+c) The residuals look a bit skewed. We saw earlier that our dependent variable follows a skewed distribution. The residuals might look better using the transformed version of the variable (`log_hc`). Re-estimate the model with this variable and evaluate the residuals again. Are you now satisfied?
+
+d) Assuming the assumptions hold (even if they don't), we'll make inference on the slope. Is `vitaminB12` statistically significant in the model? What percent variability does it explain in `log_hc`?
+
+e) What is the predicted `log_hc` level for a person with `vitaminB12` equal to 650? What is this value when unlogged (exponentiated)?
+
+
+### Hint b
+Look at the normality of the residuals and the homoskedasticity
+
+### Hint e
+Use the `predict()` function
+:::
+
+
+::: panel-tabset
+### Question 10
+
+Now let's consider a framework where we want to use more than one predictor. We want to build a regression model for `SAM` using `vitaminB12`, `cholesterol`, `homocysteine` and `folicacid_erys` (folic acid red blood cells).
+
+a) Run this multiple regression model in R. Check the assumptions. Do the assumptions hold?
+
+b) Assuming the assumptions hold (even if they don't), we'll make inference on the covariates. Are any of the variables statistically significant in the model? What percent variability do the variables explain in SAM? 
+
+c) What is the predicted SAM level for a person with the following:
+
+vitaminB12 = 650
+
+cholesterol = 17
+
+homocysteine = 16
+
+folicacid erys = 1340
+:::
+
+
+
+::: panel-tabset
+### Question 11
+
+We would like to know if `smoking` and  `vitaminB12` can be used to predict `Status`.
+
+a) What type of model would you use for this?
+
+b) `Status` and `smoking` should be factors for this analysis. Check if this is the case, otherwise use the following code to make factors of these variables:
+
+```{r, echo = T, eval = T}
+R_data$Status <- as.factor(R_data$Status)
+R_data$smoking <- as.factor(R_data$smoking)
+```
+
+If we run the model on the data as it is now, R will consider "normal brain development" as the event because it is second in the levels of Status:
+```{r, echo = T, eval = T}
+levels(R_data$Status)
+```
+
+
+So we need to first change these factor levels so we treat "intellectual disability" as the event and "normal brain development" as the baseline. Run the following to change the levels
+
+```{r, echo = T, eval = T}
+R_data$StatusNew <- factor(R_data$Status, 
+                           levels = c("normal brain development", "intellectual disability"))
+levels(R_data$StatusNew)
+
+```
+
+c) Run a logistic regression model in R with `StatusNew` as the outcome and `smoking` and `vitaminB12` as the predictors. Can either variable significantly predict mental retardation? 
+
+d) What is the probability of having a baby with an intellectual disability given the mother smokes and has a vitaminB12 level of 400? 
+What is the probability of having a baby with an intellectual disability given the mother smokes and has
+a vitaminB12 level of 650?
+:::

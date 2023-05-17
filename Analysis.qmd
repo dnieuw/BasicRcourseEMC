@@ -1,0 +1,667 @@
+# Analysis {.unnumbered}
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Here you will find extra information on analyses.
+
+## Hypothesis testing and Confidence Intervals
+
+Comparison is the most common basic principle in medical research. A statement about
+the truth is compared against a reference statement (the null).
+
+- $H_0$: Null hypothesis, e.g. cholesterol is comparable between men and women
+
+- $H_1$: Alternative hypothesis, e.g. men and women differ on average in cholesterol
+
+The p-value is the probability of obtaining the observed data in the sample (or some-
+thing more extreme than the observed data), given that the null hypothesis is true. The
+p-value is calculated based on a point estimate (e.g. mean) of the sample. The decision
+to reject a null hypothesis based on the p-value depends on a chosen $\alpha$ level.
+
+```{r , echo = FALSE, out.height="90%", fig.align="center"}
+include_graphics("Pictures/Hypothesistest.png")
+```
+
+
+For a given dataset and corresponding test statistic, we say the results of the test are
+"statistically significant" if the p-value is less than the pre-selected and fixed significance
+level, $\alpha$ (often 0.05).
+
+Note that there is a distinction between statistical significance and clinical relevance:
+
+- If the sample size is large enough, even a small difference of 0.1 mmHg blood
+pressure can be statistically signifcant between groups, though it is not relevant
+from a clinical point of view.
+
+- If the sample size is too small, even a sample mean of 150 mmHg can be not
+statistically significantly different from 130 mmHg, though 20 mmHg is clinically
+relevant.
+
+
+A confidence interval (CI) is another way to show the reliability of a point estimate.
+The decision to reject or not reject the null hypothesis aligns with whether or not the
+CI contains the null value (e.g. $H_0$: mean = 0; if CI does not contain 0 then reject,
+otherwise do not reject $H_0$). In other words, the decision made by comparing the test
+statistic's p-value to $\alpha$ will be the same as a decision made using a $(1 - \alpha) * 100\%$ CI.
+An interpretation of e.g. a 95% CI is "if the testing procedure were repeated on many
+(k) samples, the confidence intervals would encompass the true population parameter
+in 95% of the k samples" or, more abstractly, "we are 95% confident that the true [e.g.
+mean] lies in the confidence interval".
+
+
+## Comparing groups
+### t-Test
+
+The t-test is a statistical procedure used to test for the difference in means between
+two independent populations. The samples should come from normal distributions (can
+check using e.g. `qqnorm()`) and the variances from each population are assumed to be
+equal.
+
+```{r , echo = FALSE, out.height="60%", fig.align="center"}
+include_graphics("Pictures/ttest.png")
+```
+
+
+The t-test in R makes a correction that does not require equal variances of the two
+populations. The null hypothesis is that the difference between means is 0; the alternative is that this difference is not 0.
+
+
+Here is an example of how to do this test in R. In a data set on tooth growth, it appears that
+ OJ recipients in the sample had a larger tooth growth than VC recipients, on
+average. We can test if this is true in the larger population using a t-test. Let's set $H_0$ to
+be that the two mean tooth lengths are the same and $H_a$ will be that the two mean tooth
+lengths are not equal. Let's use a 0.10 significance level, which means the probability we
+falsely reject the null is 0.10. Note that the function t.test also provides a confidence
+interval - the confidence level specified should be $1 - \alpha$ for the interpretations to align.
+
+
+
+```{r echo = T, eval=T}
+data("ToothGrowth")
+
+ttooth <- t.test(ToothGrowth$len~ToothGrowth$supp, conf.level = 0.90)
+ttooth
+
+```
+Here the p-value is less than our chosen significance level so we reject the null.
+Therefore, at the 10% significance level, the data provide sufficient evidence that our
+alternative hypothesis, that there is a difference between using OJ and VC to grow teeth,
+is true.
+
+
+Now consider the following example. Suppose we believe the mean reaction velocity
+in an enzymatic reaction will be higher in cells treated with Puromycin compared to
+cells not treated with Puromycin. Let's use the 0.05 significance level, allowing for a
+slightly smaller Type I error probability than in the previous example.
+
+
+```{r echo = T, eval=T}
+data("Puromycin")
+
+t.test(rate ~ state, data = Puromycin, alternative = "greater")
+
+```
+
+Here our p-value is greater than $\alpha$ so we do not reject the null hypothesis. We
+therefore conclude that, at the 5% significance level, the data do not provide sufficient
+evidence that Puromycin increases the mean reaction velocity.
+
+We can extract statistics from the output:
+
+
+```{r echo = T, eval=T}
+mytest <- t.test(rate~state, data = Puromycin, alternative = "greater")
+mytest$p.value
+
+mytest$conf.int
+
+```
+
+Can you guess why the CI goes to `Inf` (infinity)?
+
+If samples are matched or paired (e.g. before/after), use argument `paired=TRUE`.
+
+
+
+### Mann-Whitney U Test
+
+The Mann-Whitney U test (also known as the Wilcoxon Rank Sum test) is a non-
+parametric test for a location shift between two independent populations without assuming normality. However, the values should be sampled from two populations with very similar distributions. The null hypothesis is that there is no shift in the centers of the distributions of the two populations; the alternative is that there is a shift.
+
+
+```{r , echo = FALSE, out.height="90%", fig.align="center"}
+include_graphics("Pictures/MWUtest.png")
+```
+
+
+```{r echo = T, eval=T}
+wtest <- wilcox.test(rate~state, data = Puromycin, conf.int = TRUE)
+wtest
+
+wtest$p.value
+
+```
+
+The test statistic W in R is defined to be the sum of the ranks of one of the groups
+minus $n_1(n_1 +1)/2$. The procedure to obtain a confidence interval is quite involved, but
+thankfully R will provide it to us upon request.
+
+
+### ANOVA
+
+A two-sample t-test is used to test hypotheses about the means of two normal populations
+using two datasets which were sampled independently of one another from the two
+respective populations. An analysis of variance (ANOVA) allows for comparing the
+means of one variable among more than two populations (each of which is normally
+distributed), again under the assumption that the samples are independent.
+
+- If the variance between groups is higher than the variance within groups, then
+there is evidence for a difference in means between groups.
+- The null hypothesis is that the means of all groups are equal; the alternative is
+that at least one group has a different mean from the others.
+- ANOVA does not provide which group is different nor in what direction; visualization and/or post-hoc pairwise t-tests can provide this information.
+
+
+Here is a small illustration of the analysis of variance:
+
+```{r , echo = FALSE, out.height="90%", fig.align="center"}
+include_graphics("Pictures/ANOVA.png")
+```
+
+In the left image there is more variability within each of the three groups (boxplots)
+than between the three group means ($\bar{x}_1$, $\bar{x}_2$, $\bar{x}_3$). In the right image there is more variability between the three group means than within each of the three groups..
+
+As with the previous testing procedures we've seen, we compare the p-value to the
+pre-selected significance level. If $p \leq \alpha$ we reject the null and conclude we have evidence
+that at least one population (or group) mean is different from the others, while if $p > \alpha$,
+we fail to reject the null and conclude we do not have evidence that any of the means
+are different.
+
+
+R will calculate all of the statistics for us! For example, let's test at the 5% significance level the alternative hypothesis that at least one of the mean BMIs for three different educational levels are different from the other two (versus the null of three equal means).
+
+```{r, message=F, echo = F, eval = T}
+library(readr)
+R_data <- read_csv("Data/R_data2.csv")
+```
+
+```{r, message=F, echo = T, eval = F}
+library(readr)
+R_data <- read_csv("~/R_data2.csv")
+```
+
+
+```{r echo = T, eval=T}
+baby_aov1 <- aov(BMI ~ educational_level, data = R_data)
+summary(baby_aov1)
+```
+Here the F-statistic is large enough to get a p-value smaller than 0.05 so we conclude
+at least one population mean BMI is different from the other two. But which group is
+it? Let's look at a boxplot:
+
+```{r echo = T, eval=T}
+boxplot(R_data$BMI ~ R_data$educational_level)
+
+```
+
+This visual information is informative but we can actually make pairwise comparisons
+of all the means using Tukey's HSD (for example). We initially used a significance level of 0.05, but will now conduct several tests and use a multiple test procedure that adjusts the family-wise
+error rate to 5%:
+
+```{r echo = T, eval=T}
+TukeyHSD(baby_aov1)
+```
+
+Note that we use the multiple testing procedure to account for the fact that we are
+simultaneously performing more than one test or CI which compounds the error rates
+of each test. Since all of the CIs contain 0 and none of the p-values are significant at
+the 5% level, the initial test result is overturned! We do not actually have evidence that
+education level affects average BMI.
+
+Also note you would not bother with these posthoc tests/CIs if your initial ANOVA
+results were not statistically significant.
+
+### Kruskal-Wallis Test
+
+The single-factor ANOVA model for comparing population or treatment means assumed
+that for all groups, random samples were drawn from normal populations each having
+the same variance. This normality assumption is required for a valid F test, but the
+next procedure for testing the equality of the centers of the distributions only requires
+that the populations have the same continuous distribution.
+
+The null hypothesis is that all of the group centers are the same and the alternative is
+that at least one of the group centers is different. The Kruskal-Wallis test examines the
+validity of these hypotheses by working on ranks of the data without assuming the data
+come from a specific distribution.
+
+The procedure starts by ranking all the data together on the assumption of the null, that
+if the centers of the groups are equal, the ranks from all the groups will be intermingled.
+If the null is false, then some samples will consist mostly of observations having small
+ranks in the combined sample, whereas others will consist mostly of observations having
+large ranks.
+
+The Kruskal-Wallis test statistic is a measure of the extent to which the sums of the
+ranks within each group deviate from their common expected value, and the null is rejected if the computed value of the statistic indicates too great a discrepancy between
+observed and expected rank averages.
+
+
+Example. The accompanying observations on axial stiffness index resulted from a
+study of metal-plate connected trusses in which five different plate lengths (4 in., 6 in.,
+8 in., 10 in., and 12 in.) were used.
+
+```{r , echo = FALSE, out.width="90%", fig.align="center"}
+include_graphics("Pictures/KWtest.png")
+```
+
+Here we read in the data:
+
+```{r, message=F, echo = F, eval = T}
+library(readr)
+stiffness <- read_csv("Data/stiffness.csv")
+```
+
+```{r, message=F, echo = T, eval = F}
+library(readr)
+stiffness <- read_csv("Data/stiffness.csv")
+```
+
+If we look at the boxplot of the stiffness values for each length, we see that the means
+are probably different and that the boxplots don't look very normal:
+
+```{r, echo = T, eval = T}
+boxplot(stiffness~lengths, data = stiffness)
+```
+
+The output of the Kruskal-Wallis test confirms that the means are indeed different. The
+p-value is quite small, indicating at least two of the group centers are different:
+
+
+```{r, echo = T, eval = T}
+kruskal.test(stiffness~lengths, data = stiffness)
+```
+
+
+### Chi-squared test
+
+A $\chi^2$ (read: chi-squared) test of independence tests the null hypothesis that rows and
+columns are independent in a _c x r_ contingency table (r is number of rows, c columns);
+the alternative is that they are not independent. The counts must be independent and
+sampled randomly. We can calculate a chi-squared statistic as follows:
+
+$\chi^2 = \sum \frac{(O_i-E_i)^2}{E_i}$
+
+where $O_i$ is the observed count for cell i in the table, and $E_i$ is the expected count, calculated by multiplying the row and column totals for i divided by the overall total. The
+p-value for the calculated $\chi^2$ statistic depends on the $\chi^2$ distribution with $(r -1)*(c-1)$
+degrees of freedom. R will provide us with the statistic and p-value.
+
+Suppose we have the following table:
+
+
+|         | event | no event | total |
+|---------|:-----:|:--------:|:-----:|
+|treatment| 20 | 80 | 100|
+|placebo  | 50 | 50 | 100|
+|total    | 70 | 130| 200|
+
+and we want to know whether our treatment prevents events, that is, does the occurence
+of an event depend on the type of treatment?
+
+
+```{r echo = T, eval=T}
+mytable <- matrix(c(20, 50, 80, 50), nrow=2)
+mytable
+cstest <- chisq.test(mytable)
+cstest
+
+cstest$p.value
+```
+
+
+### Correlations
+
+If we want to know the degree of a linear association between 2 variables, we can calculate
+correlation. Correlation does not make any a priori assumptions about whether one
+variable is dependent on the other and is not concerned with the relationship between
+the variables. We have 4 general types of association to consider:
+
+
+```{r , echo = FALSE, out.width="90%", fig.align="center"}
+include_graphics("Pictures/Correlation2.png")
+```
+
+
+Pearson's r can only lie in the interval [-1,1] (inclusive), where
+
+- r = 0, no linear correlation
+- r > 0, positive linear correlation
+- r < 0, negative linear correlation
+- r = 1, perfect positive linear correlation
+- r = -1, perfect negative linear correlation
+
+Note that correlation does not imply causation. If two variables are highly correlated
+you cannot infer that one is causing the other; they could both be varying along with a
+third, possibly unknown confounding factor (either causal or not).
+
+For Pearson's r we assume a linear relationship between x and y and that they both follow a normal distribution.
+
+If data are not normally distributed, the degree of association can be determined by
+the ranked correlation coefficient, Spearman's $\rho$, which replaces the x's and y's in the
+Pearson formula with their ranks.
+
+R provides p-values and confidence intervals for both Pearson and Spearman correlations.
+
+Let's look at an example of how BMI and cholesterol are associated:
+
+
+```{r echo = T, eval=T}
+plot(R_data$BMI,  R_data$cholesterol)
+
+cor(R_data$BMI,  R_data$cholesterol)
+
+cor(R_data$BMI,  R_data$cholesterol, method="spearman")
+
+cor.test(R_data$BMI,  R_data$cholesterol)
+
+cor.test(R_data$BMI,  R_data$cholesterol, method="spearman")
+```
+
+Note the warning message (which is not an error!) that indicates if your data have tied
+values (e.g. 1, 1, 3, 5) then the p-value is approximated and is not exact. It's nothing
+to worry about (especially if you're not a statistician...).
+
+
+## Regression
+### Linear regression
+
+There is a high positive correlation between birth weight and gestational age, but this
+says nothing about predictive power of the variables. We would like to explain how
+gestational age influences changes in birth weight.
+
+```{r echo = T, eval=T}
+plot(R_data$pregnancy_length_weeks, R_data$birthweight)
+cor(R_data$pregnancy_length_weeks, R_data$birthweight)
+```
+
+We'll quantify this relationship using linear regression, distinguishing between an in-
+dependent, or predictor or explanatory, variable (gestational age) and a dependent, or
+response or outcome, variable (birth weight). Simple linear regression uses the following
+model:
+
+$Y_i = \beta_0 + \beta_1*X_i + \varepsilon_i$
+
+where $1 \leq i \leq n$, the model is a straight line, and error is remaining variation which cannot
+be explained by the model.
+The parameters $beta_0$ and $\beta_1$ are the intercept and slope of a straight line, respectively.
+
+
+The $\beta_0$ and $\beta_1$ of the one straight line that best fits the data is estimated via the method
+of least squares. The "best" line is the one that has the lowest sum of squared residuals.
+The command to get these estimates in R is `lm`:
+
+```{r echo = T, eval=T}
+lm1 <- lm(birthweight ~ pregnancy_length_weeks, data = R_data)
+lm1
+```
+
+
+You can predict for given values
+```{r echo = T, eval=T}
+predict(lm1)[R_data$pregnancy_length_weeks==35]
+```
+
+
+You can also use `predict()` to predict y for x's that are not already in your data:
+
+```{r echo = T, eval=T}
+predict(lm1, newdata=data.frame(pregnancy_length_weeks=c(seq(25,50,5))))
+```
+
+
+but watch out for extrapolating (predicting outside the range of your data) - clearly
+we can't have negative birth weights!
+
+
+Now, before we make inference on or, actually, even find and use this line, we must
+check that the following assumptions hold, otherwise we will not obtain trustworthy
+results:
+- relationship between x and y can be described by a straight line
+- outcomes y are independent
+- variance of residuals is constant across values of x
+- residuals follow a normal distribution
+
+To get diagnostic plots in R, we can check a histogram of the data and additionally
+plot our model to check that the residuals are normal and homoscedastic (have constant
+variance) across the weeks:
+
+
+```{r echo = T, eval=T}
+hist(R_data$birthweight)
+
+par(mfrow=c(2,2))
+plot(lm1)
+```
+
+The top left plot tells us if our residuals are homoscedastic, and the top right plot
+displays a quantile-quantile (QQ) plot to check for normality. Here are examples of bad
+QQ plots and heteroscedasticity:
+
+```{r echo = T, eval=T}
+set.seed(1234)
+par(mfrow=c(2,2))
+x <- sort(rnorm(100))
+y1 <- sort(rt(100,2))
+plot(x, y1, xlim=c(-3,3), xlab="normal", ylab="t, df=2")
+abline(0, 1)
+y2 <- sort(rexp(100))
+plot(x, y2, xlim=c(-3,3), ylim=c(-6,6), xlab="normal", ylab="exponential")
+abline(0, 1)
+plot(x, x^2-5+rexp(100))
+abline(0, 0, col="red")
+plot(x, x*rexp(100))
+abline(0, 0, col="red")
+```
+
+
+However, the assumptions reasonably hold for our baby data, so we'll go ahead and use
+the model fit to make inference on the slope.
+
+
+Actually, R has already done the inference...we just need to extract it from the model:
+
+```{r echo = T, eval=T}
+summary(lm1)
+```
+
+R has performed a one-sample t-test on the intercept b1 and slope b0 to determine
+if they are each statistically significantly different from 0. The probabilities are quite
+small, so we can reject the null hypothesis that they are equal to 0 and conclude that
+birthweight significantly increases, on average, by 400 grams per every additional week
+of gestation. The intercept is (usually) unimportant and we don't really care that it is
+different from 0. If the p-value for the slope is not small (e.g. greater than 0.05) then
+we would say "we do not have enough evidence to reject the null hypothesis that the
+slope is 0."
+
+Now, how good does the model actually fit our data? How well does x predict y? The square of Pearson's correlation coefficient, r, is a measure of goodness of fit. It is the proportion of variance in y that can be explained
+by the model (so, x). In our example, r2 is:
+
+```{r echo = T, eval=T}
+cor(R_data$pregnancy_length_weeks, R_data$birthweight)^2
+summary(lm1)$r.squared
+
+```
+
+which means that 96% of the variability in birth weight can be explained by gestational
+age.
+
+
+
+Simple linear regression models one y on one x. If we have multiple predictor variables,
+we use multiple linear regression to determine if the variability in y can be explained by
+this set of variables. In addition to the assumptions required for a valid simple linear
+regression, we now include that the covariates have no perfect multicollinearity, that is
+there is no strong correlation between the multiple x's. The model is
+
+$Y_i = \beta_0 + \beta_1*X_{1i} + ... + \beta_k*X_{ki}+\varepsilon_i$
+
+In R, the addition of an extra variable is quite straightforward:
+
+```{r echo = T, eval=T}
+
+cor(R_data$pregnancy_length_weeks, R_data$BMI)
+
+lm2 <- lm(birthweight ~ pregnancy_length_weeks + BMI, data = R_data)
+lm2stats <- summary(lm2)
+lm2stats
+
+```
+Since the 2 variables are uncorrelated, we can add BMI to the model. We see that it
+does not significantly predict birth weight, but gestational age still does. We use the
+adjusted $r^2$ to check goodness of fit:
+
+```{r echo = T, eval=T}
+
+lm2stats$adj.r.squared
+```
+
+So adding BMI does not help explain any of the variability in birth weight (since r2 was
+previously already 0.96). This is also confirmed by visualization:
+
+```{r echo = T, eval=T}
+
+plot(R_data$BMI, R_data$birthweight)
+```
+
+Note that the summary function returns a lot of information. If, for example, you wanted
+to extract only the p-values you could do the following:
+
+```{r echo = T, eval=T}
+names(lm2stats)
+lm2stats$coef[,4]
+```
+
+We can predict birthweights with new data:
+
+```{r echo = T, eval=T}
+predict(lm2, newdata=data.frame(pregnancy_length_weeks=32,
+BMI=30))
+```
+But we cannot forget to check assumptions!
+
+```{r echo = T, eval=T}
+par(mfrow=c(2,2))
+plot(lm2)
+
+par(mfrow=c(1,1))
+hist(lm2$residuals)
+```
+
+
+### Logistic regression
+
+
+There are many research topics for with the dependent variable y is binary (0/1), e.g.
+
+- mortality (dead/alive)
+- treatment response (responder/non-responder)
+- development of disease (yes/no)
+
+and we want to predict the membership of an individual to one of the two categories
+based on a set of predictors.
+
+In this situation we have to work with probabilities, which are numbers between 0 and
+1. A value $P(y)$ that is close to 0 means that y is very unlikely to occur, while a value
+close to 1 means that y is very likely to occur.
+
+In simple/multiple linear regression a continuous variable y is predicted by continuous/categorical x(s), but if y can only have 2 values (e.g. y = 0 or y = 1), how do we predict the probability that y = 1 given one or more predictors? Could we apply a linear regression model...?
+
+we would try to fit $P(y = 1) = \beta_0 + \beta_1X$, which doesn't work. In linear regression we
+assume the relationship between x and y is linear, but in the case of binary outcomes this
+assumption is no longer valid. Results obtained from a linear regression model wouldn't
+makes sense! Probabilities beyond the interval (0,1) are not interpretable. 
+
+Instead we're going to use a logistic curve:
+
+$ln(\frac{p}{1-p}) = \beta_0 + \beta_1X$
+
+The function $ln(p/(1- p))$ is called a logit of p and it is this function of y that is linear
+in x instead of y itself.
+
+This model formulation assures that the predicted probability of an event falls between
+0 and 1, unlike a linear regression model.
+
+Also note that we've made no assumptions about linearity, normality or homoscedasticity!
+The values of the intercept and slope are estimated using the maximum likelihood
+method, which finds the values of the coefficients that make the observed data most
+likely to occur.
+Statistical significance of estimate coefficients is testing with the Wald test, which is
+based on the $\chi^2$ distribution (though R calls it "z"). The goodness of fit is assessed
+by deviance, which is based on the differences observed-expected principle. Also, the
+Akaike information criterion (AIC) gives a measure of the quality of the model.
+The coefficients are most usefully interpreted with the following:
+
+$e^{\beta} \ \frac{\textrm{odds after a unit change}}{\textrm{original odds}}$
+
+and when x is binary, $e^{\beta}$ is the odds ratio from the 2 by 2 contingency table!
+
+In R:
+
+```{r echo = T, eval=T}
+R_data$StatusNew <- factor(R_data$Status, 
+                           levels = c("normal brain development", "intellectual disability"))
+levels(R_data$StatusNew)
+
+lr1 <- glm(StatusNew ~ BMI, family = binomial(logit), data = R_data)
+summary(lr1)
+```
+
+so $logit(p) = -2.40591+0.08782* BMI$. Thus the probability of having a baby with
+an intellectual disability when BMI is 32, is:
+
+```{r echo = T, eval=T}
+logit_p1 <- -2.40591+0.08782*32
+logit_p1
+```
+
+Or
+```{r echo = T, eval=T}
+predict(lr1, newdata = data.frame(BMI = 32), se.fit = TRUE)
+
+```
+
+To obtain the probability of the event use `type = "response"`
+
+```{r echo = T, eval=T}
+
+predict(lr1, newdata = data.frame(BMI = 32), se.fit = TRUE, type = "response")
+```
+
+The coefficient b1 = 0.08782 can be exponentiated to obtain the odds ratio:
+
+```{r echo = T, eval=T}
+summary(lr1)$coef
+
+b1 <- summary(lr1)$coef[2, 1]
+b1
+
+exp(b1)
+```
+
+Like multiple linear regression, we can add variables into the model here as well:
+
+```{r echo = T, eval=T}
+lr2 <- glm(StatusNew ~ BMI + smoking, family = binomial(logit), data = R_data)
+summary(lr2)$coef
+```
+
+
+Thus the probability of having a baby with an intellectual disability when BMI is
+32, and the mother is a smoker is:
+
+```{r echo = T, eval=T}
+mynewdata <- data.frame(BMI = 32, smoking = factor("yes"))
+logit_p2 <- predict(lr2, newdata = mynewdata, type = "response")
+logit_p2
+```

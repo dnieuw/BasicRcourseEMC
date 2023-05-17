@@ -90,6 +90,7 @@ The class is `function`.
 Determine the class of `mean()` using `str()`.
 
 ### Answer
+
 ```{r}
 str(mean)
 ```
@@ -103,6 +104,7 @@ The class is `function`.
 Determine the class of the value output in Q4 using `class()`.
 
 ### Answer
+
 ```{r}
 class(mean(c(1, 2, NA, 6), 0, TRUE))
 ```
@@ -116,6 +118,7 @@ The class is `numeric`
 Determine the class of the value output in Q4 using str().
 
 ### Answer
+
 ```{r}
 str(mean(c(1, 2, NA, 6), 0, TRUE))
 ```
@@ -135,6 +138,7 @@ Use R as a calculator to calculate the following values:
 (45-2)\*3=?
 
 ### Answer
+
 ```{r}
 17^4
 
@@ -152,6 +156,7 @@ Use R as a calculator to calculate the following values:
 Calculate the remainder after dividing 29,079 into 184,277,809.
 
 ### Answer
+
 ```{r}
 184277809 %% 29079
 ```
@@ -163,6 +168,7 @@ Calculate the remainder after dividing 29,079 into 184,277,809.
 How many times does 29,079 go into 184,277,809 (i.e. what's the *integer divide* value)?
 
 ### Answer
+
 ```{r}
 184277809 %/% 29079
 ```
@@ -183,6 +189,7 @@ d <- (a - b) * c
 Now check what a, b, c, and d are. You can just type the variable name (e.g. a) and hit 'Control+Enter' or use the command `print(a)`.
 
 ### Answer
+
 ```{r}
 a <- 45
 b <- 2
@@ -206,6 +213,7 @@ d
 Write a function called 'evenOrOdd' involving `if` and `else` that takes an argument `x` and returns "Even" or "Odd" depending on whether or not `x` is divisible by 2. (Do not use the ifelse() function).
 
 ### Anwser
+
 ```{r}
 evenOrOdd <- function(x) {
   if(x %% 2 == 0) {
@@ -227,6 +235,7 @@ w <- c(3, 6, 6, 4, 7, 9, 11, 6)
 ```
 
 ### Answer
+
 ```{r,error=T}
 evenOrOdd(w)
 ```
@@ -240,6 +249,7 @@ An error is given, because x in `if(x %% 2 == 0)` is longer than 1.
 Another way to determine if each element of a vector is even or odd is to use the `ifelse()` function, which serves as a vectorized version `if` and `else`. Use `ifelse()` to obtain "Even" or "Odd" for each element of `w`.
 
 ### Answer
+
 ```{r}
 ifelse(w %% 2 == 0, "Even", "Odd")
 ```
@@ -257,12 +267,12 @@ What will be the result of the following:
 ```
 
 ### Answer
+
 ```{r}
 (10 < 20 && 15 < 16) || 9 == 10
 ```
 
 TRUE because the first statement (in parentheses) is TRUE and the second is FALSE.
-
 :::
 
 ::: panel-tabset
@@ -279,6 +289,7 @@ One of the following evaluates to TRUE, the other to FALSE. Which is which?
 ```
 
 ### Answer
+
 ```{r, eval=F}
 4 < 3 && (5 < 6 || 8 < 9)
 ```
@@ -287,7 +298,7 @@ One of the following evaluates to TRUE, the other to FALSE. Which is which?
 (4 < 3 && 5 < 6) || 8 < 9
 ```
 
-The first one FALSE because the first statement before && is FALSE. The second one is TRUE because one of the two statements to the left and right of || is TRUE
+The first one FALSE because the first statement before && is FALSE. The second one is TRUE because one of the two statements to the left and right of \|\| is TRUE
 :::
 
 ::: panel-tabset
@@ -303,17 +314,20 @@ c)  Now use the same strategy to extract the rows corresponding to patients whos
 
 ### Answer
 
-a)
+a)  
+
 ```{r}
-bp <- read.table("BPressure.txt", header=TRUE)
+bp <- read.table("Data/BPressure.txt", header=TRUE)
 ```
 
-b)
+b)  
+
 ```{r}
 bp[(bp$Systolic < 120 & bp$Diastolic < 80), ]
 ```
 
-c)
+c)  
+
 ```{r}
 bp[!(bp$Systolic < 120 & bp$Diastolic < 80), ]
 ```

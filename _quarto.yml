@@ -1,12 +1,18 @@
 project:
   type: book
   output-dir: docs
-
 book:
   title: "Basic R Course"
-  date-modified: "30-11-2022"
+  author: "Sara Baart & David Nieuwenhuijse"
+  date: "30-11-2022"
   chapters:
     - index.qmd
+    - Analysis.qmd
+    - Analysis_practical.qmd
+    - Analysis_answers.qmd
+    - Datacleaning.qmd
+    - Datacleaning_practical.qmd
+    - Datacleaning_answers.qmd
     - part: basic_plotting_intro.qmd
       chapters:
         - basic_plotting.qmd
