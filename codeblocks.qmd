@@ -1,0 +1,92 @@
+# Code Blocks
+
+
+## Introduction
+
+The main feature of quarto is that we can interweave the text with code blocks. These code blocks are the point of discussion of this section.
+
+## Code blocks
+
+When we include a code block (also called chunk) we start by writing three back ticks (\`\`\`) followed by the name of the language you use in the code block (we will only use R) surrounded with braces. The chunk again is ended by writing three back ticks. So the whole thing looks like this
+
+```{{r}}
+1 + 1
+```
+
+Optionally you can also include a chunk name after the name of the language. This helps if there are any errors as the chunk name will be included in the error message. Additionally figures that are created within the code will use the chunk name in the name of the figure.
+
+```` markdown
+```{{r examplename}}
+````
+
+By default, when the document is rendered the code in the chunks will be executed and both the contents of the code block as the output will be included in the document. Execution of the code, insertion of the code and insertion of the output can be suppressed by so-called chunk options (see below). A given document can include menu code chunks that all will be executed in order. Variables that are defined in a certain code block can be used in the following ones, just as if the code would have formed a single R-script.
+
+## Chunk Options
+
+It is possible to modify the behavior of how the code blocks are executed. This is done by including special comments at the top of the code blocks. Alternatively we can include them between the braces. That is we can either write
+
+
+```{{r}}
+#| echo: false
+
+# some code
+
+```
+
+
+or 
+
+```` markdown
+```{{r echo=FALSE}}
+
+# some code
+
+```
+````
+
+Some options that are often used are:
+
+eval
+: when TRUE (the default) the code is evaluated when FALSE it is not
+
+echo
+: when TRUE (default) the source is displayed in the output decument. When it is FALSE it is not.
+
+results
+: specifies how the resuls are displayed. When it is 'markup' it is displayed as a code-block. When it is `asis` it will not be modified. A situation in which this is convinient when the R functions formats its output in html. When 'hide' or FALSE the results are not shown at all.
+
+warning
+: when FALSE, all warnings will be suppressed
+
+message
+: when FALSE, all messages (printed by the `message` function) will be suppressed
+
+include
+: When TRUE the output is shown in the document when FALSE all output is suppressed but the code is still executed
+
+file
+: the code content is read from an external file that is named in the option
+
+child
+: the content of an external file is inserted in place
+
+## Inline code
+
+Beside complete code blocks it is also possible to include short bits of R code in the running text. The code should be included between `` `r `` and `` ` `` , for example `` `r `` ``nrow(data_set)` ``.
+
+## YAML header
+
+Each markdown document starts with a header that specifies such things as the title, author, date and output format. For example
+
+``` markdown
+---
+title: "My document"
+author: "Sten Willemsen"
+date: "21 May 2023"
+format: html
+---
+
+```
+
+Besides html we can also create word documents by using `output: docx` and pdf documents by specifying `output: pdf`. The last option requires TeX to be installed.
+

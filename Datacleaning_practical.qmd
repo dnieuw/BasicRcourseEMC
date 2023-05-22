@@ -1,4 +1,4 @@
-# Data Cleaning - Practical {.unnumbered}
+# Data Cleaning - Practical
 
 For this practical we will use the data set `R_data` you can find on Canvas. This is a .csv file. Load the data in R. Make sure you specify the correct file path!
 
@@ -88,7 +88,7 @@ In question 9 we found an outlier. How do you deal with this outlier?
 Fill in the table with summary statistics below
 
 |                             |                    | Intellectual disability | Normal brain development |
-|---------------------|:-----------------|:---------------:|:---------------:|
+|--------------------|:-----------------|:----------------:|:----------------:|
 |                             |                    |        (n = ...)        |        (n = ...)         |
 | BMI, median \[IQR\]         |                    |                         |                          |
 |                             | missing (n = )     |                         |                          |

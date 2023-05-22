@@ -1,0 +1,33 @@
+## Markdown: Questions
+
+We are going to do an analysis in R using quatro to produce an html file that contains both the code and the results. To help you on your way you can use the file practicaltemplate.qmd that you can find on Canvas.
+
+::: panel-tabset
+### Question 1
+We are going to explore the build-in data set 'ToothGrowth' that is beging loaded in the setup chuck of the template document. In the second chunk we create histograms for the length of the teeth given the dose and the supplement given. If needed go back to the chapter about creating plots to find information on how to do this.
+:::
+
+::: panel-tabset
+### Question 2
+We focus on the Guinea pigs that received 2 mg of Vitamin C by either delivery method. Create a new data frame that makes the appropriate selection. What is are the mean and median tooth lengths? 
+:::
+
+::: panel-tabset
+### Question 3
+Use a statistical test to compare the tooth lengths between delivery methods (still focusing on the highest dose). 
+:::
+
+::: panel-tabset
+### Question 4
+Now adjust the text the text of the document to explain what you have done and state your conclusions. Use bold text to indicate the most important points. Use a mathematical formula to state the null hypothesis of your test.
+:::
+
+::: panel-tabset
+### Question 5
+Render the html document. Now change the html header to also generate a pdf.
+:::
+
+::: panel-tabset
+### Question 6
+Change the markdown so the output from the setup chunk is not shown in the output document. 
+:::

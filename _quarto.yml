@@ -3,16 +3,25 @@ project:
   output-dir: docs
 book:
   title: "Basic R Course"
-  author: "Sara Baart & David Nieuwenhuijse"
+  author: "Sara Baart, David Nieuwenhuijse, Sten Willemsen, Sanne Hoeks, Elrozy Andrinopoulou, Elizabeth Ribble, Karl Brand"
   date: "30-11-2022"
   chapters:
     - index.qmd
-    - Analysis.qmd
-    - Analysis_practical.qmd
-    - Analysis_answers.qmd
-    - Datacleaning.qmd
-    - Datacleaning_practical.qmd
-    - Datacleaning_answers.qmd
+    - introduction_history.qmd
+    - part: objects.qmd
+      chapters:
+        - objects_practical.qmd
+    - part: manipulating_data.qmd
+      chapters:
+        - manipulating_data_practical.qmd
+    - part: Datacleaning.qmd
+      chapters:
+        - Datacleaning_practical.qmd
+        - Datacleaning_answers.qmd
+    - part: Analysis.qmd
+      chapters:
+        - Analysis_practical.qmd
+        - Analysis_answers.qmd
     - part: basic_plotting_intro.qmd
       chapters:
         - basic_plotting.qmd
@@ -47,6 +56,10 @@ book:
       chapters:
         - functions_practicals2_questions.qmd
         - functions_practicals2_answers.qmd
+    - basic_markdown.qmd
+    - basic_markdown_practicals_questions.qmd
+    - codeblocks.qmd
+    - tidyverse.qmd
   repo-url: https://github.com/dnieuw/BasicRcourseEMC
   repo-actions: [edit]
   downloads: [pdf]

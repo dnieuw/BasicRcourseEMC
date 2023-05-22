@@ -1,0 +1,312 @@
+# Objects Practical
+
+
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+static <- TRUE
+options(width = 100)
+```
+
+
+```{r packages, include = FALSE}
+library(kableExtra)
+library(knitr)
+```
+
+
+```{r load_data, context="data", include=FALSE}
+library(survival)
+```
+
+## R as a calculator (expressions and assignments)
+
+#### a) Expressions {.unnumbered}
+
+Use R as a calculator to calculate the following values:
+
+* $17 ^4$,
+* $45 - 2 \times 3$
+* $(45 - 2) \times 3$
+
+Enter the folowing in an R-script and then run the lines using {{< kbd Ctrl-Enter >}}.
+```{r eval=FALSE, include=TRUE}
+17^4
+2^(1/3)
+45-2 * 3
+(45-2) * 3
+
+```
+
+#### b) Assignment {.unnumbered}
+
+```{r}
+a <- 45
+b <- 2
+c <- 3
+d <- (a - b) * c 
+```
+
+`a`, `b`, `c`, and `d` are variables. You can just type the variable name (e.g. `a`) and hit {{< kbd Ctrl-Enter >}} or use the command `print(a)`.
+
+<br>
+
+<!--
+#### c {.unnumbered}
+
+Use the operators `\` and `%\%` to do the following:
+
+* Calculate the remainder after dividing 29,079 into 184,277,809.
+* How many times does 29,079 go into 184,277,809 (i.e.\ what's the ``integer divide'' value)?
+-->
+
+## Math using vectors and matrices (recycling)
+
+Define `x` and `A` as:
+```{r}
+#| eval: false
+#| quiet: true
+x <- c(1, 2, 3, 4, 5, 6)
+A <- matrix(c(1, 2, 3, 4, 5, 6),nrow = 2, ncol = 3)
+```
+
+What are 
+```{r}
+#| eval: false
+#| quiet: true
+x + 4
+x + x
+2 * x
+x / c(2, 3, 4, 5)
+```
+
+```{r}
+#| eval: false
+#| quiet: true
+
+A + 4
+A + x
+2 * A
+x / c(2, 3)
+```
+
+
+## Common R Objects
+
+It is important to distinguish the different object in R. Therefore we will try and create some vectors, matrices, data frames, arrays and lists. We will do this using some data from the survival package.
+
+### Introduction to the data
+
+For this part of the practical, we will use the **heart** and **retinopathy** data sets from the `survival` package. More details about the data sets can be found in:
+
+<https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html>
+
+<https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html>
+
+::: panel-tabset
+
+#### a {.unnumbered}
+
+Load the survival package to access the data sets. Explore the **heart** and **retinopathy** data sets - print the first six and last six rows (use the head and tail functions). 
+
+#### Hint a {.unnumbered}
+
+Use the functions head(...) and tail(...) to investigate the data set. Replace the dots with the name of the data set.
+
+:::
+
+### Vectors
+
+::: panel-tabset
+
+Let's investigate some vectors.
+
+#### a {.unnumbered}
+ View the vectors `event` and `age` from the **heart** data set.
+
+#### Hint a {.unnumbered}
+
+Use the dollar sign to select the variables.
+
+:::
+
+::: panel-tabset
+#### b {.unnumbered}
+View the vectors `eye` and `risk` from the **retinopathy** data set.
+
+#### Hint b {.unnumbered}
+
+Use the dollar sign to select the variables.
+
+:::
+
+::: panel-tabset
+
+#### c {.unnumbered}
+Create a numerical vector that consists of the values: 34, 24, 19, 23, 16. Give the name `numbers` to this new vector.
+
+#### Hint c {.unnumbered}
+
+Use the c(...) function. Replace the dots with the numbers.
+
+:::
+
+::: panel-tabset
+
+#### d {.unnumbered}
+d Create a numerical vector that takes the integer values from 1 until 200. Give the name `numbers_2` to this new vector.
+
+#### Hint d {.unnumbered}
+
+Use the colon operator `:` or seq function to create the vector. Use `?:` or `?seq` if needed.
+
+:::
+
+::: panel-tabset
+
+#### e {.unnumbered}
+
+Create a character vector that consists of the values: yes, yes, no, no, no, yes. Give the name `treatment` to this new vector.
+
+#### Hint e {.unnumbered}
+
+Use the c(...) function. Replace the dots with the categories.Do not forget the quotes `"`.
+
+:::
+
+
+### Matrices and Data Frames
+
+
+Let's investigate some matrices and data frames.
+
+::: panel-tabset
+#### a {.unnumbered}
+
+Create a matrix like this
+
+```{r}
+#| quiet: true
+x <- matrix(8:11, nrow = 6, ncol = 4)
+x
+```
+Why is `x` filled in the way it is? Hint: read about the arguments for `matrix`!
+
+#### Hint a {.unnumbered}
+
+How many elements does a matrix of the indicated dimensions have. How many elements does the data vector have? Find out what is done in this case. Are rows or columns filled first?
+
+:::
+
+::: panel-tabset
+
+#### b {.unnumbered}
+Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable.
+
+#### Hint b {.unnumbered}
+First combine the vectors using `c`. Now use the function matrix(...) to convert it to a matrix and specify that it should have two columns.
+
+:::
+
+::: panel-tabset
+
+#### c {.unnumbered}
+
+Create a data frame using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns, where each column represents each variable.
+
+#### Hint c {.unnumbered}
+
+Use the function data.frame(...).
+
+:::
+
+### Arrays
+
+Let's investigate arrays.
+
+::: panel-tabset
+
+#### a {.unnumbered}
+
+Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows.
+
+#### Hint a {.unnumbered}
+Use the function array(...).
+
+:::
+
+::: panel-tabset
+#### b {.unnumbered}
+
+Give the name `ar1` to the previous array. Furthermore, investigate the argument dimnames and change the names of the rows, columns and matrices.
+
+#### Hint b {.unnumbered}
+
+Use the function array(...). Check the help page for the dimnames argument. Note that this must be in a list format.
+
+:::
+
+### Lists 
+
+Let's investigate lists.
+
+::: panel-tabset
+#### a {.unnumbered}
+
+Create a list using the vectors `stop` from the **heart** data set and `id`, `risk` from the **retinopathy** data set. Give the names `stop_heart`, `id_reti` and `risk_reti`.
+
+#### Hint a {.unnumbered}
+Use the function list(...).
+
+:::
+
+::: panel-tabset
+#### b {.unnumbered}
+
+Create a list using the vectors `numbers`, `numbers_2` and `treatment`. These variables can be taken from the exercise called `Vectors`.  Give the names: `numbers`, `many_numbers` and `treatment`.
+
+#### Hint b {.unnumbered}
+Use the function `list(...)` using named function arguments.
+
+:::
+
+## Saving files and data
+
+Do the following to practice saving and opening files in R.
+
+  1) Look at the variables (or other objects) that are stored in your Workspace by typing either `objects()` or `ls()`
+
+
+  2) Check your working directory by typing `getwd()`. Now change it to a different directory - preferably your own flash drive - by using the function `setwd()`, for example: 
+
+```{r}
+#| eval: false
+setwd("C:/Users/Elizabeth/My Documents/R Course")
+```
+
+
+  3) Use the function `save.image()` to save your `R` session to a file called `YourLastName_practical1.RData` (replace YourLastName with your last name). Note that this will save a `.RData` file that contains only those objects you see when you run `ls()`. It does not save any code you typed into the console or into the source pane.
+
+  4) Use the RStudio 'File' drop-down menu to save your R source code to a file called `YourLastName\_practical1.R` (replace YourLastName with your last name). Note that this will only save the text you've typed into the source pane. It does not save any objects or anything typed into or ran through the console.
+
+
+  5) Use the function `save()` to save only the objects `numbers`, `numbers_2` and `treatment` from the 'Vectors' exercise. 
+  to a file called `YourLastName\_objects.RData` (replace YourLastName with your last name).
+
+
+  6) Now close out RStudio entirely, select ``Save'' or ``Yes'' in any dialog boxes that pop up, and then reopen RStudio. Is your source code still there? 
+
+  7) Run `ls()`; are your objects still there? 
+
+
+  8) You can change these kinds of options by going to `Tools - Global Options`. Go there and deselect 'Restore .RData into workspace at startup'. Then close RStudio and choose to save the `.RData` file.  
+
+  9) Reopen RStudio; your environment should be empty. Load your objects back in using `load()` (e.g. `Ribble\_practical1.RData`") and then run `ls()` again. Do you see your objects now? 
+
+
+10) Check what the working directory is by again running `getwd()` - has it been reset? 
+

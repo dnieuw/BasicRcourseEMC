@@ -1,0 +1,60 @@
+# Tidyverse
+
+## Introduction
+
+The so called tidyverse is a collection of connected R-packages that are created by the same people that also made R-studio. You have already seen one of these packages: ggplot. Like ggplot, many of these packages do things that could, in principle, also be done in base R but in a may that some people find more intuitive. Because these packages are so and general popular it may well well happen that when you try to find something R-related on the internet you find a solution using the tidyverse. For this reason we give a short introduction to the tidyverse here.
+
+## tibble
+
+The package `tibble` provides the `tibble` class and some functions to work with this class. A `tibble` is an alternative to a `data.frame` and is mostly (but not completely) compatible with this class.  The most important differences are the following: Unlike a data.frame a `tibble` does not use row names. When a single column is selected from a `data.frame` using `[,]` the result is converted to a vector. This does not happen with a `tibble`. Finally, when a `tibble` is printed only a few rows and columns are shown. `tibble` is an important package because most other tidyverse packages use `tibble`s.  
+
+## dplyr
+
+The `dplyr` package provides new methods to do data manipulation. It also provides the so-called pipe operator `%>%` that takes the output of a function on the left-hand-side and uses it as input for a function on the right (by default as the fist argument). This often can make long sequences of transformations much more readable.
+
+```{r dplyr example}
+library(dplyr)
+starwars %>% 
+  select(mass, height, gender, homeworld) %>% 
+  group_by(gender, homeworld) %>% 
+  filter(mass > mean(mass, na.rm = TRUE)) %>% 
+  summarise(min_height=min(height,na.rm = TRUE), n=n())
+
+```
+
+## readr
+
+A package to read text files, mostly much faster than base R does.
+
+## purrr
+
+The package `purrr` makes functional programming with R easier. That is it contains methods that apply functions to the elements of lists or otherwise work with lists and functions. An example is shown below:
+
+```{r}
+library(dplyr)
+library(purrr)
+data("ToothGrowth")
+ToothGrowth %>% 
+  split(.$supp) %>% 
+  map(function(x) lm(len ~ dose, data=x)) %>% 
+  map(coef) %>% 
+  bind_rows()
+
+```
+
+
+## forcats
+
+This package makes working with `factor`s easier.
+
+## stringr
+
+The `stringr` package helps you ro work with character data (strings). It does things like merging and splitting and otherwise manipulating character variables and finding and selecting substrings in larger strings.
+
+## tidyr
+
+The `tidyr` package can be used to make `data.frame`s or `tibble`s 'tidy'. That is make sure it is organised in a way so that each variable is in a column of its own and each observation has a separate row. This is the format that is expected by most functions in `R`. However many data sets (for example from excel) do not have this structure. The package also contains functions to reshape data (from long to wide format or vice-versa) or work with nested data, that is `tibble`s that are stored in single cells of an other table.
+
+
+
+
