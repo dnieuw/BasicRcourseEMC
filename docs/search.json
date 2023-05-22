@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Basic R Course",
     "section": "",
-    "text": "Introduction\nHi, welcome to the Basic R Course manual."
+    "text": "Welcome\nHi, welcome to the Basic R Course manual."
   },
   {
     "objectID": "basic_plotting_intro.html",
@@ -382,7 +382,7 @@
     "href": "Analysis.html#hypothesis-testing-and-confidence-intervals",
     "title": "Analysis",
     "section": "Hypothesis testing and Confidence Intervals",
-    "text": "Hypothesis testing and Confidence Intervals\nComparison is the most common basic principle in medical research. A statement about the truth is compared against a reference statement (the null).\n\n\\(H_0\\): Null hypothesis, e.g. cholesterol is comparable between men and women\n\\(H_1\\): Alternative hypothesis, e.g. men and women differ on average in cholesterol\n\nThe p-value is the probability of obtaining the observed data in the sample (or some- thing more extreme than the observed data), given that the null hypothesis is true. The p-value is calculated based on a point estimate (e.g. mean) of the sample. The decision to reject a null hypothesis based on the p-value depends on a chosen \\(\\alpha\\) level.\n\n\n\n\n\n\n\n\n\nFor a given dataset and corresponding test statistic, we say the results of the test are “statistically significant” if the p-value is less than the pre-selected and fixed significance level, \\(\\alpha\\) (often 0.05).\nNote that there is a distinction between statistical significance and clinical relevance:\n\nIf the sample size is large enough, even a small difference of 0.1 mmHg blood pressure can be statistically signifcant between groups, though it is not relevant from a clinical point of view.\nIf the sample size is too small, even a sample mean of 150 mmHg can be not statistically significantly different from 130 mmHg, though 20 mmHg is clinically relevant.\n\nA confidence interval (CI) is another way to show the reliability of a point estimate. The decision to reject or not reject the null hypothesis aligns with whether or not the CI contains the null value (e.g. \\(H_0\\): mean = 0; if CI does not contain 0 then reject, otherwise do not reject \\(H_0\\)). In other words, the decision made by comparing the test statistic’s p-value to \\(\\alpha\\) will be the same as a decision made using a \\((1 - \\alpha) * 100\\%\\) CI. An interpretation of e.g. a 95% CI is “if the testing procedure were repeated on many (k) samples, the confidence intervals would encompass the true population parameter in 95% of the k samples” or, more abstractly, “we are 95% confident that the true [e.g. mean] lies in the confidence interval”."
+    "text": "Hypothesis testing and Confidence Intervals\nComparison is the most common basic principle in medical research. A statement about the truth is compared against a reference statement (the null).\n\n\\(H_0\\): Null hypothesis, e.g. cholesterol is comparable between men and women\n\\(H_1\\): Alternative hypothesis, e.g. men and women differ on average in cholesterol\n\nThe p-value is the probability of obtaining the observed data in the sample (or some- thing more extreme than the observed data), given that the null hypothesis is true. The p-value is calculated based on a point estimate (e.g. mean) of the sample. The decision to reject a null hypothesis based on the p-value depends on a chosen \\(\\alpha\\) level.\n\n\n\n\n\n\n\n\n\nFor a given dataset and corresponding test statistic, we say the results of the test are “statistically significant” if the p-value is less than the pre-selected and fixed significance level, \\(\\alpha\\) (often 0.05).\nNote that there is a distinction between statistical significance and clinical relevance:\n\nIf the sample size is large enough, even a small difference of 0.1 mmHg blood pressure can be statistically signifcant between groups, though it is not relevant from a clinical point of view.\nIf the sample size is too small, even a sample mean of 150 mmHg can be not statistically significantly different from 130 mmHg, though 20 mmHg is clinically relevant.\n\nA confidence interval (CI) is another way to show the reliability of a point estimate. The decision to reject or not reject the null hypothesis aligns with whether or not the CI contains the null value (e.g. \\(H_0\\): mean = 0; if CI does not contain 0 then reject, otherwise do not reject \\(H_0\\)). In other words, the decision made by comparing the test statistic’s p-value to \\(\\alpha\\) will be the same as a decision made using a \\((1 - \\alpha) * 100\\%\\) CI. An interpretation of e.g. a 95% CI is “if the testing procedure were repeated on many (k) samples, the confidence intervals would encompass the true population parameter in 95% of the k samples” or, more abstractly, “we are 95% confident that the true [e.g. mean] lies in the confidence interval”."
   },
   {
     "objectID": "Analysis.html#comparing-groups",
@@ -418,5 +418,467 @@
     "title": "11  Functions 1: Questions",
     "section": "11.1 Function Arguments",
     "text": "11.1 Function Arguments\n\nQuestion 1\n\n\nLook at the help file for the function mean().\nHow many arguments does the function have?\nWhat types of vectors are accepted?\nWhat is the default setting for dealing with NA values?\n\n\n\n\nQuestion 2\n\n\nUse the function mean() to calculate the mean of the following values:\n\n\n\n\n\n\nNote\n\n\n\nnote the NA and use named argument matching\n\n\n\nc(1, 2, NA, 6)\n\n\n\n\n\nQuestion 3\n\n\nDo Q2 again but rearrange the arguments.\n\n\n\n\nQuestion 4\n\n\nDo Q2 again using positional matching.\n\n\n\n\nQuestion 5\n\n\nDetermine the class of mean() using class().\n\n\n\n\nQuestion 6\n\n\nDetermine the class of mean() using str().\n\n\n\n\nQuestion 7\n\n\nDetermine the class of the value output in Q4 using class().\n\n\n\n\nQuestion 8\n\n\nDetermine the class of the value output in Q4 using str().\n\n\n\n\nQuestion 9\n\n\nUse R as a calculator to calculate the following values:\n17^4=?\n45-2*3=?\n(45-2)*3=?"
+  },
+  {
+    "objectID": "represearch.html",
+    "href": "represearch.html",
+    "title": "19  Repreducible research",
+    "section": "",
+    "text": "20 Markdown basics"
+  },
+  {
+    "objectID": "represearch.html#markdown",
+    "href": "represearch.html#markdown",
+    "title": "19  Repreducible research",
+    "section": "19.1 Markdown",
+    "text": "19.1 Markdown\n\nR Markdown is a format for writing with R\nUse it to embed R code and results into slideshows, pdfs, html documents, Word files and more"
+  },
+  {
+    "objectID": "represearch.html#markdown-contd",
+    "href": "represearch.html#markdown-contd",
+    "title": "19  Repreducible research",
+    "section": "19.2 Markdown (cont’d)",
+    "text": "19.2 Markdown (cont’d)\n\nIn Rstudio\n\nFile \\(\\rightarrow\\) New File \\(\\rightarrow\\) R Markdown…\nInsert title and author\nSelect format"
+  },
+  {
+    "objectID": "represearch.html#headers",
+    "href": "represearch.html#headers",
+    "title": "19  Repreducible research",
+    "section": "20.1 Headers",
+    "text": "20.1 Headers\n\n\n\nCode\n\n\n# Gobo\n## Mokey\n\n\nOutput\n\n\nGobo\n\n\nMokey"
+  },
+  {
+    "objectID": "represearch.html#emphasis",
+    "href": "represearch.html#emphasis",
+    "title": "19  Repreducible research",
+    "section": "20.2 Emphasis",
+    "text": "20.2 Emphasis\n\n\n\nCode\n\n\n*Methods*  \n_Methods_\n**Methods**\n__Methods__\n\n\noutput\n\nMethods\nMethods Methods Methods"
+  },
+  {
+    "objectID": "represearch.html#bullets",
+    "href": "represearch.html#bullets",
+    "title": "19  Repreducible research",
+    "section": "20.3 Bullets",
+    "text": "20.3 Bullets\n\n\n\nCode\n\n\n* Method 1\n- Method 2\n+ Method 3\n\n* Results\n  * Method 1\n  * Method 2\n\n\noutput\n\n\nMethod 1\nMethod 2\nMethod 3\n\nMethod 1\nMethod 2"
+  },
+  {
+    "objectID": "represearch.html#links",
+    "href": "represearch.html#links",
+    "title": "19  Repreducible research",
+    "section": "20.4 Links",
+    "text": "20.4 Links\n\n\n\nCode\n\n\n[link](http://example.com)\n\n\noutput\n\nlink"
+  },
+  {
+    "objectID": "represearch.html#images",
+    "href": "represearch.html#images",
+    "title": "19  Repreducible research",
+    "section": "20.5 Images",
+    "text": "20.5 Images\n\n\n\nCode\n\n\n![Rsymbol](https://upload.wikimedia.org/\n                wikipedia/commons/1/12/\n                R_logo_2000.png)\n\n\noutput\n\n\n\n\nRsymbol"
+  },
+  {
+    "objectID": "represearch.html#escaping",
+    "href": "represearch.html#escaping",
+    "title": "19  Repreducible research",
+    "section": "20.6 Escaping",
+    "text": "20.6 Escaping\n\n\n\nCode\n\n\n\\*Method\\*\n\n\nOutput\n\n*Method*"
+  },
+  {
+    "objectID": "represearch.html#code",
+    "href": "represearch.html#code",
+    "title": "19  Repreducible research",
+    "section": "20.7 Code",
+    "text": "20.7 Code\n\n\n\nCode\n\n\n`Methods`\n\n\nOutput\n\nMethods\n\n\nEscaping Markdown characters with a back-slash allows you to use any characters which might be getting accidentally converted into HTML"
+  },
+  {
+    "objectID": "represearch.html#code-chunks-1",
+    "href": "represearch.html#code-chunks-1",
+    "title": "19  Repreducible research",
+    "section": "21.1 Code chunks",
+    "text": "21.1 Code chunks\n\nRmarkdown and Quarto allow us to include code blocks\nThey will be executed during rendering\n\n\n\n\nCode\n\n\n```\n1+1\n```\n\n\nOutput\n\n\n1+1\n\n[1] 2"
+  },
+  {
+    "objectID": "represearch.html#plots",
+    "href": "represearch.html#plots",
+    "title": "19  Repreducible research",
+    "section": "21.2 Plots",
+    "text": "21.2 Plots\n\nIncluding plots works the same way\n\n\n\n\nCode\n\n\n```\n\nplot(x=c(1, 2),\n     y=c(1, 2))\n\n```\n\n\nOutput\n\n\nplot(x=c(1, 2),\n     y=c(1, 2))"
+  },
+  {
+    "objectID": "represearch.html#chunk-options",
+    "href": "represearch.html#chunk-options",
+    "title": "19  Repreducible research",
+    "section": "21.3 Chunk options",
+    "text": "21.3 Chunk options\n\neval: If FALSE, knitr will not run the code in the code chunk\ninclude: If FALSE, knitr will run the chunk but not include the chunk in the final document\necho: If FALSE, knitr will not display the code in the code chunk above it’s results in the final document\nresults: If hide, knitr will not display the codes results in the final document. If hold, knitr will delay displaying all output until the end of the chunk. If `asis, knitr will pass through results without reformatting them (useful if results return raw HTML, etc.)"
+  },
+  {
+    "objectID": "represearch.html#chunk-options-contd",
+    "href": "represearch.html#chunk-options-contd",
+    "title": "19  Repreducible research",
+    "section": "21.4 Chunk options (cont’d)",
+    "text": "21.4 Chunk options (cont’d)\n\nerror: If FALSE, knitr will not display any error messages generated by the code\nmessage: If FALSE, knitr will not display any messages\nwarning: If FALSE, knitr will not display any warning messages\ncache: If TRUE, knitr will cache the results to reuse in future knits. Knitr will reuse the results until the code chunk is altered.\ncache.comments: If FALSE, knitr will not rerun the chunk if only a code comment has changed"
+  },
+  {
+    "objectID": "represearch.html#chunk-options-contd-1",
+    "href": "represearch.html#chunk-options-contd-1",
+    "title": "19  Repreducible research",
+    "section": "21.5 Chunk options (cont’d)",
+    "text": "21.5 Chunk options (cont’d)\n\nfig.cap: A character string to be used as a figure caption in LaTex\nfig.height, fig.width: The width and height to use in R for plots created by the chunk (in inches)"
+  },
+  {
+    "objectID": "represearch.html#what-is-git-and-why-use-it",
+    "href": "represearch.html#what-is-git-and-why-use-it",
+    "title": "19  Repreducible research",
+    "section": "22.1 What is Git and why use it?",
+    "text": "22.1 What is Git and why use it?\n\nGit is software for (version control)\nThis means Git keeps track of the different versions of your code\nHelps you answer questions as:\n\nWhich file should I look at to see the changes made last week?\nWhat has changed between November and now?\nWhat was the version of the manuscript that we submitted?"
+  },
+  {
+    "objectID": "represearch.html#old-fashioned-version-control",
+    "href": "represearch.html#old-fashioned-version-control",
+    "title": "19  Repreducible research",
+    "section": "22.2 Old fashioned version control",
+    "text": "22.2 Old fashioned version control\n        analysis.sps\n        analysis1.sps\n        analysisFinal.sps\n        analysisFinal_long.sps\n        analysisFinal_revision.sps\n        analysisFinal_revisionnew.sps\n        analysis2.sps\n\nHowever it is not always clear to other people\nAnd probably not even to your future self"
+  },
+  {
+    "objectID": "represearch.html#git-version-control-systems",
+    "href": "represearch.html#git-version-control-systems",
+    "title": "19  Repreducible research",
+    "section": "22.3 Git Version control systems",
+    "text": "22.3 Git Version control systems\n\n[**`Version control systems’ (VCSs)]**]: software that help you manage different versions of programs (documents etc )\n\nEasy to go back to older versions\n\nAssist in maintaining multiple versions in parallel (e.g. windows / linux)\nsimplifies working in teams\n\n\nThere are different `version control systems’ (VCSs)\n\nCVS, Subversion, Bazaar, Mercurial, Perforce, Git\nWe can distinguish between: * systems with a (cvs, subversion) and * systems where (Mercurial, Git)\n\nIt seems that now git is more or less the standard"
+  },
+  {
+    "objectID": "represearch.html#git-workflow",
+    "href": "represearch.html#git-workflow",
+    "title": "19  Repreducible research",
+    "section": "22.4 Git workflow",
+    "text": "22.4 Git workflow"
+  },
+  {
+    "objectID": "represearch.html#git-on-command-line",
+    "href": "represearch.html#git-on-command-line",
+    "title": "19  Repreducible research",
+    "section": "22.5 Git on command line",
+    "text": "22.5 Git on command line\n\nGit primarily works via the [command line]\nWhen you install git for windows an environment is created that includes some of the basic tools that are also available on linux/unix machine including a version [bash] * There are a number of GUIs ([GitKraken] seems ok) * Git is also supported from a number of other software packages (like [RStudio])"
+  },
+  {
+    "objectID": "represearch.html#git-in-rstudio",
+    "href": "represearch.html#git-in-rstudio",
+    "title": "19  Repreducible research",
+    "section": "22.6 Git in RStudio",
+    "text": "22.6 Git in RStudio\n\nTo use Git in RStudio\nWe need to create a : \\ Files \\(\\rightarrow\\) New project … \\(\\rightarrow\\) Version control\nOr add to \\ Tools \\(\\rightarrow\\) Version Control \\(\\rightarrow\\) Project Setup\nClick the dropdown box Version control system and select Git\nThere is now a in the upper righthand pannel from which we can do the most common operations"
+  },
+  {
+    "objectID": "represearch.html#introduction-1",
+    "href": "represearch.html#introduction-1",
+    "title": "19  —",
+    "section": "35.1 Introduction",
+    "text": "35.1 Introduction\n\nShiny is an R package that makes it easy to build [interactive web apps] straight from R\nShiny combines the computational power of with the interactivity of the modern web\nShiny apps are easy to write - No web development skills are required"
+  },
+  {
+    "objectID": "represearch.html#shiny-in-rstudio",
+    "href": "represearch.html#shiny-in-rstudio",
+    "title": "19  Repreducible research",
+    "section": "23.2 Shiny in Rstudio",
+    "text": "23.2 Shiny in Rstudio\n\nFile \\(\\rightarrow\\) New File \\(\\rightarrow\\) Shiny Web App…\nInsert application name\nLet’s try an example"
+  },
+  {
+    "objectID": "represearch.html#structure",
+    "href": "represearch.html#structure",
+    "title": "19  Repreducible research",
+    "section": "23.3 Structure",
+    "text": "23.3 Structure\n\nShiny applications consist of:\n\na user interface object (ui): layout and appearance of your app\na server function: instructions that your computer needs to build your app\na call to the shinyApp function: creates Shiny app objects"
+  },
+  {
+    "objectID": "represearch.html#structure-in-code",
+    "href": "represearch.html#structure-in-code",
+    "title": "19  Repreducible research",
+    "section": "23.4 Structure in code",
+    "text": "23.4 Structure in code\nlibrary(shiny)\n\n# Define UI ----\n ui <- fluidPage(\n)\n                \n# Define server logic ----\n server <- function(input, output) {\n}\n                \n# Run the app ----\nshinyApp(ui = ui, server = server)"
+  },
+  {
+    "objectID": "represearch.html#introduction",
+    "href": "represearch.html#introduction",
+    "title": "19  Repreducible research",
+    "section": "23.1 Introduction",
+    "text": "23.1 Introduction\n\nShiny is an R package that makes it easy to build [interactive web apps] straight from R\nShiny combines the computational power of with the interactivity of the modern web\nShiny apps are easy to write - No web development skills are required"
+  },
+  {
+    "objectID": "introduction_history.html#course-overview",
+    "href": "introduction_history.html#course-overview",
+    "title": "1  Introduction and History",
+    "section": "1.1 Course Overview",
+    "text": "1.1 Course Overview\nIn the first part of the course we are introduced to the R software package, or environment, and learn about R, how to interact with it and it’s basic programming elements. In the second part of the course we’ll learn how to use R for it’s intended function: doing statistics quickly and effectively.\nWe will cover essential topics including how to use R and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.\nBy the end of the first couple of introductory days I expect that you can write your own code and have a reasonable understanding of what’s going on when you cut and paste other people’s code, which is typical of how people get started with R (or any other language for that matter)."
+  },
+  {
+    "objectID": "introduction_history.html#introduction",
+    "href": "introduction_history.html#introduction",
+    "title": "1  Introduction and History",
+    "section": "1.2 Introduction",
+    "text": "1.2 Introduction\n\nHistory\nBefore R there was the statistical analysis program, S, developed at Bell Laboratories in 1976 by John Chambers. S was later commercialised as S-PLUS. John Chambers is also a current member of the R core group responsible for developing R.\nRoss Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand begin coding (1991) the S clone, R, as an open source alternative for academic use. Together with the R core group’ they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, R, probably derives from the first letter of the creator’s names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f"
+  },
+  {
+    "objectID": "introduction_history.html#get-it",
+    "href": "introduction_history.html#get-it",
+    "title": "1  Introduction and History",
+    "section": "1.3 Get it",
+    "text": "1.3 Get it\n\nInstall it\nTo get R on your PC first you need to install the core R application. Of course you’ll need to download the version for your operating system and architecture first.\n\nFor Linux: https://cran.r-project.org/bin/linux/\nFor Mac: https://cran.r-project.org/bin/macosx/\nFor Windows: https://cran.r-project.org/bin/windows/\n\nAlthough R for Windows (and Mac?) ships with a basic text editor, and it’s possible to execute code from the terminal under linux, a fully featured editor increases convenience and productivity. Grab an awesome text editor:\nRStudio: https://www.rstudio.com/products/rstudio/\nEmacs/ESS: http://ess.r-project.org/index.php?Section=download\nHere’s a full list available editors: https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces"
+  },
+  {
+    "objectID": "introduction_history.html#what-is-r-and-how-do-we-use-it",
+    "href": "introduction_history.html#what-is-r-and-how-do-we-use-it",
+    "title": "1  Introduction and History",
+    "section": "1.4 What is R and how do we use it",
+    "text": "1.4 What is R and how do we use it\n\nDefinition(s)\n\nWikipedia: `R is a programming language and free software environment for statistical computing and graphics supported by the R Foundation for Statistical Computing. The R language is widely used among statisticians and data miners for developing statistical software[7] and data analysis.’ http://en.wikipedia.org/wiki/R_(programming_language)\nComprehensive R Archive Network (CRAN): `R is ``GNU S’‘, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc.’ https://cloud.r-project.org/.\nThe R Journal - Facets of R: `This paper considers six characteristics, which we will call facets. They characterize R as:\n\nan interface to computational procedures of many kinds;\ninteractive, hands-on in real time;\nfunctional in its model of programming;\nobject-oriented, “everything is an object”;\nmodular, built from standardized pieces; and,\ncollaborative, a world-wide, open-source effort.’\n\n\nBy John M. Chambers\n\nMy definition: A command based, object oriented and functional language; in contrast to excel which is a cell centric, spreadsheet managing graphical user interface (GUI).\n\n\n\nWorking with R\nYou type commands, also known as `expressions,'' into a text editor or terminal and send them toRfor evaluation.R` evaluates the command, prints the command (by default), then the result of the evaluated command, if any.\nThe simplest expressions equal simple calculations, similar to those we could do on a hand calculator\n>1 + 1\n[1] 2\n>1 - 1\n[1] 0\n>2 * 3\n[1] 6\n>2 / 3\n[1] 0.6666667\nHere we use ‘>’ to denote the R prompt. It is used in the console to indicate that R is ready for a new command. The lines in between is the output given by R.\nBut we can also ‘call’ functions on an object. Most of the functionality in R comes from these functions. There are many functions we can use including the standard mathematical ones:\n>cos(3.1415)\n[1] -1\n>exp(0)\n[1] 1\n>log(1)\n[1] 0\nThe results above are displayed but not stored. To do this we must give a name to the result. That is, we store the result in a variable. The results are now no longer displayed but using the variable name we can refer to it later.\nAssigning a result in a variable is done using <-. For example:\n>five <- 3+2\n> five\n[1] 5\n> five + 1\n[1] 6\n\n\nHow we interact with R\nNot surprisingly everything about R is built on the principle of KISS, i.e., keep it simple stupid. * We get things done in R by typing commands and asking R to execute them with the key. Assuming you know the commands, it couldn’t be any simpler. * The front end of R, the part that receives your terminal. You can type your commands directly into the terminal and hit {} to do your work. But if you need thousands of commands for a specific task, or want to share your method, this approach gets tiring fast. * Since the commands are just text, it’s easy to write a series of commands using any program built for working with text, i.e., text editors and word processors, to create code or a script, to get something done. * The easiest, most efficient way to write R code is using a text editor or integrated development environment, like RStudio or Emacs/ESS as mentioned earlier.\n\n\nRStudio: the easiest way to work with R\nFor most users, especially those new to R, RStudio is probably the best IDE to use. Like everything about R, you’re free to choose whatever editor you like. For Windows platforms, you could just use the basic editor that’s bundled with the downloadable installer. Let’s have a look at an RStudio ‘session’.\n\nThere are four panes:\n\nThe top left is the source pane. Do your typing in this pane.\nThe bottom left is your console. This is a window looking into what R is actually doing. Even though it’s fine to type your commands in this pane at the R '>' prompt, avoid this: your commands are less conveniently stored and rerun than your source code in the editor pane.\nTop right: environment pane\nBottom left: files pane\n\nType your commands in the source pane and send them to R using the keyboard short-cut This will send the line of code your cursor is on to R if no code is selected; or if there is code selected, then only the selected code is sent. Open RStudio on your PC and try it now. Since programming is all about typing commands using a keyboard, not pointing and clicking, you might appreciate lots of keyboard shortcuts. Here’s an awesome cheatsheet of (RStudio keyboard shortcuts)[https://www.rstudio.com/resources/cheatsheets/].\nA few other things about RStudio:\n\nmove the focus between panes using the key board shortcuts and for the source and console panes respectively\nthe little asterisk next your source code file name indicates unsaved code\nsave your source code!"
+  },
+  {
+    "objectID": "introduction_history.html#backslashes",
+    "href": "introduction_history.html#backslashes",
+    "title": "1  Introduction and History",
+    "section": "1.5 Backslashes",
+    "text": "1.5 Backslashes\nOne more thing I want to mention is how R interprets backslashes and forwardslashes, i.e. \\ and / respectively, as relates to defining the locations of files on your PC. James McDonald does a better job of clarifying this than I otherwise would http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html:\n\nLet’s pause to note a little historical bifurcation that has caused Almost as much strife as the question of exactly what the  key should do. The convention that the slash (/) character is used as a separator in the notation for a filesystem path is not universal. PC-DOS, for example, used the backslash \\. Like Fords vs Chevrolets, French vs English, and whether you crack the egg at the big or small end, it doesn’t really matter a rat’s behind which one you use as long as it works. To make it work in R, however, where the *NIX convention of using the backslash as an escape character is respected, you will have to double backslashes in paths for them to be read properly. Thus if the filename above was: ‘1.R’ I would have to refer to it as: ‘c:\\JIM\\PSYCH\\ADOLDRUG\\PARTYUSE1.R’ in an R script."
+  },
+  {
+    "objectID": "introduction_history.html#getting-help",
+    "href": "introduction_history.html#getting-help",
+    "title": "1  Introduction and History",
+    "section": "1.6 Getting Help",
+    "text": "1.6 Getting Help\n\nOnline help. The first place to look. Also works when you’re actually offline:\n\n\n?help\nhelp(help)\n\n\n??help\napropos(\"help\")              # quotes are needed\n\nIt’s fun, try them out!\n\nGoogle. And when you’re actually online, often the first place and **last** place you’ll go when you have no idea is (Google)[href{https://www.google.com].\nPackage Vignette’s. Where the online help is devoid of the context often needed to grasp the full potential and logical use of functions, vignette’s is the best place to find such information, with extended examples, and often more. For example, see the limma http://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf\nMailing Lists. R-help http://www.r-project.org/mail.html. Do check first using Google or the R-help searchable archives http://tolstoy.newcastle.edu.au/~rking/R/ first if your question has already been asked and has the answer to solve your issue.\nOther lists: https://stat.ethz.ch/mailman/listinfo\nStack Overflow https://stackoverflow.com. Probably more questions and answers posted here than on the mailing list.\n\n\nTrouble shooting\n\nClean your environment and start again to be sure your messy environment isn’t the cause of your issue. In RStudio, click the broom in the Environment tab; in any R session you can also run:\n\n\nrm(list=ls())                 \nls()           # quotes are needed\n\n\nStart R without any customisations, i.e., omit loading the .Rprofile and .Renviron customisation files. From the command line:\n\n\nR --vanilla\n\n\ntrace.back() function: very helpful pinpointing the source of an error, and thus its cause.\n\n\n\nFurther resources\n\nR focused search engine: http://www.Rseek.org\nAggregator of all R blogs: http://www.r-bloggers.com\nQuick-R: http://www.statmethods.net/\nR on Youtube: http://www.youtube.com/watch?v=mL27TAJGlWc\nR in two minutes: http://www.twotorials.com/\nThe list of reference texts: http://www.r-project.org/doc/bib/R-publications.html\nThis course not enough? There’s a excellent free online introduction to R here: https://www.computerworld.com/article/2497143/business-intelligence-beginner-s-guide-to-r-introduction.html\nAnd more..\n\nhttp://www.ats.ucla.edu/stat/r/\nhttp://zoonek2.free.fr/UNIX/48_R/02.html\n\nA First Course in Statistical Programming with R. W. John Braun and Duncan J. Murdoch. Cambridge University Press, 2007\\ I love this book, beautifully explores the programming aspects of R."
+  },
+  {
+    "objectID": "codeblocks.html#introduction",
+    "href": "codeblocks.html#introduction",
+    "title": "26  Code Blocks",
+    "section": "26.1 Introduction",
+    "text": "26.1 Introduction\nThe main feature of quarto is that we can interweave the text with code blocks. These code blocks are the point of discussion of this section."
+  },
+  {
+    "objectID": "codeblocks.html#code-blocks",
+    "href": "codeblocks.html#code-blocks",
+    "title": "26  Code Blocks",
+    "section": "26.2 Code blocks",
+    "text": "26.2 Code blocks\nWhen we include a code block (also called chunk) we start by writing three back ticks (```) followed by the name of the language you use in the code block (we will only use R) surrounded with braces. The chunk again is ended by writing three back ticks. So the whole thing looks like this\n```{r}\n1 + 1\n```\nOptionally you can also include a chunk name after the name of the language. This helps if there are any errors as the chunk name will be included in the error message. Additionally figures that are created within the code will use the chunk name in the name of the figure.\n```{r examplename}\nBy default, when the document is rendered the code in the chunks will be executed and both the contents of the code block as the output will be included in the document. Execution of the code, insertion of the code and insertion of the output can be suppressed by so-called chunk options (see below). A given document can include menu code chunks that all will be executed in order. Variables that are defined in a certain code block can be used in the following ones, just as if the code would have formed a single R-script."
+  },
+  {
+    "objectID": "codeblocks.html#chunk-options",
+    "href": "codeblocks.html#chunk-options",
+    "title": "26  Code Blocks",
+    "section": "26.3 Chunk Options",
+    "text": "26.3 Chunk Options\nIt is possible to modify the behavior of how the code blocks are executed. This is done by including special comments at the top of the code blocks. Alternatively we can include them between the braces. That is we can either write\n```{r}\n#| echo: false\n\n# some code\n\n```\nor\n```{r echo=FALSE}\n\n# some code\n\n```\nSome options that are often used are:\n\neval\n\nwhen TRUE (the default) the code is evaluated when FALSE it is not\n\necho\n\nwhen TRUE (default) the source is displayed in the output decument. When it is FALSE it is not.\n\nresults\n\nspecifies how the resuls are displayed. When it is ‘markup’ it is displayed as a code-block. When it is asis it will not be modified. A situation in which this is convinient when the R functions formats its output in html. When ‘hide’ or FALSE the results are not shown at all.\n\nwarning\n\nwhen FALSE, all warnings will be suppressed\n\nmessage\n\nwhen FALSE, all messages (printed by the message function) will be suppressed\n\ninclude\n\nWhen TRUE the output is shown in the document when FALSE all output is suppressed but the code is still executed\n\nfile\n\nthe code content is read from an external file that is named in the option\n\nchild\n\nthe content of an external file is inserted in place"
+  },
+  {
+    "objectID": "codeblocks.html#inline-code",
+    "href": "codeblocks.html#inline-code",
+    "title": "26  Code Blocks",
+    "section": "26.4 Inline code",
+    "text": "26.4 Inline code\nBeside complete code blocks it is also possible to include short bits of R code in the running text. The code should be included between `r and ` , for example `r nrow(data_set)`."
+  },
+  {
+    "objectID": "codeblocks.html#yaml-header",
+    "href": "codeblocks.html#yaml-header",
+    "title": "26  Code Blocks",
+    "section": "26.5 YAML header",
+    "text": "26.5 YAML header\nEach markdown document starts with a header that specifies such things as the title, author, date and output format. For example\n---\ntitle: \"My document\"\nauthor: \"Sten Willemsen\"\ndate: \"21 May 2023\"\nformat: html\n---\nBesides html we can also create word documents by using output: docx and pdf documents by specifying output: pdf. The last option requires TeX to be installed."
+  },
+  {
+    "objectID": "tidyverse.html#introduction",
+    "href": "tidyverse.html#introduction",
+    "title": "27  Tidyverse",
+    "section": "27.1 Introduction",
+    "text": "27.1 Introduction\nThe so called tidyverse is a collection of connected R-packages that are created by the same people that also made R-studio. You have already seen one of these packages: ggplot. Like ggplot, many of these packages do things that could, in principle, also be done in base R but in a may that some people find more intuitive. Because these packages are so and general popular it may well well happen that when you try to find something R-related on the internet you find a solution using the tidyverse. For this reason we give a short introduction to the tidyverse here."
+  },
+  {
+    "objectID": "tidyverse.html#tibble",
+    "href": "tidyverse.html#tibble",
+    "title": "27  Tidyverse",
+    "section": "27.2 tibble",
+    "text": "27.2 tibble\nThe package tibble provides the tibble class and some functions to work with this class. A tibble is an alternative to a data.frame and is mostly (but not completely) compatible with this class. The most important differences are the following: Unlike a data.frame a tibble does not use row names. When a single column is selected from a data.frame using [,] the result is converted to a vector. This does not happen with a tibble. Finally, when a tibble is printed only a few rows and columns are shown. tibble is an important package because most other tidyverse packages use tibbles."
+  },
+  {
+    "objectID": "tidyverse.html#dplyr",
+    "href": "tidyverse.html#dplyr",
+    "title": "27  Tidyverse",
+    "section": "27.3 dplyr",
+    "text": "27.3 dplyr\nThe dplyr package provides new methods to do data manipulation. It also provides the so-called pipe operator %>% that takes the output of a function on the left-hand-side and uses it as input for a function on the right (by default as the fist argument). This often can make long sequences of transformations much more readable.\n\nlibrary(dplyr)\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nstarwars %>% \n  select(mass, height, gender, homeworld) %>% \n  group_by(gender, homeworld) %>% \n  filter(mass > mean(mass, na.rm = TRUE)) %>% \n  summarise(min_height=min(height,na.rm = TRUE), n=n())\n\n`summarise()` has grouped output by 'gender'. You can override using the\n`.groups` argument.\n\n\n# A tibble: 7 × 4\n# Groups:   gender [2]\n  gender    homeworld min_height     n\n  <chr>     <chr>          <int> <int>\n1 feminine  Mirial           170     1\n2 masculine Corellia         180     1\n3 masculine Kamino           229     1\n4 masculine Kashyyyk         234     1\n5 masculine Naboo            170     3\n6 masculine Tatooine         178     2\n7 masculine <NA>             193     2"
+  },
+  {
+    "objectID": "tidyverse.html#readr",
+    "href": "tidyverse.html#readr",
+    "title": "27  Tidyverse",
+    "section": "27.4 readr",
+    "text": "27.4 readr\nA package to read text files, mostly much faster than base R does."
+  },
+  {
+    "objectID": "tidyverse.html#purrr",
+    "href": "tidyverse.html#purrr",
+    "title": "27  Tidyverse",
+    "section": "27.5 purrr",
+    "text": "27.5 purrr\nThe package purrr makes functional programming with R easier. That is it contains methods that apply functions to the elements of lists or otherwise work with lists and functions. An example is shown below:\n\nlibrary(dplyr)\nlibrary(purrr)\n\nWarning: package 'purrr' was built under R version 4.2.3\n\ndata(\"ToothGrowth\")\nToothGrowth %>% \n  split(.$supp) %>% \n  map(function(x) lm(len ~ dose, data=x)) %>% \n  map(coef) %>% \n  bind_rows()\n\n# A tibble: 2 × 2\n  `(Intercept)`  dose\n          <dbl> <dbl>\n1         11.5   7.81\n2          3.29 11.7"
+  },
+  {
+    "objectID": "tidyverse.html#forcats",
+    "href": "tidyverse.html#forcats",
+    "title": "27  Tidyverse",
+    "section": "27.6 forcats",
+    "text": "27.6 forcats\nThis package makes working with factors easier."
+  },
+  {
+    "objectID": "tidyverse.html#stringr",
+    "href": "tidyverse.html#stringr",
+    "title": "27  Tidyverse",
+    "section": "27.7 stringr",
+    "text": "27.7 stringr\nThe stringr package helps you ro work with character data (strings). It does things like merging and splitting and otherwise manipulating character variables and finding and selecting substrings in larger strings."
+  },
+  {
+    "objectID": "tidyverse.html#tidyr",
+    "href": "tidyverse.html#tidyr",
+    "title": "27  Tidyverse",
+    "section": "27.8 tidyr",
+    "text": "27.8 tidyr\nThe tidyr package can be used to make data.frames or tibbles ‘tidy’. That is make sure it is organised in a way so that each variable is in a column of its own and each observation has a separate row. This is the format that is expected by most functions in R. However many data sets (for example from excel) do not have this structure. The package also contains functions to reshape data (from long to wide format or vice-versa) or work with nested data, that is tibbles that are stored in single cells of an other table."
+  },
+  {
+    "objectID": "objects.html#introduction",
+    "href": "objects.html#introduction",
+    "title": "Objects in R",
+    "section": "Introduction",
+    "text": "Introduction\nAll the things we work with in R (such as the numbers in the calculations in the previous section) are called objects. All objects have a mode and a class. The mode describes how the data is stored in R and how it can be used. Text variables for example have to be handled differently than numbers, we cannot multiply two words.\nElementary objects can be combined with each other to form more complex objects this leads to several types of containers, like lists and data.frames\nThe class of an object is an attribute that can be used to further specify how an object is used in R. For example it can be used to indicate how it should be printed and plotted. For many objects the class will simply be equal to the mode.\nFunctions are special objects that can do things with other objectsl, for example the print function displays the contents of an object in the console. Functions are the topic of an other chapter but because we obviously want to do something with the various objects we will see we cannot avoid them altogether."
+  },
+  {
+    "objectID": "objects.html#the-elementary-data-types",
+    "href": "objects.html#the-elementary-data-types",
+    "title": "Objects in R",
+    "section": "The elementary data types",
+    "text": "The elementary data types\nThe simplest variables just have a single value of a certain data type (Or mode1). The most important data types in R are:2:\n\n\n\n\n\n\n\nmode\ndescription\n\n\n\n\nnumeric: character: logical:\nPosibly fractional numerical values like 1.0, 1.2 or 1e12 (that is 10 raised to the power of 12) text, for example ‘man’, ‘woman’, ‘censored’, etc. TRUE and FALSE\n\n\n\nLet’s examine variables of these data types in a bit more detail:\n\nNumbers\n\nmode(1)    \n\n[1] \"numeric\"\n\n# for most basic data types the class is the same as the mode\nclass(1)    \n\n[1] \"numeric\"\n\nclass(2.14)\n\n[1] \"numeric\"\n\n# functions that start with as.* do conversion\nan_integer <- as.integer(2.14)\n# integers are special numeric values that only store whole \n# numbers\nan_integer \n\n[1] 2\n\nclass(an_integer)\n\n[1] \"integer\"\n\nmode(an_integer)\n\n[1] \"numeric\"\n\n# convert to numeric again\nback_to_numeric <- as.numeric(an_integer)\nclass(back_to_numeric)\n\n[1] \"numeric\"\n\nclass(1L) # explicit integer\n\n[1] \"integer\"\n\n\n\n\nText\n\n# character values should be surrounded by quotes \"or '\nclass(\"a\")\n\n[1] \"character\"\n\nclass('a')\n\n[1] \"character\"\n\nmode(\"a\")\n\n[1] \"character\"\n\n# even numbers in quotes are interpreted as text\nclass(\"1\")\n\n[1] \"character\"\n\nmode(\"1\")\n\n[1] \"character\"\n\n\n\n\nLogical\nIt can only be a yes or a no. More specifically, a TRUE or a FALSE.\n\nclass(TRUE)\n\n[1] \"logical\"\n\nclass(FALSE)\n\n[1] \"logical\"\n\nmode(TRUE)\n\n[1] \"logical\"\n\n\nOften logical values are he result of comparisons:\n\n\n\nOperator\nMeaning\n\n\n\n\n==\nEqual to\n\n\n!=\nNot equal to\n\n\n>\nGreater than\n\n\n<\nSmaller than\n\n\n>=\nGreater than or equal to\n\n\n<=\nSmaller than or equal to\n\n\n\nLogival values can be combined using & (and) and | or, and inverted using ! (not).\n\na <- c(TRUE, TRUE, FALSE, FALSE)\nb <- c(TRUE, FALSE, TRUE, FALSE)\n\na & b\n\n[1]  TRUE FALSE FALSE FALSE\n\na | b\n\n[1]  TRUE  TRUE  TRUE FALSE\n\n!a\n\n[1] FALSE FALSE  TRUE  TRUE"
+  },
+  {
+    "objectID": "objects.html#vectors",
+    "href": "objects.html#vectors",
+    "title": "Objects in R",
+    "section": "Vectors",
+    "text": "Vectors\nVectors of these data types are the most elementary data structure in R. All other structures (like the data.table) are constructed using these vectors. In R there is also no structure that is smaller than a vector. A single number is not treated differently from a numeric vector of length ten; In fact R sees the single number simply as a numeric vector of length 1. The length() of a vector can be obtained by using the function length().\nA vector can be created using the function c(). (The c stands for ‘concatenate’, ‘coerce’ or ‘combine’)\n\nc(1, 2, 3)\n\n[1] 1 2 3\n\nc('spam', 'ham', 'eggs')\n\n[1] \"spam\" \"ham\"  \"eggs\"\n\nc(\"double\", \"quotes\", \"work\",\n  'like', 'single')\n\n[1] \"double\" \"quotes\" \"work\"   \"like\"   \"single\"\n\nc(TRUE, FALSE)\n\n[1]  TRUE FALSE\n\nlength(c(25, 4))\n\n[1] 2\n\n\nIn the output we see that R shows the row number of the first element of each row between straight brackets. This makes it easier to refer to a particular element, especially when the vectors are long. We can work with vectors in the same way as with single numbers. In principle all operations are carried out in an element wise fashion.\n\nc(1, 2, 3) * c(4, 5, 6)\n\n[1]  4 10 18\n\n\nNote that when the lengths do not match they are recycled.\n\nc(1, 2, 3, 4) * c(4, 5)\n\n[1]  4 10 12 20\n\n# if the larger length is not an exact multiple\n# of the smaller this often indicates a mistake\n# and a warning is given\nc(1, 2, 3) * c(4, 5) \n\nWarning in c(1, 2, 3) * c(4, 5): longer object length is not a multiple of\nshorter object length\n\n\n[1]  4 10 12\n\n\nWe can also give names to the elements of a vector:\n\nnamed_v <- c(foo=1, bar=2)\nprint(named_v)\n\nfoo bar \n  1   2 \n\nmode(named_v)\n\n[1] \"numeric\"\n\nclass(named_v)\n\n[1] \"numeric\"\n\n\nWhen we try to create a vector that consists of different data types they will be converted to a data type that is capable of containing all of them. For example:\n\nc(\"eleven\", 12)\n\n[1] \"eleven\" \"12\"    \n\n\nThe second element of the resulting vector is now also of type character. In general it is better not to trust this implicit conversion. Instead to it explicitly, in this case by using the function as.character().\nAn other way to create a vector is by using the function vector. vector('numeric', 8) creates a numeric vector of length 8. The vector function is often used to pre-allocate room where the results of future computations can be stored."
+  },
+  {
+    "objectID": "objects.html#matrices",
+    "href": "objects.html#matrices",
+    "title": "Objects in R",
+    "section": "Matrices",
+    "text": "Matrices\nVectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to vectors that are two dimensional, that is they have both rows and columns. Like simple vectors all elements of a matrix have the same .\n\nmy_matrix <- matrix(data = c(1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))\nmy_matrix\n\n      [,1]\n [1,]    1\n [2,]    2\n [3,]    3\n [4,]    4\n [5,]    5\n [6,]    6\n [7,]    7\n [8,]    8\n [9,]    9\n[10,]   10\n[11,]   11\n[12,]   12\n\ndim(my_matrix) # second dimension (# columns) is 1\n\n[1] 12  1\n\nmatrix2 <- matrix(data = c(1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),\n                  nrow = 3)\nmatrix2\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    4    7   10\n[2,]    2    5    8   11\n[3,]    3    6    9   12\n\ndim(matrix2)\n\n[1] 3 4\n\nchar_mat <- matrix(data = c('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'), nrow = 2)\nclass(char_mat)\n\n[1] \"matrix\" \"array\" \n\nmode(char_mat)\n\n[1] \"character\"\n\nlength(char_mat) #just counts the number of elements \n\n[1] 8\n\n\n\nArrays\nWe do not have to stop with two dimensions. Arrays are even more general than matrices as they can have any number of dimensions. All elements have to be of the same type.\n\nletters[1:12]\n\n [1] \"a\" \"b\" \"c\" \"d\" \"e\" \"f\" \"g\" \"h\" \"i\" \"j\" \"k\" \"l\"\n\nmy_array <- array(letters[1:12], c(2, 2, 3))\nmy_array\n\n, , 1\n\n     [,1] [,2]\n[1,] \"a\"  \"c\" \n[2,] \"b\"  \"d\" \n\n, , 2\n\n     [,1] [,2]\n[1,] \"e\"  \"g\" \n[2,] \"f\"  \"h\" \n\n, , 3\n\n     [,1] [,2]\n[1,] \"i\"  \"k\" \n[2,] \"j\"  \"l\" \n\nclass(my_array)\n\n[1] \"array\"\n\nmode(my_array)\n\n[1] \"character\""
+  },
+  {
+    "objectID": "objects.html#lists",
+    "href": "objects.html#lists",
+    "title": "Objects in R",
+    "section": "Lists",
+    "text": "Lists\nElements of a vector, matrix or array are always of the same type. A list differs from a vector by also allowing its elements to be of a different type. We can make a list using the function list.\n\nlist1 <- list(\"eleven\", 12)\nmode(list1)\n\n[1] \"list\"\n\nclass(list1)\n\n[1] \"list\"\n\nlist2 <- list(c(1, 2, 3), c('foo', 'bar'))\n\nWe can also assign a name to the elements of a list:\n\nlist3 <- list(numbers=c(1, 2, 3), chars=c('foo', 'bar'))\n\nIt is also possible for a list to contain other lists.\n\nlist4 <- list(numbers=c(1, 2, 3), chars=c('aap', 'noot'), \n               sublist=list(1,'a'))\n\nA useful function for lists is str. It gives us its structure.\n\nstr(list4)\n\nList of 3\n $ numbers: num [1:3] 1 2 3\n $ chars  : chr [1:2] \"aap\" \"noot\"\n $ sublist:List of 2\n  ..$ : num 1\n  ..$ : chr \"a\"\n\n\n\ndata.frames\nThis is a rectangular table in which every column contains a variable and every row an observation. They are similar to the spreadsheets: a series, or list of equal length columns, or vectors. Notably, the columns (vectors) can be of different classes, unlike a matrix or array.\n\nmy_df <- data.frame(\"vec\" = c(12, 48), \"lets\" = letters[1:12])\nmy_df\n\n   vec lets\n1   12    a\n2   48    b\n3   12    c\n4   48    d\n5   12    e\n6   48    f\n7   12    g\n8   48    h\n9   12    i\n10  48    j\n11  12    k\n12  48    l\n\ndim(my_df)\n\n[1] 12  2\n\nclass(my_df)\n\n[1] \"data.frame\"\n\nmode(my_df) # a data.frame is a special kind of list\n\n[1] \"list\"\n\nstr(my_df)\n\n'data.frame':   12 obs. of  2 variables:\n $ vec : num  12 48 12 48 12 48 12 48 12 48 ...\n $ lets: chr  \"a\" \"b\" \"c\" \"d\" ...\n\n\nMost data sets come in the form of data.frames or can be converted to them so we are going to see them frequently later in the course."
+  },
+  {
+    "objectID": "objects.html#factors",
+    "href": "objects.html#factors",
+    "title": "Objects in R",
+    "section": "factors",
+    "text": "factors\nA factoris a special kind of vector for categorical data. The factor contains different integers one for every category. Each unique value has an associated ‘label’ that tell us what the code means. Factors are frequently used when we model categorical data. An advantage of a factor over a character is that we can limit the number of possible outcomes. It is also less likely to make mistakes due to typing errors. Factors can be created by means of the function factor().\n\nf <- c('male', 'female', 'male')\nfactor(f)\n\n[1] male   female male  \nLevels: female male\n\nlevels(f)\n\nNULL\n\n\nWhen a factor is displayed R also shows us the unique values the variable can take. These are called the ‘levels’ of the factor."
+  },
+  {
+    "objectID": "objects.html#functions",
+    "href": "objects.html#functions",
+    "title": "Objects in R",
+    "section": "functions",
+    "text": "functions\nFunctions are used to do something. We have already seen several of them. Like mode, class and as.integer and you will see lots more. Note that in R functions are objects too.\n\nmode(mode)   # like all objects functions have a mode\n\n[1] \"function\"\n\nclass(mode)\n\n[1] \"function\"\n\nprint(mode)  \n\nfunction (x) \n{\n    if (is.expression(x)) \n        return(\"expression\")\n    if (is.call(x)) \n        return(switch(deparse(x[[1L]])[1L], `(` = \"(\", \"call\"))\n    if (is.name(x)) \n        \"name\"\n    else switch(tx <- typeof(x), double = , integer = \"numeric\", \n        closure = , builtin = , special = \"function\", tx)\n}\n<bytecode: 0x000001f30d2c38e8>\n<environment: namespace:base>\n\n# do not worry if you do not understand the meaning of what is printed yet\n\nNote that operators are functions to. When you want to use them in the same way as normal functions just put them between back-ticks (“`”):\n\nmode(`+`)   \n\n[1] \"function\"\n\n`+`(1, 1)\n\n[1] 2\n\n\nBase R has many factions but many more are come from various extension packages. These can be installed using install.packages() :\n\ninstall.packages(\"packageName\",\n                 lib = \"/directory/to/my custom R library\",\n                 repos = \"http://cran.xl-mirror.nl\")\n\n# usually lib and repos can be omitted (left at the default)\n\nThe package name must be quoted when installing.\n\nlibrary(\"packageName\")      ## quotes are optional when loading a package\n\nFunctions will be discussed in more detail later."
+  },
+  {
+    "objectID": "objects.html#missing-values",
+    "href": "objects.html#missing-values",
+    "title": "Objects in R",
+    "section": "Missing values",
+    "text": "Missing values\nWhenever the value of a variable is missing this is denoted by NA in R. Usually this means that the values exists however we do not know it. Sometimes the result of a calculation is not finite (for example when we define a positive or negative number by zero). In this case the result is defined to be Inf of -Inf in R. When a value cannot be computed at all (for example when we divide zero by zero) R will define the result as NaN, which stands for ‘Not a Number’. Finally, R sometimes uses the special value NULL to indicate that a variable is not yet defined. Here we will mostly deal with data that is just missing, that is NA.\n\na <- c(1, -1, 0, NA, NULL)\na/0\n\n[1]  Inf -Inf  NaN   NA\n\nis.na(a)\n\n[1] FALSE FALSE FALSE  TRUE\n\nis.finite(a)\n\n[1]  TRUE  TRUE  TRUE FALSE\n\nis.null(a) # note this looks at the whole object\n\n[1] FALSE\n\nl <- list(foo= a, b=c('b'))\nl[1] <- NULL # deletes elements from a list\nl\n\n$b\n[1] \"b\""
+  },
+  {
+    "objectID": "objects.html#saving-and-restoring-your-session",
+    "href": "objects.html#saving-and-restoring-your-session",
+    "title": "Objects in R",
+    "section": "Saving and restoring your session",
+    "text": "Saving and restoring your session\nBecause the typical way of using R involves writing text into a file with the .r or .R extension it’s natural to save your commands written for a specific purpose in this my-r-file.r. Hopefully you’re doing this right now. However there are other bits and pieces of your R session described below you may want or need to save.\nSave all objects to the working directory in a file called .RData:\n\nsave.image()\n\nOr give the file a name:\n\nsave.image(\"mySession.RData\") \n\nSave all commands entered into the R console during your session to the working directory in a file called .Rhistory:\n\nsavehistory()\n\nSuch a file may be hidden by default in some file browsers, including linux.\nNote that this typically occurs (console dependent) by default when you quit your R session. If an .Rhistory file already exists from a previous session, the current session is appended to the end of this file and saved. Thus, by design, a complete log of your work is saved together with your script file, if your console session contains less than 512 lines.\nSave specific objects:\n\nsave(object_1, object_2, object_3, file = \"rObjects123.RData\")\n\nRestore or load previous sessions or objects:\n\nload(\"mySession.RData\")        # load from the working directory\n\nWhen you save and load objects this way, loaded variables will have the same names as when they were stored. There is also a different way of saving objects where loaded objects are assigned explicitly.\n\nmyobject <- list(vec=c(1, 2, 3), mat=matrix(1:4,2))\nsaveRDS(myobject,file = 'myfile.rds')\nobject2 <- readRDS('myfile.rds')\nidentical(myobject, object2)\n\n[1] TRUE\n\n\nLoad .Rhistory file to access the history from the console:\n\nloadhistory()"
+  },
+  {
+    "objectID": "objects.html#miscellaneous-tips",
+    "href": "objects.html#miscellaneous-tips",
+    "title": "Objects in R",
+    "section": "Miscellaneous Tips",
+    "text": "Miscellaneous Tips\nR is case sensitive:\n\nc(\"Hello\" == \"hello\", \"goodbye\" == \"goodbye\")\n\n[1] FALSE  TRUE\n\n\nAnd is sensitive in general:\n\n# c(\"Hello\" == \"hello\" \"goodbye\" == \"goodbye\") # not run\n\nMissing data. NA ‘Not Available’ is how R defines a missing value i.e., an empty cell in excel\n\nc(1, NA, 3, 4, NA)\n\n[1]  1 NA  3  4 NA\n\n\nR is an environment. What’s in yours?\n\nls()                              # global environment\nobjects()                         # alias for ls()\n\nToo many objects cluttering up your environment and computer memory? Remove the ones you don’t need:\n\nrm(object_name)\n\nWhat is the current where files are saved and loaded from by default?\n\ngetwd()\n\nNeed to set or change the current working directory?\n\nsetwd(dir = \"c:\\\\Windows\\\\Users\\\\karl\\\\My Documents\\\\R stuff\")\nsetwd(dir = \"c:/Windows/Users/karl/My Documents/R stuff\")\n\nNote the double backslashes required by R running under Windows. Single forward slashes, the Unix convention works equivalently.\nAlso be aware that if you started your R session by double clicking a file.name.r file, by design the directory where this file resides is set as the working directory. This directory is also a good place, and the default place, to store the respective .RData and .Rhistory files if you have any. When these files are present in the same directory they will be loaded automatically, unless you explicitly tell R not to load them by using the ---no-restore-data argument when starting R.\nQuit your R session:\n\nq()                           # not run\n\nObject names can not begin with numbers. For example:\n\n## 3vector <- c(2, 4, 6))    # not run\n\nBut can end with numbers if necessary:\n\nvector3 <- c(2, 4, 6)\n\nTry to code with style, for example:\nhttps://google.github.io/styleguide/Rguide.xml\nhttp://adv-r.had.co.nz/Style.html"
+  },
+  {
+    "objectID": "objects_practical.html#r-as-a-calculator-expressions-and-assignments",
+    "href": "objects_practical.html#r-as-a-calculator-expressions-and-assignments",
+    "title": "3  Objects Practical",
+    "section": "3.1 R as a calculator (expressions and assignments)",
+    "text": "3.1 R as a calculator (expressions and assignments)\n\na) Expressions\nUse R as a calculator to calculate the following values:\n\n\\(17 ^4\\),\n\\(45 - 2 \\times 3\\)\n\\((45 - 2) \\times 3\\)\n\nEnter the folowing in an R-script and then run the lines using .\n\n17^4\n2^(1/3)\n45-2 * 3\n(45-2) * 3\n\n\n\nb) Assignment\n\na <- 45\nb <- 2\nc <- 3\nd <- (a - b) * c \n\na, b, c, and d are variables. You can just type the variable name (e.g. a) and hit or use the command print(a)."
+  },
+  {
+    "objectID": "objects_practical.html#math-using-vectors-and-matrices-recycling",
+    "href": "objects_practical.html#math-using-vectors-and-matrices-recycling",
+    "title": "3  Objects Practical",
+    "section": "3.2 Math using vectors and matrices (recycling)",
+    "text": "3.2 Math using vectors and matrices (recycling)\nDefine x and A as:\n\nx <- c(1, 2, 3, 4, 5, 6)\nA <- matrix(c(1, 2, 3, 4, 5, 6),nrow = 2, ncol = 3)\n\nWhat are\n\nx + 4\nx + x\n2 * x\nx / c(2, 3, 4, 5)\n\n\nA + 4\nA + x\n2 * A\nx / c(2, 3)"
+  },
+  {
+    "objectID": "objects_practical.html#common-r-objects",
+    "href": "objects_practical.html#common-r-objects",
+    "title": "3  Objects Practical",
+    "section": "3.3 Common R Objects",
+    "text": "3.3 Common R Objects\nIt is important to distinguish the different object in R. Therefore we will try and create some vectors, matrices, data frames, arrays and lists. We will do this using some data from the survival package.\n\nIntroduction to the data\nFor this part of the practical, we will use the heart and retinopathy data sets from the survival package. More details about the data sets can be found in:\nhttps://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html\nhttps://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html\n\naHint a\n\n\nLoad the survival package to access the data sets. Explore the heart and retinopathy data sets - print the first six and last six rows (use the head and tail functions).\n\n\nUse the functions head(…) and tail(…) to investigate the data set. Replace the dots with the name of the data set.\n\n\n\n\n\nVectors\n\naHint a\n\n\nView the vectors event and age from the heart data set.\n\n\nUse the dollar sign to select the variables.\n\n\n\n\nbHint b\n\n\nView the vectors eye and risk from the retinopathy data set.\n\n\nUse the dollar sign to select the variables.\n\n\n\n\ncHint c\n\n\nCreate a numerical vector that consists of the values: 34, 24, 19, 23, 16. Give the name numbers to this new vector.\n\n\nUse the c(…) function. Replace the dots with the numbers.\n\n\n\n\ndHint d\n\n\nd Create a numerical vector that takes the integer values from 1 until 200. Give the name numbers_2 to this new vector.\n\n\nUse the colon operator : or seq function to create the vector. Use ?: or ?seq if needed.\n\n\n\n\neHint e\n\n\nCreate a character vector that consists of the values: yes, yes, no, no, no, yes. Give the name treatment to this new vector.\n\n\nUse the c(…) function. Replace the dots with the categories.Do not forget the quotes \".\n\n\n\n\n\nMatrices and Data Frames\nLet’s investigate some matrices and data frames.\n\naHint a\n\n\nCreate a matrix like this\n\nx <- matrix(8:11, nrow = 6, ncol = 4)\nx\n\n     [,1] [,2] [,3] [,4]\n[1,]    8   10    8   10\n[2,]    9   11    9   11\n[3,]   10    8   10    8\n[4,]   11    9   11    9\n[5,]    8   10    8   10\n[6,]    9   11    9   11\n\n\nWhy is x filled in the way it is? Hint: read about the arguments for matrix!\n\n\nHow many elements does a matrix of the indicated dimensions have. How many elements does the data vector have? Find out what is done in this case. Are rows or columns filled first?\n\n\n\n\nbHint b\n\n\nCreate a matrix using the vectors id and age from the heart data set. This matrix should have 2 columns where each column represents each variable.\n\n\nFirst combine the vectors using c. Now use the function matrix(…) to convert it to a matrix and specify that it should have two columns.\n\n\n\n\ncHint c\n\n\nCreate a data frame using the vectors id, type and trt from the retinopathy data set. This data frame should have 3 columns, where each column represents each variable.\n\n\nUse the function data.frame(…).\n\n\n\n\n\nArrays\nLet’s investigate arrays.\n\naHint a\n\n\nCreate an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows.\n\n\nUse the function array(…).\n\n\n\n\nbHint b\n\n\nGive the name ar1 to the previous array. Furthermore, investigate the argument dimnames and change the names of the rows, columns and matrices.\n\n\nUse the function array(…). Check the help page for the dimnames argument. Note that this must be in a list format.\n\n\n\n\n\nLists\nLet’s investigate lists.\n\naHint a\n\n\nCreate a list using the vectors stop from the heart data set and id, risk from the retinopathy data set. Give the names stop_heart, id_reti and risk_reti.\n\n\nUse the function list(…).\n\n\n\n\nbHint b\n\n\nCreate a list using the vectors numbers, numbers_2 and treatment. These variables can be taken from the exercise called Vectors. Give the names: numbers, many_numbers and treatment.\n\n\nUse the function list(...) using named function arguments."
+  },
+  {
+    "objectID": "objects_practical.html#saving-files-and-data",
+    "href": "objects_practical.html#saving-files-and-data",
+    "title": "3  Objects Practical",
+    "section": "3.4 Saving files and data",
+    "text": "3.4 Saving files and data\nDo the following to practice saving and opening files in R.\n\nLook at the variables (or other objects) that are stored in your Workspace by typing either objects() or ls()\nCheck your working directory by typing getwd(). Now change it to a different directory - preferably your own flash drive - by using the function setwd(), for example:\n\n\nsetwd(\"C:/Users/Elizabeth/My Documents/R Course\")\n\n\nUse the function save.image() to save your R session to a file called YourLastName_practical1.RData (replace YourLastName with your last name). Note that this will save a .RData file that contains only those objects you see when you run ls(). It does not save any code you typed into the console or into the source pane.\nUse the RStudio ‘File’ drop-down menu to save your R source code to a file called YourLastName\\_practical1.R (replace YourLastName with your last name). Note that this will only save the text you’ve typed into the source pane. It does not save any objects or anything typed into or ran through the console.\nUse the function save() to save only the objects numbers, numbers_2 and treatment from the ‘Vectors’ exercise. to a file called YourLastName\\_objects.RData (replace YourLastName with your last name).\nNow close out RStudio entirely, select Save'' orYes’’ in any dialog boxes that pop up, and then reopen RStudio. Is your source code still there?\nRun ls(); are your objects still there?\nYou can change these kinds of options by going to Tools - Global Options. Go there and deselect ‘Restore .RData into workspace at startup’. Then close RStudio and choose to save the .RData file.\nReopen RStudio; your environment should be empty. Load your objects back in using load() (e.g. Ribble\\_practical1.RData“) and then run ls() again. Do you see your objects now?\nCheck what the working directory is by again running getwd() - has it been reset?"
+  },
+  {
+    "objectID": "manipulating_data.html#indexing-a-vector",
+    "href": "manipulating_data.html#indexing-a-vector",
+    "title": "4  Manipulating / Selecting Data",
+    "section": "4.1 Indexing a vector",
+    "text": "4.1 Indexing a vector\nThere are three ways in which we can make a selection:\n\nUsing numeric values, to make selections based on the position in a vector\nUsing character values, to select values based on their name\nUsing logical values (TRUE / FALSE), to make selections based on a condition\n\n\nUsing numeric values\nThe easiest way of selecting elements in a vector is by specify positions or indices i in numbers of the data we wish to select using square brackets which are the extract' function, i.e.,object[i]`.\n\nv <- c(11, 13, 17, 15, 9)\nv[2]\n\n[1] 13\n\n\nWe can also do this for multiple elements at the same time:\n\nv[c(2, 3)]\n\n[1] 13 17\n\ni <- c(1, 2)\nv[i]\n\n[1] 11 13\n\n\nThe vector of indices does not have to be sorted and indices may be duplicated. For example:\n\nv[c(3, 2, 2)]\n\n[1] 17 13 13\n\n\nWhen we use a vector with negative integers we will select all observations except those on the specified positions:\n\nv[-2]\n\n[1] 11 17 15  9\n\n\nNote that positive and negative indexes cannot be combined.\n\n\nUsing character values\nWhen the elements in a vector all have a name we can use these names to select the elements.\n\nbp_with_name <- c(sys=135, dia=85)\nbp_with_name['dia']\n\ndia \n 85 \n\n\nWe can also give names to the vector by using the names function: Here we make use of the names attribute:\n\nages <- c(12, 3, 45)\nnames(ages) <- c(\"Kim\" , 'Arthur', 'Mark')\nages\n\n   Kim Arthur   Mark \n    12      3     45 \n\nstr(ages)\n\n Named num [1:3] 12 3 45\n - attr(*, \"names\")= chr [1:3] \"Kim\" \"Arthur\" \"Mark\"\n\nages[\"Mark\"]\n\nMark \n  45 \n\nnames(ages)\n\n[1] \"Kim\"    \"Arthur\" \"Mark\"  \n\n\nNote that we can also change the names of a data.frame in the same way we would do so for a list using the names attribute:\n\nmygenes <- data.frame(samp1 = c(33, 22, 12), \n                      samp2 = c(44, 111, 13), \n                      samp3 = c(33, 53, 65))\nnames(mygenes) <- c(\"samp10\", \"samp20\", \"samp30\")\nmygenes\n\n  samp10 samp20 samp30\n1     33     44     33\n2     22    111     53\n3     12     13     65\n\n## but let's change it back...\nnames(mygenes) <- c(\"samp1\", \"samp2\", \"samp3\")\n\nNote that the colnames function also performs the same job for data frames.\n\n\nUsing logical values\nThe third way to select elements from a vector is by using a vector of logical values (i.e.. TRUE/FALSE values) between the square brackets. In this way we select all values for which the value between the brackets is TRUE.\n\nsome_values<- c('foo', 'bar', 'baz')\nsome_values[c(TRUE, FALSE, TRUE)]\n\n[1] \"foo\" \"baz\"\n\n\nThis way of selecting is especially useful when we use some comparison (using <, <=, != , etc.) or condition to select variables.\n\nages <- c(55, 78, 92, 44)\nsex <- factor(c('Male', 'Female', 'Male', 'Female'))\nages[ages > 65]\n\n[1] 78 92\n\n# When we use a factor as filter we may compare to a character value\nages[sex == 'Female'] \n\n[1] 78 44\n\n\nTo understand why this works look at when the condition between the brackets is TRUE.\n\nages > 65\n\n[1] FALSE  TRUE  TRUE FALSE\n\nwhich(ages > 65)  # gives the TRUE indices\n\n[1] 2 3\n\n\nNote that when we aply filtering on a factor variable the possible levels are not changed:\n\nlevels(sex[sex == 'Female'] )\n\n[1] \"Female\" \"Male\""
+  },
+  {
+    "objectID": "manipulating_data.html#making-selections-in-a-matrix-or-array",
+    "href": "manipulating_data.html#making-selections-in-a-matrix-or-array",
+    "title": "4  Manipulating / Selecting Data",
+    "section": "4.2 Making selections in a matrix or array",
+    "text": "4.2 Making selections in a matrix or array\nMaking selections on a matrix works more or less the same as for vectors. But because we have two dimensions we need two indices, the first for the rows and the second for columns\n\nm <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), ncol = 3)\nm[1, ] # first row\n\n[1] 1 5 9\n\nm[ , 2] # second column\n\n[1] 5 6 7 8\n\nm[c(2, 4), 1:2] # combination of rows and colums\n\n     [,1] [,2]\n[1,]    2    6\n[2,]    4    8\n\nm[, -c(1, 3)]   # negative indices \n\n[1] 5 6 7 8\n\nm[m[,1]>=3,] #logical indices\n\n     [,1] [,2] [,3]\n[1,]    3    7   11\n[2,]    4    8   12\n\n\nNote that when a single row or column is selected the object is converted to a vector; a frequent source of errors. if you want to prevent this you can use drop=FALSE.\n\nm[1, , drop=FALSE]\n\n     [,1] [,2] [,3]\n[1,]    1    5    9\n\n\nWe can also use names but a matrix can have rownames as well as colnames:\n\nrownames(m) <- LETTERS[1:4]\nm\n\n  [,1] [,2] [,3]\nA    1    5    9\nB    2    6   10\nC    3    7   11\nD    4    8   12\n\nm[\"A\", ]\n\n[1] 1 5 9\n\n\nThere exist a special way of using a matrix with two columns to select individual elements out of a matrix based on their two-dimensional coordinates.\n\na <- matrix(c(2,3,3,2), ncol = 2)\na\n\n     [,1] [,2]\n[1,]    2    3\n[2,]    3    2\n\nm[a]\n\n[1] 10  7\n\n\nIndexing for arrays is similar as for matrices.\n\na <- array(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),dim = c(2,3,4))\ndimnames(a) <- list(NULL, c('A', 'B', 'C'), c('a', 'b', 'c', 'd'))\na\n\n, , a\n\n     A B C\n[1,] 1 3 5\n[2,] 2 4 6\n\n, , b\n\n     A  B  C\n[1,] 7  9 11\n[2,] 8 10 12\n\n, , c\n\n     A B C\n[1,] 1 3 5\n[2,] 2 4 6\n\n, , d\n\n     A  B  C\n[1,] 7  9 11\n[2,] 8 10 12\n\ncolnames(a) # still 2nd dimension\n\n[1] \"A\" \"B\" \"C\"\n\na[1, 2, ] # 3-dim array requires 3 positions between the brackets\n\na b c d \n3 9 3 9 \n\na[,,'a']\n\n     A B C\n[1,] 1 3 5\n[2,] 2 4 6"
+  },
+  {
+    "objectID": "manipulating_data.html#making-selections-in-a-list",
+    "href": "manipulating_data.html#making-selections-in-a-list",
+    "title": "4  Manipulating / Selecting Data",
+    "section": "4.3 Making selections in a list",
+    "text": "4.3 Making selections in a list\nTo make selections in a list, we can use single square brackets, double square brackets and the dollar sign. The use of single square brackets works in the same way as it does for vectors.\n\nmylist <- list(\n  foo=c(1,2, 3),\n  bar=c('a', 'b'),\n  baz=list(TRUE, c(2, 4))\n  )\nmylist[c(1,3)]\n\n$foo\n[1] 1 2 3\n\n$baz\n$baz[[1]]\n[1] TRUE\n\n$baz[[2]]\n[1] 2 4\n\nmylist[c(1,2,3)==2]\n\n$bar\n[1] \"a\" \"b\"\n\nmylist['bar']\n\n$bar\n[1] \"a\" \"b\"\n\n\nWe can also use double square brackets and the dollar sign for a list. There are two important differences between using single and double square brackets: 1. Using double square brackets only allows us to select a single element from the list. 2. The result of a selection with double brackets is the element itself, while if we make the selection with single brackets the result is a list consisting of the selected elements.\n\nmylist[[1]]\n\n[1] 1 2 3\n\n\n\nmode(mylist[[1]]) # a vector\n\n[1] \"numeric\"\n\nmode(mylist[1])   # a list with with a numeric vector as its single element   \n\n[1] \"list\"\n\n\nThere is another way to select a variable from a list which is by using the dollar sign (‘$’). This is an alternative to using double square brackets in combination with a name. When we use this the result is always a vector.\n\nmylist$foo      # results is a vector\n\n[1] 1 2 3\n\n\nInstead of using the dollar sign we can use double square brackets. We now need to put the name between quotes like for single square brackets. We can also use the position of the variable using these double square brackets.\n\nmydata[['treatm']]\nmydata[[1]]\n\nIt is not possible to select more than one element using double brackets; The result will always be a vector (instead of a data.frame)"
+  },
+  {
+    "objectID": "manipulating_data.html#selecting-observations-and-variables-in-a-data.frame",
+    "href": "manipulating_data.html#selecting-observations-and-variables-in-a-data.frame",
+    "title": "4  Manipulating / Selecting Data",
+    "section": "4.4 Selecting observations and variables in a data.frame",
+    "text": "4.4 Selecting observations and variables in a data.frame\nSelecting observations and variables in a data.frame works more or less the same for data.frames as it does for lists. However because a data.frame is two dimensional we can two indices between the square brackets. The first one corresponds to the observations (rows) and the second corresponds to the variables (columns). So, as an example, we can select the first two observations from the third variable in the data.frame using the syntax:\n\nmydata <- data.frame(id=c(1, 2, 3, 4, 5),\n                     sex=factor(c('M', 'F', 'M', 'F', 'F')),\n                     weight=c(77, 44, 56, 88, 49))\nmydata[c(1, 2), 3]\n\n[1] 77 44\n\n\nWhen the first or second position is left blank all rows or columns are selected. For example:\n\nmydata[, 3]       # sex (3rd variable) for all patients\n\n[1] 77 44 56 88 49\n\nmydata[c(1,2), ]  # all variables for the first two patients\n\n  id sex weight\n1  1   M     77\n2  2   F     44\n\nmydata[c(-3,-4), 'sex'] # Negative numbers and names can also be used\n\n[1] M F F\nLevels: F M\n\n\nWe have to be careful when we want to select a single variable from a data.frame, as we do above. The result will now no longer be a data.frame but it is transformed to a vector. When we want to prevent this we can use drop=FALSE, as follows:\n\nmydata[ , 3]\n\n[1] 77 44 56 88 49\n\nmydata[ , 3, drop=FALSE]       \n\n  weight\n1     77\n2     44\n3     56\n4     88\n5     49\n\n\nWe can also use a single index between the square brackets. This works as if the data.frame was a list of variables (it’s columns).\n\nmydata[1]\n\n  id\n1  1\n2  2\n3  3\n4  4\n5  5\n\nmydata[[1]]\n\n[1] 1 2 3 4 5\n\n\nA data.frame has row.names (note the dot) as well as variable names we can use for selection. Let’s look at an example where row names are gene symbols and column names are sample IDs:\n\nmygenes <- data.frame(samp1 = c(33, 22, 12), \n                      samp2 = c(44, 111, 13), \n                      samp3 = c(33, 53, 65))\nrow.names(mygenes) <- c(\"CRP\", \"BRCA1\", \"HOXA\")\nnames(mygenes)\n\n[1] \"samp1\" \"samp2\" \"samp3\"\n\nmygenes\n\n      samp1 samp2 samp3\nCRP      33    44    33\nBRCA1    22   111    53\nHOXA     12    13    65\n\nmygenes[\"CRP\", ]\n\n    samp1 samp2 samp3\nCRP    33    44    33\n\nmygenes[, \"samp1\"]\n\n[1] 33 22 12\n\nmygenes[, c(\"samp1\", \"samp3\")]\n\n      samp1 samp3\nCRP      33    33\nBRCA1    22    53\nHOXA     12    65\n\nmygenes[\"HOXA\", \"samp2\"]\n\n[1] 13\n\n\n\nOther useful functions\nBesides square brackets ([, [[), other useful functions exist for selecting data: duplicated, match, %in%, grep, is.na and $.\nTo select e.g. rows that are not duplicated:\n\nmm <- matrix(c(1, 1, 2, 2), nrow = 4, byrow = TRUE)\n\n\nmm\n\n     [,1]\n[1,]    1\n[2,]    1\n[3,]    2\n[4,]    2\n\nmm[!duplicated(mm), ]\n\n[1] 1 2\n\n\nThe above can also be done with unique, but the use of duplicated might be more appropriate in more complex situations:\n\nunique(mm)\n\n     [,1]\n[1,]    1\n[2,]    2\n\n\nCalling match returns the position of the first match of its first argument in the second argument:\n\nmatch(c(\"a\", \"b\"), c(\"a\", \"c\", \"a\", \"b\", \"a\", \"b\"))\n\n[1] 1 4\n\n\nwhereas \\%in\\% tells you whether the elements of the first argument appear in the second argument:\n\nc(\"a\", \"b\", \"d\") %in% c(\"a\", \"c\", \"a\", \"b\", \"a\", \"b\")\n\n[1]  TRUE  TRUE FALSE\n\n\nRecall our data frame mygenes:\n\nmygenes\n\n      samp1 samp2 samp3\nCRP      33    44    33\nBRCA1    22   111    53\nHOXA     12    13    65\n\nis.data.frame(mygenes)\n\n[1] TRUE\n\n\nNote that since mygenes is a data frame, it is therefore also an array, which means we can select by the name of the elements in the array:\n\nmygenes[match(c(\"samp1\", \"samp3\"), colnames(mygenes))]\n\n      samp1 samp3\nCRP      33    33\nBRCA1    22    53\nHOXA     12    65\n\nmygenes[colnames(mygenes) %in% c(\"samp1\", \"samp4\")]\n\n      samp1\nCRP      33\nBRCA1    22\nHOXA     12\n\n\nHowever, in this case we could just use the names…\n\nmygenes[c(\"samp1\", \"samp3\")]\n\n      samp1 samp3\nCRP      33    33\nBRCA1    22    53\nHOXA     12    65\n\n\nBut this gives an error:\n\nmygenes[c(\"samp1\", \"samp30\")] ## not run\n\nwhere this does not:\n\nmygenes[colnames(mygenes) %in% c(\"samp1\", \"samp30\")]\n\n      samp1\nCRP      33\nBRCA1    22\nHOXA     12\n\n\nWe can also use functions like grep to search for the names we are interested in:\n\nmygenes[grep(2, names(mygenes))]\n\n      samp2\nCRP      44\nBRCA1   111\nHOXA     13\n\nmygenes[grep(\"A\", row.names(mygenes)), ]\n\n      samp1 samp2 samp3\nBRCA1    22   111    53\nHOXA     12    13    65\n\n\nIf we want to find or exclude data with missing values, we can use is.na:\n\nz <- c(1:4, NA, 5:10)\nz\n\n [1]  1  2  3  4 NA  5  6  7  8  9 10\n\nis.na(z)\n\n [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n\nwhich(is.na(z))\n\n[1] 5\n\nz[!is.na(z)]\n\n [1]  1  2  3  4  5  6  7  8  9 10"
+  },
+  {
+    "objectID": "manipulating_data_practical.html#selecting-data",
+    "href": "manipulating_data_practical.html#selecting-data",
+    "title": "5  Indexing Practical",
+    "section": "5.1 Selecting Data",
+    "text": "5.1 Selecting Data\nAnswer the following without typing the commands into R. Use ? if you’re not sure what the object is or what the function does\n\nQuestion 1: length of objects\n\na\nWhat is\n\nlength(letters)\n\n\n\n\nb\nWhat is\n\nlength(letters == LETTERS)\n\n\n\n\nQuestion 2: which\n\na\nWhat is\n\nwhich(letters %in% c(\"a\", \"d\"))\n\n\n\nb\nWhat is\n\nwhich(c(\"a\", 7, \"d\") %in% letters)\n\n\n\n\n\nQuestion 3: Logical indexing of a vector\n\na\nWhat is\n\nletters[LETTERS > \"W\"]\n\n\n\n\nb\nWhat is\n\nletters[!LETTERS > \"C\"]\n\n\n\n\n\nQuestion 3: Indexing of a vector using integers\n\na\nWhat is\n\nletters[8]\n\n\n\n\nb\nWhat is\n\nletters[-26:-2]\n\n\n\n\n\nQuestion 5: Sequences\n\na\nWhat is\n\n1:6\n\n\n\nb\nWhat is\n\n10:3\n\n\n\nc\nWhat is\n\nseq(from = 1, to = 20, by = 3)\n\n\n\n\n\nQuestion 6: Selection from a matrix\nWe define x as\n\nx <- matrix(8:11, nrow = 6, ncol = 4)\n\nWhat are\n\nx[, 3] + 2 * x[, 2]\nnrow(x)\nx[x[, 3] > 10, ]\n\n\n\nQuestion 7\nUse R to answer the following:\nCreate a vector (using c()) called a (i.e. assign it to an object called a) with four elements which are the integers 5 to 8 (inclusive).\n\nDisplay element 2 of a. \nDisplay element 4 of a. \nAssign the integers 3 and 4 to object b and use b to select elements 3 and 4 of object a. \nDisplay every element of a except element 2. \nDisplay every element of a except elements 3 and 4. \nDisplay only those elements of a that are greater than or equal to 6. \nDisplay only those elements of a that are not equal to 7. \nUse the list function to create an object ab which is a list of the two objects a and b. \nDisplay ab. \nChange the names of the elements in ab to a and b. \nDisplay ab again. What has changed? \n\n\n\nQuestion 8\n\nCreate this matrix m:\n\n\nm <- matrix(1:9, nrow = 3, byrow = T)\nm\n\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    5    6\n[3,]    7    8    9\n\n\n\nWhy are the numbers 1, 2, and 3 in the first row and not the first column? \nDisplay the element on the second row and second column of m. \nDisplay only the 2nd row of m. \nDisplay only the 3rd column of m. \nDisplay only the 2nd and 3rd columns of m. Do so in two different ways.\n\n\n\nQuestion 9\nUsing the heart data set (remember to load the survival package):\n\nSelect the first row.\nSelect the first column.\nSelect the column surgery.\n\n\n\nQuestion 10\nCreate a list:\n\nx <- c(1,2,3,4)\nmat <- matrix(1:9, 3, 3)\nmyList <- list(a=x, b=mat)\n\n\nWhat is the class of myList[[2]]\nWhat is the class of myList[2]\nWrite R code to extract the first element (the vector) by name\n\nIf you want to save your work: save your R session and/or source code!"
+  },
+  {
+    "objectID": "basic_markdown.html#reproducible-research",
+    "href": "basic_markdown.html#reproducible-research",
+    "title": "25  Basic Markdown",
+    "section": "25.1 Reproducible research",
+    "text": "25.1 Reproducible research\nAn analysis is reproducible when all information is available (for somebody) to do your analysis and obtain the same results. This includes the data, code and the documentation. This somebody else can even be your future self.\nWhen data is reproducible it makes it easier to go back and figure out what you did, perform checks and make adjustments. It also makes collaboration with other people easier.\nThere are some software tools that make it easier to do your amalyses in a reproducible way. In this course, we will talk about Quatro and Git.\nQuatro is a program that allows you to combine code and documentation in a single text document. The code is then run and included in the document which is then converted an output format. There are many different options for the output format and they include such things as a pdf, an html file or a word-document."
+  },
+  {
+    "objectID": "basic_markdown.html#markdown",
+    "href": "basic_markdown.html#markdown",
+    "title": "25  Basic Markdown",
+    "section": "25.2 Markdown",
+    "text": "25.2 Markdown\nQuatro files consist of code and markdown. We have discussed how to code in the previous chapters and will discuss markdown here. Markdown is a specific kind of markup language. What we mean by that is that the text in the document also indicates how it should be formatted in the result (For example if we surround a word by double asterikses (like so **bold**) it will bold in the resulting output. Below we will discuss the different types of markup that you can use.\n\nBasic Formatting\n\n\n\n\nSyntax\nOutput\n\n\n\n\n*italics*\nitalics\n\n\n**bold**\nbold\n\n\n***bold italics***\nbold italics\n\n\nsubscript~2~\nsubscript2\n\n\nsuperscript^2^\nsuperscript2\n\n\n~~crossed out~~\ncrossed out\n\n\n`code`\ncode\n\n\n\n\n\n\nHeadings\n\n\n\n\n\n\n\nSyntax\nOutput\n\n\n\n\n# Header 1\n26 Header 1\n\n\n## Header 2\n26.1 Header 2\n\n\n### Header 3\nHeader 3\n\n\n#### Header 4\nHeader 4\n\n\n##### Header 5\nHeader 5\n\n\n###### Header 6\nHeader 6\n\n\n\n\n\n\nLinks\n\n\n\n\nSyntax\nOutput\n\n\n\n\n<https://www.erasmusmc.nl>\nhttps://www.erasmusmc.nl\n\n\n[EMC](https://www.erasmusmc.nl)\nEMC\n\n\n\n\n\n\nImages\n\n\n\n\n\n\n\n\nSyntax\nOutput\n\n\n\n\n![Caption](Logo.svg)\n\n\n\n![Caption](Logo.svg) “hovertext”\n\n\n\n![Caption](Logo.svg){fig-alt=“Alt text”}\n\n\n\n\n\nIt is also possible to include images in links.\n\n\nLists\n\n\n\n\n\n\n\nMarkdown Syntax\nOutput\n\n\n\n\n* item 1\n* item 2\n    + sub-item 1\n    + sub-item 2\n        - sub-sub-item 1\n\nitem 1\nitem 2\n\nsub-item 1\nsub-item 2\n\nsub-sub-item 1\n\n\n\n\n\n*   item 2\n\n    Part of item (Extra spaces)\n\nitem 2\nPart of item (Extra spaces)\n\n\n\n1. ordered list\n2. item 2\n    i) sub-item 1\n    ii) sub-item 2\n         A.  etc.\n\nordered list\nitem 2\n\nsub-item 1\nsub-item 1\n\nA.  etc.\n\n\n\n\n\n\nTables\nThere are multiple ways to make tables\nThe easiest way is to use a so called pipe-table like this:\n | foo|  bar  | Left align | Right Align | Center |\n |----|-------|:-----------|------------:|:------:|\n | 1  |    2  | 1  |    2  | 1|  \n | 3  |    4  |3  |    4  | 4 |\n \n : an optional caption\nThe result is:\n\nan optional caption\n\n\nfoo\nbar\nLeft align\nRight Align\nCenter\n\n\n\n\n1\n2\n1\n2\n1\n\n\n3\n4\n3\n4\n4\n\n\n\nThe first and last pipe character at each row are optional, the ones separating the columns are not although they do not have to be aligned. The header cannot be omited. The relative width is determined by the number of dashes.\nAn alternative way to specify the relative column widths is by including the attribyte after the caption, like this:\n: an optional caption {tbl-colwidths=\"[40,15,15,15,15]\"} \nSometimes it is easiest to directly make the tables from R code.\n\nSource code\nYou can use delimited blocks with three backticks to use source code formatting. The syntax:\n````\nfoo <- bar\n````\nBecomes:\nfoo <- bar\nIt is possible to add an R to indicate the R language is used and apply apropriate highlighting:\n``` R\nfoo <- bar\n```\nBecomes:\nfoo <- bar\n\n\n\nMath\nYou can use TeX like syntax to format equations. Inline formulas are delimeted by single $s and display math uses double $$s.\n\n\n\n\nSyntax\nOutput\n\n\n\n\n$a2=b2+c^2$\n\\(a^2=b^2+c^2\\)\n\n\n$$a2=b2+c^2$$\n\\[a^2=b^2+c^2\\]"
   }
 ]
