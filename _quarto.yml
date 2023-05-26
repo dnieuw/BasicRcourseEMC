@@ -11,9 +11,11 @@ book:
     - part: objects.qmd
       chapters:
         - objects_practical.qmd
+        - objects_practical_answers.qmd
     - part: manipulating_data.qmd
       chapters:
         - manipulating_data_practical.qmd
+        - manipulating_data_practical_answers.qmd
     - part: Datacleaning.qmd
       chapters:
         - Datacleaning_practical.qmd

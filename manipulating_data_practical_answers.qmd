@@ -1,0 +1,420 @@
+# Indexing Practical - Answers
+
+## Selecting Data
+
+**Answer the following without typing the commands into R. Use `?` if you're not sure what the object is or what the function does**
+
+### Question 1: length of objects
+
+::: panel-tabset
+#### a {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+length(letters)
+```
+
+#### answer
+
+```{r}
+length(letters)
+```
+
+letters is a vector containing the 26 letters of the alphabet.
+:::
+
+<br>
+
+::: panel-tabset
+#### b {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+length(letters == LETTERS)
+```
+
+#### answer
+
+```{r}
+length(letters == LETTERS)
+```
+
+We hirst create a logical vector of the same size as letters and LETTERS, so 26.
+:::
+
+::: panel-tabset
+### Question 2: `which`
+
+#### a {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+which(letters %in% c("a", "d"))
+```
+
+#### answer
+
+```{r}
+# which gives indices of TRUE elements
+# 1st and 4th element of letters are in the second vector c('a', 'd')
+which(letters %in% c("a", "d"))
+```
+:::
+
+::: panel-tabset
+#### b {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+which(c("a", 7, "d") %in% letters)
+```
+
+#### answer
+
+```{r}
+# only 'a' (1st element) and 'd' (3rd element) are in letters
+which(c("a", 7, "d") %in% letters)
+```
+:::
+
+### Question 3: Logical indexing of a vector
+
+::: panel-tabset
+#### a {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+letters[LETTERS > "W"]
+```
+
+#### answer
+
+```{r}
+# we can compare characters (by alphabetical order) only X, Y and X are larger that W
+# so inside the brackets we will have a vector of 24 FALSEs and 3 TRUEs 
+letters[LETTERS > "W"]
+```
+:::
+
+::: panel-tabset
+#### b {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+letters[!LETTERS > "C"]
+```
+
+#### answer
+
+Only the first three elements are not larger than C (so smaller or equal to 'C'). Therefore c(a, b, c) is returned.
+
+```{r}
+letters[!LETTERS > "C"]
+```
+:::
+
+### Question 4: Indexing of a vector using integers
+
+::: panel-tabset
+#### a {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+letters[8]
+```
+
+#### answer
+
+8th letter of the alphabet is 'h'
+
+```{r}
+letters[8]
+```
+:::
+
+::: panel-tabset
+#### b {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+letters[-26:-2]
+```
+
+#### answer
+
+Do not select the 26th, 25th ... 2nd letter. So only the 1st: 'a'.
+
+```{r}
+letters[-26:-2]
+```
+:::
+
+### Question 5: Sequences
+
+::: panel-tabset
+#### a {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+1:6
+```
+
+#### answer
+
+Sequence of first six numbers.
+
+```{r}
+1:6
+```
+:::
+
+::: panel-tabset
+#### b {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+10:3
+```
+
+#### answer
+
+Sequence can be in inverse order 10:3==c(10, 9, 8, 7, 6, 5, 4, 3).
+
+```{r}
+10:3
+```
+:::
+
+::: panel-tabset
+#### c {.unnumbered}
+
+What is
+
+```{r}
+#| eval: false
+#| quiet: true
+seq(from = 1, to = 20, by = 3)
+```
+
+#### answer
+
+`seq` is the general function that creates sequences. seq(1, 20, by=3) means start at 1 make jumps of 3 until the result is larger than 20 (but do not include this larger element!).
+
+```{r}
+seq(from = 1, to = 20, by = 3)
+```
+:::
+
+### Question 6: Selection from a matrix
+
+::: panel-tabset
+We define `x` as
+
+```{r}
+#| eval: false
+#| quiet: true
+x <- matrix(8:11, nrow = 6, ncol = 4)
+```
+
+What are
+
+```{r}
+#| eval: false
+#| quiet: true
+x[, 3] + 2 * x[, 2]
+nrow(x)
+x[x[, 3] > 10, ]
+```
+
+#### answer
+
+```{r}
+#| eval: true
+#| results: false
+x <- matrix(8:11, nrow = 6, ncol = 4)
+```
+
+```{r}
+x[, 3] + 2 * x[, 2] # Look at x and add 3rd column, 2 and second column 
+nrow(x)  # number of rows 
+x[x[, 3] > 10, ] # all rows where entry in 3rd column is larger than 10
+
+```
+:::
+
+::: panel-tabset
+### Question 7
+
+Use R to answer the following:
+
+Create a vector (using `c()`) called `a` (i.e. assign it to an object called `a`) with four elements which are the integers 5 to 8 (inclusive).
+
+a)  Display element 2 of `a`. <br>
+b)  Display element 4 of `a`. <br>
+c)  Assign the integers 3 and 4 to object `b` and use `b` to select elements 3 and 4 of object `a`. <br>
+d)  Display every element of `a` except element 2. <br>
+e)  Display every element of `a` except elements 3 and 4. <br>
+f)  Display only those elements of `a` that are greater than or equal to 6. <br>
+g)  Display only those elements of `a` that are not equal to 7. <br>
+h)  Use the `list` function to create an object `ab` which is a list of the two objects `a` and `b`. <br>
+i)  Display `ab`. <br>
+j)  Change the names of the elements in `ab` to `a` and `b`. <br>
+k)  Display `ab` again. What has changed? <br>
+
+### Answer
+
+```{r}
+#
+a <- 5:8
+# a) Display element 2 of `a`.
+a[2]
+# b) Display element 4 of `a`.
+a[4]
+# c) Assign the integers 3 and 4 to object `b` and use `b` to select elements 3 and 4 of object `a`.
+b <- c(3, 4)
+# a[b]
+# d) Display every element of `a` except element 2. 
+a[-2]
+#e) Display every element of `a` except elements 3 and 4. 
+a[c(-3,-4)]
+# f) Display only those elements of `a` that are greater than or equal to 6.
+a[a > 6]
+# g) Display only those elements of `a` that are not equal to 7.
+a[a != 7]
+#h) Use the `list` function to create an object `ab` which is a list of the two objects `a` and `b`.
+ab <- list(a, b)
+#i) Display `ab`.
+print(ab)
+# j) Change the names of the elements in `ab` to `a` and `b`.
+names(ab) <- c('a', 'b')
+# k) Display `ab` again. What has changed?
+print(ab) # we now see the names of the elements in the print-out.
+```
+:::
+
+::: panel-tabset
+### Question 8
+
+a)  Create this matrix `m`:
+
+```{r}
+m <- matrix(1:9, nrow = 3, byrow = T)
+m
+```
+
+b)  Why are the numbers 1, 2, and 3 in the first row and not the first column? <br>
+c)  Display the element on the second row and second column of `m`. <br>
+d)  Display only the 2nd row of `m`. <br>
+e)  Display only the 3rd column of `m`. <br>
+f)  Display only the 2nd and 3rd columns of `m`. Do so in two different ways.
+
+### Answers
+
+```{r ex8}
+m <- matrix(1:9, nrow = 3, byrow = T)
+m
+
+# b) Why are the numbers 1, 2, and 3 in the first row and not the first column? 
+# With byrow=TRUE we specify that the column index is fastest so the first row is filled 
+# first. 
+
+# c) Display the element on the second row and second column of  `m`.
+m[2, 2] 
+# d) Display only the 2nd row of `m`.
+m[2, ]
+# e) Display only the 3rd column of `m`.
+m[ , 3]
+# f) Display only the 2nd and 3rd columns of `m`. Do so in two different ways.
+m[ , c(2, 3)]
+m[c(2,3)]
+```
+:::
+
+::: panel-tabset
+### Question 9
+
+Using the **heart** data set (remember to load the survival package):
+
+-   Select the first row.
+-   Select the first column.
+-   Select the column `surgery`.
+
+### Answers
+
+```{r ex 9}
+library(survival)
+# select 1st row
+heart[1,] 
+# select 1st column
+heart[,1]
+#select column surgery
+heart$surgery
+
+```
+:::
+
+::: panel-tabset
+### Question 10
+
+Create a list:
+
+```{r}
+x <- c(1,2,3,4)
+mat <- matrix(1:9, 3, 3)
+myList <- list(a=x, b=mat)
+```
+
+a)  What is the class of `myList[[2]]`
+
+b)  What is the class of `myList[2]`
+
+c)  Write R code to extract the first element (the vector) by name
+
+### Answers
+
+```{r ex 10}
+x <- c(1,2,3,4)
+mat <- matrix(1:9, 3, 3)
+myList <- list(a=x, b=mat)
+# a) What is the class of `myList[[2]]`
+class(myList[[2]])
+# matrix is taken out of the list so the class is matrix
+
+# b) What is the class of `myList[2]` 
+class(myList[2])
+# a sublist consisting of only the 2nd element is created so 'list'
+# c) Write R code to extract the first element (the vector) by name
+myList$a
+# or mylist[['a']]
+```
+:::
