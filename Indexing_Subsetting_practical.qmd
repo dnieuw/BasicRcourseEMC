@@ -1,0 +1,181 @@
+# Indexing and Subsetting
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+
+
+```{r, echo = FALSE, purl = FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+
+options(purl = FALSE)
+
+knitr::opts_chunk$set(purl = FALSE)
+```
+
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+
+
+static <- TRUE
+
+options(width = 100)
+
+```
+
+
+```{r packages, include = FALSE}
+library(kableExtra)
+library(knitr)
+```
+
+
+```{r load_data, context="data", include=FALSE}
+library(survival)
+```
+
+
+## Preface {data-progressive=FALSE}
+
+Open Rstudio to do the practicals. Note that tasks with * are optional.
+
+### R packages
+In this practical, a number of R packages are used.
+The packages used (with versions that were used to generate the solutions) are:
+
+* `survival` (version: `r packageVersion("survival")`)
+
+_`r R.version.string`_
+
+### Dataset {.tabset .tabset-fade .tabset-pills}
+
+For this practical, we will use the **heart** and **retinopathy** data sets from the `survival` package. More details about the data sets can be found in:
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+
+## Indexing and Subsetting
+
+Sometimes we want to obtain a subset of the data sets before investigating the descriptive statistics and performing the statistical analysis.
+
+### Indexing {.tabset .tabset-fade .tabset-pills}
+
+#### Task 1
+
+Using the **heart** data set: \
+
+* Select the first row. \
+* Select the first column. \
+* Select the column `surgery`.
+
+
+#### Solution 1
+
+```{r ind1-solution, solution = TRUE}
+heart[1, ]
+heart[, 1]
+heart["surgery"]
+heart[["surgery"]]
+heart[, "surgery"]
+```
+
+
+::: 
+
+::: {.panel-tabset .nav-pills}
+
+#### Task 2
+
+Create a matrix that takes the values 1:4 and has 2 rows and 2 columns. You can name this object `mat`. Select the second row of all columns.
+
+#### Solution 2
+
+```{r ind2-solution, solution = TRUE}
+mat <- matrix(1:4, 2, 2)
+mat[2, ]
+```
+
+:::
+
+::: {.panel-tabset .nav-pills}
+
+
+#### Task 3
+
+Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows. Give the name `ar1` to the this array. Select the 2nd row of all columns from each matrix.
+
+#### Solution 3
+
+```{r ind3-solution, solution = TRUE}
+ar1 <- array(data = 1:8, dim = c(2, 2, 2))
+ar1[2, , ]
+```
+:::
+
+
+### Subsetting {.tabset .tabset-fade .tabset-pills}
+
+::: {.panel-tabset .nav-pills}
+
+#### Task 1
+
+Using the **retinopathy** data set: \
+
+* Select the `futime` for all `adult` patients. \
+* Select all the variables for patients that received treatment. \
+
+#### Solution 1
+
+```{r sub1-solution, solution = TRUE}
+retinopathy$futime[retinopathy$type == "adult"]
+retinopathy[retinopathy$trt == 1, ]
+```
+
+:::
+
+::: {.panel-tabset .nav-pills}
+
+#### Task 2
+
+Using the **retinopathy** data set: \
+
+* Select the `age` for patients that have `futime` more than 20. \
+* Select the `age` for patients that have `futime` more than 20 and are adults. \
+* Select patients that have no missing values in `age`.
+
+#### Solution 2
+
+```{r sub2-solution, solution = TRUE}
+retinopathy$age[retinopathy$futime > 20]
+retinopathy$age[retinopathy$futime > 20 & retinopathy$type == "adult"]
+retinopathy[!is.na(retinopathy$age), ]
+```
+
+
+:::
+
+::: {.panel-tabset .nav-pills}
+
+#### Task 3
+
+Using the **retinopathy** data set: \
+
+* Select only the rows of the left eye.
+* Select only the rows of adult patients.
+
+#### Solution 3
+
+```{r sub3-solution, solution = TRUE}
+retinopathy[retinopathy$eye == "left", ]
+retinopathy[retinopathy$type == "adult", ]
+```
+
+:::
