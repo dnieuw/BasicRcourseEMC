@@ -7,7 +7,6 @@ book:
   date: "08-11-2023"
   chapters:
     - index.qmd
-    - introduction_history.qmd
     - part: Importing_Saving.qmd
       chapters: 
         - Importing_Saving_practical.qmd
@@ -17,14 +16,6 @@ book:
     - part: Indexing_Subsetting.qmd
       chapters: 
         - Indexing_Subsetting_practical.qmd
-    - part: objects.qmd
-      chapters:
-        - objects_practical.qmd
-        - objects_practical_answers.qmd
-    - part: manipulating_data.qmd
-      chapters:
-        - manipulating_data_practical.qmd
-        - manipulating_data_practical_answers.qmd
     - part: Datacleaning.qmd
       chapters:
         - Datacleaning_practical.qmd

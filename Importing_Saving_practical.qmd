@@ -1,4 +1,4 @@
-# Importing and Saving Data
+# Importing and Saving Data - Practical
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
@@ -63,7 +63,6 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 It is important to save your work.
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 1
 
 Save the vectors `numbers <- c(34, 24, 19, 23, 16)`, `numbers_2 <- c(1:200)` and `treatment <- c("yes", "yes", "no", "no", "no", "yes")`. Use the name `new_vectors`.
@@ -80,19 +79,18 @@ numbers_2 <- c(1:200)
 treatment <- c("yes", "yes", "no", "no", "no", "yes")
 save(numbers, numbers_2, treatment, file = "new_vectors.RData")
 ```
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
-
-#### Task 2 *
+#### Task 2 \*
 
 Save the vectors `events <- heart$event` and `eyes <- retinopathy$eye`. Use the name `vectors_survival`.
 
-#### *Hint 2* *
+#### *Hint 2* \*
 
 Use the function `save(...)`. Note that you need to set the working directory.
 
-#### Solution 2 *
+#### Solution 2 \*
 
 ```{r save2-solution, solution = TRUE, eval=F}
 events <- heart$event
@@ -106,7 +104,6 @@ save(events, eyes, file = "vectors_survival.RData")
 Let's continue working on the data sets by loading our results.
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task
 
 Load the file `new_vectors`.
@@ -127,12 +124,11 @@ load("new_vectors.RData")
 Remove unnecessary objects.
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 1
 
 Remove the vectors `numbers`, `numbers_2` and `treatment`.
 
-#### *Hint 1 *
+#### *Hint 1* 
 
 Use the function `rm(...)`.
 
@@ -141,23 +137,20 @@ Use the function `rm(...)`.
 ```{r rm-solution, solution = TRUE, eval=F}
 rm(numbers, numbers_2, treatment)
 ```
-
 :::
 
 ::: {.panel-tabset .nav-pills}
-
-#### Task 2 *
+#### Task 2 \*
 
 Remove the vectors `events` and `eyes`.
 
-#### *Hint 2* *
+#### *Hint 2* \*
 
 Use the function `rm(...)`.
 
-#### Solution 2 *
+#### Solution 2 \*
 
 ```{r, eval=F}
 rm(events, eyes)
 ```
-
 :::

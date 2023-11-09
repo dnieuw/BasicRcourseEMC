@@ -1,10 +1,8 @@
-# Common Objects
-
+# Common Objects - Practical
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
-
 
 ```{r, echo = FALSE, purl = FALSE}
 knitr::knit_hooks$set(purl = knitr::hook_purl)
@@ -29,29 +27,26 @@ options(width = 100)
 
 ```
 
-
 ```{r packages, include = FALSE}
 library(kableExtra)
 library(knitr)
 ```
 
-
 ```{r load_data, context="data", include=FALSE}
 library(survival)
 ```
 
+## Preface {data-progressive="FALSE"}
 
-## Preface {data-progressive=FALSE}
-
-Open Rstudio to do the practicals. Note that tasks with * are optional.
+Open Rstudio to do the practicals. Note that tasks with \* are optional.
 
 ### R packages
-In this practical, a number of R packages are used.
-The packages used (with versions that were used to generate the solutions) are:
 
-* `survival` (version: `r packageVersion("survival")`)
+In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:
 
-_`r R.version.string`_
+-   `survival` (version: `r packageVersion("survival")`)
+
+*`r R.version.string`*
 
 ### Dataset {.tabset .tabset-fade .tabset-pills}
 
@@ -66,7 +61,7 @@ Always check your data.
 ::: {.panel-tabset .nav-pills}
 #### Task 1
 
-Explore the **heart** and **retinopathy** data sets - print the first six and last six rows. 
+Explore the **heart** and **retinopathy** data sets - print the first six and last six rows.
 
 #### Hint 1
 
@@ -81,10 +76,9 @@ tail(heart)
 head(retinopathy)
 tail(retinopathy)
 ```
+:::
 
-::: 
-
-## Common R Objects 
+## Common R Objects
 
 It is important to distinguish the different object in R.
 
@@ -98,8 +92,8 @@ Let's investigate some vectors.
 View the vectors `event` and `age` from the **heart** data set.
 
 #### *Hint 1*
-Use the dollar sign to select the variables.
 
+Use the dollar sign to select the variables.
 
 #### Solution 1
 
@@ -107,17 +101,16 @@ Use the dollar sign to select the variables.
 heart$event
 heart$age
 ```
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 2
 
 View the vectors `eye` and `risk` from the **retinopathy** data set.
 
 #### *Hint 2*
-Use the dollar sign to select the variables.
 
+Use the dollar sign to select the variables.
 
 #### Solution 2
 
@@ -125,10 +118,9 @@ Use the dollar sign to select the variables.
 retinopathy$eye
 retinopathy$risk
 ```
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 3
 
 Create a numerical vector that consists of the values: 34, 24, 19, 23, 16. Give the name `numbers` to this new vector.
@@ -142,16 +134,15 @@ Use the c(...) function. Replace the dots with the numbers.
 ```{r vec3-solution, solution = TRUE}
 numbers <- c(34, 24, 19, 23, 16)
 ```
-
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 4
 
 Create a numerical vector that takes the integer values from 1 until 200. Give the name `numbers_2` to this new vector.
 
 #### *Hint 4*
+
 Use the c(...) function. Replace the dots with the numbers.
 
 #### Solution 4
@@ -159,30 +150,23 @@ Use the c(...) function. Replace the dots with the numbers.
 ```{r vec4-solution, solution = TRUE}
 numbers_2 <- c(1:200)
 ```
-
-
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
-
-
-#### Task 5 *
+#### Task 5 \*
 
 Create a categorical vector that consists of the values: yes, yes, no, no, no, yes. Give the name `treatment` to this new vector.
 
-#### *Hint 5* *
+#### *Hint 5* \*
+
 Use the c(...) function. Replace the dots with the categories.
 
-
-#### Solution 5 *
+#### Solution 5 \*
 
 ```{r vec5-solution, solution = TRUE}
 treatment <- c("yes", "yes", "no", "no", "no", "yes")
 ```
-
-::: 
-
-
+:::
 
 ### Matrices and Data Frames {.tabset .tabset-fade .tabset-pills}
 
@@ -191,28 +175,26 @@ Let's investigate some matrices and data frames.
 ::: {.panel-tabset .nav-pills}
 #### Task 1
 
-
 Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable.
 
 #### *Hint 1*
-Use the function matrix(...).
 
+Use the function matrix(...).
 
 #### Solution 1
 
 ```{r mat-solution-1, solution = TRUE}
 matrix(c(heart$id, heart$age), , 2) 
 ```
-
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 2
 
 Create a data frame using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns, where each column represents each variable.
 
 #### *Hint 2*
+
 Use the function data.frame(...).
 
 #### Solution 2
@@ -220,89 +202,77 @@ Use the function data.frame(...).
 ```{r dfc-solution, solution = TRUE}
 data.frame(id = retinopathy$id, type = retinopathy$type, trt = retinopathy$trt) 
 ```
-::: 
-
-
+:::
 
 ### Arrays {.tabset .tabset-fade .tabset-pills}
 
 Let's investigate some arrays.
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 1
 
 Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows.
 
 #### *Hint 1*
-Use the function array(...).
 
+Use the function array(...).
 
 #### Solution 1
 
 ```{r ar-solution-1, solution = TRUE}
 array(data = 1:8, dim = c(2, 2, 2))
 ```
-
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
-
-#### Task 2 *
+#### Task 2 \*
 
 Give the name `ar1` to the previous array. Furthermore, investigate the argument dimnames and change the names of the rows, columns and matrices.
 
-#### *Hint 2* *
+#### *Hint 2* \*
+
 Use the function array(...). Check the help page for the dimnames argument. Note that this must be in a list format.
 
-
-#### Solution 2 *
+#### Solution 2 \*
 
 ```{r ar-solution-2, solution = TRUE}
 ar1 <- array(data = 1:8, dim = c(2, 2, 2), 
              dimnames = list(c("Row1", "Row2"), c("Col1", "Col2"), c("Mat1", "Mat2")))
 ```
-
-::: 
-
+:::
 
 ### Lists {.tabset .tabset-fade .tabset-pills}
 
 Let's investigate some lists.
 
 ::: {.panel-tabset .nav-pills}
-
 #### Task 1
 
 Create a list using the vectors `stop` from the **heart** data set and `id`, `risk` from the **retinopathy** data set. Give the names `stop_heart`, `id_reti` and `risk_reti`.
 
 #### *Hint 1*
-Use the function list(...).
 
+Use the function list(...).
 
 #### Solution 1
 
 ```{r list-solution, solution = TRUE}
 list(stop_heart = heart$stop, id_reti = retinopathy$id, risk_reti = retinopathy$risk)
 ```
-
-::: 
+:::
 
 ::: {.panel-tabset .nav-pills}
+#### Task 2 \*
 
-#### Task 2 *
+Create a list using the vectors `numbers`, `numbers_2` and `treatment`. These variables can be taken from the exercise called `Vectors`. Give the names: `numbers`, `many_numbers` and `treatment`.
 
-Create a list using the vectors `numbers`, `numbers_2` and `treatment`. These variables can be taken from the exercise called `Vectors`.  Give the names: `numbers`, `many_numbers` and `treatment`.
+#### *Hint 2* \*
 
-#### *Hint 2* *
 Use the function list(...).
 
-
-
-#### Solution 2 *
+#### Solution 2 \*
 
 ```{r list2-solution, solution = TRUE}
 list(numbers = numbers, many_numbers = numbers_2, treatment = treatment)
 ```
-
-::: 
+:::
