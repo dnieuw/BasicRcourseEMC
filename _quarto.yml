@@ -4,10 +4,19 @@ project:
 book:
   title: "Basic R Course"
   author: "Sara Baart, David Nieuwenhuijse, Sten Willemsen, Sanne Hoeks, Elrozy Andrinopoulou, Elizabeth Ribble, Karl Brand"
-  date: "30-11-2022"
+  date: "08-11-2023"
   chapters:
     - index.qmd
     - introduction_history.qmd
+    - part: Importing_Saving.qmd
+      chapters: 
+        - Importing_Saving_practical.qmd
+    - part: Common_Objects.qmd
+      chapters: 
+        - Common_Objects_practical.qmd
+    - part: Indexing_Subsetting.qmd
+      chapters: 
+        - Indexing_Subsetting_practical.qmd
     - part: objects.qmd
       chapters:
         - objects_practical.qmd
