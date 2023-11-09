@@ -132,7 +132,7 @@ Remove unnecessary objects.
 
 Remove the vectors `numbers`, `numbers_2` and `treatment`.
 
-#### *Hint*
+#### *Hint 1 *
 
 Use the function `rm(...)`.
 

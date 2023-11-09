@@ -68,6 +68,8 @@ Sometimes we want to obtain a subset of the data sets before investigating the d
 
 ### Indexing {.tabset .tabset-fade .tabset-pills}
 
+::: {.panel-tabset .nav-pills}
+
 #### Task 1
 
 Using the **heart** data set: \
