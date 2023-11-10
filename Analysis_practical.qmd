@@ -9,7 +9,7 @@ This is a slightly different version of the data set used in the practical on da
 
 ```{r, message=F, echo = F, eval = T}
 library(readr)
-R_data <- read_csv("Data/R_data2.csv")
+R_data <- read_csv("~/Erasmus/Thuiswerken/Onderwijs/R course/Sara/Analysis/Data/R_data2.csv")
 ```
 
 ```{r, message=F, echo = T, eval = F}

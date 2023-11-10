@@ -1,4 +1,4 @@
-# Data Cleaning
+# Data Cleaning {.unnumbered}
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -9,11 +9,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The data set that you have, is often not ready to perform analyses on. You will need to perform some steps to clean up your data.
 
-Be careful that this can be a time consuming task! The amount of time and code you will spend on the "data cleaning", can be a lot larger than the actual analysis.
+Be aware that this can be a time consuming task! The amount of time and code you will spend on *data cleaning*, can be a lot larger than the actual analysis.
 
-An advantage of doing this in R, is that R solely works with syntax. This means that you cannot adjust data manually and you will always have code to reproduce your results.
+Remember that R solely works with syntax. This means that you cannot adjust data manually and you will always have code to reproduce your results.
 
-If the source data file gets adjusted slightly; say new patients are added, or some measurements are corrected, you just have to run your code and all your data preparation steps are performed automatically!
+So, if the source data file gets adjusted slightly - say new patients are added, or some measurements are corrected - you just run your code and all your data preparation steps are performed automatically!
 
 First of all we need to make sure data is in a tidy format. Tidy format:
 
@@ -30,7 +30,7 @@ Make sure that your data is structured so that:
 -   Each cell is a single measurement
 
 ::: callout-tip
-If possible; make sure you already think about your analysis when collecting the data. A protocol and statistical analysis plan are good ways to pre-specify your outcomes and variables. This way, you will probably need less data cleaning steps after data collection.
+If possible; make sure you already think about your analysis when collecting the data. A protocol and statistical analysis plan are good ways to pre-specify your outcomes and variables. This way, you will need less data cleaning steps and save a lot of time.
 :::
 
 ## Prepare data set for analysis
@@ -46,7 +46,7 @@ data(mtcars)
 data <- mtcars
 ```
 
-With the function `head`, the first 6 rows are printed. Here we can check out the names of the variables and the first entries.
+With the function `head`, the first 6 rows are printed. Here we can check the names of the variables and the first entries.
 
 ```{r echo = T, eval=T}
 head(data)
@@ -80,7 +80,7 @@ dim(data)
 str(data)
 ```
 
-Â 
+
 
 Obtain the variable names
 
@@ -88,7 +88,7 @@ Obtain the variable names
 names(data)
 ```
 
-Â 
+
 
 ### Rename variables
 
@@ -98,11 +98,18 @@ In case there are inconvenient names in your variables, change them:
 names(data)[names(data) == "carb"] <- "CARB"
 ```
 
+With this, we rename `carb` to `CARB`.
+
 ::: callout-important
 Remember: never use spaces or special characters in variable names!
 :::
 
-This variable in the `test` dataset is named very inconvenient.
+::: callout-tip
+Use unique but short names for your variables (and data sets)
+:::
+
+
+This variable in a `test` data set is named very inconvenient, because there are spaces in the name:
 
 ```{r echo = F, eval=T}
 test <- data
@@ -116,11 +123,28 @@ names(test)
 test$`miles per gallon`
 ```
 
+Better rename it:
+
+```{r echo = T, eval=T}
+
+names(test)[names(test) == "miles per gallon"] <- "mpg"
+```
+
+
+
 ### Change type of variable
 
-The type of your variable can be changed
+The type of your variable can be changed.
+
 
 -   From `numeric` to `factor`
+
+Use variable `vs`, which is a numeric dummy variable (0/1).
+
+```{r echo = T, eval=T}
+str(data$vs)
+```
+Change it to a factor with `as.factor()`. (`factor()` is also possible)
 
 ```{r echo = T, eval=T}
 data$vs_factor <- as.factor(data$vs)
@@ -129,6 +153,10 @@ data$vs_factor
 
 str(data$vs_factor)
 ```
+
+-   From `factor` to `numeric` 
+
+Change it back to numeric, with `as.numeric()`.
 
 ```{r echo = T, eval=T}
 data$vs_numeric <- as.numeric(data$vs_factor)
@@ -147,6 +175,7 @@ data$vs_numeric
 
 str(data$vs_numeric)
 ```
+
 
 ### Round variables
 
@@ -184,11 +213,8 @@ data$cyl2_hp10 <- data$cyl2 * data$hp10
 head(data[, c("cyl", "hp","cyl2", "hp10", "cyl2_hp10")])
 ```
 
-### Make subset of your data
+### Make a subset of your data
 
-::: callout-tip
-Create a new data set with a new name. Otherwise you might lose important information in your data.
-:::
 
 Remove observations with missings (`NA`) in "mpg" and "cyl"
 
@@ -196,7 +222,11 @@ Remove observations with missings (`NA`) in "mpg" and "cyl"
 data2 <- subset(data, !is.na(data$mpg) & !is.na(data$cyl))
 ```
 
-Â 
+::: callout-tip
+Create a new data set with a new name. Otherwise you might lose important information in your data.
+:::
+
+ 
 
 Make a new data set, including only mpg values \> 20. (Don't forget the comma in the code!)
 
@@ -204,9 +234,9 @@ Make a new data set, including only mpg values \> 20. (Don't forget the comma in
 data2 <- data[data$mpg > 20, ]
 ```
 
-Â 
+ 
 
-### Remove duplicates
+#### Remove duplicates
 
 This can be used if there are multiple measurement per patient, but you want to keep only the first.
 
@@ -214,7 +244,7 @@ This can be used if there are multiple measurement per patient, but you want to 
 data_short <- data[!duplicated(data$gear),]
 ```
 
-Â 
+ 
 
 #### Make a subset: Remove variables
 
@@ -222,7 +252,6 @@ data_short <- data[!duplicated(data$gear),]
 data2 <- data[, -c(1, 2)]
 ```
 
-Â 
 
 Or
 
@@ -231,7 +260,7 @@ data2 <- subset(data, select = -c(mpg, cyl))
 
 ```
 
-### Make a subset: Keep variables
+#### Make a subset: Keep variables
 
 ```{r echo = T, eval=T}
 data2 <- data[, c("mpg", "cyl")]
@@ -244,7 +273,7 @@ data2 <- subset(data, select = c(mpg, cyl))
 
 ```
 
-Â 
+ 
 
 #### Sort data
 
@@ -253,11 +282,11 @@ data2 <- data[order(data$mpg),]
 head(data2)
 ```
 
-Â 
+ 
 
-#### Longitudinal data
+### Longitudinal data
 
-With repeated measures data can be in `long format` or `wide format`.
+With repeated measures, data can be in `long format` or `wide format`.
 
 Wide format:
 
@@ -269,7 +298,7 @@ include_graphics("Pictures/Wide format.png")
 
 Long format:
 
-```{r , echo = FALSE, out.width="50%", fig.align="center"}
+```{r , echo = FALSE, out.width="40%", fig.align="center"}
 include_graphics("Pictures/Long format.png")
 ```
 
@@ -288,22 +317,38 @@ head(Orthodont, 10)
 
 Each subject (`M01`, `M02`, etc.) has 4 rows.
 
-It depends on the analysis, which format is preferred and we might want to use this data in wide format. Use the function `dcast()` from the `reshape2` package.
+It depends on the analysis, which format is preferred and we might want to use this data in wide format. Use the function `dcast()` from the `data.table` package.
+
+```{r , echo = T, eval = T}
+library(data.table)
+
+Orthodont_w <- dcast(setDT(Orthodont), Subject + Sex ~ age, value.var = "distance")
+```
 
 -   `Subject` and `Sex` are measured only at baseline
 -   `age` indicates when the repeated measure is measured
 -   `distance` is the value of this measurement
 
-```{r , echo = T, eval = T}
-library(reshape2)
 
-Orthodont_w <- dcast(Orthodont, Subject + Sex ~ age, value.var = "distance")
+`setDT()` is needed to make a `data.table` out of your data. This can be seen as an improved version of a `data.frame` object. 
+
+
+```{r , echo = T, eval = T}
 head(Orthodont_w)
 ```
 
 Notice how the variables `age` and `distance` have been replaced with their values.
 
-If I start with a data set in wide format, but need to transform it to long format, I use the function `melt()` (also from `reshape2`).
+If I start with a data set in wide format, but need to transform it to long format, I use the function `melt()` (also from `data.table`).
+
+```{r , echo = T, eval = T}
+
+
+Orthodont_L <- melt(setDT(Orthodont_w), id = c("Subject", "Sex"),
+                     measure =c("8", "10", "12", "14"), 
+                     value.name = "distance",
+                     variable.name = "age")
+```
 
 -   `id` denotes the variables that are only measured once (at baseline)
 -   `measure` are the variables that you want to stack
@@ -313,14 +358,188 @@ If I start with a data set in wide format, but need to transform it to long form
 <br>
 
 ```{r , echo = T, eval = T}
-library(reshape2)
-
-Orthodont_L <- melt(Orthodont_w, id = c("Subject", "Sex"),
-                     measure =c("8", "10", "12", "14"), 
-                     value.name = "distance",
-                     variable.name = "age")
 head(Orthodont_L)
 ```
+
+It is possible to reshape with multiple repeated measurements. Here is an example of data where ferritin (`FER`) and creatinin (`CREA`) are measured twice.
+
+```{r , echo = F, eval = T}
+dw <- read.table(header=T, text='
+ ID  FER1 CREA1 FER2 CREA2  
+   A   44    0.92     133     1.17
+   B   293    1.02    258     1.45
+   C   164    1.22     38     0.96
+   D   90    0.85     149     1.04
+ ')
+
+dw
+```
+ The code below reshapes the data to long format
+
+```{r , echo = T, eval = T}
+
+dw.long <- melt(setDT(dw), id = "ID",
+        measure=list(c("FER1", "FER2"), c("CREA1", "CREA2")), 
+        value.name=c('FER', 'CREA'),
+        variable.name = "Time")
+
+dw.long
+```
+
+The function `patterns` can be used if my repeatedly measured variables are measured with high frequency.  By using `patterns("age")`, all variables with `age` are stacked.  
+```{r , echo = F, eval = T}
+names(Orthodont_w)[3:6] <- paste0("age_", names(Orthodont_w)[3:6])
+head(Orthodont_w)
+
+```
+
+
+
+```{r , echo = T, eval = T}
+dw.long <- melt(setDT(Orthodont_w), id = c("Subject", "Sex"),
+        measure = patterns("age"), 
+        value.name = "distance",
+        variable.name = "age")
+
+
+head(dw.long, 10)
+```
+
+### Merge data sets
+
+Data sets can be combined in different ways. 
+
+-   Add new observations (same variables)
+-   Add new variables (same observations)
+-   Complex combining
+
+Let us simulate a few separate data sets. With this code you can replicate the analyses.
+
+
+```{r , echo = T, eval = T}
+set.seed(61) # To obtain the exact same numbers each time.
+
+ID <- 1:20
+Center <- c(rep("Center 1",10), rep("Center 2", 10))
+BMI <- round(rnorm(20, mean = 25, sd = 3))
+CRP <- round(rnorm(20, mean = 80, sd = 30))
+Status <- sample(c("ICU", "Hospital", "Deceased"), 20, replace = T)
+
+
+df_1 <- data.frame(ID = ID[1:10], Center = Center[1:10], BMI = BMI[1:10],
+                   CRP = CRP[1:10])
+
+df_2 <- data.frame(ID = ID[11:20], Center = Center[11:20], BMI = BMI[11:20],
+                   CRP = CRP[11:20])
+
+df_3 <- data.frame(ID = ID,  Status = Status)
+df_4 <- data.frame(ID = c(ID[-c(5, 10, 15)],21:25), Status = c(Status[-c(5, 10, 15)],
+                   sample(c("ICU", "Hospital", "Deceased"), 5, replace = T)))
+
+
+
+```
+#### Add new observations
+
+Data `df_1` and `df_2` represent data from two centers (`Center 1` and `Center 2`). Both data sets have 10 observations and 2 baseline variables (`BMI` and `CRP`).
+
+```{r , echo = T, eval = T}
+
+df_1
+df_2
+```
+
+We can paste them together with the function `merge()`. Create a new data set called `data_baseline`.
+
+```{r , echo = T, eval = T}
+
+data_baseline <- merge(df_1, df_2, all = TRUE)
+str(data_baseline)
+data_baseline
+```
+`data_baseline` now has all 20 observations. 
+
+:::callout-important
+The function `rbind()` can also be used, because this combines by pasting rows. You have to be careful to have the exact same variable names.
+:::
+
+
+#### Add variables
+
+For all 20 cases, a specific outcome (`Status`) is collected in a different data set (`df_3`)
+```{r , echo = T, eval = T}
+head(df_3)
+```
+
+We want to add the status to `data_baseline`. For this, we use the function `merge()` again.
+
+```{r , echo = T, eval = T}
+
+data_complete <- merge(data_baseline, df_3, all = TRUE)
+str(data_complete)
+data_complete
+```
+
+:::callout-important
+We can also use `cbind()` to add variables. Be very careful that your observations are in the exact same order. The function cbind does not match, but simply pastes variables to your data set.
+:::
+
+
+#### Complex merging
+
+Sometimes  combining data sets is more complicated. In `data1` and `data2` examples below, there are differences in variables, but also cases. They can be merged in four different ways. Think beforehand which way is desirable for your analyses.
+
+
+```{r , echo = FALSE, out.width="75%", fig.align='center'}
+include_graphics("Pictures/Merging.png")
+```
+
+The corresponding code to the four ways is: 
+
+```{r , echo = T, eval = F}
+data_inner <- merge(data1, data2, by = "ID")                 # Inner join
+data_left  <- merge(data1, data2, by = "ID", all.x = TRUE)   # Left join
+data_right <- merge(data1, data2, by = "ID", all.y = TRUE)   # Right join
+data_full  <- merge(data1, data2, by = "ID", all = TRUE)     # Full join
+```
+
+Say, we have to repeat the previous merging: we have the data `data_baseline` with our 20 observations and baseline covariates. The end point is in a separate data set (`df_4`), but now it does not include the same set of observations (some IDs are missing and others are extra).
+
+```{r , echo = T, eval = T}
+data_baseline
+
+df_4
+```
+
+Compare what the four different ways of merging do to the data:
+
+```{r , echo = T, eval = T}
+data_inner <- merge(data_baseline, df_4, by = "ID")  
+data_left <- merge(data_baseline, df_4, by = "ID", all.x = TRUE)  
+data_right <- merge(data_baseline, df_4, by = "ID", all.y = TRUE)  
+data_full <- merge(data_baseline, df_4, by = "ID", all = TRUE)  
+
+data_inner
+data_left
+data_right
+data_full
+```
+
+#### Merge multiple data sets
+It is possible to merge multiple data sets by creating a list of data set and using the function `Reduce()`.
+We can merge `df_1`, `df_2` and `df_3` in one go:
+
+```{r , echo = T, eval = T}
+df_list <- list(df_1, df_2, df_3)
+
+df_complete <- Reduce(function(x,y) merge(x,y, all = TRUE), df_list)
+
+df_complete
+```
+
+:::callout-note
+After the lectures on functions, the function will make more sense!
+:::
 
 ## Explore data set
 
@@ -330,7 +549,7 @@ head(Orthodont_L)
 summary(data)
 ```
 
-Â 
+ 
 
 ### Obtain the summaries of one variable
 

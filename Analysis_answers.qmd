@@ -1,4 +1,4 @@
-# Analysis - Answers
+# Analysis - Answers {.unnumbered}
 
 ::: callout-warning
 Make sure that you try the exercises yourself first before looking at the answers
@@ -6,27 +6,34 @@ Make sure that you try the exercises yourself first before looking at the answer
 
 ```{r, echo=F, eval = T, message=F}
 library(readr)
-R_data <- read_csv("Data/R_data2.csv")
+R_data <- read_csv("~/Erasmus/Thuiswerken/Onderwijs/R course/Sara/Analysis/Data/R_data2.csv")
 ```
+
 
 ::: panel-tabset
 ### Question 1
-
 In this question we will look at the variable `SAH`.
 
-a)  What are the mean, median, variance and standard deviation of `SAH`?
 
-b)  Create a histogram and a horizontal boxplot of `SAH`.
+a)
+What are the mean, median, variance and standard deviation of `SAH`?
 
-c)  Utilize the graphs and the summary statistics to describe the shape of the distribution of `SAH`.
+b)
+Create a histogram and a horizontal boxplot of `SAH`.
 
-d)  Log-transform `SAH` (assign it to `log_SAH`).
+c) 
+Utilize the graphs and the summary statistics to describe the shape of the distribution of `SAH`.
 
-e)  Describe the distribution of `log_SAH`, based on the same techniques.
+d)
+Log-transform `SAH` (assign it to `log_SAH`).
+
+e)
+Describe the distribution of `log_SAH`, based on the same techniques.
+
 
 ### Answer 1
 
-a)  
+a) 
 
 ```{r, echo = T, eval=T}
 round(mean(R_data$SAH), 2)
@@ -35,7 +42,7 @@ round(var(R_data$SAH), 2)
 round(sd(R_data$SAH), 2)
 ```
 
-b)  
+b)
 
 ```{r, echo = T, eval=T}
 
@@ -44,17 +51,19 @@ hist(R_data$SAH)
 boxplot(R_data$SAH, horizontal=TRUE)
 ```
 
-c)  
+
+c)
 
 SAH has a skewed distribution.
 
-d)  
+d)
 
 ```{r, echo = T, eval=T}
 R_data$log_SAH <- log(R_data$SAH)
 ```
 
-e)  
+
+e)
 
 ```{r, echo = T, eval=T}
 summary(R_data$log_SAH)
@@ -65,19 +74,22 @@ boxplot(R_data$log_SAH, horizontal=TRUE)
 ```
 
 The log transformed variable looks a lot more normally distributed.
+
 :::
+
+
 
 ::: panel-tabset
 ### Question 2
 
-Are the values of `SAH` different for the two levels of Status (normal brain development or intellectual disability)? Formulate a hypothesis, test it, and make a decision about whether or not you can reject the null hypothesis. Which test did you use?
+Are the values of `SAH` different for the two levels of Status (normal brain development or intellectual disability)? 
+Formulate a hypothesis, test it, and make a decision about whether or not you can reject the null hypothesis. Which test did you use?
+
 
 ### Hint 1
-
 Check the distributions with plots
 
 ### Hint 2
-
 For normally distributed data you can use a t-test, for non-normally distributed data you can use the Wilcoxon signed rank test (also knows as the Mann-Whitney U test).
 
 ### Answer 2
@@ -96,8 +108,7 @@ $H_a: \textrm{median}_0 \neq \textrm{median}_1$
 wilcox.test(SAH ~ Status, data = R_data) 
 
 ```
-
-The p-value \<0.001. Based on a significance level of 5% there is enough evidence to reject the null hypothesis.
+The p-value <0.001. Based on a significance level of 5% there is enough evidence to reject the null hypothesis.
 
 ::: callout-note
 Remember that you can save the test as an object and extract elements from it (such as the p-value)
@@ -107,15 +118,19 @@ test1 <- wilcox.test(SAH ~ Status, data = R_data)
 test1$p.value
 
 ```
+
 :::
+
 :::
 
 ::: panel-tabset
 ### Question 3
 
-Make a boxplot of the `SAH` values of the 2 groups and calculate the median difference of `SAH` between the 2 groups.
+Make a boxplot of the `SAH` values of the 2 groups and calculate the median difference
+of `SAH` between the 2 groups. 
 
 Does the difference seem clinically relevant? Why or why not?
+
 
 ### Answer 3
 
@@ -126,21 +141,23 @@ aggregate(SAH ~ Status, data = R_data, median)
 
 ```
 
+
 The medians and boxplots also show a clinically relevant difference.
 :::
 
 ::: panel-tabset
 ### Question 4
 
-We suspect that people who drink alcohol (`alcohol` is yes) might also be smokers (`smoking` is yes). Formulate a hypothesis, test it using the appropriate test, and make a decision about statistical significance.
+We suspect that people who drink alcohol (`alcohol` is yes) might also be smokers (`smoking` is yes). Formulate a hypothesis, test it using the appropriate test, and make a decision about statistical significance. 
 
 ### Hint
-
 use `table()`
+
 
 ### Answer 4
 
 Hypotheses
+
 
 $H_0: P_{alcohol} = P_{no-alcohol}$
 
@@ -153,10 +170,9 @@ tab1
 
 prop.table(tab1, 1)
 ```
-
 Based on the tables, we see that in the group of patients that drinks alcohol, 28% smokes vs 10% in the non-alcohol group.
 
-To test whether this difference is statistically signficant, we use the Chi-square test.
+To test whether this difference is statistically signficant, we use the Chi-square test. 
 
 ```{r, echo = T, eval=T}
 
@@ -164,39 +180,40 @@ chisq <- chisq.test(tab1)
 chisq
 
 ```
-
 The p-value is 0.005, this is significant on a 5% significance level.
+
 :::
+
 
 ::: panel-tabset
 ### Question 5
 
-In the previous practical we made a Table 1 of baseline characteristics between cases and controls (`Intellectual disability` and `Normal brain development`). Test per variable whether the groups are significantly different.
+In the previous practical we made a Table 1 of baseline characteristics between cases and controls (`Intellectual disability` and `Normal brain development`). Test per variable whether the groups are significantly different. 
 
 ::: {style="font-size: 75%;"}
-|                             |                    | Intellectual disability | Normal brain development | p-value |
-|---------------|:--------------|:-------------:|:-------------:|:-------------:|
-|                             |                    |       (n = *82*)        |       (n = *108*)        |         |
-| BMI, median \[IQR\]         |                    |    *24 \[22 - 27\]*     |     *24 \[22 - 26\]*     |         |
-|                             | missing (n = *0* ) |                         |                          |         |
-| Educational level           | Low, n(%)          |       *31 (38%)*        |        *14 (13%)*        |         |
-|                             | Intermediate, n(%) |       *34 (41%)*        |        *48 (44%)*        |         |
-|                             | High, n(%)         |       *17 (21%)*        |        *46 (43%)*        |         |
-|                             | missing (n = *0*)  |                         |                          |         |
-| Smoking                     | No, n(%)           |       *55 (67%)*        |        *96 (89%)*        |         |
-|                             | Yes, n(%)          |       *27 (33%)*        |        *12 (11%)*        |         |
-|                             | missing (n = *0*)  |                         |                          |         |
-| SAM, mean (SD)              |                    |        *72 (16)*        |        *75 (18)*         |         |
-|                             | missing (n = *0*)  |                         |                          |         |
-| SAH, median \[IQR\]         |                    |    *16 \[15 - 18\]*     |     *18 \[16 - 20\]*     |         |
-|                             | missing (n = *0*)  |                         |                          |         |
-| Vitamin B12, median \[IQR\] |                    |   *378 \[310 - 477\]*   |   *363 \[305 - 449\]*    |         |
-|                             | missing (n = *1*)  |                         |                          |         |
+
+|                   |                    | Intellectual disability | Normal brain development | p-value |
+|---------------------|:-------------------|:-----------------------:|:------------------------:|:---------:|
+|                   |                    | (n = *82*)              |(n = *108*)               |         |
+| BMI, median [IQR] |                    |  *24 [22 - 27]*         |   *24 [22 - 26]*         |         |
+|                   | missing (n = *0* ) |                         |                          |         |
+| Educational level | Low, n(%)          |    *31 (38%)*           |  *14 (13%)*              |         |
+|                   | Intermediate, n(%) |          *34 (41%)*     |            *48 (44%)*    |         |
+|                   | High, n(%)         |          *17 (21%)*     |            *46 (43%)*    |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| Smoking           | No, n(%)           |       *55 (67%)*        |    *96 (89%)*            |         |
+|                   | Yes, n(%)          |      *27 (33%)*         |     *12 (11%)*           |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| SAM, mean (SD)    |                    |        *72  (16)*       |         *75 (18)*        |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| SAH, median [IQR] |                    |      *16 [15 - 18]*     |      *18 [16 - 20]*      |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| Vitamin B12, median [IQR] |            |  *378 [310 - 477]*      |    *363 [305 - 449]*     |         |
+|                   | missing (n = *1*)  |                         |                          |         |
 :::
-
 ### Hint
-
 First decide which test to use based on the distribution of the variable
+
 
 ### Answer 5
 
@@ -208,27 +225,28 @@ t.test(SAM ~ Status, data = R_data)$p.value
 wilcox.test(SAH ~ Status, data = R_data)$p.value 
 wilcox.test(vitaminB12 ~ Status, data = R_data)$p.value 
 ```
-
 ::: {style="font-size: 75%;"}
-|                             |                    | Intellectual disability | Normal brain development |  p-value  |
-|---------------|:--------------|:-------------:|:-------------:|:-------------:|
-|                             |                    |       (n = *82*)        |       (n = *108*)        |           |
-| BMI, median \[IQR\]         |                    |    *24 \[22 - 27\]*     |     *24 \[22 - 26\]*     |  *0.175*  |
-|                             | missing (n = *0* ) |                         |                          |           |
-| Educational level           | Low, n(%)          |       *31 (38%)*        |        *14 (13%)*        | *\<0.001* |
-|                             | Intermediate, n(%) |       *34 (41%)*        |        *48 (44%)*        |           |
-|                             | High, n(%)         |       *17 (21%)*        |        *46 (43%)*        |           |
-|                             | missing (n = *0*)  |                         |                          |           |
-| Smoking                     | No, n(%)           |       *55 (67%)*        |        *96 (89%)*        | *\<0.001* |
-|                             | Yes, n(%)          |       *27 (33%)*        |        *12 (11%)*        |           |
-|                             | missing (n = *0*)  |                         |                          |           |
-| SAM, mean (SD)              |                    |        *72 (16)*        |        *75 (18)*         |  *0.267*  |
-|                             | missing (n = *0*)  |                         |                          |           |
-| SAH, median \[IQR\]         |                    |    *16 \[15 - 18\]*     |     *18 \[16 - 20\]*     | *\<0.001* |
-|                             | missing (n = *0*)  |                         |                          |           |
-| Vitamin B12, median \[IQR\] |                    |   *378 \[310 - 477\]*   |   *363 \[305 - 449\]*    |  *0.348*  |
-|                             | missing (n = *1*)  |                         |                          |           |
-:::
+
+|                   |                    | Intellectual disability | Normal brain development | p-value |
+|---------------------|:-------------------|:-----------------------:|:------------------------:|:---------:|
+|                   |                    | (n = *82*)              |(n = *108*)               |         |
+| BMI, median [IQR] |                    |  *24 [22 - 27]*         |   *24 [22 - 26]*         | *0.175*        |
+|                   | missing (n = *0* ) |                         |                          |         |
+| Educational level | Low, n(%)          |    *31 (38%)*           |  *14 (13%)*              | *<0.001*       |
+|                   | Intermediate, n(%) |          *34 (41%)*     |            *48 (44%)*    |         |
+|                   | High, n(%)         |          *17 (21%)*     |            *46 (43%)*    |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| Smoking           | No, n(%)           |       *55 (67%)*        |    *96 (89%)*            | *<0.001*      |
+|                   | Yes, n(%)          |      *27 (33%)*         |     *12 (11%)*           |         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| SAM, mean (SD)    |                    |        *72  (16)*       |         *75 (18)*        | *0.267*        |
+|                   | missing (n = *0*)  |                         |                          |         |
+| SAH, median [IQR] |                    |      *16 [15 - 18]*     |      *18 [16 - 20]*      |*<0.001*         |
+|                   | missing (n = *0*)  |                         |                          |         |
+| Vitamin B12, median [IQR] |            |  *378 [310 - 477]*      |    *363 [305 - 449]*     | *0.348*        |
+|                   | missing (n = *1*)  |                         |                          |         |
+
+::: 
 :::
 
 ::: panel-tabset
@@ -236,15 +254,17 @@ wilcox.test(vitaminB12 ~ Status, data = R_data)$p.value
 
 For this question we will look at the correlation between `vitaminB12` and `homocysteine`.
 
-a)  Plot a histogram of each variable to decide whether the Pearson correlation is appropriate to use. Is it?
+a) Plot a histogram of each variable to decide whether the Pearson correlation is appropriate to use. Is it?
 
-b)  Make a scatterplot of `vitaminB12` and `homocysteine`. What correlation do you see in the the graph (postive, negative, none)?
+b) Make a scatterplot of `vitaminB12` and `homocysteine`. What correlation do you see in the the graph (postive, negative, none)? 
 
-c)  What is the correlation between `vitaminB12` and `homocysteine`? Formulate a hypothesis, do a test, and make a decision as to whether either the Pearson or Spearman correlation is statistically significant.
+c) What is the correlation between `vitaminB12` and `homocysteine`? 
+Formulate a hypothesis, do a test, and make a decision as to whether either the Pearson or Spearman correlation is statistically significant.
 
 ### Answer 6
 
-a)  
+
+a) 
 
 ```{r, echo = T, eval=T}
 
@@ -253,16 +273,15 @@ hist(R_data$vitaminB12)
 
 ```
 
+
 Both variables look skewed, so the Spearman correlation coefficient is more appropriate.
 
-b)  
-
+b) 
 ```{r, echo = T, eval=T}
 
 plot(R_data$homocysteine, R_data$vitaminB12)
 
 ```
-
 We see a slight negative correlation.
 
 ::: callout-note
@@ -273,9 +292,11 @@ This code will give the same result :
 plot(vitaminB12 ~ homocysteine, data = R_data)
 
 ```
+
 :::
 
-c)  
+
+c)
 
 Hypotheses
 
@@ -289,35 +310,37 @@ cor.test(R_data$homocysteine, R_data$vitaminB12, method = "spearman")
 
 ```
 
-The correlation coefficient is -0.322 and is highly significant (p-value \< 0.001).
+The correlation coefficient is -0.322 and is highly significant (p-value < 0.001).
 
 ::: callout-important
-We often find correlations interesting when they are \> 0.5 (or \< -0.5). Therefore, testing for significance is not very relevant here.
+
+We often find correlations interesting when they are > 0.5 (or < -0.5). Therefore, testing for significance is not very relevant here.
 :::
+
+
 :::
 
 ::: panel-tabset
 ### Question 7
 
-Let's see what happens when we categorize a continuous variable.
+Let's see what happens when we categorize a continuous variable. 
 
-a)  Cut `vitaminB12` into 4 groups, where the breaks are the 5 quantile points of `vitaminB12` Make sure you include the lowest breakpoint by specifying `incl=TRUE`. Assign the output to `catB12`. What are the levels of this new variable?
+a) Cut `vitaminB12` into 4 groups, where the breaks are the 5 quantile points of `vitaminB12` Make sure you include the lowest breakpoint by specifying `incl=TRUE`. Assign the output to `catB12`. What are the levels of this new variable?
 
-b)  Using the log-transformed variable of `homocysteine`, asses how `log_hc` and `catB12` relate. Make a boxplot of `log_hc` for the levels of `catB12`.
+b) Using the log-transformed variable of `homocysteine`, asses how `log_hc` and `catB12` relate. Make a boxplot of `log_hc` for the levels of `catB12`.
 
-c)  Are the means of `log_-homocysteine_hc` equal across all levels of `catB12`? Formulate a hypothesis, test it, and make a decision for statistical significance.
+c) Are the means of `log_-homocysteine_hc` equal across all levels of `catB12`? Formulate
+a hypothesis, test it, and make a decision for statistical significance.
 
-### Hint a
-
+### Hint a 
 Use the function cut() for this. Running `?cut()` will give you more information on the function.
 
-### Hint c
-
+### Hint c 
 Test this with an ANOVA test.
 
 ### Answer 7
 
-a)  
+a)
 
 ```{r, echo = T, eval=T}
 
@@ -325,16 +348,16 @@ R_data$catB12 <- cut(R_data$vitaminB12, breaks = quantile(R_data$vitaminB12), in
 levels(R_data$catB12)
 ```
 
-b)  
+b)
+
 
 ```{r, echo = T, eval=T}
 R_data$log_hc <- log(R_data$homocysteine)
 boxplot(R_data$log_hc ~ R_data$catB12)
 ```
-
 There appears to be a trend: the higher levels of catB12 correspond to lower levels of log-transformed homocysteine.
 
-c)  
+c)
 
 Hypotheses
 
@@ -348,9 +371,11 @@ ANOVA1 <- aov(R_data$log_hc ~ R_data$catB12)
 summary(ANOVA1)
 
 ```
+The p-value is < 0.05, so we conclude that there is a statistically significant difference between the mean log-homocysteine of at
+least one of the groups and the others.
 
-The p-value is \< 0.05, so we conclude that there is a statistically significant difference between the mean log-homocysteine of at least one of the groups and the others.
 :::
+
 
 ::: panel-tabset
 ### Question 8
@@ -358,7 +383,6 @@ The p-value is \< 0.05, so we conclude that there is a statistically significant
 Repeat questions 6b and 6c, without transforming `homocysteine`.
 
 ### Hint
-
 Which statistical test is appropriate in this case?
 
 ### Answer 8
@@ -366,7 +390,6 @@ Which statistical test is appropriate in this case?
 ```{r, echo = T, eval=T}
 boxplot(R_data$homocysteine ~ R_data$catB12)
 ```
-
 Hypotheses
 
 $H_0: \textrm{No difference in the distributions}$
@@ -378,40 +401,41 @@ KW.1 <- kruskal.test(R_data$homocysteine ~ R_data$catB12)
 
 KW.1
 ```
-
 The Kruskal-Wallis test is also highly significant.
+
 :::
+
 
 ::: panel-tabset
 ### Question 9
 
-We previously saw that there was an association between `vitaminB12` and `homocysteine`. We will now quantify the magnitude of this relationship and see if we can explain the variabiliy of `homocysteine` with values of `vitaminB12`.
+We previously saw that there was an association between `vitaminB12` and `homocysteine`.
+We will now quantify the magnitude of this relationship and see if we can explain the variabiliy of `homocysteine` with values of `vitaminB12`.
 
-a)  We will estimate a regression model with `homocysteine` as the <b>dependent</b> variable and `vitaminB12` as the <b>independent</b> variable. Write down the equation for the regression model.
+a) We will estimate a regression model with `homocysteine` as the <b>dependent</b> variable and `vitaminB12` as the <b>independent</b> variable. Write down the equation for the regression model.
 
-b)  Estimate the regression model and evaluate the residuals. Are the assumptions of the model met?
+b) Estimate the regression model and evaluate the residuals. Are the assumptions of the model met?
 
-c)  The residuals look a bit skewed. We saw earlier that our dependent variable follows a skewed distribution. The residuals might look better using the transformed version of the variable (`log_hc`). Re-estimate the model with this variable and evaluate the residuals again. Are you now satisfied?
+c) The residuals look a bit skewed. We saw earlier that our dependent variable follows a skewed distribution. The residuals might look better using the transformed version of the variable (`log_hc`). Re-estimate the model with this variable and evaluate the residuals again. Are you now satisfied?
 
-d)  Assuming the assumptions hold (even if they don't), we'll make inference on the slope. Is `vitaminB12` statistically significant in the model? What percent variability does it explain in `log_hc`?
+d) Assuming the assumptions hold (even if they don't), we'll make inference on the slope. Is `vitaminB12` statistically significant in the model? What percent variability does it explain in `log_hc`?
 
-e)  What is the predicted `log_hc` level for a person with `vitaminB12` equal to 650? What is this value when unlogged (exponentiated)?
+e) What is the predicted `log_hc` level for a person with `vitaminB12` equal to 650? What is this value when unlogged (exponentiated)?
+
 
 ### Hint b
-
 Look at the normality of the residuals and the homoskedasticity
 
 ### Hint e
-
 Use the `predict()` function
 
 ### Answer 9
 
-a)  
+a)
 
 $\textrm{homocysteine}_i = \beta_0 + \beta_1*\textrm{vitaminB12}_i + \varepsilon_i$
 
-b)  
+b)
 
 ```{r, echo = T, eval=T}
 LM1 <- lm(homocysteine ~ vitaminB12, data = R_data)
@@ -421,27 +445,27 @@ hist(LM1$residuals)
 
 It seems the residuals do not follow a normal distribution, so this assumption does not hold
 
-c)  
+c) 
 
 ```{r, echo = T, eval=T}
 LM2 <- lm(log_hc ~ vitaminB12, data = R_data)
 plot(LM2)
 hist(LM2$residuals)
 ```
-
 The residuals now look more symmetrical. We are satisfied with these residuals.
 
-d)  
+
+d)
 
 ```{r, echo = T, eval=T}
 summary(LM2)
 ```
-
 The value of the slope for `vitaminB12` is statistically significant. So per point increase in `vitaminB12`, the mean `log_hc` decreases with 0.0004881.
 
 The R-squared is 0.093, meaning that roughly 9% of the variations in `log_hc` are explained by `vitaminB12`.
 
-e)  
+
+e) 
 
 ```{r, echo = T, eval=T}
 Patient1 <- predict(LM2, newdata = data.frame(vitaminB12 = 650))
@@ -453,22 +477,26 @@ exp(Patient1)
 The predicted `homocysteine` value for a patient with a `vitaminB12` value of 650 is 15.2.
 
 ::: callout-note
+
 You can also calculate this manually:
 
-$\beta_0 + \beta_1*650 = 3.037 - 0.0005*650 =$ `r 3.037 - 0.0005*650`
+$\beta_0 + \beta_1*650 = 3.037 - 0.0005*650 =$ `r 3.037 - 0.0005*650 `
+
 :::
+
 :::
+
 
 ::: panel-tabset
 ### Question 10
 
 Now let's consider a framework where we want to use more than one predictor. We want to build a regression model for `SAM` using `vitaminB12`, `cholesterol`, `homocysteine` and `folicacid_erys` (folic acid red blood cells).
 
-a)  Run this multiple regression model in R. Check the assumptions. Do the assumptions hold?
+a) Run this multiple regression model in R. Check the assumptions. Do the assumptions hold?
 
-b)  Assuming the assumptions hold (even if they don't), we'll make inference on the covariates. Are any of the variables statistically significant in the model? What percent variability do the variables explain in SAM?
+b) Assuming the assumptions hold (even if they don't), we'll make inference on the covariates. Are any of the variables statistically significant in the model? What percent variability do the variables explain in SAM? 
 
-c)  What is the predicted SAM level for a person with the following:
+c) What is the predicted SAM level for a person with the following:
 
 vitaminB12 = 650
 
@@ -480,7 +508,7 @@ folicacid erys = 1340
 
 ### Answer 10
 
-a)  
+a)
 
 ```{r, echo = T, eval=T}
 LM3 <- lm(SAM ~ vitaminB12 + cholesterol + homocysteine + folicacid_erys, data = R_data)
@@ -491,19 +519,22 @@ hist(LM3$residuals)
 
 The residuals look good, meaning that the asumptions hold.
 
-b)  
-
+b)
 ```{r, echo = T, eval=T}
 summary(LM3)
 ```
 
-`Cholesterol` is the only significant variable (p-value \< 0.05). The R squared is 0.092. So this model explains 9% of variability in `SAM`.
+`Cholesterol` is the only significant variable (p-value < 0.05). The R squared is 0.092. So this model explains 9% of variability in `SAM`.
+
+
 
 ::: callout-note
-The adjusted R-squared is 0.0727. This measure gives a penalty for including more covariates in the model and can be used when comparing different models.
+
+The adjusted R-squared is 0.0727. This measure gives a penalty for including more covariates in the model and can be used when comparing different models. 
+
 :::
 
-c)  
+c)
 
 ```{r, echo = T, eval=T}
 Patient2 <- predict(LM3, newdata = data.frame(vitaminB12 = 650,
@@ -514,16 +545,20 @@ Patient2
 
 
 ```
+
+
 :::
+
+
 
 ::: panel-tabset
 ### Question 11
 
-We would like to know if `smoking` and `vitaminB12` can be used to predict `Status`.
+We would like to know if `smoking` and  `vitaminB12` can be used to predict `Status`.
 
-a)  What type of model would you use for this?
+a) What type of model would you use for this?
 
-b)  `Status` and `smoking` should be factors for this analysis. Check if this is the case, otherwise use the following code to make factors of these variables:
+b) `Status` and `smoking` should be factors for this analysis. Check if this is the case, otherwise use the following code to make factors of these variables:
 
 ```{r, echo = T, eval = F}
 R_data$Status <- as.factor(R_data$Status)
@@ -531,10 +566,10 @@ R_data$smoking <- as.factor(R_data$smoking)
 ```
 
 If we run the model on the data as it is now, R will consider "normal brain development" as the event because it is second in the levels of Status:
-
 ```{r, echo = T, eval = F}
 levels(R_data$Status)
 ```
+
 
 So we need to first change these factor levels so we treat "intellectual disability" as the event and "normal brain development" as the baseline. Run the following to change the levels
 
@@ -545,23 +580,28 @@ levels(R_data$StatusNew)
 
 ```
 
-c)  Run a logistic regression model in R with `StatusNew` as the outcome and `smoking` and `vitaminB12` as the predictors. Can either variable significantly predict mental retardation?
+c) Run a logistic regression model in R with `StatusNew` as the outcome and `smoking` and `vitaminB12` as the predictors. Can either variable significantly predict mental retardation? 
 
-d)  What is the probability of having a baby with an intellectual disability given the mother smokes and has a vitaminB12 level of 400? What is the probability of having a baby with an intellectual disability given the mother smokes and has a vitaminB12 level of 650?
+d) What is the probability of having a baby with an intellectual disability given the mother smokes and has a vitaminB12 level of 400? 
+What is the probability of having a baby with an intellectual disability given the mother smokes and has
+a vitaminB12 level of 650?
 
 ### Answer 11
 
-a)  
+
+a)
 
 A logistic regression model
 
-b)  
+b)
 
 ```{r, echo = F, eval = T}
 R_data <- data.frame(R_data)
 R_data$Status <- as.factor(R_data$Status)
 R_data$smoking <- as.factor(R_data$smoking)
 ```
+
+
 
 ```{r, echo = F, eval = T}
 R_data$StatusNew <- factor(R_data$Status, 
@@ -573,7 +613,7 @@ R_data$StatusNew <- factor(R_data$Status,
 str(R_data)
 ```
 
-c)  
+c)
 
 ```{r, echo = T, eval = T}
 GLM1 <- glm(StatusNew ~ smoking + vitaminB12, 
@@ -582,17 +622,17 @@ summary(GLM1)
 
 ```
 
-`Smoking` is a significant predictor, but `vitaminB12` is not.
+
+`Smoking` is a significant predictor, but `vitaminB12` is not. 
 
 To obtain ORs and their corresponding 95% CI, we might use:
-
 ```{r, echo = T, eval = T}
 
 exp(coef(GLM1))
 exp(confint(GLM1))
 ```
 
-d)  
+d)
 
 ```{r, echo = T, eval = T}
 
@@ -601,5 +641,6 @@ predict(GLM1, newdata = mynew, type = "response")
 
 ```
 
-The probabilities are 71% and 80% for these two patients.
+The probabilities  are 71% and 80% for these two patients. 
+
 :::
