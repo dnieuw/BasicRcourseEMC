@@ -260,12 +260,12 @@ Here we read in the data:
 
 ```{r, message=F, echo = F, eval = T}
 library(readr)
-stiffness <- read_csv("~/Erasmus/Thuiswerken/Onderwijs/R course/Sara/Analysis/Data/stiffness.csv")
+stiffness <- read_csv("Data/stiffness.csv")
 ```
 
 ```{r, message=F, echo = T, eval = F}
 library(readr)
-stiffness <- read_csv("Data/stiffness.csv")
+stiffness <- read_csv("~/stiffness.csv")
 ```
 
 If we look at the boxplot of the stiffness values for each length, we see that the means
