@@ -185,7 +185,7 @@ R will calculate all of the statistics for us! For example, let's test at the 5%
 
 ```{r, message=F, echo = F, eval = T}
 library(readr)
-R_data <- read_csv("~/Erasmus/Thuiswerken/Onderwijs/R course/Sara/Analysis/Data/R_data2.csv")
+R_data <- read_csv("Data/R_data2.csv")
 ```
 
 ```{r, message=F, echo = T, eval = F}

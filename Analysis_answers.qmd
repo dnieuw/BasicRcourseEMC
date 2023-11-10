@@ -4,9 +4,9 @@
 Make sure that you try the exercises yourself first before looking at the answers
 :::
 
-```{r, echo=F, eval = T, message=F}
+```{r, echo=T, eval = F, message=F}
 library(readr)
-R_data <- read_csv("~/Erasmus/Thuiswerken/Onderwijs/R course/Sara/Analysis/Data/R_data2.csv")
+R_data <- read_csv("Data/R_data2.csv")
 ```
 
 
