@@ -1,0 +1,3 @@
+# Loose ends
+
+As an appendix to this course we also discuss the tidyverse. This is a collection of packages that replicates some of the core functionality of R. 

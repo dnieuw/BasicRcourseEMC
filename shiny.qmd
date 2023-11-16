@@ -1,0 +1,102 @@
+# Shiny
+
+### Introduction
+
+Shiny is a tool that allows you to quickly make interactive applications using R that nicely works together with RStudio.  You can run the apps on your own computer  or host them on a server (for example using Posit Cloud). Before you can run Shiny apps you need to install the `shiny` package (but if you do not RStudio will prompt you to install it).
+
+```{r installation, eval=FALSE}
+install.packages("shiny")
+```
+
+
+
+### Creating an app
+
+There are several ways of creating an shiny application. The easiest way is to use the menus in RSTudio. Click File > New File > Shiny Webb App. You are then presented with a dialog screen where you are asked to give the application a name and create a directory for the app. Nowadays the usual process is that a file `app.R` is created that contains the code for the user interface and the back end (this is explained later). These two parts used to have their own separate files (`ui.R` and `server.R`) and you can still choose this option in the dialog screen. For larger application splitting the code over several files can make it easier to manage so this may still be an interesting option.
+
+When you are more experienced you can also start building an app by creating an `app.R` file in an empty directory yourself. You can quickly enter the boilerplate code typing `shinyapp` and pressing {{< kbd Shift-Tab >}}.
+
+### Parts of an app: user interface and back end
+
+If you inspect the code of the shiny app you see that it consists of two parts: a user interface and the back end (server) part.
+
+```{r uiserver, eval=FALSE}
+library(shiny)
+
+ui <- fluidPage(
+  # code to define the user interface goes here
+)
+
+server <- function(input, output, session) {
+  # code to define the back end goes here
+}
+
+shinyApp(ui, server)
+```
+
+
+### Starting and stopping the application
+
+When you want to run the app you can click on the Run App button in the tool bar of the source pane. You can also use the shortcut {{< kbd Ctrl-Shift-Enter >}}. As a last option you can use the `runApp()` function giving the directory of the application as an argument.
+
+To stop the application you can press the stop sign in the toolbar of the console pane, press escape when the R console pane is selected or simply close the application window.
+
+### Input controls
+
+We want our application to receive input from a user and be able to show results  (that are based on this inputs) back to the user. These things are done using **controls** that are placed on the interface. 
+
+Let us first look at input controls and change the `ui` to look like this:
+
+```{r inputcontrol, eval=FALSE}
+ui <- fluidPage(
+  sliderInput("n",
+              "Enter a number:",
+              min = 1,
+              max = 10,
+              value = 2),
+  print('hello there')
+
+)
+
+```
+
+Here `ui` takes a value from `fluidpage`. This is an example of a **layout function** that is a function that creates the layout of our application. A fluid page layout is a application layout that structures its elements in rows which may in turn have columns. Often the layout is given more structure by using further layout functions.
+Here we place a single input control on the fluid page which allows the user to select a number between 1 and 10 using a slider. The first argument to the function is the `inputID`, this is the name that we can use to refer to the value that the user has selected. The second argument is the `label` which is just that text that is displayed just above the slider. It is used to inform the reader what the function of the control is.
+
+### The server function
+
+The function does not do anything at the moment. This is because the `server` function is empty. If we want to add functionality we need to add this to the body of this function. Let's simulate the results of the total from some dice throws.
+
+```{r dice, eval=FALSE}
+server <- function(input, output, session) {
+  output$total <- renderText({
+    sum(ceiling(runif(input$n, 0, 6)))
+  })
+}
+
+```
+
+
+Here we are defining an output that is called `total`. This is done using a **render function** a function that tells R how a results should be displayed. The `renderText function can be used for R object that can be displayed as text. As an argument to the function we give it the code that can be used to calculate the result. 
+Within this code we refer to `input$n` which is de number we have entered using the slider. 
+
+### Output controls
+
+When we actually want to show the output we need to add the `total` output control to the user interface. This can been done as follows:
+
+```{r addsoutput, eval=FALSE}
+ui <- fluidPage(
+  sliderInput("n",
+              "Enter a number:",
+              min = 1,
+              max = 10,
+              value = 2),
+  textOutput("total")
+
+)
+
+```
+
+
+
+

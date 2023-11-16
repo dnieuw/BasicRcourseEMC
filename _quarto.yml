@@ -58,10 +58,16 @@ book:
       chapters:
         - functions_practicals2_questions.qmd
         - functions_practicals2_answers.qmd
-    - basic_markdown.qmd
-    - basic_markdown_practicals_questions.qmd
-    - codeblocks.qmd
-    - tidyverse.qmd
+    - part: represearch.qmd
+      chapters:
+        - basic_markdown.qmd
+        - codeblocks.qmd
+        - basic_markdown_practicals_questions.qmd
+        - shiny.qmd
+        - shiny_practicals_questions.qmd
+    - part: looseends.qmd
+      chapters:
+        - tidyverse.qmd
   repo-url: https://github.com/dnieuw/BasicRcourseEMC
   repo-actions: [edit]
   downloads: [pdf]

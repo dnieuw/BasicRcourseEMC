@@ -1,21 +1,10 @@
 # Basic Markdown
 
-## Reproducible research
-
-An analysis is reproducible when all information is available (for somebody)
-to do your analysis and obtain the same results. This includes the data, code and the documentation. This somebody else can even be your future self.
-
-When data is reproducible it makes it easier to go back and figure out what you did, perform checks and make adjustments. It also makes collaboration with other people easier. 
-
-There are some software tools that make it easier to do your amalyses in a reproducible way. In this course, we will talk about Quatro and Git. 
-
-Quatro is a program that allows you to combine code and documentation in a single text document. The code is then run and included in the document which is then  converted an output format. There are many different options for the output format and they include such things as a pdf, an html file or a word-document.
-
-## Markdown
+### Markdown
 
 Quatro files consist of code and markdown. We have discussed how to code in the previous chapters and will discuss markdown here. Markdown is a specific kind of markup language. What we mean by that is that the text in the document also indicates how it should be formatted in the result (For example if we surround a word by double asterikses (like so \*\*bold\*\*) it will **bold** in the resulting output. Below we will discuss the different types of markup that you can use.
 
-### Basic Formatting
+#### Basic Formatting
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
@@ -33,7 +22,7 @@ kable(tt)
 
 ```
 
-### Headings
+#### Headings
 
 +---------------------+-----------------------------------+
 | Syntax              | Output                            |
@@ -61,7 +50,7 @@ kable(tt)
 </style>
 ```
 
-### Links
+#### Links
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
@@ -74,7 +63,7 @@ kable(tt)
 
 ```
 
-### Images
+#### Images
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
@@ -90,7 +79,7 @@ kable(tt)
 
 It is also possible to include images in links.
 
-### Lists
+#### Lists
 
 
 +----------------------------------------+-------------------------------------+
@@ -120,7 +109,7 @@ It is also possible to include images in links.
 +----------------------------------------+-------------------------------------+
 
 
-### Tables
+#### Tables
 
 There are multiple ways to make tables
 
@@ -143,9 +132,9 @@ The result is:
 
 : an optional caption
 
-The first and last pipe character at each row are optional, the ones separating the columns are not although they do not have to be aligned. The header cannot be omited. The relative width is determined by the number of dashes.
+The first and last pipe character at each row are optional, the ones separating the columns are not although they do not have to be aligned. The header cannot be omitted. The relative width is determined by the number of dashes.
 
-An alternative way to specify the relative column widths is by including the attribyte after the caption, like this:
+An alternative way to specify the relative column widths is by including the attribute after the caption, like this:
 ```` markdown
 : an optional caption {tbl-colwidths="[40,15,15,15,15]"} 
 ````
@@ -189,7 +178,7 @@ Becomes:
 foo <- bar
 ```
 
-### Math
+#### Math
 
 You can use TeX like syntax to format equations. Inline formulas are delimeted by single \$s and display math uses double \$\$s.
 

@@ -7,7 +7,7 @@ The main feature of quarto is that we can interweave the text with code blocks. 
 
 ## Code blocks
 
-When we include a code block (also called chunk) we start by writing three back ticks (\`\`\`) followed by the name of the language you use in the code block (we will only use R) surrounded with braces. The chunk again is ended by writing three back ticks. So the whole thing looks like this
+When we include a code block (also called chunk) we start by writing three backticks (\`\`\`) followed by the name of the language you use in the code block (we will only use R) surrounded with braces. The chunk again is ended by writing three backticks. So the whole thing looks like this
 
 ```{{r}}
 1 + 1
@@ -19,7 +19,7 @@ Optionally you can also include a chunk name after the name of the language. Thi
 ```{{r examplename}}
 ````
 
-By default, when the document is rendered the code in the chunks will be executed and both the contents of the code block as the output will be included in the document. Execution of the code, insertion of the code and insertion of the output can be suppressed by so-called chunk options (see below). A given document can include menu code chunks that all will be executed in order. Variables that are defined in a certain code block can be used in the following ones, just as if the code would have formed a single R-script.
+By default, when the document is rendered the code in the chunks will be executed and both the contents of the code block as the output will be included in the document. Execution of the code, insertion of the code and insertion of the output can be suppressed by so-called chunk options (see below). A given ducument can include manu code chunks that all will be executed in order. Variables that are defined in a certain code block can be used in the following ones, just as if the code would have formed a single R-script.
 
 ## Chunk Options
 
@@ -72,7 +72,7 @@ child
 
 ## Inline code
 
-Beside complete code blocks it is also possible to include short bits of R code in the running text. The code should be included between `` `r `` and `` ` `` , for example `` `r `` ``nrow(data_set)` ``.
+Beside complete code blocks it is also possible to include short bits of R code in the running text. The code should be included between `` `r `` and `` ` `` , for example `` `r nrow(data_set)` ``.
 
 ## YAML header
 
