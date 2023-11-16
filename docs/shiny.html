@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basic R Course - 19&nbsp; Decorating a function with returns, errors, and warnings</title>
+<title>Basic R Course - 27&nbsp; Shiny</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./functions_looping.html" rel="next">
-<link href="./functions_scoping.html" rel="prev">
+<link href="./shiny_practicals_questions.html" rel="next">
+<link href="./basic_markdown_practicals_questions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -77,6 +77,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions_intro2.html">Functions 2</a></li><li class="breadcrumb-item"><a href="./functions_decoration.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./represearch.html">Reproducible research</a></li><li class="breadcrumb-item"><a href="./shiny.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Shiny</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -398,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_decoration.html" class="sidebar-item-text sidebar-link active">
+  <a href="./functions_decoration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></span></a>
   </div>
 </li>
@@ -468,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./shiny.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Shiny</span></span></a>
   </div>
 </li>
@@ -507,18 +509,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#terminating-a-function-call-using-if-and-return" id="toc-terminating-a-function-call-using-if-and-return" class="nav-link active" data-scroll-target="#terminating-a-function-call-using-if-and-return">Terminating a Function Call Using <code>if()</code> and <code>return()</code></a></li>
-  <li><a href="#terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" id="toc-terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" class="nav-link" data-scroll-target="#terminating-a-function-call-and-printing-an-error-message-using-if-and-stop">Terminating a Function Call and Printing an Error Message Using <code>if()</code> and <code>stop()</code></a></li>
-  <li><a href="#printing-a-warning-message-using-if-and-warning" id="toc-printing-a-warning-message-using-if-and-warning" class="nav-link" data-scroll-target="#printing-a-warning-message-using-if-and-warning">Printing a Warning Message Using <code>if()</code> and <code>warning()</code></a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#creating-an-app" id="toc-creating-an-app" class="nav-link" data-scroll-target="#creating-an-app">Creating an app</a></li>
+  <li><a href="#parts-of-an-app-user-interface-and-back-end" id="toc-parts-of-an-app-user-interface-and-back-end" class="nav-link" data-scroll-target="#parts-of-an-app-user-interface-and-back-end">Parts of an app: user interface and back end</a></li>
+  <li><a href="#starting-and-stopping-the-application" id="toc-starting-and-stopping-the-application" class="nav-link" data-scroll-target="#starting-and-stopping-the-application">Starting and stopping the application</a></li>
+  <li><a href="#input-controls" id="toc-input-controls" class="nav-link" data-scroll-target="#input-controls">Input controls</a></li>
+  <li><a href="#the-server-function" id="toc-the-server-function" class="nav-link" data-scroll-target="#the-server-function">The server function</a></li>
+  <li><a href="#output-controls" id="toc-output-controls" class="nav-link" data-scroll-target="#output-controls">Output controls</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/functions_decoration.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/shiny.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></h1>
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Shiny</span></h1>
 </div>
 
 
@@ -533,70 +539,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The following functions are useful for terminating a function call or just printing a warning message:</p>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Shiny is a tool that allows you to quickly make interactive applications using R that nicely works together with RStudio. You can run the apps on your own computer or host them on a server (for example using Posit Cloud). Before you can run Shiny apps you need to install the <code>shiny</code> package (but if you do not RStudio will prompt you to install it).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>()     <span class="co"># Terminate a function call and return a value.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>()       <span class="co"># Terminate a function call and print an error message.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">warning</span>()    <span class="co"># Print a warning message (without terminating the </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>             <span class="co"># function call).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="terminating-a-function-call-using-if-and-return" class="level3">
-<h3 class="anchored" data-anchor-id="terminating-a-function-call-using-if-and-return">Terminating a Function Call Using <code>if()</code> and <code>return()</code></h3>
-<p>One way to terminate a function call is with <code>return()</code> which, when encountered, immediately terminates the call and returns a value. For example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mySign <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="st">"Negative"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="st">"Positive"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="st">"Zero"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Passing <code>mySign()</code> the value <code>x = 13</code> produces the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mySign</span>(<span class="at">x =</span> <span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Positive"</code></pre>
-</div>
-</div>
-<p>(Note that the last line, <code>return("Zero")</code>, was never encountered during the call to <code>my.sign()</code>.)</p>
 </section>
-<section id="terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" class="level3">
-<h3 class="anchored" data-anchor-id="terminating-a-function-call-and-printing-an-error-message-using-if-and-stop">Terminating a Function Call and Printing an Error Message Using <code>if()</code> and <code>stop()</code></h3>
-<p>Another way to terminate a function call is with <code>stop()</code>, which then prints an error message without returning a value. Here’s an example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myRatio <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(y <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"Cannot divide by 0"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span>y)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>An attempt to pass the value <code>0</code> for <code>y</code> now results in the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">myRatio</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in myRatio(x = 3, y = 0): Cannot divide by 0</code></pre>
-</div>
-</div>
-<p>(Note that the last line, <code>return(x/y)</code>, was never encountered during the call to <code>myRatio()</code>)</p>
+<section id="creating-an-app" class="level3">
+<h3 class="anchored" data-anchor-id="creating-an-app">Creating an app</h3>
+<p>There are several ways of creating an shiny application. The easiest way is to use the menus in RSTudio. Click File &gt; New File &gt; Shiny Webb App. You are then presented with a dialog screen where you are asked to give the application a name and create a directory for the app. Nowadays the usual process is that a file <code>app.R</code> is created that contains the code for the user interface and the back end (this is explained later). These two parts used to have their own separate files (<code>ui.R</code> and <code>server.R</code>) and you can still choose this option in the dialog screen. For larger application splitting the code over several files can make it easier to manage so this may still be an interesting option.</p>
+<p>When you are more experienced you can also start building an app by creating an <code>app.R</code> file in an empty directory yourself. You can quickly enter the boilerplate code typing <code>shinyapp</code> and pressing <kbd>Shift-Tab</kbd>.</p>
 </section>
-<section id="printing-a-warning-message-using-if-and-warning" class="level3">
-<h3 class="anchored" data-anchor-id="printing-a-warning-message-using-if-and-warning">Printing a Warning Message Using <code>if()</code> and <code>warning()</code></h3>
-<p><code>warning()</code> just prints a warning message to the screen without terminating the function call. Here’s an example:</p>
+<section id="parts-of-an-app-user-interface-and-back-end" class="level3">
+<h3 class="anchored" data-anchor-id="parts-of-an-app-user-interface-and-back-end">Parts of an app: user interface and back end</h3>
+<p>If you inspect the code of the shiny app you see that it consists of two parts: a user interface and the back end (server) part.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myRatio <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(y <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">"Attempt made to divide by 0"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span>y)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code to define the user interface goes here</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code to define the back end goes here</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now when we pass the value <code>0</code> for <code>y</code> the function call isn’t terminated (the special value <code>Inf</code> is returned), but we get the warning message:</p>
+</section>
+<section id="starting-and-stopping-the-application" class="level3">
+<h3 class="anchored" data-anchor-id="starting-and-stopping-the-application">Starting and stopping the application</h3>
+<p>When you want to run the app you can click on the Run App button in the tool bar of the source pane. You can also use the shortcut <kbd>Ctrl-Shift-Enter</kbd>. As a last option you can use the <code>runApp()</code> function giving the directory of the application as an argument.</p>
+<p>To stop the application you can press the stop sign in the toolbar of the console pane, press escape when the R console pane is selected or simply close the application window.</p>
+</section>
+<section id="input-controls" class="level3">
+<h3 class="anchored" data-anchor-id="input-controls">Input controls</h3>
+<p>We want our application to receive input from a user and be able to show results (that are based on this inputs) back to the user. These things are done using <strong>controls</strong> that are placed on the interface.</p>
+<p>Let us first look at input controls and change the <code>ui</code> to look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">myRatio</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in myRatio(x = 3, y = 0): Attempt made to divide by 0</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">"n"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Enter a number:"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">min =</span> <span class="dv">1</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">max =</span> <span class="dv">10</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">value =</span> <span class="dv">2</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'hello there'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] Inf</code></pre>
+<p>Here <code>ui</code> takes a value from <code>fluidpage</code>. This is an example of a <strong>layout function</strong> that is a function that creates the layout of our application. A fluid page layout is a application layout that structures its elements in rows which may in turn have columns. Often the layout is given more structure by using further layout functions. Here we place a single input control on the fluid page which allows the user to select a number between 1 and 10 using a slider. The first argument to the function is the <code>inputID</code>, this is the name that we can use to refer to the value that the user has selected. The second argument is the <code>label</code> which is just that text that is displayed just above the slider. It is used to inform the reader what the function of the control is.</p>
+</section>
+<section id="the-server-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-server-function">The server function</h3>
+<p>The function does not do anything at the moment. This is because the <code>server</code> function is empty. If we want to add functionality we need to add this to the body of this function. Let’s simulate the results of the total from some dice throws.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>total <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(<span class="fu">ceiling</span>(<span class="fu">runif</span>(input<span class="sc">$</span>n, <span class="dv">0</span>, <span class="dv">6</span>)))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Here we are defining an output that is called <code>total</code>. This is done using a <strong>render function</strong> a function that tells R how a results should be displayed. The <code>renderText function can be used for R object that can be displayed as text. As an argument to the function we give it the code that can be used to calculate the result.  Within this code we refer to</code>input$n` which is de number we have entered using the slider.</p>
+</section>
+<section id="output-controls" class="level3">
+<h3 class="anchored" data-anchor-id="output-controls">Output controls</h3>
+<p>When we actually want to show the output we need to add the <code>total</code> output control to the user interface. This can been done as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">"n"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Enter a number:"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">min =</span> <span class="dv">1</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">max =</span> <span class="dv">10</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">value =</span> <span class="dv">2</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">"total"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>By adding error messages and warnings to you functions it is easier for you and others using your scripts to figure out what went wrong if your script doesn’t return the anticipated answer.</p>
 
 
 </section>
@@ -952,13 +971,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./functions_scoping.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function environments and scoping</span></span>
+      <a href="./basic_markdown_practicals_questions.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Markdown: Questions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./functions_looping.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Looping</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./shiny_practicals_questions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Shiny: Questions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

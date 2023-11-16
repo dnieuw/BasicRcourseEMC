@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basic R Course - 19&nbsp; Decorating a function with returns, errors, and warnings</title>
+<title>Basic R Course - Loose ends</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./functions_looping.html" rel="next">
-<link href="./functions_scoping.html" rel="prev">
+<link href="./tidyverse.html" rel="next">
+<link href="./shiny_practicals_questions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions_intro2.html">Functions 2</a></li><li class="breadcrumb-item"><a href="./functions_decoration.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./looseends.html">Loose ends</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -398,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_decoration.html" class="sidebar-item-text sidebar-link active">
+  <a href="./functions_decoration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></span></a>
   </div>
 </li>
@@ -482,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./looseends.html" class="sidebar-item-text sidebar-link">
+            <a href="./looseends.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Loose ends</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -503,22 +469,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#terminating-a-function-call-using-if-and-return" id="toc-terminating-a-function-call-using-if-and-return" class="nav-link active" data-scroll-target="#terminating-a-function-call-using-if-and-return">Terminating a Function Call Using <code>if()</code> and <code>return()</code></a></li>
-  <li><a href="#terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" id="toc-terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" class="nav-link" data-scroll-target="#terminating-a-function-call-and-printing-an-error-message-using-if-and-stop">Terminating a Function Call and Printing an Error Message Using <code>if()</code> and <code>stop()</code></a></li>
-  <li><a href="#printing-a-warning-message-using-if-and-warning" id="toc-printing-a-warning-message-using-if-and-warning" class="nav-link" data-scroll-target="#printing-a-warning-message-using-if-and-warning">Printing a Warning Message Using <code>if()</code> and <code>warning()</code></a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/functions_decoration.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></h1>
+<h1 class="title">Loose ends</h1>
 </div>
 
 
@@ -533,73 +491,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The following functions are useful for terminating a function call or just printing a warning message:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>()     <span class="co"># Terminate a function call and return a value.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>()       <span class="co"># Terminate a function call and print an error message.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">warning</span>()    <span class="co"># Print a warning message (without terminating the </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>             <span class="co"># function call).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="terminating-a-function-call-using-if-and-return" class="level3">
-<h3 class="anchored" data-anchor-id="terminating-a-function-call-using-if-and-return">Terminating a Function Call Using <code>if()</code> and <code>return()</code></h3>
-<p>One way to terminate a function call is with <code>return()</code> which, when encountered, immediately terminates the call and returns a value. For example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mySign <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="st">"Negative"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="st">"Positive"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="st">"Zero"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Passing <code>mySign()</code> the value <code>x = 13</code> produces the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mySign</span>(<span class="at">x =</span> <span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Positive"</code></pre>
-</div>
-</div>
-<p>(Note that the last line, <code>return("Zero")</code>, was never encountered during the call to <code>my.sign()</code>.)</p>
-</section>
-<section id="terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" class="level3">
-<h3 class="anchored" data-anchor-id="terminating-a-function-call-and-printing-an-error-message-using-if-and-stop">Terminating a Function Call and Printing an Error Message Using <code>if()</code> and <code>stop()</code></h3>
-<p>Another way to terminate a function call is with <code>stop()</code>, which then prints an error message without returning a value. Here’s an example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myRatio <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(y <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"Cannot divide by 0"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span>y)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>An attempt to pass the value <code>0</code> for <code>y</code> now results in the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">myRatio</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in myRatio(x = 3, y = 0): Cannot divide by 0</code></pre>
-</div>
-</div>
-<p>(Note that the last line, <code>return(x/y)</code>, was never encountered during the call to <code>myRatio()</code>)</p>
-</section>
-<section id="printing-a-warning-message-using-if-and-warning" class="level3">
-<h3 class="anchored" data-anchor-id="printing-a-warning-message-using-if-and-warning">Printing a Warning Message Using <code>if()</code> and <code>warning()</code></h3>
-<p><code>warning()</code> just prints a warning message to the screen without terminating the function call. Here’s an example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myRatio <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(y <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">"Attempt made to divide by 0"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span>y)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now when we pass the value <code>0</code> for <code>y</code> the function call isn’t terminated (the special value <code>Inf</code> is returned), but we get the warning message:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">myRatio</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in myRatio(x = 3, y = 0): Attempt made to divide by 0</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] Inf</code></pre>
-</div>
-</div>
-<p>By adding error messages and warnings to you functions it is easier for you and others using your scripts to figure out what went wrong if your script doesn’t return the anticipated answer.</p>
+<p>As an appendix to this course we also discuss the tidyverse. This is a collection of packages that replicates some of the core functionality of R.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -952,13 +846,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./functions_scoping.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function environments and scoping</span></span>
+      <a href="./shiny_practicals_questions.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Shiny: Questions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./functions_looping.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Looping</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tidyverse.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -966,4 +860,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/looseends.qmd" class="toc-action">Edit this page</a></p></div></div></div></div></footer></body></html>

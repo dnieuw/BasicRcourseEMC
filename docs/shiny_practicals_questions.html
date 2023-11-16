@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basic R Course - 19&nbsp; Decorating a function with returns, errors, and warnings</title>
+<title>Basic R Course - 28&nbsp; Shiny: Questions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./functions_looping.html" rel="next">
-<link href="./functions_scoping.html" rel="prev">
+<link href="./looseends.html" rel="next">
+<link href="./shiny.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions_intro2.html">Functions 2</a></li><li class="breadcrumb-item"><a href="./functions_decoration.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./represearch.html">Reproducible research</a></li><li class="breadcrumb-item"><a href="./shiny_practicals_questions.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Shiny: Questions</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -398,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions_decoration.html" class="sidebar-item-text sidebar-link active">
+  <a href="./functions_decoration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></span></a>
   </div>
 </li>
@@ -474,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./shiny_practicals_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="./shiny_practicals_questions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Shiny: Questions</span></span></a>
   </div>
 </li>
@@ -503,22 +503,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#terminating-a-function-call-using-if-and-return" id="toc-terminating-a-function-call-using-if-and-return" class="nav-link active" data-scroll-target="#terminating-a-function-call-using-if-and-return">Terminating a Function Call Using <code>if()</code> and <code>return()</code></a></li>
-  <li><a href="#terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" id="toc-terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" class="nav-link" data-scroll-target="#terminating-a-function-call-and-printing-an-error-message-using-if-and-stop">Terminating a Function Call and Printing an Error Message Using <code>if()</code> and <code>stop()</code></a></li>
-  <li><a href="#printing-a-warning-message-using-if-and-warning" id="toc-printing-a-warning-message-using-if-and-warning" class="nav-link" data-scroll-target="#printing-a-warning-message-using-if-and-warning">Printing a Warning Message Using <code>if()</code> and <code>warning()</code></a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/functions_decoration.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Decorating a function with returns, errors, and warnings</span></h1>
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Shiny: Questions</span></h1>
 </div>
 
 
@@ -533,73 +525,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The following functions are useful for terminating a function call or just printing a warning message:</p>
+<p>The goal of this practical is to create a beautiful shiny application. The app’s goal is to show the <a href="https://www.perined.nl/geboortegewichtcurven">Hoftiezer Birthweight curves</a> and use these curves to determine the birthweight percentile of a certain infant.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Question 1</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Download the <code>hoftiezer.R</code> file from canvas to get started. This file contains two functions you can use: <code>phoftiezer</code> and <code>qhoftiezer</code>. The first one calculates Hoftiezer Birthweight percentiles given Birthweight (in grams), gestational age (in days) and sex. The second function does the reverse and calculates Birthweight (in grams) given a percentile, gestational age and sex. Although you don’t need to know every detail about this function, being how to use it is crucial for the practical.</p>
+<ul>
+<li><p>Using this function calculate the birthweight percentile of a boy with a gestational age of 200 days that weights 1500 grams. Also try to calculate the percentile for this given weight for all integer gestational ages between 210 and 220 days.</p></li>
+<li><p>Using this function calculate the median birthweight of a girl with a gestational age of 200 days. Also calculate the P05 (5th percentile) for girls for all integer ages between 210 and 220.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Question 2</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Now we are going to make our shiny app. While thee is a wizard to create shiny apps. Here we are going to start using a basic R file. To do this create a new directory for you app. Now create a new R file save it in this directory and give it the name <code>app.R</code>. Copy and paste the following code in this file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>()     <span class="co"># Terminate a function call and return a value.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>()       <span class="co"># Terminate a function call and print an error message.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">warning</span>()    <span class="co"># Print a warning message (without terminating the </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>             <span class="co"># function call).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">"Birthweight percentiles"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># nothing here yet</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="terminating-a-function-call-using-if-and-return" class="level3">
-<h3 class="anchored" data-anchor-id="terminating-a-function-call-using-if-and-return">Terminating a Function Call Using <code>if()</code> and <code>return()</code></h3>
-<p>One way to terminate a function call is with <code>return()</code> which, when encountered, immediately terminates the call and returns a value. For example:</p>
+<p>If you save the file a green arrow should appear in the source toolbar in RStudio. When you click it the app will run! Of course the app will not do very much (it only shows it title). To stop the app either close the app window or click on the red stop sign on the R console toolbar.</p>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Question 3</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>We want our app to be able to calculate birthwight percentiles. Therefore it needs access to the <code>qhoftiezer</code> and <code>phoftiezer</code> functions. In order to do so you could simply copy and paste the code from <code>hoftiezer.R</code> to <code>app.R</code>. A slightly more elegant way is the source the contents of this file. Save the <code>hoftiezer.R</code> file in the directory you created. Now include the line <code>source('hoftiezer.R')</code> in the <code>app.R</code> file (just before the definition of <code>ui</code> is a good place). To test if the app can access the function we use in in the interface. The start of your file should now look like this</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mySign <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="st">"Negative"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="st">"Positive"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="st">"Zero"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'hoftiezer.R'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Application title</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Birthweight percentiles"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">phoftiezer</span>(<span class="at">q =</span> <span class="fl">0.5</span>, <span class="at">ga =</span> <span class="dv">220</span>, <span class="at">sex=</span><span class="st">'female'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Passing <code>mySign()</code> the value <code>x = 13</code> produces the following:</p>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Question 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>We now will modify the layout of the app to ask for user input at the left of the window and show its results to the right. In shiny this can be done by including a <code>sidebarLayout</code> within the <code>fluidPage</code> function. A function that in turn includes a <code>sidebarpanel</code> and a <code>mainPanel</code> function. The <code>sidebarLayout</code> should include controls that ask for an infacts birthweight, gestational age and sex. This is now used to calculate the birthweight percentile wich is shown in the main panel. We start with just a control to ask the user for birthweight and ask the other information later. Modify the <code>ui</code> to look like the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mySign</span>(<span class="at">x =</span> <span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Positive"</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">"Birthweight percentiles"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">numericInput</span>(<span class="st">"birthweight"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Birthweight in gramms:"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">min =</span> <span class="dv">100</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="dv">6000</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value =</span> <span class="dv">1000</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show percentile</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">phoftiezer</span>(<span class="at">q =</span> <span class="fl">0.5</span>, <span class="at">ga =</span> <span class="dv">220</span>, <span class="at">sex=</span><span class="st">'female'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Within the <code>numericInput</code> function the first parameter specifies the <code>inputId</code>, the name we will use the refer to the value the user entered here. The second parameter specifies the label: This is just a text that is used to prompt the user for the value. The other arguments specify the minimum and maximum value that can be entered as well as the default value of the control.</p>
 </div>
 </div>
-<p>(Note that the last line, <code>return("Zero")</code>, was never encountered during the call to <code>my.sign()</code>.)</p>
-</section>
-<section id="terminating-a-function-call-and-printing-an-error-message-using-if-and-stop" class="level3">
-<h3 class="anchored" data-anchor-id="terminating-a-function-call-and-printing-an-error-message-using-if-and-stop">Terminating a Function Call and Printing an Error Message Using <code>if()</code> and <code>stop()</code></h3>
-<p>Another way to terminate a function call is with <code>stop()</code>, which then prints an error message without returning a value. Here’s an example:</p>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Question 5</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>You have probably noticed that in its present form the app doesn’t take any action based on the birth weight entered by the user. To address this, it’s essential to conduct the required calculations within our server function. Update the server function to resemble the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myRatio <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(y <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"Cannot divide by 0"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span>y)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>percentile <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">phoftiezer</span>(<span class="at">q =</span> input<span class="sc">$</span>birthweight,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">ga =</span> <span class="dv">220</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">sex =</span> <span class="st">'female'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>An attempt to pass the value <code>0</code> for <code>y</code> now results in the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">myRatio</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in myRatio(x = 3, y = 0): Cannot divide by 0</code></pre>
-</div>
-</div>
-<p>(Note that the last line, <code>return(x/y)</code>, was never encountered during the call to <code>myRatio()</code>)</p>
-</section>
-<section id="printing-a-warning-message-using-if-and-warning" class="level3">
-<h3 class="anchored" data-anchor-id="printing-a-warning-message-using-if-and-warning">Printing a Warning Message Using <code>if()</code> and <code>warning()</code></h3>
-<p><code>warning()</code> just prints a warning message to the screen without terminating the function call. Here’s an example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myRatio <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(y <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">warning</span>(<span class="st">"Attempt made to divide by 0"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span>y)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now when we pass the value <code>0</code> for <code>y</code> the function call isn’t terminated (the special value <code>Inf</code> is returned), but we get the warning message:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">myRatio</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in myRatio(x = 3, y = 0): Attempt made to divide by 0</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] Inf</code></pre>
+<p>With the assignment <code>output$percentile &lt;- renderText(...)</code> you define a Shiny output with the name <code>percentile</code>. The right-hand side features a render function, which, in this case, specifies that the calculated results should be displayed as text. Shiny offers various render functions tailored for different types of results, such as text, tables, plots, and more. Within <code>phoftiezer</code> function we now use <code>input$birthweight</code> indicating that the value in the input control that is called <code>birthweight</code> will be used in the calculations. To display the results from <code>output$percentile</code>, replace the <code>phoftiezer</code> function call in the main panel with <code>textOutput("percentile")</code></p>
+<p>Verify if the app behaves as you expect.</p>
 </div>
 </div>
-<p>By adding error messages and warnings to you functions it is easier for you and others using your scripts to figure out what went wrong if your script doesn’t return the anticipated answer.</p>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Question 6</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>Additionally, we would like to be able specify the infants’ sex and gestational age. To do this we need to add two more controls to the <code>sidebarPanel</code> function. Use a <code>sliderInput</code> for gestational age and a <code>selectInput</code> for sex. Use the documentation to check how these functions work. Note that the input control functions need to be separated by commas. Modify the <code>server</code> function to use the input from these controls.</p>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Question 7</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p>To make our app somewhat better looking we are going to include a plot. To include the plot in the main panel include the line <code>plotOutput("distPlot")</code> in the <code>mainPanel</code> function. Don’t forget to use commas to divide up the different controls. <code>output$distPlot</code> now needs to be defined within the server function. Define a series of gestational ages ranging from 161 to 294 within this function. Use this sequence to calculate the median birth weight using the <code>qhoftiezer</code> function. Do the same for the 5th and 95th percentile. Now plot these (for example using the <code>matplopt</code> function). Using the <code>points</code> function, add user input to the plot as the final step.</p>
+</div>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -952,13 +1001,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./functions_scoping.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function environments and scoping</span></span>
+      <a href="./shiny.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Shiny</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./functions_looping.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Looping</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./looseends.html" class="pagination-link">
+        <span class="nav-page-text">Loose ends</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -966,4 +1015,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dnieuw/BasicRcourseEMC/edit/main/shiny_practicals_questions.qmd" class="toc-action">Edit this page</a></p></div></div></div></div></footer></body></html>
