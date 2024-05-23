@@ -31,7 +31,7 @@ if (condition) {
 
 where `condition` is a logical expression (i.e. it evaluates to `TRUE` or `FALSE`)
 
-In both cases above, if `condition` is `TRUE`, `statement` is executed. If `condition` is `FALSE`, then in the first case nothing happens, but in the second case, `statement2` is executed.
+In both cases above, if `condition` is `TRUE`, `statement1` is executed. If `condition` is `FALSE`, then in the first case nothing happens, but in the second case, `statement2` is executed.
 
 Here's a simple example:
 
@@ -68,23 +68,7 @@ y <- if(x >= 10) 1
 y
 ```
 
-In the next example, `return()` is used to terminate a function call and return a value that depends on whether or not a condition is met:
 
-```{r}
-mySign <- function(x) {
-    if(x < 0) {
-      return("Negative")
-    } else {
-      return("Non-negative")
-    }
-}
-```
-
-We get:
-
-```{r}
-mySign(13)
-```
 
 ### Nested `if()` Statements
 
@@ -102,6 +86,49 @@ if(condition1) {
 ```
 
 The `else` always refers to the most recent `if()`, but to keep our code readable, we use tab indentation for every level of nesting in our nested if-else statements.
+
+### `if() else()` statements in functions
+
+The (nested) `if() else()` statements can be used in functions. 
+In the next example, we expand on the earlier function `my_descriptives`. The function now first checks whether the function is `numeric` or a `factor`. For numeric variables, the negative values are removed and the summary statistics provided. For factors, the negative level (`-1`) is removed and a table of the variable is given.
+
+
+```{r, echo=FALSE}
+PatientID <- 1:25
+Ages <- round(c(rnorm(15, mean = 45, sd = 10), -50, rnorm(9, mean = 45, sd = 10) ) )
+data <- data.frame(PatientID = PatientID, Ages = Ages)
+data$Sex <- as.factor(c(rbinom(24, 1, 0.5),-1))
+```
+
+
+```{r}
+my_descriptives <- function(x){
+  if(class(x) == "numeric"){
+    x.trim <- x[x>0]
+    summary(x.trim)
+  } else if (class(x) == "factor"){
+    x.trim <- droplevels(x[x!=-1])
+    table(x.trim)
+  }
+}
+```
+
+The function can now be applied to numeric variables and factors:
+
+```{r}
+my_descriptives(data$Ages)
+my_descriptives(data$Sex)
+```
+
+
+Again, we compare the output with the standard `summary()` and `table()` output:
+
+```{r}
+summary(data$Ages)
+table(data$Sex)
+```
+
+
 
 Apart form nesting `if()` statements it is also possible to string multiple if statements together like so:
 
