@@ -50,8 +50,7 @@ book:
         - functions_practicals1_answers.qmd
     - part: functions_intro2.qmd
       chapters:
-        - functions_scoping.qmd
-        - functions_decoration.qmd
+        - functions_terminating.qmd
         - functions_looping.qmd
         - functions_apply.qmd
     - part: functions_practicals2_intro.qmd
