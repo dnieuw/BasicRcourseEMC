@@ -12,6 +12,8 @@ myFun <- function(arg1, arg2) {
 
 Each line inside the function is an object assignment, a function call, a subsetting, a conditional statement, an if/else statement, a for loop, etc. - basically anything you have now learned how to do in R that you want the function to do!
 
+### Example of custom function
+
 Below is an easy example that calculates the mean of two values (`x` and `y`):
 
 ```{r}
@@ -32,8 +34,9 @@ Or:
 mean_xy(x = 2, y = 6)
 ```
 
+### Use return() in a function
 
-To have a function output something, you must return something.  Either the value of the last command is returned (as in `mean_xy`) or you can use `return()`.
+To have a function output something, you must return something. Either the value of the last command is returned (as in `mean_xy`) or you can use `return()`.
 
 ```{r}
 mean_xy <- function(x, y){
@@ -98,6 +101,8 @@ mean_x(x)
 
 
 Custom functions in R are useful if you have a bunch of commands that you have to use multiple times. By combining them in a function you 1) save time, 2) keep your code concise, and 3) make less coding mistakes.
+
+### Build a custom function
 
 In the next example a function called `my_descriptives` is made to calculate a mean of a vector only for the positive values. 
 
