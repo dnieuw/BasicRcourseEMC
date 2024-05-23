@@ -222,3 +222,65 @@ calc4(x = 1) ## uses y = 2
 calc4(x = 1, y = 3) ## overwrites default value of y
 ```
 
+## Function environments
+
+Each function, whether built-in or user-defined, has an associated environment, which can be thought of as a container that holds all of the objects present at the time the function is created.
+
+When a function is created on the command line, it's environment is the so-called "Global Environment":
+
+```{r}
+w <- 2
+f <- function(y) {
+  d <- 3
+  return(d * (w + y))
+}
+environment(f)
+```
+
+The function `objects()` (or `ls()`), when called from the command line, lists the objects in the Global Environment:
+
+```{r}
+objects()
+```
+
+### Global and Local Variables
+
+In the function `f()` defined above, the variable `w` is said to be global to `f()` and the variable `d`, because it's created within `f()`, is said to be local to `f()`. Global variables (like `w`) are visible from within a function, but local variables (like `d`) aren't visible from outside the function. In fact, local variables are temporary, and disappear when the function call is completed:
+
+```{r, eval=FALSE}
+f(y = 1)
+d
+```
+
+You get an error: [Error in eval(expr, envir, enclos) : object 'd' not found]{style="color: red"}, indicating that the variable d does not exist in the 'Global Environment'.
+
+When a global and local variable share the same name, the local variable is used:
+
+```{r}
+w <- 2
+d <- 4
+
+f <- function(y) {
+  d <- 3
+  return(d * (w + y))
+}
+
+f(y = 1)
+```
+
+Note also that when an assignment takes place within a function, and the local variable shares its name with an existing global variable, only the local variable is affected:
+
+```{r}
+w <- 2
+d <- 4 # This value of d will remain unchanged.
+
+f <- function(y) {
+  d <- 3 # This doesnt affect the value of d in the global environment
+  return(d * (w + y))
+}
+
+f(y = 1)
+
+d
+```
+
