@@ -1,4 +1,4 @@
-# Looping
+# Looping {.unnumbered}
 
 Loops are used to iterate (repeat) an R statement (or set of statements). They're implemented in three ways, `for()`, `while()`, and `repeat()`, but the most often used are `for()` loops:
 

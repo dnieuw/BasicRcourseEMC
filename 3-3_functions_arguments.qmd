@@ -1,4 +1,4 @@
-# Function arguments
+# Function arguments {.unnumbered}
 
 ### Input of Functions
 

@@ -1,4 +1,4 @@
-# Conditional execution using if and else
+# Conditional execution using if and else {.unnumbered}
 
 ### If? Then! Else?
 
@@ -68,8 +68,6 @@ y <- if(x >= 10) 1
 y
 ```
 
-
-
 ### Nested `if()` Statements
 
 In addition, `if()` statements can be nested. The form for nested `if()` statements is
@@ -89,9 +87,7 @@ The `else` always refers to the most recent `if()`, but to keep our code readabl
 
 ### `if() else()` statements in functions
 
-The (nested) `if() else()` statements can be used in functions. 
-In the next example, we expand on the earlier function `my_descriptives`. The function now first checks whether the function is `numeric` or a `factor`. For numeric variables, the negative values are removed and the summary statistics provided. For factors, the negative level (`-1`) is removed and a table of the variable is given.
-
+The (nested) `if() else()` statements can be used in functions. In the next example, we expand on the earlier function `my_descriptives`. The function now first checks whether the function is `numeric` or a `factor`. For numeric variables, the negative values are removed and the summary statistics provided. For factors, the negative level (`-1`) is removed and a table of the variable is given.
 
 ```{r, echo=FALSE}
 PatientID <- 1:25
@@ -99,7 +95,6 @@ Ages <- round(c(rnorm(15, mean = 45, sd = 10), -50, rnorm(9, mean = 45, sd = 10)
 data <- data.frame(PatientID = PatientID, Ages = Ages)
 data$Sex <- as.factor(c(rbinom(24, 1, 0.5),-1))
 ```
-
 
 ```{r}
 my_descriptives <- function(x){
@@ -120,15 +115,12 @@ my_descriptives(data$Ages)
 my_descriptives(data$Sex)
 ```
 
-
 Again, we compare the output with the standard `summary()` and `table()` output:
 
 ```{r}
 summary(data$Ages)
 table(data$Sex)
 ```
-
-
 
 Apart form nesting `if()` statements it is also possible to string multiple if statements together like so:
 

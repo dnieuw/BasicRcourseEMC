@@ -1,4 +1,4 @@
-# Terminating a function with returns, errors, and warnings
+# Terminating a function with returns, errors, and warnings {.unnumbered}
 
 The following functions are useful for terminating a function call or just printing a warning message:
 

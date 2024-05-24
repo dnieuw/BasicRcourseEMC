@@ -1,4 +1,4 @@
-# Types of available functions
+# Example functions {.unnumbered}
 
 ### Built-in Named Functions
 

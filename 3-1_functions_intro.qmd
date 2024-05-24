@@ -1,4 +1,4 @@
-# Functions 1
+# Functions 1 {.unnumbered}
 
 Functions are things you can do. R comes with predefined functions which do many things from basic file management to complex statistics. To get started, below are some often used functions. This default set of functions is easily extended by defining your own functions and adding those defined by others conveniently in CRAN and BioConductor packages:
 
