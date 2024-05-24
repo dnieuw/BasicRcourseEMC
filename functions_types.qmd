@@ -4,18 +4,6 @@
 
 R has an extensive set of built-in functions, a few of which are listed below:
 
-Print structure of an object:
-
-```{r, eval=FALSE}
-str()
-```
-
-Print class of an object:
-
-```{r, eval=FALSE}
-class()
-```
-
 First six elements/rows:
 
 ```{r, eval=FALSE}
@@ -28,22 +16,34 @@ Last six elements/rows:
 tail()
 ```
 
-List all objects and functions that you currently made:
-
-```{r, eval=FALSE}
-ls()
-```
-
 Generate a sequence of values:
 
 ```{r}
 seq(from=1, to=10, by=2)
 ```
 
-Run the entire contents of a script:
+Create numbers from string numbers:
 
-```{r, eval=FALSE}
-source("myScript.R")
+```{r}
+as.numeric(c("1","2","3","4"))
+```
+
+Sort a vector alphabetically or numerically:
+
+```{r}
+sort(c(3,4,2,5,1))
+```
+
+Retrieve the maximum value from a vector:
+
+```{r}
+max(c(111,333,444,55,6,777,999))
+```
+
+Generate 10 random numbers from a normal distribution with mean 0 and standard deviation 1:
+
+```{r}
+rnorm(10)
 ```
 
 For a (very long) list of all named functions available in base-R have a look at this website:
