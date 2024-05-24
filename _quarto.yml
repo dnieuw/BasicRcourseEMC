@@ -7,66 +7,62 @@ book:
   date: "08-11-2023"
   chapters:
     - index.qmd
-    - part: Importing_Saving.qmd
+    - part: 1-1_Importing_Saving.qmd
       chapters: 
-        - Importing_Saving_practical.qmd
-    - part: Common_Objects.qmd
+        - 1-2_Importing_Saving_practical.qmd
+    - part: 1-3_Common_Objects.qmd
       chapters: 
-        - Common_Objects_practical.qmd
-    - part: Indexing_Subsetting.qmd
+        - 1-4_Common_Objects_practical.qmd
+    - part: 1-5_Indexing_Subsetting.qmd
       chapters: 
-        - Indexing_Subsetting_practical.qmd
-    - part: Datacleaning.qmd
+        - 1-6_Indexing_Subsetting_practical.qmd
+    - part: 2-1_Datacleaning.qmd
       chapters:
-        - Datacleaning_practical.qmd
-        - Datacleaning_answers.qmd
-    - part: Analysis.qmd
+        - 2-2_Datacleaning_practical.qmd
+        - 2-3_Datacleaning_answers.qmd
+    - part: 2-4_Analysis.qmd
       chapters:
-        - Analysis_practical.qmd
-        - Analysis_answers.qmd
-    - part: basic_plotting_intro.qmd
+        - 2-5_Analysis_practical.qmd
+        - 2-6_Analysis_answers.qmd
+    - part: 2-7_basic_plotting_intro.qmd
       chapters:
-        - basic_plotting.qmd
-    - part: basic_plotting_practicals_intro.qmd
+        - 2-8_basic_plotting.qmd
+    - part: 2-9_basic_plotting_practicals_intro.qmd
       chapters: 
-        - basic_plotting_practicals_questions.qmd
-        - basic_plotting_practicals_answers.qmd
-    - part: ggplot2_intro.qmd
+        - 2-10_basic_plotting_practicals_questions.qmd
+        - 2-11_basic_plotting_practicals_answers.qmd
+    - part: 2-12_ggplot2_intro.qmd
       chapters:
-        - ggplot2.qmd
-    - part: ggplot2_practicals_intro.qmd
+        - 2-13_ggplot2.qmd
+    - part: 2-14_ggplot2_practicals_intro.qmd
       chapters:
-        - ggplot2_practicals_questions.qmd
-        - ggplot2_practicals_answers.qmd
-    - part: functions_intro.qmd
+        - 2-15_ggplot2_practicals_questions.qmd
+        - 2-16_ggplot2_practicals_answers.qmd
+    - part: 3-1_functions_intro.qmd
       chapters:
-        - functions_types.qmd
-        - functions_arguments.qmd
-        - functions_custom.qmd
-        - functions_conditional.qmd
-    - part: functions_practicals1_intro.qmd
+        - 3-2_functions_examples.qmd
+        - 3-3_functions_arguments.qmd
+        - 3-4_functions_custom.qmd
+        - 3-5_functions_conditional.qmd
+        - 3-6_functions_terminating.qmd
+        - 3-7_functions_looping.qmd
+        - 3-8_functions_apply.qmd
+    - part: 3-9_functions_practicals1_intro.qmd
       chapters:
-        - functions_practicals1_questions.qmd
-        - functions_practicals1_answers.qmd
-    - part: functions_intro2.qmd
+        - 3-10_functions_practicals1_questions.qmd
+        - 3-11_functions_practicals1_answers.qmd
+        - 3-12_functions_practicals2_questions.qmd
+        - 3-13_functions_practicals2_answers.qmd
+    - part: 4-1_represearch.qmd
       chapters:
-        - functions_terminating.qmd
-        - functions_looping.qmd
-        - functions_apply.qmd
-    - part: functions_practicals2_intro.qmd
+        - 4-2_basic_markdown.qmd
+        - 4-3_codeblocks.qmd
+        - 4-4_basic_markdown_practicals_questions.qmd
+        - 4-5_shiny.qmd
+        - 4-6_shiny_practicals_questions.qmd
+    - part: 4-7_looseends.qmd
       chapters:
-        - functions_practicals2_questions.qmd
-        - functions_practicals2_answers.qmd
-    - part: represearch.qmd
-      chapters:
-        - basic_markdown.qmd
-        - codeblocks.qmd
-        - basic_markdown_practicals_questions.qmd
-        - shiny.qmd
-        - shiny_practicals_questions.qmd
-    - part: looseends.qmd
-      chapters:
-        - tidyverse.qmd
+        - 4-8_tidyverse.qmd
   repo-url: https://github.com/dnieuw/BasicRcourseEMC
   repo-actions: [edit]
   downloads: [pdf]
