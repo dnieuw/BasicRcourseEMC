@@ -1,0 +1,114 @@
+# Data Cleaning - Practical {.unnumbered}
+
+For this practical we will use the data set `R_data` you can find on Canvas. This is a .csv file. Load the data in R. Make sure you specify the correct file path!
+
+```{r, message=F, echo = F, eval = T}
+
+R_data <- read.csv("Data/R_data.csv")
+```
+
+```{r, message=F, echo = T, eval = F}
+
+R_data <- read.csv("~/R_data.csv")
+```
+
+::: panel-tabset
+### Question 1
+
+What functions are useful for the first exploration of the data? How many observations and variables are in the data set? What type of variables are there?
+:::
+
+::: panel-tabset
+### Question 2
+
+There is a typo in one of the variable names (`Stauts` instead of `Status`). Change this.
+:::
+
+::: panel-tabset
+### Question 3
+
+Round the variable `folicacid_erys` to two decimals.
+
+Verify by evaluating the first `20` values of this new variables (there are several ways to do this).
+:::
+
+::: panel-tabset
+### Question 4
+
+Make a new variable `birhtweight_kg` that gives the birth weight in kilo's What did you choose for the number of decimals to round the variable?
+
+Verify by evaluating the first `10` values of this new variables (there are several ways to do this).
+:::
+
+::: panel-tabset
+### Question 5
+
+The variables `pregnancy_length_weeks` and `pregnancy_length_days` together denote the total length of the pregnancy. For example: `pregnancy_length_weeks = 38` and `pregnancy_length_days = 4`, means this patient is pregnant for 38 weeks plus 4 days. Combine the variables to obtain the length of the pregnancy in days.
+
+Verify by evaluating the first `12` values of this new variables (there are several ways to do this).
+:::
+
+::: panel-tabset
+### Question 6
+
+Divide the variable `BMI` into categories: `<18.5` ("Underweight"), `18.5 - 24.9` ("Healthy weight"), `25 - 29.9` ("Overweight"), and `>30` (Obesity). How many patients (and %) are in each category?
+:::
+
+::: panel-tabset
+### Question 7
+
+For a current analysis, I am only interested in the patients with "Healthy weight". Additionally, I only want to look at the relation between `Status` and `birthweight`. Make a data set with only these two variables and `patientnumber`, for a subset of the data with the patients with "Healthy weight".
+
+What are the dimensions of this data set? First try to think yourself and then check with R code.
+:::
+
+::: panel-tabset
+### Question 8
+
+Make a third data set containing the variables: `patientnumber`, `Status` and `BMI`. Then merge the data set you created in Question 7 with this data set.
+
+Merging these two data sets can be done several different ways. Describe two ways. What are the dimensions of these data sets?
+:::
+
+::: panel-tabset
+### Question 9
+
+There are several biomarkers collected in the data set. Investigate whether there are outliers in the biomarkers: `cholesterol`, `triglycerides`, and `vitaminB12`. Which functions did you use?
+:::
+
+::: panel-tabset
+### Question 10
+
+In question 9 we found an outlier. How do you deal with this outlier?
+:::
+
+::: panel-tabset
+### Question 11
+
+Fill in the table with summary statistics below
+
+|                             |                    | Intellectual disability | Normal brain development |
+|-------------------|:-----------------|:----------------:|:----------------:|
+|                             |                    |        (n = ...)        |        (n = ...)         |
+| BMI, median \[IQR\]         |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| Educational level           | Low, n(%)          |                         |                          |
+|                             | Intermediate, n(%) |                         |                          |
+|                             | High, n(%)         |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| Smoking                     | No, n(%)           |                         |                          |
+|                             | Yes, n(%)          |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| SAM, mean (SD)              |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| SAH, median \[IQR\]         |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| Vitamin B12, median \[IQR\] |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+
+### Hint
+
+You can change the order of factors
+
+`R_data$educational_level <- factor(R_data$educational_level, levels = c('low', 'intermediate', 'high'))`
+:::

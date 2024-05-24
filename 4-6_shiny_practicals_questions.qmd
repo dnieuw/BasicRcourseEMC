@@ -1,15 +1,15 @@
-## Shiny: Questions
+## Shiny: Questions {.unnumbered}
 
 The goal of this practical is to create a beautiful shiny application. The app's goal is to show the [Hoftiezer Birthweight curves](https://www.perined.nl/geboortegewichtcurven) and use these curves to determine the birthweight percentile of a certain infant.
 
 ::: panel-tabset
 ### Question 1
-Download the `hoftiezer.R` file from canvas to get started. This file contains two functions you can use: `phoftiezer` and `qhoftiezer`. The first one calculates Hoftiezer Birthweight percentiles given Birthweight (in grams), gestational age (in days) and sex. The second function does the reverse and calculates Birthweight (in grams) given a percentile,  gestational age and sex.
-Although you don't need to know every detail about this function, being how to use it is crucial for the practical.
 
-* Using this function calculate the birthweight percentile of a boy with a gestational age of 200 days that weights 1500 grams. Also try to calculate the percentile for this given weight for all integer gestational ages between 210 and 220 days.
+Download the `hoftiezer.R` file from canvas to get started. This file contains two functions you can use: `phoftiezer` and `qhoftiezer`. The first one calculates Hoftiezer Birthweight percentiles given Birthweight (in grams), gestational age (in days) and sex. The second function does the reverse and calculates Birthweight (in grams) given a percentile, gestational age and sex. Although you don't need to know every detail about this function, being how to use it is crucial for the practical.
 
-* Using this function calculate the median birthweight of a girl with a gestational age of 200 days. Also calculate the P05 (5th percentile) for girls for all integer ages between 210 and 220.
+-   Using this function calculate the birthweight percentile of a boy with a gestational age of 200 days that weights 1500 grams. Also try to calculate the percentile for this given weight for all integer gestational ages between 210 and 220 days.
+
+-   Using this function calculate the median birthweight of a girl with a gestational age of 200 days. Also calculate the P05 (5th percentile) for girls for all integer ages between 210 and 220.
 :::
 
 ::: panel-tabset
@@ -33,16 +33,13 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-If you save the file  a green arrow should appear in the source toolbar in RStudio. When you click it the app will run! Of course the app will not do very much (it only shows it title).  To stop the app either close the app window or click on the red stop sign on the R console toolbar. 
-
+If you save the file a green arrow should appear in the source toolbar in RStudio. When you click it the app will run! Of course the app will not do very much (it only shows it title). To stop the app either close the app window or click on the red stop sign on the R console toolbar.
 :::
 
 ::: panel-tabset
 ### Question 3
 
-We want our app to be able to calculate birthwight percentiles. Therefore it needs access to the `qhoftiezer` and `phoftiezer` functions. In order to do so you could simply copy and paste the code from 
-`hoftiezer.R` to `app.R`. A slightly more elegant way is the source the contents of this file. Save the `hoftiezer.R` file in the directory you created. Now include the line `source('hoftiezer.R')` in the `app.R` file (just before the definition of `ui` is a good place).
-To test if the app can access the function we use in in the interface. The start of your file should now look like this
+We want our app to be able to calculate birthwight percentiles. Therefore it needs access to the `qhoftiezer` and `phoftiezer` functions. In order to do so you could simply copy and paste the code from `hoftiezer.R` to `app.R`. A slightly more elegant way is the source the contents of this file. Save the `hoftiezer.R` file in the directory you created. Now include the line `source('hoftiezer.R')` in the `app.R` file (just before the definition of `ui` is a good place). To test if the app can access the function we use in in the interface. The start of your file should now look like this
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -57,14 +54,12 @@ ui <- fluidPage(
 
 # ...
 ```
-
-
 :::
 
 ::: panel-tabset
 ### Question 4
 
-We now will modify the layout of the app to ask for user input at the left of the window and show its results to the right. In shiny this can be done by including a `sidebarLayout` within the `fluidPage` function. A function that in turn includes a `sidebarpanel` and a `mainPanel` function.  The `sidebarLayout` should include controls that ask for an infacts birthweight, gestational age and sex. This is now used to calculate the birthweight percentile wich is shown in the main panel. We start with just a control to ask the user for birthweight and ask the other information later. Modify the `ui` to look like the following:
+We now will modify the layout of the app to ask for user input at the left of the window and show its results to the right. In shiny this can be done by including a `sidebarLayout` within the `fluidPage` function. A function that in turn includes a `sidebarpanel` and a `mainPanel` function. The `sidebarLayout` should include controls that ask for an infacts birthweight, gestational age and sex. This is now used to calculate the birthweight percentile wich is shown in the main panel. We start with just a control to ask the user for birthweight and ask the other information later. Modify the `ui` to look like the following:
 
 ```{r, eval=FALSE}
 ui <- fluidPage(
@@ -89,7 +84,6 @@ ui <- fluidPage(
 ```
 
 Within the `numericInput` function the first parameter specifies the `inputId`, the name we will use the refer to the value the user entered here. The second parameter specifies the label: This is just a text that is used to prompt the user for the value. The other arguments specify the minimum and maximum value that can be entered as well as the default value of the control.
-
 :::
 
 ::: panel-tabset
@@ -107,26 +101,19 @@ server <- function(input, output) {
 
 ```
 
-With the assignment `output$percentile <- renderText(...)` you define a Shiny output with the name `percentile`. The right-hand side features a render function, which, in this case, specifies that the calculated results should be displayed as text. Shiny offers various render functions tailored for different types of results, such as text, tables, plots, and more.
-Within `phoftiezer` function we now use `input$birthweight` indicating that the value in the input control that is called `birthweight` will be used in the calculations. 
-To display the results from `output$percentile`, replace the `phoftiezer` function call in the main panel with `textOutput("percentile")`
+With the assignment `output$percentile <- renderText(...)` you define a Shiny output with the name `percentile`. The right-hand side features a render function, which, in this case, specifies that the calculated results should be displayed as text. Shiny offers various render functions tailored for different types of results, such as text, tables, plots, and more. Within `phoftiezer` function we now use `input$birthweight` indicating that the value in the input control that is called `birthweight` will be used in the calculations. To display the results from `output$percentile`, replace the `phoftiezer` function call in the main panel with `textOutput("percentile")`
 
 Verify if the app behaves as you expect.
-
 :::
 
 ::: panel-tabset
 ### Question 6
 
-Additionally, we would like to be able specify the infants' sex and gestational age. To do this we need to add two more controls to the `sidebarPanel` function. Use a `sliderInput` for gestational age and a `selectInput` for sex. Use the documentation to check how these functions work. Note that the input control functions need to be separated by commas. Modify the `server` function to use the input from these controls. 
-
+Additionally, we would like to be able specify the infants' sex and gestational age. To do this we need to add two more controls to the `sidebarPanel` function. Use a `sliderInput` for gestational age and a `selectInput` for sex. Use the documentation to check how these functions work. Note that the input control functions need to be separated by commas. Modify the `server` function to use the input from these controls.
 :::
-
 
 ::: panel-tabset
 ### Question 7
 
-To make our app somewhat better looking we are going to include a plot. To include the plot in the main panel include the line `plotOutput("distPlot")` in the `mainPanel` function.  Don't forget to use commas to divide up the different controls. 
-`output$distPlot`  now needs to be defined within the server function.  Define a series of gestational ages ranging from 161 to 294 within this function. Use this sequence to calculate the median birth weight using the `qhoftiezer` function. Do the same for the 5th and 95th percentile. Now plot these (for example using the `matplopt` function).  Using the `points` function, add user input to the plot as the final step.
-
+To make our app somewhat better looking we are going to include a plot. To include the plot in the main panel include the line `plotOutput("distPlot")` in the `mainPanel` function. Don't forget to use commas to divide up the different controls. `output$distPlot` now needs to be defined within the server function. Define a series of gestational ages ranging from 161 to 294 within this function. Use this sequence to calculate the median birth weight using the `qhoftiezer` function. Do the same for the 5th and 95th percentile. Now plot these (for example using the `matplopt` function). Using the `points` function, add user input to the plot as the final step.
 :::

@@ -1,10 +1,9 @@
-# Reproducible research
+# Reproducible research {.unnumbered}
 
-An analysis is reproducible when all information is available (for somebody)
-to do your analysis and obtain the same results. This includes the data, code and the documentation. This somebody else can even be your future self.
+An analysis is reproducible when all information is available (for somebody) to do your analysis and obtain the same results. This includes the data, code and the documentation. This somebody else can even be your future self.
 
-When data is reproducible it makes it easier to go back and figure out what you did, perform checks and make adjustments. It also makes collaboration with other people easier. 
+When data is reproducible it makes it easier to go back and figure out what you did, perform checks and make adjustments. It also makes collaboration with other people easier.
 
-There are some software tools that make it easier to do your amalyses in a reproducible way. In this course, we will talk about Quarto and Git. 
+There are some software tools that make it easier to do your amalyses in a reproducible way. In this course, we will talk about Quarto and Git.
 
-Quarto is a program that allows you to combine code and documentation in a single text document. The code is then run and included in the document which is then  converted an output format. There are many different options for the output format and they include such things as a pdf, an html file or a word-document.
+Quarto is a program that allows you to combine code and documentation in a single text document. The code is then run and included in the document which is then converted an output format. There are many different options for the output format and they include such things as a pdf, an html file or a word-document.

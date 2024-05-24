@@ -1,4 +1,4 @@
-# Indexing and Subsetting - Practical
+# Indexing and Subsetting - Practical {.unnumbered}
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())

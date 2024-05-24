@@ -1,4 +1,4 @@
-# Functions 1: Questions
+# Functions 1: Questions {.unnumbered}
 
 ## Function Arguments
 

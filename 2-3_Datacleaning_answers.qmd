@@ -1,0 +1,283 @@
+# Data Cleaning - Answers {.unnumbered}
+
+::: callout-warning
+Make sure that you try the exercises yourself first before looking at the answers
+:::
+
+```{r, echo=F, eval = T, message=F}
+
+R_data <- read.csv("Data/R_data.csv")
+
+```
+
+::: panel-tabset
+### Question 1
+
+What functions are useful for the first exploration of the data? How many observations and variables are in the data set? What type of variables are there?
+
+### Answer 1
+
+with `dim()` and `str()` we can find out the dimensions of the data and the type of variables. The function `head()` can be used to view the first couple of observations.
+
+```{r, eval=T}
+dim(R_data)
+str(R_data)
+```
+
+There are `190` observations and `20` variables. There are integers (`int`), factors (`Factors`), and numeric variables (`num`).
+:::
+
+::: panel-tabset
+### Question 2
+
+There is a typo in one of the variable names (`Stauts` instead of `Status`). Change this.
+
+### Answer 2
+
+```{r, echo = T, eval=T}
+names(R_data)[names(R_data) == "Stauts"] <- "Status"
+names(R_data)
+```
+:::
+
+::: panel-tabset
+### Question 3
+
+Round the variable `folicacid_erys` to two decimals.
+
+Verify by evaluating the first `20` values of this new variables (there are several ways to do this).
+
+### Answer 3
+
+```{r, echo = T, eval=T}
+R_data$folicacid_erys_round <- round(R_data$folicacid_erys, digits = 2)
+R_data[1:20, "folicacid_erys_round"]
+```
+:::
+
+::: panel-tabset
+### Question 4
+
+Make a new variable `birthweight_kg` that gives the birth weight in kilo's. What did you choose for the number of decimals to round the variable?
+
+Verify by evaluating the first `10` values of this new variables (there are several ways to do this).
+
+### Answer 4
+
+```{r, echo = T, eval=T}
+R_data$birthweight_kg <- round(R_data$birthweight/1000, digits = 1)
+R_data$birthweight_kg[1:10]
+```
+:::
+
+::: panel-tabset
+### Question 5
+
+The variables `pregnancy_length_weeks` and `pregnancy_length_days` together denote the total length of the pregnancy. For example: `pregnancy_length_weeks = 38` and `pregnancy_length_days = 4`, means this patient is pregnant for 38 weeks plus 4 days. Combine the variables to obtain the length of the pregnancy in days.
+
+Verify by evaluating the first `12` values of this new variables (there are several ways to do this).
+
+### Answer 5
+
+```{r, echo = T, eval=T}
+R_data$total_preg_days <- R_data$pregnancy_length_weeks*7 + R_data$pregnancy_length_days
+head(R_data$total_preg_days, 12)
+```
+:::
+
+::: panel-tabset
+### Question 6
+
+Divide the variable `BMI` into categories: `<18.5` ("Underweight"), `18.5 - 24.9` ("Healthy weight"), `25 - 29.9` ("Overweight"), and `>30` (Obesity). How many patients (and %) are in each category?
+
+### Hint
+
+Use the function `cut()`
+
+### Answer 6
+
+```{r, echo = T, eval=T}
+R_data$BMI_cat <- cut(R_data$BMI, breaks=c(-Inf, 18.5, 24.9, 29.9, Inf),
+                       labels=c("Underweight", "Healthy weight", "Overweight", "Obesity"))
+
+table(R_data$BMI_cat)
+prop.table(table(R_data$BMI_cat))
+```
+:::
+
+::: panel-tabset
+### Question 7
+
+For a current analysis, I am only interested in the patients with "Healthy weight". Additionally, I only want to look at the relation between `Status` and `birthweight`. Make a data set with only these two variables and `patientnumber`, for a subset of the data with the patients with "Healthy weight".
+
+What are the dimensions of this data set? First try to think yourself and then check with R code.
+
+### Hint
+
+Give this data set a different name, so you don't overwrite the original data set.
+
+### Answer 7
+
+Other solutions might be possible!
+
+```{r, echo = T, eval=T}
+R_data2 <- R_data[R_data$BMI_cat == "Healthy weight", c("patientnumber","Status", "birthweight")]
+
+str(R_data2)
+dim(R_data2)
+```
+:::
+
+::: panel-tabset
+### Question 8
+
+Make a third data set containing the variables: `patientnumber`, `Status` and `BMI`. Then merge the data set you created in Question 7 with this data set.
+
+Merging these two data sets can be done several different ways. Describe two ways. What are the dimensions of these data sets?
+
+### Hint
+
+For these two data sets inner join and left join will give the same results. The same goes for right join and full join.
+
+### Answer 8
+
+```{r, echo = T, eval=T}
+R_data3 <- R_data[, c("patientnumber","Status", "BMI")]
+
+
+data_inner <- merge(R_data2, R_data3, by = c("patientnumber", "Status"))
+data_right <- merge(R_data2, R_data3, by = c("patientnumber", "Status"), all.y = T)
+
+
+dim(data_inner)
+dim(data_right)
+```
+:::
+
+::: panel-tabset
+### Question 9
+
+There are several biomarkers collected in the data set. Investigate whether there are outliers in the biomarkers: `cholesterol`, `triglycerides`, and `vitaminB12`. Which functions did you use?
+
+### Answer 9
+
+```{r, echo = T, eval=T}
+# Cholesterol
+hist(R_data$cholesterol)
+plot(R_data$cholesterol)
+boxplot(R_data$cholesterol)
+
+summary(R_data$cholesterol)
+
+# triglycerides
+hist(R_data$triglycerides)
+plot(R_data$triglycerides)
+boxplot(R_data$triglycerides)
+
+summary(R_data$triglycerides)
+
+# vitaminB12
+hist(R_data$vitaminB12)
+plot(R_data$vitaminB12)
+boxplot(R_data$vitaminB12)
+
+summary(R_data$vitaminB12)
+```
+
+There is one outlier in vitaminB12.
+:::
+
+::: panel-tabset
+### Question 10
+
+In question 9 we found an outlier. How do you deal with this outlier?
+
+### Answer 10
+
+Knowing that the value of `3360` is an impossible value for vitamin B12, we can decide to remove this measurement. We can either put this measurement to missing (NA)
+
+```{r, echo = T, eval=T}
+R_data$vitaminB12_cor <- R_data$vitaminB12
+R_data$vitaminB12_cor[R_data$vitaminB12_cor  == 3360] <- NA 
+summary(R_data$vitaminB12_cor)
+```
+
+or we can remove the whole patient
+
+```{r, echo = T, eval=T}
+R_data_cor <- R_data[R_data$vitaminB12 != 3360,]
+dim(R_data_cor)
+```
+:::
+
+::: panel-tabset
+### Question 11
+
+Fill in the table with summary statistics below
+
+|                             |                    | Intellectual disability | Normal brain development |
+|--------------------|:-----------------|:----------------:|:----------------:|
+|                             |                    |        (n = ...)        |        (n = ...)         |
+| BMI, median \[IQR\]         |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| Educational level           | Low, n(%)          |                         |                          |
+|                             | Intermediate, n(%) |                         |                          |
+|                             | High, n(%)         |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| Smoking                     | No, n(%)           |                         |                          |
+|                             | Yes, n(%)          |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| SAM, mean (SD)              |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| SAH, median \[IQR\]         |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+| Vitamin B12, median \[IQR\] |                    |                         |                          |
+|                             | missing (n = )     |                         |                          |
+
+### Hint
+
+You can change the order of factors
+
+`R_data$educational_level <- factor(R_data$educational_level, levels = c('low', 'intermediate', 'high'))`
+
+### Answer 11
+
+```{r, echo = T, eval=F}
+table(R_data$Status)
+
+aggregate(BMI ~ Status, data = R_data, summary)
+R_data$educational_level <- factor(R_data$educational_level, levels = c('low', 'intermediate', 'high'))
+with(R_data, table(educational_level, Status))
+prop.table(with(R_data, table(educational_level, Status)),2)
+
+with(R_data, table(smoking, Status))
+prop.table(with(R_data, table(smoking, Status)),2)
+
+aggregate(SAM ~ Status, data = R_data, mean)
+aggregate(SAM ~ Status, data = R_data, sd)
+
+aggregate(SAH ~ Status, data = R_data, summary)
+
+aggregate(vitaminB12_cor ~ Status, data = R_data, summary)
+
+```
+
+|                             |                    | Intellectual disability | Normal brain development |
+|--------------------|:-----------------|:----------------:|:----------------:|
+|                             |                    |       (n = *82*)        |       (n = *108*)        |
+| BMI, median \[IQR\]         |                    |    *24 \[22 - 27\]*     |     *24 \[22 - 26\]*     |
+|                             | missing (n = *0* ) |                         |                          |
+| Educational level           | Low, n(%)          |       *31 (38%)*        |        *14 (13%)*        |
+|                             | Intermediate, n(%) |       *34 (41%)*        |        *48 (44%)*        |
+|                             | High, n(%)         |       *17 (21%)*        |        *46 (43%)*        |
+|                             | missing (n = *0*)  |                         |                          |
+| Smoking                     | No, n(%)           |       *55 (67%)*        |        *96 (89%)*        |
+|                             | Yes, n(%)          |       *27 (33%)*        |        *12 (11%)*        |
+|                             | missing (n = *0*)  |                         |                          |
+| SAM, mean (SD)              |                    |        *72 (16)*        |        *75 (18)*         |
+|                             | missing (n = *0*)  |                         |                          |
+| SAH, median \[IQR\]         |                    |    *16 \[15 - 18\]*     |     *18 \[16 - 20\]*     |
+|                             | missing (n = *0*)  |                         |                          |
+| Vitamin B12, median \[IQR\] |                    |   *378 \[310 - 477\]*   |   *363 \[305 - 449\]*    |
+|                             | missing (n = *1*)  |                         |                          |
+:::

@@ -1,101 +1,115 @@
-## Basic Plotting: Questions
+## Basic Plotting: Questions {.unnumbered}
 
 Use R to do the following exercises on the BOD data
 
 ::: panel-tabset
 ### Question 1
+
 Display the built-in dataset called BOD by running BOD.
 :::
 
 ::: panel-tabset
 ### Question 2
+
 What is the data structure of BOD? What are the dimensions?
 :::
 
 ::: panel-tabset
 ### Question 3
+
 What are the names of BOD? Use a function other than str.
 :::
 
 ::: panel-tabset
 ### Question 3
-Make a line graph of demand versus time, where the line is a deep pink dot-dashed line [Hint: run ?par and look for the parameter lty to see the line types]. Add a blue dashed line of 1.1 times the demand and give it a thickness of 2 using the line width parameter lwd. Make sure both lines are entirely visible by adjusting the range of y using the parameter ylim in the original plot.
+
+Make a line graph of demand versus time, where the line is a deep pink dot-dashed line \[Hint: run ?par and look for the parameter lty to see the line types\]. Add a blue dashed line of 1.1 times the demand and give it a thickness of 2 using the line width parameter lwd. Make sure both lines are entirely visible by adjusting the range of y using the parameter ylim in the original plot.
 :::
 
 Use R to do the following exercises on the chickwts data.
 
 ::: panel-tabset
 ### Question 4
+
 Display the built-in chickwts data.
 :::
 
 ::: panel-tabset
 ### Question 5
+
 What are the names of chickwts? Use a function other than str
 :::
 
 ::: panel-tabset
 ### Question 6
+
 What are the levels of feed?
 :::
 
 ::: panel-tabset
 ### Question 7
-Make the following plots in one 2 x 2 image:
-- A bar chart of the feed types, each bar a different color.
-- A bar chart of the proportions of feed types, each bar a different color.
-- A boxplot of the weights by feed type, each box a different color.
-- A horizontal boxplot of the weights by feed type, each box a different color.
+
+Make the following plots in one 2 x 2 image: - A bar chart of the feed types, each bar a different color. - A bar chart of the proportions of feed types, each bar a different color. - A boxplot of the weights by feed type, each box a different color. - A horizontal boxplot of the weights by feed type, each box a different color.
 :::
 
 Use R to do the following exercises on the Puromycin data.
 
 ::: panel-tabset
 ### Question 8
+
 Display the built-in Puromycin data.
 :::
 
 ::: panel-tabset
 ### Question 9
+
 Make a scatterplot of the rate versus the concentration. Describe the relationship.
 :::
 
 ::: panel-tabset
 ### Question 10
+
 Make a scatterplot of the rate versus the log of the concentration. Describe the relationship.
 :::
 
 ::: panel-tabset
 ### Question 11
+
 Make a scatterplot of the rate versus the log of the concentration and color the points by treatment group (state). Describe what you see.
 :::
 
 ::: panel-tabset
 ### Question 12
+
 Make a scatterplot of the rate versus the log of the concentration, color the points by treatment group (state), label the x-axis "Concentration" and the y-axis "Rate", and label the plot "Puromycin".
 :::
 
 ::: panel-tabset
 ### Question 13
+
 Add a legend to the above plot indicating what the points represent.
 :::
 
 ::: panel-tabset
 ### Question 14
+
 Make a boxplot of the treated versus untreated rates. Using the function pdf, save the image to a file with a width and height of 7 inches.
 :::
 
 ::: panel-tabset
 ### Question 15
+
 Make a histogram of the frequency of concentrations. What is the width of the bins?
 :::
 
 ::: panel-tabset
 ### Question 16
+
 Make a histogram of the frequency of concentrations with a bin width of 0.10. How is this different from the histogram above?
 :::
 
 ::: panel-tabset
 ### Question 17
+
 Plot the histograms side by side in the same graphic window and make sure they have the same range on the y-axis. Does this make it easier to answer the question of how the two histograms differ?
 :::

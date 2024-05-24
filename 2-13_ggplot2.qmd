@@ -1,4 +1,4 @@
-# Data visualization using ggplot2
+# Data visualization using ggplot2 {.unnumbered}
 
 ```{r, echo=FALSE}
 library(ggplot2)

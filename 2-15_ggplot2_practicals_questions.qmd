@@ -1,4 +1,4 @@
-## ggplot: Questions
+## ggplot: Questions {.unnumbered}
 
 Load the ggplot2 library (install it if you have to) and the diamonds data set using data()
 

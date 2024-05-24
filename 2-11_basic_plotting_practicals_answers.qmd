@@ -1,4 +1,4 @@
-## Basic Plotting: Answers
+## Basic Plotting: Answers {.unnumbered}
 
 ::: callout-warning
 Make sure that you try the exercises yourself first before looking at the answers

@@ -1,4 +1,4 @@
-# Functions 1: Answers
+# Functions 1: Answers {.unnumbered}
 
 ::: callout-warning
 Make sure that you try the exercises yourself first before looking at the answers

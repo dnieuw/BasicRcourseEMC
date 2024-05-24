@@ -1,4 +1,4 @@
-# Basic Markdown
+# Basic Markdown {.unnumbered}
 
 ### Markdown
 
@@ -24,21 +24,33 @@ kable(tt)
 
 #### Headings
 
-+---------------------+-----------------------------------+
-| Syntax              | Output                            |
-+=====================+===================================+
-|     # Header 1      | # Header 1 {.heading-output}      |
-+---------------------+-----------------------------------+
-|     ## Header 2     | ## Header 2 {.heading-output}     |
-+---------------------+-----------------------------------+
-|     ### Header 3    | ### Header 3 {.heading-output}    |
-+---------------------+-----------------------------------+
-|     #### Header 4   | #### Header 4 {.heading-output}   |
-+---------------------+-----------------------------------+
-|     ##### Header 5  | ##### Header 5 {.heading-output}  |
-+---------------------+-----------------------------------+
-|     ###### Header 6 | ###### Header 6 {.heading-output} |
-+---------------------+-----------------------------------+
++--------------------+-----------------------------------+
+| Syntax             | Output                            |
++====================+===================================+
+| ```                | # Header 1 {.heading-output}      |
+| # Header 1         |                                   |
+| ```                |                                   |
++--------------------+-----------------------------------+
+| ```                | ## Header 2 {.heading-output}     |
+| ## Header 2        |                                   |
+| ```                |                                   |
++--------------------+-----------------------------------+
+| ```                | ### Header 3 {.heading-output}    |
+| ### Header 3       |                                   |
+| ```                |                                   |
++--------------------+-----------------------------------+
+| ```                | #### Header 4 {.heading-output}   |
+| #### Header 4      |                                   |
+| ```                |                                   |
++--------------------+-----------------------------------+
+| ```                | ##### Header 5 {.heading-output}  |
+| ##### Header 5     |                                   |
+| ```                |                                   |
++--------------------+-----------------------------------+
+| ```                | ###### Header 6 {.heading-output} |
+| ###### Header 6    |                                   |
+| ```                |                                   |
++--------------------+-----------------------------------+
 
 ```{=html}
 <style type="text/css">
@@ -49,7 +61,6 @@ kable(tt)
 }
 </style>
 ```
-
 #### Links
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
@@ -81,33 +92,36 @@ It is also possible to include images in links.
 
 #### Lists
 
-
-+----------------------------------------+-------------------------------------+
-| Markdown Syntax                        | Output                              |
-+========================================+=====================================+
-|     * item 1                           | -   item 1                          |
-|     * item 2                           | -   item 2                          |
-|         + sub-item 1                   |                                     |
-|         + sub-item 2                   |     -   sub-item 1                  |
-|             - sub-sub-item 1           |                                     |
-|                                        |     -   sub-item 2                  |
-|                                        |                                     |
-|                                        |         -   sub-sub-item 1          |
-+----------------------------------------+-------------------------------------+
-|     *   item 2                         | -   item 2                          |
-|                                        |                                     |
-|         Part of item (Extra spaces)    |     Part of item (Extra spaces)     |
-+----------------------------------------+-------------------------------------+
-|     1. ordered list                    | 1.  ordered list                    |
-|     2. item 2                          |                                     |
-|         i) sub-item 1                  | 2.  item 2                          |
-|         ii) sub-item 2                 |                                     |
-|              A.  etc.                  |     i)  sub-item 1                  |
-|                                        |     ii)  sub-item 1                 |
-|                                        |                                     |
-|                                        |         A.  etc.                    |
-+----------------------------------------+-------------------------------------+
-
++------------------------------------+---------------------------------+
+| Markdown Syntax                    | Output                          |
++====================================+=================================+
+| ```                                | -   item 1                      |
+| * item 1                           |                                 |
+| * item 2                           | -   item 2                      |
+|     + sub-item 1                   |                                 |
+|     + sub-item 2                   |     -   sub-item 1              |
+|         - sub-sub-item 1           |                                 |
+| ```                                |     -   sub-item 2              |
+|                                    |                                 |
+|                                    |         -   sub-sub-item 1      |
++------------------------------------+---------------------------------+
+| ```                                | -   item 2                      |
+| *   item 2                         |                                 |
+|                                    |     Part of item (Extra spaces) |
+|     Part of item (Extra spaces)    |                                 |
+| ```                                |                                 |
++------------------------------------+---------------------------------+
+| ```                                | 1.  ordered list                |
+| 1. ordered list                    |                                 |
+| 2. item 2                          | 2.  item 2                      |
+|     i) sub-item 1                  |                                 |
+|     ii) sub-item 2                 |     i)  sub-item 1              |
+|          A.  etc.                  |     ii) sub-item 1              |
+| ```                                |                                 |
+|                                    |     ```                         |
+|                                    |     A.  etc.                    |
+|                                    |     ```                         |
++------------------------------------+---------------------------------+
 
 #### Tables
 
@@ -115,30 +129,31 @@ There are multiple ways to make tables
 
 The easiest way is to use a so called pipe-table like this:
 
-     | foo|  bar  | Left align | Right Align | Center |
-     |----|-------|:-----------|------------:|:------:|
-     | 1  |    2  | 1  |    2  | 1|  
-     | 3  |    4  |3  |    4  | 4 |
-     
-     : an optional caption
+```         
+ | foo|  bar  | Left align | Right Align | Center |
+ |----|-------|:-----------|------------:|:------:|
+ | 1  |    2  | 1  |    2  | 1|  
+ | 3  |    4  |3  |    4  | 4 |
+ 
+ : an optional caption
+```
 
 The result is:
 
-
-| foo|  bar  | Left align | Right Align | Center |
-|-----|-------|:-----------|------------:|:------:|
-| 1  |    2  | 1  |    2  | 1|  
-| 3  |    4  |3  |    4  | 4 |
+| foo | bar | Left align | Right Align | Center |
+|-----|-----|:-----------|------------:|:------:|
+| 1   | 2   | 1          |           2 |   1    |
+| 3   | 4   | 3          |           4 |   4    |
 
 : an optional caption
 
 The first and last pipe character at each row are optional, the ones separating the columns are not although they do not have to be aligned. The header cannot be omitted. The relative width is determined by the number of dashes.
 
 An alternative way to specify the relative column widths is by including the attribute after the caption, like this:
-```` markdown
-: an optional caption {tbl-colwidths="[40,15,15,15,15]"} 
-````
 
+``` markdown
+: an optional caption {tbl-colwidths="[40,15,15,15,15]"} 
+```
 
 Sometimes it is easiest to directly make the tables from R code.
 
@@ -146,21 +161,17 @@ Sometimes it is easiest to directly make the tables from R code.
 
 You can use delimited blocks with three backticks to use source code formatting. The syntax:
 
-
 \`\`\`\`
 
-foo <- bar
+foo \<- bar
 
 \`\`\`\`
-
 
 Becomes:
 
-
-````
+```         
 foo <- bar
-````
-
+```
 
 It is possible to add an R to indicate the R language is used and apply apropriate highlighting:
 
@@ -170,18 +181,15 @@ foo <- bar
 ```
 ````
 
-
 Becomes:
 
-
-``` R
+``` r
 foo <- bar
 ```
 
 #### Math
 
 You can use TeX like syntax to format equations. Inline formulas are delimeted by single \$s and display math uses double \$\$s.
-
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
@@ -193,4 +201,3 @@ tt <- tribble(~Syntax, ~Output,
 kable(tt)
 
 ```
-

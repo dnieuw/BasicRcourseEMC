@@ -1,4 +1,4 @@
-## ggplot: Answers
+## ggplot: Answers {.unnumbered}
 
 ::: callout-warning
 Make sure that you try the exercises yourself first before looking at the answers
