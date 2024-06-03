@@ -1,0 +1,156 @@
+# Importing and Saving Data - Practical {.unnumbered}
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r, echo = FALSE, purl = FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+
+options(purl = FALSE)
+
+knitr::opts_chunk$set(purl = FALSE)
+```
+
+```{r, include = FALSE}
+knitr::opts_hooks$set(eval = function(opt) {
+  if (any(opt$exercise))
+    opt$eval <- opt$include <- FALSE
+  
+  opt
+})
+
+
+static <- TRUE
+
+options(width = 100)
+
+```
+
+```{r packages, include = FALSE}
+library(kableExtra)
+library(knitr)
+```
+
+```{r load_data, context="data", include=FALSE}
+library(survival)
+```
+
+## Preface {data-progressive="FALSE"}
+
+Open Rstudio to do the practicals. Note that tasks with \* are optional.
+
+### R packages
+
+In this practical, a number of R packages are used. The packages used (with versions that were used to generate the solutions) are:
+
+-   `survival` (version: `r packageVersion("survival")`)
+
+*`r R.version.string`*
+
+### Dataset
+
+For this practical, we will use the **heart** and **retinopathy** data sets from the `survival` package. More details about the data sets can be found in:
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+## Importing and Saving Data
+
+### Save your work {.tabset .tabset-fade .tabset-pills}
+
+It is important to save your work.
+
+::: {.panel-tabset .nav-pills}
+#### Task 1
+
+Save the vectors `numbers <- c(34, 24, 19, 23, 16)`, `numbers_2 <- c(1:200)` and `treatment <- c("yes", "yes", "no", "no", "no", "yes")`. Use the name `new_vectors`.
+
+#### *Hint 1*
+
+Use the function `save(...)`. Note that you need to set the working directory.
+
+#### Solution 1
+
+```{r save-solution, solution = TRUE, eval=F}
+numbers <- c(34, 24, 19, 23, 16)
+numbers_2 <- c(1:200)
+treatment <- c("yes", "yes", "no", "no", "no", "yes")
+save(numbers, numbers_2, treatment, file = "new_vectors.RData")
+```
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 2 \*
+
+Save the vectors `events <- heart$event` and `eyes <- retinopathy$eye`. Use the name `vectors_survival`.
+
+#### *Hint 2* \*
+
+Use the function `save(...)`. Note that you need to set the working directory.
+
+#### Solution 2 \*
+
+```{r save2-solution, solution = TRUE, eval=F}
+events <- heart$event
+eyes <- retinopathy$eye
+save(events, eyes, file = "vectors_survival.RData")
+```
+:::
+
+### Load your work {.tabset .tabset-fade .tabset-pills}
+
+Let's continue working on the data sets by loading our results.
+
+::: {.panel-tabset .nav-pills}
+#### Task
+
+Load the file `new_vectors`.
+
+#### *Hint*
+
+Use the function `load(...)`.
+
+#### Solution
+
+```{r load-solution, solution = TRUE, eval=F}
+load("new_vectors.RData")
+```
+:::
+
+### Remove your work {.tabset .tabset-fade .tabset-pills}
+
+Remove unnecessary objects.
+
+::: {.panel-tabset .nav-pills}
+#### Task 1
+
+Remove the vectors `numbers`, `numbers_2` and `treatment`.
+
+#### *Hint 1*
+
+Use the function `rm(...)`.
+
+#### Solution 1
+
+```{r rm-solution, solution = TRUE, eval=F}
+rm(numbers, numbers_2, treatment)
+```
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 2 \*
+
+Remove the vectors `events` and `eyes`.
+
+#### *Hint 2* \*
+
+Use the function `rm(...)`.
+
+#### Solution 2 \*
+
+```{r, eval=F}
+rm(events, eyes)
+```
+:::
