@@ -1,4 +1,4 @@
-# Importing and Saving Data - Practical {.unnumbered}
+# Working with R - Practical {.unnumbered}
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
@@ -55,6 +55,79 @@ For this practical, we will use the **heart** and **retinopathy** data sets from
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
+
+## Basic calculations
+
+### Expressions {.tabset .tabset-fade .tabset-pills}
+
+::: {.panel-tabset .nav-pills}
+#### Task 1
+
+Use R as a calculator to calculate the following values:
+
+-   $17 ^4$,
+-   $45 - 2 \times 3$
+-   $(45 - 2) \times 3$
+
+#### *Hint 1*
+
+Enter the calculations in an R-script and then run the lines using {{< kbd Ctrl-Enter >}}.
+
+```{r eval=FALSE, include=TRUE}
+17^4
+2^(1/3)
+```
+etc
+
+#### Solution 1
+
+```{r save-expres, solution = TRUE, eval=F, include=TRUE}
+17^4
+2^(1/3)
+45-2 * 3
+(45-2) * 3
+
+```
+
+
+:::
+
+
+### Assignment {.tabset .tabset-fade .tabset-pills}
+::: panel-tabset
+
+#### Task 2
+
+Now use assignment to do the same calculation. Assign names `a`, `b` and `c` to each of the three values involved, then do the calculation while assigning the name `d` to the result.
+
+#### Hint 2
+
+Execute the following code.
+
+```{r}
+a <- 45
+b <- 2
+c <- 3
+d <- (a - b) * c 
+```
+
+`a`, `b`, `c`, and `d` are variables. To see their values, you can just type the variable name (e.g. `a`) and hit {{< kbd Ctrl-Enter >}} or use the command `print(a)`.
+
+#### Solution 2 {.unnumbered}
+
+```{r}
+a <- 45
+b <- 2
+c <- 3
+d <- (a - b) * c 
+print(a)
+print(b)
+print(c)
+print(d)
+d
+```
+:::
+
 
 ## Importing and Saving Data
 

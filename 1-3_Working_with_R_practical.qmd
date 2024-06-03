@@ -1,4 +1,4 @@
-# Importing and Saving Data - Practical {.unnumbered}
+# Working with R - Practical {.unnumbered}
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
@@ -56,6 +56,58 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
+## Basic calculations
+
+### Expressions {.tabset .tabset-fade .tabset-pills}
+
+::: {.panel-tabset .nav-pills}
+#### Task 1
+
+Use R as a calculator to calculate the following values:
+
+-   $17 ^4$,
+-   $45 - 2 \times 3$
+-   $(45 - 2) \times 3$
+
+#### *Hint 1*
+
+Enter the calculations in an R-script and then run the lines using {{< kbd Ctrl-Enter >}}.
+
+```{r eval=FALSE, include=TRUE}
+17^4
+2^(1/3)
+```
+etc
+
+
+
+
+:::
+
+
+### Assignment {.tabset .tabset-fade .tabset-pills}
+::: panel-tabset
+
+#### Task 2
+
+Now use assignment to do the same calculation. Assign names `a`, `b` and `c` to each of the three values involved, then do the calculation while assigning the name `d` to the result.
+
+#### Hint 2
+
+Execute the following code.
+
+```{r}
+a <- 45
+b <- 2
+c <- 3
+d <- (a - b) * c 
+```
+
+`a`, `b`, `c`, and `d` are variables. To see their values, you can just type the variable name (e.g. `a`) and hit {{< kbd Ctrl-Enter >}} or use the command `print(a)`.
+
+
+:::
+
 ## Importing and Saving Data
 
 ### Save your work {.tabset .tabset-fade .tabset-pills}
@@ -70,15 +122,6 @@ Save the vectors `numbers <- c(34, 24, 19, 23, 16)`, `numbers_2 <- c(1:200)` and
 #### *Hint 1*
 
 Use the function `save(...)`. Note that you need to set the working directory.
-
-#### Solution 1
-
-```{r save-solution, solution = TRUE, eval=F}
-numbers <- c(34, 24, 19, 23, 16)
-numbers_2 <- c(1:200)
-treatment <- c("yes", "yes", "no", "no", "no", "yes")
-save(numbers, numbers_2, treatment, file = "new_vectors.RData")
-```
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -89,14 +132,6 @@ Save the vectors `events <- heart$event` and `eyes <- retinopathy$eye`. Use the 
 #### *Hint 2* \*
 
 Use the function `save(...)`. Note that you need to set the working directory.
-
-#### Solution 2 \*
-
-```{r save2-solution, solution = TRUE, eval=F}
-events <- heart$event
-eyes <- retinopathy$eye
-save(events, eyes, file = "vectors_survival.RData")
-```
 :::
 
 ### Load your work {.tabset .tabset-fade .tabset-pills}
@@ -111,12 +146,6 @@ Load the file `new_vectors`.
 #### *Hint*
 
 Use the function `load(...)`.
-
-#### Solution
-
-```{r load-solution, solution = TRUE, eval=F}
-load("new_vectors.RData")
-```
 :::
 
 ### Remove your work {.tabset .tabset-fade .tabset-pills}
@@ -131,12 +160,6 @@ Remove the vectors `numbers`, `numbers_2` and `treatment`.
 #### *Hint 1*
 
 Use the function `rm(...)`.
-
-#### Solution 1
-
-```{r rm-solution, solution = TRUE, eval=F}
-rm(numbers, numbers_2, treatment)
-```
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -147,10 +170,4 @@ Remove the vectors `events` and `eyes`.
 #### *Hint 2* \*
 
 Use the function `rm(...)`.
-
-#### Solution 2 \*
-
-```{r, eval=F}
-rm(events, eyes)
-```
 :::
