@@ -1,13 +1,135 @@
-# Functions 2: Answers {.unnumbered}
+# Functions 1: Answers {.unnumbered}
 
 ::: callout-warning
 Make sure that you try the exercises yourself first before looking at the answers
 :::
 
-## Function environment and scoping
+## Function Arguments
 
 ::: panel-tabset
 ### Question 1
+
+Look at the help file for the function `mean()`.
+
+How many arguments does the function have?
+
+What types of vectors are accepted?
+
+What is the default setting for dealing with NA values?
+
+### Answer
+
+Three arguments (plus further arguments).
+
+Numerical and logical vectors are accepted.
+
+The default setting is to NOT remove NA (missing) values.
+:::
+
+::: panel-tabset
+### Question 2
+
+Use the function `mean()` to calculate the mean of the following values:
+
+::: callout-note
+note the `NA` and use named argument matching
+:::
+
+```{r, eval = F}
+c(1, 2, NA, 6)
+```
+
+### Answer
+
+```{r}
+mean(x = c(1, 2, NA, 6), na.rm = TRUE)
+```
+:::
+
+::: panel-tabset
+### Question 3
+
+Do Q2 again but rearrange the arguments.
+
+### Answer
+
+```{r}
+mean(na.rm = TRUE, x = c(1, 2, NA, 6))
+```
+:::
+
+::: panel-tabset
+### Question 4
+
+Do Q2 again using positional matching.
+
+### Answer
+
+```{r}
+mean(c(1, 2, NA, 6), 0, TRUE)
+```
+:::
+
+::: panel-tabset
+### Question 5
+
+Determine the class of `mean()` using `class()`.
+
+### Answer
+
+```{r}
+class(mean)
+```
+
+The class is `function`.
+:::
+
+::: panel-tabset
+### Question 6
+
+Determine the class of `mean()` using `str()`.
+
+### Answer
+
+```{r}
+str(mean)
+```
+
+The class is `function`.
+:::
+
+::: panel-tabset
+### Question 7
+
+Determine the class of the value output in Q4 using `class()`.
+
+### Answer
+
+```{r}
+class(mean(c(1, 2, NA, 6), 0, TRUE))
+```
+
+The class is `numeric`
+:::
+
+::: panel-tabset
+### Question 8
+
+Determine the class of the value output in Q4 using str().
+
+### Answer
+
+```{r}
+str(mean(c(1, 2, NA, 6), 0, TRUE))
+```
+
+The `num` means the class is `numeric`.
+:::
+
+## Function environment and scoping
+
+::: panel-tabset
+### Question 9
 
 For each of the following sets of commands, give the value that will be returned by the last command. Try to answer without using R.
 
@@ -40,7 +162,7 @@ b)  This will return 6 because `w` is reassigned as 4 inside the function and we
 :::
 
 ::: panel-tabset
-### Question 2
+### Question 10
 
 Among the variables `w`, `d`, and `y`, which are global to `f()` and which are local? What is the value of z when executing `f(w)`
 
@@ -63,7 +185,7 @@ The object `w` is global to `f()` while `d` and `y` are local to `f()`.
 :::
 
 ::: panel-tabset
-### Question 3
+### Question 11
 
 Do the following in R:
 
@@ -101,7 +223,57 @@ a)  We get an error message because `a` and `b` are local to `myFun1` so the fun
 b)  We get get the value 13 because the values `a` and `b` are global so `myFun2` can find them and use them in its commands.
 :::
 
-## Decorating a function with returns, errors, and warnings
+## if(), else, and ifelse() and Vectorization
+
+::: panel-tabset
+### Question 12
+
+Write a function called 'evenOrOdd' involving `if` and `else` that takes an argument `x` and returns "Even" or "Odd" depending on whether or not `x` is divisible by 2. (Do not use the ifelse() function).
+
+### Anwser
+
+```{r}
+evenOrOdd <- function(x) {
+  if(x %% 2 == 0) {
+    return("Even")
+  } else {
+    return("Odd")
+  }
+}
+```
+:::
+
+::: panel-tabset
+### Question 13
+
+Is your function 'evenOrOdd' vectorized? Check by passing it the vector:
+
+```{r}
+w <- c(3, 6, 6, 4, 7, 9, 11, 6)
+```
+
+### Answer
+
+```{r,error=T}
+evenOrOdd(w)
+```
+
+An error is given, because x in `if(x %% 2 == 0)` is longer than 1.
+:::
+
+::: panel-tabset
+### Question 14
+
+Another way to determine if each element of a vector is even or odd is to use the `ifelse()` function, which serves as a vectorized version `if` and `else`. Use `ifelse()` to obtain "Even" or "Odd" for each element of `w`.
+
+### Answer
+
+```{r}
+ifelse(w %% 2 == 0, "Even", "Odd")
+```
+:::
+
+## Terminating a function with returns, errors, and warnings
 
 The functions `warning()` and `stop()` are used to print a warning message and to stop the execution of the function call and print an error message. For example:
 
@@ -121,7 +293,7 @@ noNegMean <- function(x) {
 ```
 
 ::: panel-tabset
-### Question 1
+### Question 15
 
 Copy the above code and then pass `noNegMean()` a vector containing some negative and some positive values. What happens?
 
@@ -135,7 +307,7 @@ We get the warning message and it returned 0.3333, which is the average of `c(0,
 :::
 
 ::: panel-tabset
-### Question 2
+### Question 16
 
 What happens when you pass `noNegMean()` a vector containing all negative values?
 
@@ -149,7 +321,7 @@ We get the error message and nothing is returned.
 :::
 
 ::: panel-tabset
-### Question 3
+### Question 17
 
 Write a function `ratio()` that takes two arguments, `x` and `y`, and attempts to compute the ratio `x/y`.
 
@@ -190,7 +362,7 @@ ratio(1,0)
 ## looping using for() loops and the apply functions
 
 ::: panel-tabset
-### Question 1
+### Question 18
 
 Copy this is a function to determine if a number is a prime number:
 
@@ -235,7 +407,7 @@ mat[apply(mat, c(1,2), isPrime)]
 :::
 
 ::: panel-tabset
-### Question 2
+### Question 19
 
 Copy the following command to create a list containing two generations of the famous Kennedy family:
 
@@ -269,7 +441,7 @@ children
 :::
 
 ::: panel-tabset
-### Question 3
+### Question 20
 
 Now, using the `lapply()` function, loop over the list of the first generation of Kennedys and keep track of how many children each Kennedy has. What is the class of the output?
 
@@ -284,9 +456,9 @@ class(result)
 :::
 
 ::: panel-tabset
-### Question 4
+### Question 21
 
-Answer Q2 again using the `sapply()` function. What is the class of the output?
+Answer Question 20 again using the `sapply()` function. What is the class of the output?
 
 ### Answer
 
@@ -299,7 +471,7 @@ class(result)
 :::
 
 ::: panel-tabset
-### Question 5
+### Question 22
 
 Load the "diamonds" dataset from the ggplot2 package by running `library(gglot2)` and calculate the average price of diamonds by color and clarity using the `tapply()` function.
 

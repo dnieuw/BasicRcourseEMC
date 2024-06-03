@@ -1,9 +1,73 @@
-# Functions 2: Questions {.unnumbered}
+# Functions: Questions {.unnumbered}
+
+## Function Arguments
+
+::: panel-tabset
+### Question 1
+
+Look at the help file for the function `mean()`.
+
+How many arguments does the function have?
+
+What types of vectors are accepted?
+
+What is the default setting for dealing with NA values?
+:::
+
+::: panel-tabset
+### Question 2
+
+Use the function `mean()` to calculate the mean of the following values:
+
+::: callout-note
+note the `NA` and use named argument matching
+:::
+
+```{r, eval = F}
+c(1, 2, NA, 6)
+```
+:::
+
+::: panel-tabset
+### Question 3
+
+Do Q2 again but rearrange the arguments.
+:::
+
+::: panel-tabset
+### Question 4
+
+Do Q2 again using positional matching.
+:::
+
+::: panel-tabset
+### Question 5
+
+Determine the class of `mean()` using `class()`.
+:::
+
+::: panel-tabset
+### Question 6
+
+Determine the class of `mean()` using `str()`.
+:::
+
+::: panel-tabset
+### Question 7
+
+Determine the class of the value output in Q4 using `class()`.
+:::
+
+::: panel-tabset
+### Question 8
+
+Determine the class of the value output in Q4 using str().
+:::
 
 ## Function environment and scoping
 
 ::: panel-tabset
-### Question 1
+### Question 9
 
 For each of the following sets of commands, give the value that will be returned by the last command. Try to answer without using R.
 
@@ -30,7 +94,7 @@ f(y = 2)
 :::
 
 ::: panel-tabset
-### Question 2
+### Question 10
 
 Among the variables `w`, `d`, and `y`, which are global to `f()` and which are local? What is the value of z when executing `f(w)`
 
@@ -47,7 +111,7 @@ f <- function(y) {
 :::
 
 ::: panel-tabset
-### Question 3
+### Question 11
 
 Do the following in R:
 
@@ -79,7 +143,31 @@ myFun1(10)
 What happens?
 :::
 
-## Decorating a function with returns, errors, and warnings
+## if(), else, and ifelse() and Vectorization
+
+::: panel-tabset
+### Question 12
+
+Write a function called 'evenOrOdd' involving `if` and `else` that takes an argument `x` and returns "Even" or "Odd" depending on whether or not `x` is divisible by 2. (Do not use the ifelse() function).
+:::
+
+::: panel-tabset
+### Question 13
+
+Is your function 'evenOrOdd' vectorized? Check by passing it the vector:
+
+```{r}
+w <- c(3, 6, 6, 4, 7, 9, 11, 6)
+```
+:::
+
+::: panel-tabset
+### Question 14
+
+Another way to determine if each element of a vector is even or odd is to use the `ifelse()` function, which serves as a vectorized version `if` and `else`. Use `ifelse()` to obtain "Even" or "Odd" for each element of `w`.
+:::
+
+## Terminating a function with returns, errors, and warnings
 
 The functions `warning()` and `stop()` are used to print a warning message and to stop the execution of the function call and print an error message. For example:
 
@@ -99,19 +187,19 @@ noNegMean <- function(x) {
 ```
 
 ::: panel-tabset
-### Question 1
+### Question 15
 
 Copy the above code and then pass `noNegMean()` a vector containing some negative and some positive values. What happens?
 :::
 
 ::: panel-tabset
-### Question 2
+### Question 16
 
 What happens when you pass `noNegMean()` a vector containing all negative values?
 :::
 
 ::: panel-tabset
-### Question 3
+### Question 17
 
 Write a function `ratio()` that takes two arguments, `x` and `y`, and attempts to compute the ratio `x/y`.
 
@@ -127,7 +215,7 @@ Test your `ratio()` function first using two nonzero values for `x` and `y`, the
 ## Looping using for() loops and the apply functions
 
 ::: panel-tabset
-### Question 1
+### Question 18
 
 Copy this is a function to determine if a number is a prime number:
 
@@ -162,7 +250,7 @@ What numbers from 1 until 100 are prime numbers?
 :::
 
 ::: panel-tabset
-### Question 2
+### Question 19
 
 Copy the following command to create a list containing two generations of the famous Kennedy family:
 
@@ -186,19 +274,19 @@ Use a `for()` loop to loop over the list of the first generation of Kennedys, ke
 :::
 
 ::: panel-tabset
-### Question 3
+### Question 20
 
 Now, using the `lapply()` function, loop over the list of the first generation of Kennedys and keep track of how many children each Kennedy has. What is the class of the output?
 :::
 
 ::: panel-tabset
-### Question 3
+### Question 21
 
-Answer Q2 again using the `sapply()` function. What is the class of the output?
+Answer Question 20 again using the `sapply()` function. What is the class of the output?
 :::
 
 ::: panel-tabset
-### Question 4
+### Question 22
 
 Load the "diamonds" dataset from the ggplot2 package by running `library(gglot2)` and calculate the average price of diamonds by color and clarity using the `tapply()` function.
 :::

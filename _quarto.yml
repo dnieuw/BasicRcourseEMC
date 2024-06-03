@@ -49,10 +49,8 @@ book:
         - 3-8_functions_apply.qmd
     - part: 3-9_functions_practicals1_intro.qmd
       chapters:
-        - 3-10_functions_practicals1_questions.qmd
-        - 3-11_functions_practicals1_answers.qmd
-        - 3-12_functions_practicals2_questions.qmd
-        - 3-13_functions_practicals2_answers.qmd
+        - 3-10_functions_practicals_questions.qmd
+        - 3-11_functions_practicals_answers.qmd
     - part: 4-1_represearch.qmd
       chapters:
         - 4-2_basic_markdown.qmd
