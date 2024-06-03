@@ -486,7 +486,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#function-environments" id="toc-function-environments" class="nav-link active" data-scroll-target="#function-environments">Function environments</a>
+  <li><a href="#example-of-custom-function" id="toc-example-of-custom-function" class="nav-link active" data-scroll-target="#example-of-custom-function">Example of custom function</a></li>
+  <li><a href="#use-return-in-a-function" id="toc-use-return-in-a-function" class="nav-link" data-scroll-target="#use-return-in-a-function">Use return() in a function</a></li>
+  <li><a href="#build-a-custom-function" id="toc-build-a-custom-function" class="nav-link" data-scroll-target="#build-a-custom-function">Build a custom function</a></li>
+  <li><a href="#function-environments" id="toc-function-environments" class="nav-link" data-scroll-target="#function-environments">Function environments</a>
   <ul class="collapse">
   <li><a href="#global-and-local-variables" id="toc-global-and-local-variables" class="nav-link" data-scroll-target="#global-and-local-variables">Global and Local Variables</a></li>
   </ul></li>
@@ -522,6 +525,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Here you type expressions that use the arguments</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="example-of-custom-function" class="level3">
+<h3 class="anchored" data-anchor-id="example-of-custom-function">Example of custom function</h3>
 <p>Each line inside the function is an object assignment, a function call, a subsetting, a conditional statement, an if/else statement, a for loop, etc. - basically anything you have now learned how to do in R that you want the function to do!</p>
 <p>Below is an easy example that calculates the mean of two values (<code>x</code> and <code>y</code>):</p>
 <div class="cell">
@@ -543,6 +548,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
+</section>
+<section id="use-return-in-a-function" class="level3">
+<h3 class="anchored" data-anchor-id="use-return-in-a-function">Use return() in a function</h3>
 <p>To have a function output something, you must return something. Either the value of the last command is returned (as in <code>mean_xy</code>) or you can use <code>return()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mean_xy <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
@@ -612,6 +620,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Custom functions in R are useful if you have a bunch of commands that you have to use multiple times. By combining them in a function you 1) save time, 2) keep your code concise, and 3) make less coding mistakes.</p>
 <p>In the next example a function called <code>my_descriptives</code> is made to calculate a mean of a vector only for the positive values.</p>
+</section>
+<section id="build-a-custom-function" class="level3">
+<h3 class="anchored" data-anchor-id="build-a-custom-function">Build a custom function</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_descriptives <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  x.trim <span class="ot">&lt;-</span> x[x<span class="sc">&gt;=</span><span class="dv">0</span>]</span>
@@ -625,22 +636,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  41  49  57  54  27  49  56  40  49  26  16  48  40  41  43 -50  58  62  56
-[20]  36  42  47  30  57  44</code></pre>
+<pre><code> [1]  46  58  47  22  45  51  46  28  53  55  53  55  59  30  53 -50  45  41  43
+[20]  47  56  51  37  29  44</code></pre>
 </div>
 </div>
 <p>There is one value <code>-50</code>, that is clearly an error.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 44.5</code></pre>
+<pre><code>[1] 45.58333</code></pre>
 </div>
 </div>
 <p>Compare the output with using the standard function <code>mean()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 40.72</code></pre>
+<pre><code>[1] 41.76</code></pre>
 </div>
 </div>
 <p>In the standard <code>mean</code> function, the negative outlier is included and influences the mean!</p>
@@ -656,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   16.0    40.0    45.5    44.5    54.5    62.0 </code></pre>
+  22.00   42.50   46.50   45.58   53.00   59.00 </code></pre>
 </div>
 </div>
 <p>Again, let’s compare the output to the standard <code>summary()</code> function.</p>
@@ -664,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   40.00   44.00   40.72   54.00   62.00 </code></pre>
+ -50.00   41.00   46.00   41.76   53.00   59.00 </code></pre>
 </div>
 </div>
 <p>If you have multiple objects to return, you have to put them in an object container, like a list, vector, array or data.frame. It is not possible to return multiple individual objects like this:</p>
@@ -689,7 +700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1] 1
 
 [[2]]
-[1] 44.5</code></pre>
+[1] 45.58333</code></pre>
 </div>
 </div>
 <p>There was <code>1</code> value below zero, as provided by the first element in the list.</p>
@@ -724,6 +735,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 4 3</code></pre>
 </div>
 </div>
+</section>
 <section id="function-environments" class="level2">
 <h2 class="anchored" data-anchor-id="function-environments">Function environments</h2>
 <p>Each function, whether built-in or user-defined, has an associated environment, which can be thought of as a container that holds all of the objects present at the time the function is created.</p>

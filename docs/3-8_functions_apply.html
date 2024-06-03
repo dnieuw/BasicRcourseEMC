@@ -650,23 +650,23 @@ $col3
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>patients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   group     outcome
-1  grp-1 -1.43681983
-2  grp-1 -0.44166760
-3  grp-1 -0.70621360
-4  grp-1  1.25776159
-5  grp-1  0.16538060
-6  grp-1  1.02994392
-7  grp-2 -0.51309936
-8  grp-2 -2.66252109
-9  grp-2  0.13120503
-10 grp-2  0.69078366
-11 grp-2  0.07324137
-12 grp-2 -0.78011510</code></pre>
+1  grp-1  0.08536396
+2  grp-1 -2.31848310
+3  grp-1  0.31685535
+4  grp-1  0.28265549
+5  grp-1 -1.26812212
+6  grp-1 -0.40846661
+7  grp-2 -1.06279780
+8  grp-2  0.39937508
+9  grp-2 -0.94402967
+10 grp-2  1.05204023
+11 grp-2 -0.13097807
+12 grp-2 -0.79226230</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, patients<span class="sc">$</span>group, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      grp-1       grp-2 
--0.02193582 -0.51008425 </code></pre>
+<pre><code>     grp-1      grp-2 
+-0.5516995 -0.2464421 </code></pre>
 </div>
 </div>
 <p>It is also possible to use multiple factors in a list to create groups, which returns a matrix.</p>
@@ -678,8 +678,8 @@ $col3
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, <span class="fu">list</span>(patients<span class="sc">$</span>group, patients<span class="sc">$</span>serotype), mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               A          B
-grp-1 -0.9617085 -0.3269053
-grp-2 -1.1450631 -0.5657517</code></pre>
+grp-1  0.2598798  0.6498257
+grp-2 -0.5625088 -1.4830715</code></pre>
 </div>
 </div>
 <p>These are some (trivial) examples of how you can use the apply family of functions to quickly apply a function to your data. It is possible to do the same thing by using for loops, but apply functions are generally faster to write and read. In some cases using apply to run your function can also increase the speed of your code. More on increasing the speed of your code will follow in later lectures.</p>
