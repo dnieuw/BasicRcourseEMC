@@ -54,6 +54,22 @@ object2 <- readRDS('myfile.rds')
 identical(myobject, object2)
 ```
 
+Often the data we want to use is not in any 'R-format' but in another format. We will then have to import this data. Much of this functionality is included in the `foreign` package. To open data from spss you can use the `read.spss` command from this package. The syntax is:
+
+```{r}
+#| eval: false
+library(foreign)
+read.spss(file = 'path/to/file/thespssfile.sav', to.data.frame = TRUE)
+```
+
+Using the argument `to.data.frame` we indicate that we want the result as a data.frame. Another format that is often used is excel sheets; for this we can use the `read_excel` function from the `readxl` package.
+
+```{r}
+#| eval: false
+read_excel(path='path/to/file/excelworkbook.xls')
+```
+
+This function has an optional argument `sheet` to indicate the sheet in the excel file if it contains multiple sheets. Optionally, with `range` a cell range can be indicated.
 
 Load `.Rhistory` file to access the history from the console:
 ```{r}
