@@ -7,15 +7,19 @@ book:
   date: "08-11-2023"
   chapters:
     - index.qmd
-    - part: 1-1_Importing_Saving.qmd
+    - part: 1-1_Introduction.qmd
       chapters: 
-        - 1-2_Importing_Saving_practical.qmd
-    - part: 1-3_Common_Objects.qmd
+        - 1-2_Working_with_R.qmd
+        - 1-3_Working_with_R_practical.qmd
+        - 1-4_Working_with_R_answers.qmd
+    - part: 1-5_Common_Objects.qmd
       chapters: 
-        - 1-4_Common_Objects_practical.qmd
-    - part: 1-5_Indexing_Subsetting.qmd
+        - 1-6_Common_Objects_practical.qmd
+        - 1-7_Common_Objects_answers.qmd
+    - part: 1-8_Indexing_Subsetting.qmd
       chapters: 
-        - 1-6_Indexing_Subsetting_practical.qmd
+        - 1-9_Indexing_Subsetting_practical.qmd
+        - 1-10_Indexing_Subsetting_answers.qmd
     - part: 2-1_Datacleaning.qmd
       chapters:
         - 2-2_Datacleaning_practical.qmd
