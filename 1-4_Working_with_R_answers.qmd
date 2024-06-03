@@ -1,4 +1,4 @@
-# Working with R - Practical {.unnumbered}
+# Working with R - Answers {.unnumbered}
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())

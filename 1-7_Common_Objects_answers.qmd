@@ -1,4 +1,4 @@
-# Common Objects - Practical {.unnumbered}
+# Common Objects - Answers {.unnumbered}
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
