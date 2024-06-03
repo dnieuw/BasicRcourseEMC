@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3-9_functions_practicals1_intro.html" rel="next">
+<link href="./3-9_functions_practicals_intro.html" rel="next">
 <link href="./3-7_functions_looping.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./3-9_functions_practicals1_intro.html" class="sidebar-item-text sidebar-link">
+            <a href="./3-9_functions_practicals_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions: Practicals</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -401,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./3-11_functions_practicals_answers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Functions 1: Answers</span></a>
+ <span class="menu-text">Functions: Answers</span></a>
   </div>
 </li>
       </ul>
@@ -638,23 +638,23 @@ $col3
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>patients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   group    outcome
-1  grp-1  2.2572100
-2  grp-1  0.1685104
-3  grp-1  0.3825517
-4  grp-1 -0.6059464
-5  grp-1  0.4493981
-6  grp-1  0.5086708
-7  grp-2  1.4094332
-8  grp-2 -1.6372254
-9  grp-2 -0.7977351
-10 grp-2  0.5805808
-11 grp-2 -1.5741852
-12 grp-2  0.5311199</code></pre>
+1  grp-1  1.0943979
+2  grp-1 -0.5521895
+3  grp-1  1.1845952
+4  grp-1  2.0302153
+5  grp-1  0.3387133
+6  grp-1 -0.4724164
+7  grp-2  0.5239389
+8  grp-2  0.9097470
+9  grp-2  1.2517694
+10 grp-2  1.5504204
+11 grp-2 -0.1899009
+12 grp-2  0.7800953</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, patients<span class="sc">$</span>group, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     grp-1      grp-2 
- 0.5267324 -0.2480020 </code></pre>
+<pre><code>    grp-1     grp-2 
+0.6038859 0.8043450 </code></pre>
 </div>
 </div>
 <p>It is also possible to use multiple factors in a list to create groups, which returns a matrix.</p>
@@ -665,9 +665,9 @@ $col3
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(patients<span class="sc">$</span>outcome, <span class="fu">list</span>(patients<span class="sc">$</span>group, patients<span class="sc">$</span>serotype), mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               A         B
-grp-1 -0.6045302 0.4322248
-grp-2 -0.0773325 0.3901276</code></pre>
+<pre><code>                A          B
+grp-1 -0.76270260 0.05140865
+grp-2 -0.08281435 0.22095962</code></pre>
 </div>
 </div>
 <p>These are some (trivial) examples of how you can use the apply family of functions to quickly apply a function to your data. It is possible to do the same thing by using for loops, but apply functions are generally faster to write and read. In some cases using apply to run your function can also increase the speed of your code. More on increasing the speed of your code will follow in later lectures.</p>
@@ -1236,7 +1236,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3-9_functions_practicals1_intro.html" class="pagination-link" aria-label="Functions: Practicals">
+      <a href="./3-9_functions_practicals_intro.html" class="pagination-link" aria-label="Functions: Practicals">
         <span class="nav-page-text">Functions: Practicals</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

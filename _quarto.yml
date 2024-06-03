@@ -47,7 +47,7 @@ book:
         - 3-6_functions_terminating.qmd
         - 3-7_functions_looping.qmd
         - 3-8_functions_apply.qmd
-    - part: 3-9_functions_practicals1_intro.qmd
+    - part: 3-9_functions_practicals_intro.qmd
       chapters:
         - 3-10_functions_practicals_questions.qmd
         - 3-11_functions_practicals_answers.qmd

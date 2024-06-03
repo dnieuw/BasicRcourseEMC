@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./3-9_functions_practicals1_intro.html" class="sidebar-item-text sidebar-link">
+            <a href="./3-9_functions_practicals_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions: Practicals</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -401,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./3-11_functions_practicals_answers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Functions 1: Answers</span></a>
+ <span class="menu-text">Functions: Answers</span></a>
   </div>
 </li>
       </ul>
@@ -624,22 +624,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  43  52  41  26  57  45  37  47  64  37  55  42  60  46  40 -50  42  40  37
-[20]  35  25  53  62  36  45</code></pre>
+<pre><code> [1]  48  44  51  55  44  49  44  31  46  43  43  45  50  40  50 -50  45  42  43
+[20]  34  56  45  42  43  44</code></pre>
 </div>
 </div>
 <p>There is one value <code>-50</code>, that is clearly an error.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 44.45833</code></pre>
+<pre><code>[1] 44.875</code></pre>
 </div>
 </div>
 <p>Compare the output with using the standard function <code>mean()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 40.68</code></pre>
+<pre><code>[1] 41.08</code></pre>
 </div>
 </div>
 <p>In the standard <code>mean</code> function, the negative outlier is included and influences the mean!</p>
@@ -655,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_descriptives</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  25.00   37.00   42.50   44.46   52.25   64.00 </code></pre>
+  31.00   43.00   44.00   44.88   48.25   56.00 </code></pre>
 </div>
 </div>
 <p>Again, let’s compare the output to the standard <code>summary()</code> function.</p>
@@ -663,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>Ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -50.00   37.00   42.00   40.68   52.00   64.00 </code></pre>
+ -50.00   43.00   44.00   41.08   48.00   56.00 </code></pre>
 </div>
 </div>
 <p>If you have multiple objects to return, you have to put them in an object container, like a list, vector, array or data.frame. It is not possible to return multiple individual objects like this:</p>
@@ -688,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1] 1
 
 [[2]]
-[1] 44.45833</code></pre>
+[1] 44.875</code></pre>
 </div>
 </div>
 <p>There was <code>1</code> value below zero, as provided by the first element in the list.</p>
