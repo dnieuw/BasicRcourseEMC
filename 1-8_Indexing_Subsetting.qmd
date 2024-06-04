@@ -1,0 +1,335 @@
+# Indexing and Subsetting {.unnumbered}
+
+**Author: {Karl Brand, Elizabeth Ribble and Sten Willemsen** \# Manipulating / Selecting Data}
+
+Often we want to calculate some things only for a specific subgroup of our patient group. (For example we want to calculate the average for the variables age and weight, but only for the women in the data set and not for the men). So it is important to select specific variables and observations. In R making these selections is called indexing. We start by showing how we can make selections within a vector. Afterwards we will see how selecting variables and observations in more complex data structures such as matrices, `data.frame`s and `list`s.
+
+## Indexing a vector
+
+There are three ways in which we can make a selection:
+
+-   Using numeric values, to make selections based on the position in a vector
+-   Using character values, to select values based on their name
+-   Using logical values (TRUE / FALSE), to make selections based on a condition
+
+### Using numeric values
+
+The easiest way of selecting elements in a vector is by specify positions or **indices i** in numbers of the data we wish to select using square brackets which are the `extract' function, i.e.,`object\[i\]\`.
+
+```{r}
+v <- c(11, 13, 17, 15, 9)
+v[2]
+```
+
+We can also do this for multiple elements at the same time:
+
+```{r}
+v[c(2, 3)]
+i <- c(1, 2)
+v[i]
+
+```
+
+The vector of indices does not have to be sorted and indices may be duplicated. For example:
+
+```{r}
+v[c(3, 2, 2)]
+```
+
+When we use a vector with negative integers we will select all observations *except* those on the specified positions:
+
+```{r}
+v[-2]
+
+```
+
+Note that positive and negative indexes cannot be combined.
+
+### Using character values
+
+When the elements in a vector all have a name we can use these names to select the elements.
+
+```{r}
+bp_with_name <- c(sys=135, dia=85)
+bp_with_name['dia']
+```
+
+We can also give names to the vector by using the `names` function: Here we make use of the `names` attribute:
+
+```{r}
+ages <- c(12, 3, 45)
+names(ages) <- c("Kim" , 'Arthur', 'Mark')
+ages
+str(ages)
+ages["Mark"]
+names(ages)
+```
+
+Note that we can also change the names of a `data.frame` in the same way we would do so for a `list` using the `names` attribute:
+
+```{r}
+mygenes <- data.frame(samp1 = c(33, 22, 12), 
+                      samp2 = c(44, 111, 13), 
+                      samp3 = c(33, 53, 65))
+names(mygenes) <- c("samp10", "samp20", "samp30")
+mygenes
+## but let's change it back...
+names(mygenes) <- c("samp1", "samp2", "samp3")
+```
+
+Note that the `colnames` function also performs the same job for data frames.
+
+### Using logical values
+
+The third way to select elements from a vector is by using a vector of logical values (i.e.. TRUE/FALSE values) between the square brackets. In this way we select all values for which the value between the brackets is TRUE.
+
+```{r}
+some_values<- c('foo', 'bar', 'baz')
+some_values[c(TRUE, FALSE, TRUE)]
+```
+
+This way of selecting is especially useful when we use some comparison (using `<`, `<=`, `!=` , etc.) or condition to select variables.
+
+```{r}
+ages <- c(55, 78, 92, 44)
+sex <- factor(c('Male', 'Female', 'Male', 'Female'))
+ages[ages > 65]
+# When we use a factor as filter we may compare to a character value
+ages[sex == 'Female'] 
+```
+
+To understand why this works look at when the condition between the brackets is TRUE.
+
+```{r}
+ages > 65
+which(ages > 65)  # gives the TRUE indices
+```
+
+Note that when we aply filtering on a factor variable the possible levels are not changed:
+
+```{r}
+levels(sex[sex == 'Female'] )
+```
+
+## Making selections in a matrix or array
+
+Making selections on a matrix works more or less the same as for vectors. But because we have two dimensions we need two indices, the first for the rows and the second for columns
+
+```{r}
+m <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), ncol = 3)
+m[1, ] # first row
+m[ , 2] # second column
+m[c(2, 4), 1:2] # combination of rows and colums
+m[, -c(1, 3)]   # negative indices 
+m[m[,1]>=3,] #logical indices
+```
+
+Note that when a single row or column is selected the object is converted to a vector; a frequent source of errors. if you want to prevent this you can use `drop=FALSE`.
+
+```{r}
+m[1, , drop=FALSE]
+```
+
+We can also use names but a matrix can have rownames as well as colnames:
+
+```{r}
+rownames(m) <- LETTERS[1:4]
+m
+m["A", ]
+```
+
+There exist a special way of using a matrix with two columns to select individual elements out of a matrix based on their two-dimensional coordinates.
+
+```{r}
+a <- matrix(c(2,3,3,2), ncol = 2)
+a
+m[a]
+```
+
+Indexing for arrays is similar as for matrices.
+
+```{r}
+a <- array(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),dim = c(2,3,4))
+dimnames(a) <- list(NULL, c('A', 'B', 'C'), c('a', 'b', 'c', 'd'))
+a
+colnames(a) # still 2nd dimension
+a[1, 2, ] # 3-dim array requires 3 positions between the brackets
+a[,,'a']
+
+```
+
+## Making selections in a list
+
+To make selections in a list, we can use single square brackets, double square brackets and the dollar sign. The use of single square brackets works in the same way as it does for vectors.
+
+```{r}
+mylist <- list(
+  foo=c(1,2, 3),
+  bar=c('a', 'b'),
+  baz=list(TRUE, c(2, 4))
+  )
+mylist[c(1,3)]
+mylist[c(1,2,3)==2]
+mylist['bar']
+```
+
+We can also use double square brackets and the dollar sign for a `list`. There are two important differences between using single and double square brackets: 1. Using double square brackets only allows us to select a single element from the `list`. 2. The result of a selection with double brackets is the element itself, while if we make the selection with single brackets the result is a `list` consisting of the selected elements.
+
+```{r}
+mylist[[1]]
+```
+
+```{r}
+mode(mylist[[1]]) # a vector
+mode(mylist[1])   # a list with with a numeric vector as its single element   
+```
+
+There is another way to select a variable from a `list` which is by using the dollar sign ('\$'). This is an alternative to using double square brackets in combination with a name. When we use this the result is always a vector.
+
+```{r}
+mylist$foo      # results is a vector
+```
+
+Instead of using the dollar sign we can use double square brackets. We now need to put the name between quotes like for single square brackets. We can also use the position of the variable using these double square brackets.
+
+```{r}
+mydata <- data.frame(id=c(1, 2, 3, 4, 5),
+                     sex=factor(c('M', 'F', 'M', 'F', 'F')),
+                     weight=c(77, 44, 56, 88, 49),
+                     treatm=c('A', 'A', 'B', 'B', 'A'))
+mydata[['treatm']]
+mydata[[1]]
+```
+
+It is not possible to select more than one element using double brackets; The result will always be a vector (instead of a `data.frame`)
+
+## Selecting observations and variables in a `data.frame`
+
+Selecting observations and variables in a `data.frame` works more or less the same for `data.frames` as it does for lists. However because a `data.frame` is two dimensional we can two indices between the square brackets. The first one corresponds to the observations (rows) and the second corresponds to the variables (columns). So, as an example, we can select the first two observations from the third variable in the `data.frame` using the syntax:
+
+```{r}
+mydata <- data.frame(id=c(1, 2, 3, 4, 5),
+                     sex=factor(c('M', 'F', 'M', 'F', 'F')),
+                     weight=c(77, 44, 56, 88, 49))
+mydata[c(1, 2), 3]
+```
+
+When the first or second position is left blank all rows or columns are selected. For example:
+
+```{r}
+mydata[, 3]       # sex (3rd variable) for all patients
+mydata[c(1,2), ]  # all variables for the first two patients
+mydata[c(-3,-4), 'sex'] # Negative numbers and names can also be used
+```
+
+We have to be careful when we want to select a single variable from a `data.frame`, as we do above. The result will now no longer be a `data.frame` but it is transformed to a `vector`. When we want to prevent this we can use `drop=FALSE`, as follows:
+
+```{r}
+mydata[ , 3]
+mydata[ , 3, drop=FALSE]       
+```
+
+We can also use a single index between the square brackets. This works as if the `data.frame` was a list of variables (it's columns).
+
+```{r}
+mydata[1]
+mydata[[1]]
+```
+
+A `data.frame` has `row.names` (note the dot) as well as variable names we can use for selection. Let's look at an example where row names are gene symbols and column names are sample IDs:
+
+```{r}
+mygenes <- data.frame(samp1 = c(33, 22, 12), 
+                      samp2 = c(44, 111, 13), 
+                      samp3 = c(33, 53, 65))
+row.names(mygenes) <- c("CRP", "BRCA1", "HOXA")
+names(mygenes)
+mygenes
+mygenes["CRP", ]
+mygenes[, "samp1"]
+mygenes[, c("samp1", "samp3")]
+mygenes["HOXA", "samp2"]
+```
+
+### Other useful functions
+
+Besides square brackets (`[`, `[[`), other useful functions exist for selecting data: `duplicated`, `match`, `%in%`, `grep`, `is.na` and `$`.
+
+To select e.g. rows that are not duplicated:
+
+```{r}
+mm <- matrix(c(1, 1, 2, 2), nrow = 4, byrow = TRUE)
+
+
+mm
+mm[!duplicated(mm), ]
+```
+
+The above can also be done with **unique**, but the use of **duplicated** might be more appropriate in more complex situations:
+
+```{r}
+unique(mm)
+```
+
+Calling `match` returns the position of the first match of its first argument in the second argument:
+
+```{r}
+match(c("a", "b"), c("a", "c", "a", "b", "a", "b"))
+```
+
+whereas `\%in\%` tells you whether the elements of the first argument appear in the second argument:
+
+```{r}
+c("a", "b", "d") %in% c("a", "c", "a", "b", "a", "b")
+```
+
+Recall our data frame mygenes:
+
+```{r}
+mygenes
+is.data.frame(mygenes)
+```
+
+Note that since `mygenes` is a data frame, it is therefore also an array, which means we can select by the name of the elements in the array:
+
+```{r}
+mygenes[match(c("samp1", "samp3"), colnames(mygenes))]
+mygenes[colnames(mygenes) %in% c("samp1", "samp4")]
+```
+
+However, in this case we could just use the names...
+
+```{r}
+mygenes[c("samp1", "samp3")]
+```
+
+But this gives an error:
+
+```{r}
+#| eval: false
+mygenes[c("samp1", "samp30")] ## not run
+```
+
+where this does not:
+
+```{r}
+mygenes[colnames(mygenes) %in% c("samp1", "samp30")]
+```
+
+We can also use functions like `grep` to search for the names we are interested in:
+
+```{r}
+mygenes[grep(2, names(mygenes))]
+mygenes[grep("A", row.names(mygenes)), ]
+
+```
+
+If we want to find or exclude data with missing values, we can use `is.na`:
+
+```{r}
+z <- c(1:4, NA, 5:10)
+z
+is.na(z)
+which(is.na(z))
+z[!is.na(z)]
+```

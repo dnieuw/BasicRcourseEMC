@@ -1,3 +1,0 @@
-# Importing and Saving Data
-
-Work on the practical on importing and saving data.

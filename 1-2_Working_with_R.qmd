@@ -1,0 +1,78 @@
+# Importing and Saving Data
+
+## Saving and restoring your session
+
+Because the typical way of using `R` involves writing text into a
+file with the `.r` or `.R` extension it's natural to save your
+commands written for a specific purpose in this `my-r-file.r`. Hopefully you're doing this right now. However there
+are other bits and pieces of your `R` session described below you
+may want or need to save.
+
+Save all objects to the working directory in a file called `.RData`:
+```{r}
+#| eval: false
+save.image()
+``` 
+Or give the file a name:
+```{r}
+#| eval: false
+save.image("mySession.RData") 
+``` 
+
+Save all commands entered into the `R` console during your session to
+the working directory in a file called `.Rhistory`: 
+```{r}
+#| eval: false
+savehistory()
+```
+Such a file may be hidden by default in some file browsers, including linux.
+
+Note that this typically occurs (console dependent) by default when you
+quit your `R` session. If an `.Rhistory` file already exists from a previous
+session, the current session is appended to the end of this file and
+saved. Thus, by design, a complete log of your work is saved together
+with your script file, if your console session contains less than 512 lines.
+
+Save specific objects:
+```{r}
+#| eval: false
+save(object_1, object_2, object_3, file = "rObjects123.RData")
+```
+
+Restore or load previous sessions or objects:
+```{r}
+#| eval: false
+load("mySession.RData")        # load from the working directory
+```
+
+When you save and load objects this way, loaded variables will have the same names as when they were stored. There is also a different way of saving objects where loaded objects are assigned explicitly.
+
+```{r}
+myobject <- list(vec=c(1, 2, 3), mat=matrix(1:4,2))
+saveRDS(myobject,file = 'myfile.rds')
+object2 <- readRDS('myfile.rds')
+identical(myobject, object2)
+```
+
+Often the data we want to use is not in any 'R-format' but in another format. We will then have to import this data. Much of this functionality is included in the `foreign` package. To open data from spss you can use the `read.spss` command from this package. The syntax is:
+
+```{r}
+#| eval: false
+library(foreign)
+read.spss(file = 'path/to/file/thespssfile.sav', to.data.frame = TRUE)
+```
+
+Using the argument `to.data.frame` we indicate that we want the result as a data.frame. Another format that is often used is excel sheets; for this we can use the `read_excel` function from the `readxl` package.
+
+```{r}
+#| eval: false
+read_excel(path='path/to/file/excelworkbook.xls')
+```
+
+This function has an optional argument `sheet` to indicate the sheet in the excel file if it contains multiple sheets. Optionally, with `range` a cell range can be indicated.
+
+Load `.Rhistory` file to access the history from the console:
+```{r}
+#| eval: false
+loadhistory()
+```

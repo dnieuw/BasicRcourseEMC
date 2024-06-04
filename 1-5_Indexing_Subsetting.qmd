@@ -1,3 +1,0 @@
-# Indexing and Subsetting {.unnumbered}
-
-Work on the practical on indexing and subsetting
