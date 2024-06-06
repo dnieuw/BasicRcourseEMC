@@ -4,7 +4,7 @@ project:
 book:
   title: "Basic R Course"
   author: "Sara Baart, David Nieuwenhuijse, Sten Willemsen, Sanne Hoeks, Elrozy Andrinopoulou, Elizabeth Ribble, Karl Brand"
-  date: "08-11-2023"
+  date: "04-06-2024"
   chapters:
     - index.qmd
     - part: 1-1_Introduction.qmd
