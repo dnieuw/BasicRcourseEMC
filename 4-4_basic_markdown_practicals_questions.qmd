@@ -10,7 +10,7 @@ We will continue analyzing the file `R_data2.csv`, the data about children with 
 
 We are going to make an R markdown document for our analysis. A convinient way to start editing such a document in R studio is by using the menu bar. Select 'file' -> 'New File' -> 'R Markdown...'. This will open a dialog box where you can select the type of document you want to create. Select 'Document' and then 'HTML'. Choose 'Analysis of Intellectual Disabilities' as a title and fill in your name. This will create a new R markdown document with some default text (which we will delete for the most part). Save this document somewhere on your computer or network.
 
-Structure the document by creating headers for the different sections. You can use the following headers: 'Introduction', 'Data', 'Analysis and Results' and 'Conclusion amd Discussion. You can also add a header 'Setup' where you load the necessary libraries and the data set.
+Structure the document by creating headers for the different sections. You can use the following headers: 'Introduction', 'Data', 'Analysis and Results' and 'Conclusion and Discussion. You can also add a header 'Setup' where you load the necessary libraries and the data set.
 
 ::: {.callout-note}
 
@@ -22,7 +22,7 @@ In new versions of R you can also use a 'quarto document'.
 ::: panel-tabset
 ### Question 2
 
-Now we are going to load the data set `R_data.csv` into R. To do so insert a code chunk in the setup section. You can do this by choosing 'Code > 'Insert Chunk' from the menu. Now begin to enter the necessary code (check the practical from day 2 if needed to see how this can be done). Call the imported data set 'dat'. 
+Now we are going to load the data set `R_data2.csv` into R. To do so insert a code chunk in the setup section. You can do this by choosing 'Code > 'Insert Chunk' from the menu. Now begin to enter the necessary code (check the practical from day 2 if needed to see how this can be done). Call the imported data set 'dat'. 
 
 At this point try to 'knit' or 'render' the document to see if there are no errors. You can check this at the end of every question.
 
@@ -39,7 +39,7 @@ Create a new code chunk in the 'Data' section of your document. This is where we
 
 * log transform `homocysteine` and `vitaminB12`.
 
-* Transform the categorical variables to factors. For the `Status` variable. Make sure that "intellectual disability" is the reference.
+* Transform the categorical variables to factors. For the `Status` variable. Make sure that "normal brain development" is the first so it will be used as reference in the logistic regression we will do later.
 
 * Remove the original variables `pregnancy_length_weeks`, `pregnancy_length_days`,  `BMI` and `homocysteine` and `vitaminB12` from the data set, we will not use them any further.
 
@@ -59,7 +59,7 @@ It is always a good idea to get to know your data. To this and add a subsection 
 There are a number of useful packages to create tables of descriptive like this. Because it is beyond the scope of this course we will not use them here. However you might be interested in checking out the `table1`, and `gtsummary` package.
 :::
 
-
+Also add a histogram of the continuous variables. 
 
 :::
 
@@ -73,7 +73,7 @@ Add a subsection "Unadjusted Analysis" to the 'Analysis and Results' section whe
 ::: panel-tabset
 ### Question 6
 
-Add a subsection adjusted analysis to the 'Analysis and Results' section where you perform logistic regression analysis to investigate the association between `Status` and log `Vitamin B12` while adjusting for `age`, `gender`, `smoking` and `alcohol`.
+Add a subsection adjusted analysis to the 'Analysis and Results' section where you perform logistic regression analysis to investigate the association between `Status` and log `Vitamin B12` while adjusting for `medication`, `smoking` and `alcohol`.
 
 :::
 
@@ -90,7 +90,7 @@ End your document with a paragraph of conclusions. Use bold text an unnumbered l
 
 ### Question 8 
 
-Change the options of the code chunks in your document that do the data transformations to hide the code and messages. This will make the document more readable at the expense of no longer being fully transparent.
+Change the options of the code chunks in your document that do the data transformations to prevent showing the code and messages. This will make the document more readable at the expense of no longer being fully transparent.
 
 Also check what happens if you add `code_folding: hide` to the YAML header of your document (under `html_document`). 
 
