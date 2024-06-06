@@ -12,6 +12,11 @@ We are going to make an R markdown document for our analysis. A convinient way t
 
 Structure the document by creating headers for the different sections. You can use the following headers: 'Introduction', 'Data', 'Analysis and Results' and 'Conclusion amd Discussion. You can also add a header 'Setup' where you load the necessary libraries and the data set.
 
+::: {.callout-note}
+
+In new versions of R you can also use a 'quarto document'.
+:::
+
 :::
 
 ::: panel-tabset
@@ -82,7 +87,18 @@ End your document with a paragraph of conclusions. Use bold text an unnumbered l
 :::
 
 ::: panel-tabset
-### Question 8 (Optional if you have time)
+
+### Question 8 
+
+Change the options of the code chunks in your document that do the data transformations to hide the code and messages. This will make the document more readable at the expense of no longer being fully transparent.
+
+Also check what happens if you add `code_folding: hide` to the YAML header of your document (under `html_document`). 
+
+:::
+
+::: panel-tabset
+
+### Question 9 (Optional if you have time)
 
 Outliers can have a large effect on results. For the purpose of this practical we will consider all observations that are 3 standard deviations away from the mean as outliers. In the data section transform the data set by truncating the outliers to the value of the mean plus or minus 3 times the standard deviation. This is called 'Winsorizing'. Try to write your own function to do this using what you have learned during day 3 of the course. For Winsorizing `homocysteine` and `vitaminB12` are analysed on the log scale. 
 
@@ -91,13 +107,14 @@ Rerun your analyses. Describe what you have done in the text. Adjust your conclu
 ::: {.callout-note}
 
 Obviously in a real life situation the handling of outliers would require some more thought.
-:::
 
 :::
 
+
+:::
 
 ::: panel-tabset
-### Question 9 (Optional if you have time)
+### Question 10 (Optional if you have time)
 
 It has been discovered that a mistake has been made in the construction of the data set. Some participants have 
 accidentally been excluded while others have been excluded while they should not have been. The file 'extra.Rdata' contains data of new participants that should be included. The data 'ineexcl.Rdata' contains the 'ids' of patients that should be excluded. 
