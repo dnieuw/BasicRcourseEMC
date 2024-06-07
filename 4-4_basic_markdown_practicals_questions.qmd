@@ -1,45 +1,125 @@
 ## Markdown: Questions {.unnumbered}
 
-We are going to do an analysis in R using quatro to produce an html file that contains both the code and the results. To help you on your way you can use the file practicaltemplate.qmd that you can find on Canvas.
+We will continue analyzing the file `R_data2.csv`, the data about children with intellectual disabilities. We are going to do an analysis in R using R markdown to produce an html file that contains both the documentation, code and the results. Unfortunately, because we create a dynamic document of our data analyses that changes as we go, it is a bit harder to provide hints and answers after every question in the same way as before. To help you, we provide a document with hints for most questions and a model 'answer'  that reflects what the finished R markdown document may look like when you have answered all questions.
+
+
 
 ::: panel-tabset
+
 ### Question 1
 
-We are going to explore the build-in data set 'ToothGrowth' that is being loaded in the setup chuck of the template document. Use the `kable` function to display the first lines of the data.frame to verify the loading of the `data.frame` succeeded.
+We are going to make an R markdown document for our analysis. A convinient way to start editing such a document in R studio is by using the menu bar. Select 'file' -> 'New File' -> 'R Markdown...'. This will open a dialog box where you can select the type of document you want to create. Select 'Document' and then 'HTML'. Choose 'Analysis of Intellectual Disabilities' as a title and fill in your name. This will create a new R markdown document with some default text (which we will delete for the most part). Save this document somewhere on your computer or network.
+
+Structure the document by creating headers for the different sections. You can use the following headers: 'Introduction', 'Data', 'Analysis and Results' and 'Conclusion and Discussion. You can also add a header 'Setup' where you load the necessary libraries and the data set.
+
+::: {.callout-note}
+
+In new versions of R you can also use a 'quarto document'.
+:::
+
 :::
 
 ::: panel-tabset
 ### Question 2
 
-In the second chunk we create histograms for the length of the teeth given the dose and the supplement given. If needed go back to the chapter about creating plots to find information on how to do this.
+Now we are going to load the data set `R_data2.csv` into R. To do so insert a code chunk in the setup section. You can do this by choosing 'Code > 'Insert Chunk' from the menu. Now begin to enter the necessary code (check the practical from day 2 if needed to see how this can be done). Call the imported data set 'dat'. 
+
+At this point try to 'knit' or 'render' the document to see if there are no errors. You can check this at the end of every question.
+
 :::
 
 ::: panel-tabset
 ### Question 3
 
-We focus on the Guinea pigs that received 2 mg of Vitamin C by either delivery method. Create a new data frame that makes the appropriate selection. What are the mean and median tooth lengths?
+Create a new code chunk in the 'Data' section of your document. This is where we will clean the data and apply the necessary transformations. 
+
+* Define the variable `pregnancy_length` by adding together the weeks and days as you have done in the practical about data cleaning. 
+
+*  Define the variable `BMI_cat` by dividing the variable BMI into categories: <18.5 ("Underweight"), 18.5 - 24.9 ("Healthy weight"), 25 - 29.9 ("Overweight"), and >30 (Obesity).
+
+* log transform `homocysteine` and `vitaminB12`.
+
+* Transform the categorical variables to factors. For the `Status` variable. Make sure that "normal brain development" is the first so it will be used as reference in the logistic regression we will do later.
+
+* Remove the original variables `pregnancy_length_weeks`, `pregnancy_length_days`,  `BMI` and `homocysteine` and `vitaminB12` from the data set, we will not use them any further.
+
+* Add a short text underneath the code chunk explaining what you have done.
+
+
 :::
 
 ::: panel-tabset
 ### Question 4
 
-Use a statistical test to compare the tooth lengths between delivery methods (still focusing on the highest dose).
+It is always a good idea to get to know your data. To this and add a subsection to the 'Analysis and Results' section where you compute the mean and standard for all continuous variables in the data set and the frequency of all categorical variables. You might want to use your knowledge of loops (see the material from the 3rd day of the course) to do this efficiently.
+
+::: {.callout-tip}
+## Packages
+
+There are a number of useful packages to create tables of descriptive like this. Because it is beyond the scope of this course we will not use them here. However you might be interested in checking out the `table1`, and `gtsummary` package.
+:::
+
+Also add a histogram of the continuous variables. 
+
 :::
 
 ::: panel-tabset
 ### Question 5
 
-Now adjust the text the text of the document to explain what you have done and state your conclusions. Use bold text to indicate the most important points. Use a mathematical formula to state the null hypothesis of your test.
+Add a subsection "Unadjusted Analysis" to the 'Analysis and Results' section where you compare the mean of the logarithm of the Vitamin B12 for the two levels of `Status` (normal brain development or intellectual disability). 
+
 :::
 
 ::: panel-tabset
 ### Question 6
 
-End your document with a paragraph of conclusions. Use an unnumbered list to summarize the main points.
+Add a subsection adjusted analysis to the 'Analysis and Results' section where you perform logistic regression analysis to investigate the association between `Status` and log `Vitamin B12` while adjusting for `medication`, `smoking` and `alcohol`.
+
 :::
 
 ::: panel-tabset
 ### Question 7
 
-Change the markdown so the output from the setup chunk is not shown in the output document.
+Now adjust the text the text of the document to better explain what you have done. 
+
+End your document with a paragraph of conclusions. Use bold text an unnumbered list to summarize the main points.
+
 :::
+
+::: panel-tabset
+
+### Question 8 
+
+Change the options of the code chunks in your document that do the data transformations to prevent showing the code and messages. This will make the document more readable at the expense of no longer being fully transparent.
+
+Also check what happens if you add `code_folding: hide` to the YAML header of your document (under `html_document`). 
+
+:::
+
+::: panel-tabset
+
+### Question 9 (Optional if you have time)
+
+Outliers can have a large effect on results. For the purpose of this practical we will consider all observations that are 3 standard deviations away from the mean as outliers. In the data section transform the data set by truncating the outliers to the value of the mean plus or minus 3 times the standard deviation. This is called 'Winsorizing'. Try to write your own function to do this using what you have learned during day 3 of the course. For Winsorizing `homocysteine` and `vitaminB12` are analysed on the log scale. 
+
+Rerun your analyses. Describe what you have done in the text. Adjust your conclusions if needed.
+
+::: {.callout-note}
+
+Obviously in a real life situation the handling of outliers would require some more thought.
+
+:::
+
+
+:::
+
+::: panel-tabset
+### Question 10 (Optional if you have time)
+
+It has been discovered that a mistake has been made in the construction of the data set. Some participants have 
+accidentally been excluded while others have been excluded while they should not have been. The file 'extra.Rdata' contains data of new participants that should be included. The data 'ineexcl.Rdata' contains the 'ids' of patients that should be excluded. 
+
+Adjust your data to reflect this new information. Rerun your analysis and adjust your conclusions if needed.
+
+:::
+
