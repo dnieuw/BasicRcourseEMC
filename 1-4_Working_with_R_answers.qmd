@@ -113,7 +113,7 @@ d <- (a - b) * c
 
 `a`, `b`, `c`, and `d` are variables. To see their values, you can just type the variable name (e.g. `a`) and hit {{< kbd Ctrl-Enter >}} or use the command `print(a)`.
 
-#### Solution 2 {.unnumbered}
+#### Solution 2 {r abc, solution = TRUE, eval=FALSE, .unnumbered}
 
 ```{r}
 a <- 45
@@ -129,11 +129,104 @@ d
 :::
 
 
+::: panel-tabset
+
+R can do calculations on whole vectors at once. 
+
+#### Task 3
+
+Combine the two values 3 and 4 into a vector `v1` using the `c` function. Assign the name `v1` to the vector. Then calculate the square of each value in the vector.
+
+#### Hint 3
+
+Execute the following code.
+
+```{r}
+v1 <- c(3, 4)
+# now compute the square of each value
+```
+
+#### Solution 3 {r vectorscalc, solution = TRUE, eval=FALSE, .unnumbered}
+
+```{r}
+v1 <- c(3, 4)
+v1^2
+```
+
+:::
+
+## Loading packages and using the help function
+
+### Loading packages {.tabset .tabset-fade .tabset-pills}
+
+We will use data sets from the `survival` package. It is important to know how to load packages as they contain most of the functionality of R. 
+
+
+::: {.panel-tabset .nav-pills}
+#### Task 1
+
+ Load the `survival` package using the `library` function.
+
+#### *Hint 1*
+
+Use the `library(...)` function. There should be no need to install the package as it is already installed with `R`.
+
+#### Solution 1 {.unnumbered}
+
+```{r, solution = TRUE, eval=FALSE}
+library(survival)
+# library("survival") is an alternative in this case 
+# require(survival) is another alternative which does not give an error if the package cannot be found
+```
+
+:::
+
+### Getting help {.tabset .tabset-fade .tabset-pills}
+
+::: {.panel-tabset .nav-pills}
+#### Task 2
+
+ Ask for the documentation of the `heart` data set, using the `help` function. Then do the same for the `retinopathy` data set using `?`.
+
+#### *Hint 2*
+
+Use the `help(...)` function and `?`. 
+
+#### Solution 2 {.unnumbered}
+
+```{r help, solution = TRUE, eval=FALSE}
+help("heart")
+?retinopathy
+```
+
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 3
+
+Also ask for help on the `c`, `ls` and `rm` functions. Check if you can also obtain the documentation for the `c` function if you use `??combine` 
+
+#### *Hint 3*
+
+Use the `help(...)` fuction, and `?` or `??`. 
+
+#### Solution 3 {.unnumbered}
+
+```{r help2, solution = TRUE, eval=FALSE}
+?c # or use help("...")
+?ls
+?rm
+??combine
+# or use help.search('...')
+```
+
+:::
+
 ## Importing and Saving Data
 
 ### Save your work {.tabset .tabset-fade .tabset-pills}
 
-It is important to save your work.
+It is important to save your work. You can save the whole workspace using the function `save.image`. If you want to save only specific objects, you can use the function `save`.
 
 ::: {.panel-tabset .nav-pills}
 #### Task 1
@@ -146,7 +239,7 @@ Use the function `save(...)`. Note that you need to set the working directory.
 
 #### Solution 1
 
-```{r save-solution, solution = TRUE, eval=F}
+```{r save-solution, solution = TRUE, eval=FALSE}
 numbers <- c(34, 24, 19, 23, 16)
 numbers_2 <- c(1:200)
 treatment <- c("yes", "yes", "no", "no", "no", "yes")
@@ -165,7 +258,7 @@ Use the function `save(...)`. Note that you need to set the working directory.
 
 #### Solution 2 \*
 
-```{r save2-solution, solution = TRUE, eval=F}
+```{r save2-solution, solution = TRUE, eval=FALSE}
 events <- heart$event
 eyes <- retinopathy$eye
 save(events, eyes, file = "vectors_survival.RData")
@@ -191,6 +284,8 @@ Use the function `load(...)`.
 load("new_vectors.RData")
 ```
 :::
+
+At this point it is interesting to check the objects that are in the workspace. To do so look at the Environment tab in the upper-right hand pane. You can also use the `ls()` function to list all objects in the workspace.
 
 ### Remove your work {.tabset .tabset-fade .tabset-pills}
 
@@ -227,3 +322,6 @@ Use the function `rm(...)`.
 rm(events, eyes)
 ```
 :::
+
+
+At this point you can inspect the History tab in the upper-right hand pane to see the commands you have executed. If you have made a syntax file check if you can run it in it's entirety without any errors (if you have not you can piece it together from the history). Save the file to disk.
