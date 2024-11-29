@@ -1,0 +1,5 @@
+patientnumber,Status,iodine_deficiency,BMI,educational_level,alcohol,smoking,medication,birthweight,pregnancy_length_weeks,pregnancy_length_days,SAM,SAH,homocysteine,cholesterol,HDL,triglycerides,vitaminB12,folicacid_serum,folicacid_erys
+191,normal brain development,no,25,high,no,no,no,3114,39,5,66,17.3,22.1,16.5,26.32,7.53,492,29.9,1432
+192,normal brain development,no,19,high,no,no,no,2663,38,4,78.6,21.9,15.3,16.4,26.57,7.8,636,35.9,900
+193,normal brain development,no,26,high,no,no,no,3296,39,2,65,23,13.9,16.1,26.3,7.6,625,50.2,1668
+194,normal brain development,no,25,high,no,no,no,3601,39,5,82,16,14.3,15.9,26.64,7.58,419,40.7,1210

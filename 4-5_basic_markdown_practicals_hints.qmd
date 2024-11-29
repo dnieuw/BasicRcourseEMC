@@ -1,0 +1,84 @@
+## Markdown: Hints {.unnumbered}
+
+### Question 1
+
+When using the template Rstudio this should not give any problems. Remember that the markdown code to start a section consists of two hashes `##`.
+
+
+### Question 2
+
+To code chunk you should insert in the Setup section should look something like this:
+
+```{r setup}
+dat <- read.csv("Data/R_data2.csv")
+```
+
+### Question 3
+
+You can cary out all the transformationns using code like:
+
+  
+```{r transformations}
+dat$pregnancy_length <-  dat$pregnancy_length_weeks *7 +
+    dat$pregnancy_length_days
+
+dat$BMI_cat <- cut(dat$BMI, breaks=c(-Inf, 18.5, 24.9, 29.9, Inf),
+                       labels=c("Underweight", "Healthy weight", "Overweight", "Obesity"))
+
+dat$log_homocysteine <- log(dat$homocysteine)
+
+dat$log_vitaminB12 <- log(dat$vitaminB12)
+
+for(i in 1:length(names(dat))){
+  if(class(dat[[i]]) == "character"){
+    dat[[i]] <- as.factor(dat[[i]])
+  }
+}
+
+dat$Status <- factor(dat$Status, 
+                           levels = c("normal brain development", "intellectual disability"))
+
+
+dat <- dat[ , !(names(dat) %in% c("pregnancy_length_weeks", "pregnancy_length_days", "BMI", "homocysteine", "vitaminB12"))]
+```      
+
+### Question 4
+
+To all the desciptives for all variables in the data set you can use the following code template:
+
+```{r}
+for(i in 1:length(names(dat))){
+  if(class(dat[[i]]) == "numeric"){
+    # do something for numeric vriables
+  } else if(class(dat[[i]]) == "factor"){
+    # do something for factor variables
+  }
+}
+
+```
+
+
+Histograms can be created in a simular loop. To make the actual plot use the `hist` function.
+
+### Question 5
+
+Use the `t.test` or `wilcox.test` function to compare the mean of the logarithm of the Vitamin B12 for the two levels of `Status` (normal brain development or intellectual disability).
+
+### Question 6
+
+Use the `glm` function to perform logistic regression analysis to investigate the association between `Status` and log `Vitamin B12` while adjusting for `medication`, `smoking` and `alcohol`.
+
+The code should look something like:
+
+```{r eval=FALSE}
+glm1_adjusted <- glm(formula, data = dat, family = binomial)
+
+```
+
+Use the `summary`, `coef` and `confint` functions to extract the following details.
+
+
+
+### Question 7
+
+State your conclusions from the adjusted and unadjusted analysis.

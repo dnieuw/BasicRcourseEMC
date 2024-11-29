@@ -60,11 +60,13 @@ book:
         - 4-2_basic_markdown.qmd
         - 4-3_codeblocks.qmd
         - 4-4_basic_markdown_practicals_questions.qmd
-        - 4-5_shiny.qmd
-        - 4-6_shiny_practicals_questions.qmd
-    - part: 4-7_looseends.qmd
+        - 4-5_basic_markdown_practicals_hints.qmd
+        - 4-6_basic_markdown_practicals_solution.qmd
+        - 4-7_shiny.qmd
+        - 4-8_shiny_practicals_questions.qmd
+    - part: 4-9_looseends.qmd
       chapters:
-        - 4-8_tidyverse.qmd
+        - 4-10_tidyverse.qmd
   repo-url: https://github.com/dnieuw/BasicRcourseEMC
   repo-actions: [edit]
   downloads: [pdf]

@@ -1,0 +1,6 @@
+## Markdown: Solution {.unnumbered}
+
+```{=markdown}
+~~~markdown
+{{< include Solution_Rmarkdown.Rmd >}}
+~~~
