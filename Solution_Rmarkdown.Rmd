@@ -1,0 +1,119 @@
+---
+title: "Solution Rmarkdown"
+author: "Sten Willemsen"
+date: "2024-06-06"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+## Setup
+
+```{r setup}
+dat <- read.csv("Data/R_data2.csv")
+```
+
+
+## Introduction
+
+## Data
+
+We perform the following data transformation steps:
+
+* We define the variable `pregnancy_length` by adding together. 
+
+*  We define the variable `BMI_cat` by dividing the variable BMI into categories: <18.5 ("Underweight"), 18.5 - 24.9 ("Healthy weight"), 25 - 29.9 ("Overweight"), and >30 (Obesity).
+
+* We log transform `homocysteine` and `vitaminB12`.
+
+* We transform the categorical variables to factors. 
+
+* We remove the original variables `pregnancy_length_weeks`, `pregnancy_length_days`,  `BMI` and `homocysteine` and `vitaminB12` from the data set.
+
+```{r transformations, echo=FALSE, message=FALSE}
+dat$pregnancy_length <-  dat$pregnancy_length_weeks *7 +
+    dat$pregnancy_length_days
+
+dat$BMI_cat <- cut(dat$BMI, breaks=c(-Inf, 18.5, 24.9, 29.9, Inf),
+                       labels=c("Underweight", "Healthy weight", "Overweight", "Obesity"))
+
+dat$log_homocysteine <- log(dat$homocysteine)
+
+dat$log_vitaminB12 <- log(dat$vitaminB12)
+
+for(i in 1:length(names(dat))){
+  if(class(dat[[i]]) == "character"){
+    dat[[i]] <- as.factor(dat[[i]])
+  }
+}
+
+dat$Status <- factor(dat$Status, 
+                           levels = c("normal brain development", "intellectual disability"))
+
+
+dat <- dat[ , !(names(dat) %in% c("pregnancy_length_weeks", "pregnancy_length_days", "BMI", "homocysteine", "vitaminB12"))]
+```
+
+
+
+## Analysis and Results 
+
+We show descriptives of all variables in the data set.
+
+
+### Descriptives
+
+```{r descriptives}
+for(i in 1:length(names(dat))){
+  if(class(dat[[i]]) == "numeric"){
+    print(paste("Mean of", names(dat)[i], ":", mean(dat[[i]])))
+    print(paste("Standard deviation of", names(dat)[i], ":", sd(dat[[i]])))
+  } else if(class(dat[[i]]) == "factor"){
+    print(paste("Frequency of", names(dat)[i], ":"))
+    print(table(dat[[i]]))
+  }
+}
+
+```
+For the continuous ones we also make a histogram.
+
+```{r}
+for(i in 1:length(names(dat))){
+  if(class(dat[[i]]) == "numeric"){
+    hist(dat[[i]], main = paste("Histogram of", names(dat)[i]))
+  }
+}
+```
+
+### Unadjusted Analysis
+
+We compare the mean of the logarithm of the Vitamin B12 for the two levels of `Status` (normal brain development or intellectual disability).
+
+```{r}
+t.test(log_vitaminB12 ~ Status,data = dat)
+```
+
+## Adjusted analysis
+
+We now perform logistic regression analysis to investigate the association between `Status` and log `Vitamin B12` while adjusting for `medication`, `smoking` and `alcohol`.
+
+```{r}
+glm1_adjusted <- glm(Status ~ log_vitaminB12 +  medication + smoking + alcohol, data = dat, family = binomial)
+
+summary(glm1_adjusted)
+coef(glm1_adjusted)
+confint(glm1_adjusted)
+
+```
+
+
+
+
+## Conclusion and Discussion
+
+**Main points:**
+
+* In the unadjusted analysis, we could not show that the mean of the logarithm of the Vitamin B12 is significantly different for the two levels of `Status`.
+
+* In the adjusted analysis, we found that the log `Vitamin B12` is not significantly associated with `Status` while adjusting for `medication`, `smoking` and `alcohol`.
+
