@@ -117,7 +117,7 @@ Obviously in a real life situation the handling of outliers would require some m
 ### Question 10 (Optional if you have time)
 
 It has been discovered that a mistake has been made in the construction of the data set. Some participants have 
-accidentally been excluded while others have been excluded while they should not have been. The file 'extra.Rdata' contains data of new participants that should be included. The data 'ineexcl.Rdata' contains the 'ids' of patients that should be excluded. 
+accidentally been excluded while others have been excluded while they should not have been. The file `extra.Rdata` contains data of new participants that should be included. The data `ineexcl.Rdata` contains the 'ids' of patients that should be excluded. 
 
 Adjust your data to reflect this new information. Rerun your analysis and adjust your conclusions if needed.
 
