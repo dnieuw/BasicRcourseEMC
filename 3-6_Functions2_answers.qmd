@@ -40,6 +40,8 @@ w <- c(3, 6, 6, 4, 7, 9, 11, 6)
 evenOrOdd(w)
 ```
 
+:::
+
 An error is given, because x in `if(x %% 2 == 0)` is longer than 1. :::
 
 ::: panel-tabset 
@@ -100,6 +102,8 @@ noNegMean(c(-1,-1,-1))
 ```
 
 We get the error message and nothing is returned. :::
+
+:::
 
 ::: panel-tabset 
 ### Question 17
