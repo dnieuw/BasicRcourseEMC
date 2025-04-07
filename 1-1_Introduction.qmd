@@ -122,7 +122,7 @@ There are four panes:
 -   Top right: environment pane
 -   Bottom left: files pane
 
-Type your commands in the source pane and send them to `R` using the keyboard short-cut {{< kbd Ctrl+Enter >}} This will send the line of code your cursor is on to `R` if no code is selected; or if there is code selected, then only the selected code is sent. Open RStudio on your PC and try it now. Since programming is all about typing commands using a keyboard, not pointing and clicking, you might appreciate lots of keyboard shortcuts. Here's an awesome cheatsheet of (RStudio keyboard shortcuts)\[https://www.rstudio.com/resources/cheatsheets/\].
+Type your commands in the source pane and send them to `R` using the keyboard short-cut {{< kbd win=Ctrl+Enter mac=Cmd+Enter >}}. This will send the line of code your cursor is on to `R` if no code is selected; or if there is code selected, then only the selected code is sent. Open RStudio on your PC and try it now. (Alternatively you can also pres the 'Run' icon just below the file tabs). Since programming is all about typing commands using a keyboard, not pointing and clicking, you might appreciate lots of keyboard shortcuts. Here's an awesome cheatsheet of (RStudio keyboard shortcuts)\[https://www.rstudio.com/resources/cheatsheets/\].
 
 A few other things about RStudio:
 
