@@ -1,0 +1,224 @@
+## ggplot: Answers {.unnumbered}
+
+::: callout-warning
+Make sure that you try the exercises yourself first before looking at the answers
+:::
+
+::: panel-tabset
+### Question 1
+
+Explore the data set using dim(), str() and help(), which variables are continuous, which variables are discrete? Is this data set ready for plotting with ggplot?
+
+### Answer 1
+
+Explore the data set using dim(), str() and help(), which variables are continuous, which variables are discrete? Is this data set ready for plotting with ggplot?
+
+```{r, eval=F}
+dim(diamonds)
+str(diamonds)
+help(diamonds)
+```
+:::
+
+::: panel-tabset
+### Question 2
+
+Use ggplot to plot a scatterplot of the relationship between the diamonds' carat and their price
+
+### Answer 2
+
+Use ggplot to plot a scatterplot of the relationship between the diamonds' carat and their price
+
+```{r, eval=F}
+ggplot() + geom_point(data=diamonds, aes(x=carat, y=price))
+
+#or
+
+ggplot(diamonds) + geom_point(aes(x=carat, y=price))
+
+#or
+
+ggplot(diamonds, aes(x=carat, y=price)) + geom_point()
+```
+
+Cut, color, and clarity are factors, and therefore discrete. The others are numeric continuous variables.
+:::
+
+::: panel-tabset
+### Question 3
+
+Make all dots darkblue and set the alpha value to 0.1
+
+### Answer 3
+
+Make all dots darkblue and set the alpha value to 0.1
+
+```{r, eval=F}
+ggplot(diamonds, aes(x=carat, y=price)) + geom_point(color="darkblue", alpha=0.1)
+```
+:::
+
+::: panel-tabset
+### Question 4
+
+Visualize the influence of the color of a diamond on its price by mapping the diamond color to the color aesthetic
+
+### Answer 4
+
+Visualize the influence of the color of a diamond on its price by mapping the diamond color to the color aesthetic
+
+```{r, eval=F}
+#The color of the dots will be overwritten if we specify it statically  
+#in the geom_point function itself
+ggplot(diamonds, aes(x=carat, y=price, color=color)) + geom_point(alpha=0.1)
+```
+:::
+
+::: panel-tabset
+### Question 5
+
+Use a ggplot barplot to visualize diamond clarity depending on color, map diamond color to x and diamond clarity to fill
+
+### Answer 5
+
+Use a ggplot barplot to visualize diamond clarity depending on color, map diamond color to x and diamond clarity to fill
+
+```{r, eval=F}
+ggplot(diamonds, aes(x=color, fill=clarity)) + geom_bar()
+```
+:::
+
+::: panel-tabset
+### Question 6
+
+Create a boxplot of the carat of a diamond based on its clarity and add whiskers using stat_boxplot
+
+### Answer 6
+
+Create a boxplot of the carat of a diamond based on its clarity and add whiskers using stat_boxplot
+
+```{r, eval=F}
+ggplot(diamonds, aes(x=clarity, y=carat)) + 
+	stat_boxplot(geom="errorbar", width=0.5) + 
+	geom_boxplot()
+```
+:::
+
+::: panel-tabset
+### Question 7
+
+Add a geom_point layer to the previous plot mapping the diamonds price to the color
+
+### Answer 7
+
+Add a geom_point layer to the previous plot mapping the diamonds price to the color
+
+```{r, eval=F}
+ggplot(diamonds, aes(x=clarity, y=carat)) + 
+	stat_boxplot(geom="errorbar", width=0.5) + 
+	geom_boxplot() + 
+	geom_point(aes(color=price))
+```
+:::
+
+::: panel-tabset
+### Question 8
+
+Create a histogram of the price of the diamonds and separate the histograms into facets using diamond color, choose a good binwith or number of bins
+
+### Answer 8
+
+Create a histogram of the price of the diamonds and separate the histograms into facets using diamond color, choose a good binwith or number of bins
+
+```{r, eval=F}
+ggplot(diamonds, aes(x=price)) + 
+	geom_histogram(binwidth = 100) + 
+	facet_grid(color ~ .)
+```
+:::
+
+::: panel-tabset
+### Question 9
+
+Create a grid of facets of the same histogram by comparing both color and cut
+
+### Answer 9
+
+Create a grid of facets of the same histogram by comparing both color and cut
+
+```{r, eval=F}
+ggplot(diamonds, aes(x=price)) + 
+	geom_histogram(binwidth = 100) + 
+	facet_grid(color ~ cut)
+```
+:::
+
+::: panel-tabset
+### Question 10
+
+Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+
+### Answer 10
+
+Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+
+```{r, eval=F}
+#Aggregate uses a function (in this case mean) to aggregate all variables 
+#in a given data.frame by a list of variables given in "by"
+mean.price <- aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)
+
+ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+	geom_tile()
+```
+:::
+
+::: panel-tabset
+### Question 11
+
+Change the title of the heatmap to "Average prices"
+
+### Answer 11
+
+Change the title of the heatmap to "Average prices"
+
+```{r, eval=F}
+ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+	geom_tile() + 
+	labs(title="Average prices")
+```
+:::
+
+::: panel-tabset
+### Question 12
+
+Change the gradient of the fill scale using 'scale_fill_gradient2'. Have it go from darkblue to white to darkred, set the midpoint to 4500
+
+### Answer 12
+
+Change the gradient of the fill scale using 'scale_fill_gradient2'. Have it go from darkblue to white to darkred, set the midpoint to 4500
+
+```{r, eval=F}
+ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+	geom_tile() + 
+	labs(title="Average prices") + 
+	scale_fill_gradient2(low="darkblue", mid="white", high="darkred", midpoint = 4500)
+```
+:::
+
+::: panel-tabset
+### Question 13
+
+Choose and add a theme to the heatmap, or create a theme yourself using the options listed at <http://ggplot2.tidyverse.org/reference/theme.html>
+
+### Answer 13
+
+Choose and add a theme to the heatmap, or create a theme yourself using the options listed at <http://ggplot2.tidyverse.org/reference/theme.html>
+
+```{r, eval=F}
+ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+	geom_tile() + 
+	labs(title="Average prices") + 
+	scale_fill_gradient2(low="darkblue", mid="white", high="darkred", midpoint = 4500) + 
+	theme_minimal()
+```
+:::
