@@ -1,45 +1,49 @@
 # Importing and Saving Data
 
+
+
+Because the typical way of using `R` involves writing text into a file with the `.r` or `.R` extension (e.g. `my-r-file.r`). Hopefully you're you are also doing this for the R commands you will use for this course. Sometimes you will also want to save your data.
+
+## Creating and saving an R script
+
+You can create a new R file using the menu (File > New File > R script) or by using the keyboard combination {{< kbd win=Ctrl+Shift+N mac=Cmd+Shift+N >}}. You are then prompted for a file name. When you want to save the file you can do so using the menu again (File > Save) or by pressing {{< kbd win=Ctrl+S mac=Cmd+S >}}. Selecting 'File > Save as ...' saves the active file under another name.
+
 ## Saving and restoring your session
 
-Because the typical way of using `R` involves writing text into a
-file with the `.r` or `.R` extension it's natural to save your
-commands written for a specific purpose in this `my-r-file.r`. Hopefully you're doing this right now. However there
-are other bits and pieces of your `R` session described below you
-may want or need to save.
-
 Save all objects to the working directory in a file called `.RData`:
+
 ```{r}
 #| eval: false
 save.image()
-``` 
+```
+
 Or give the file a name:
+
 ```{r}
 #| eval: false
 save.image("mySession.RData") 
-``` 
+```
 
-Save all commands entered into the `R` console during your session to
-the working directory in a file called `.Rhistory`: 
+Save all commands entered into the `R` console during your session to the working directory in a file called `.Rhistory`:
+
 ```{r}
 #| eval: false
 savehistory()
 ```
+
 Such a file may be hidden by default in some file browsers, including linux.
 
-Note that this typically occurs (console dependent) by default when you
-quit your `R` session. If an `.Rhistory` file already exists from a previous
-session, the current session is appended to the end of this file and
-saved. Thus, by design, a complete log of your work is saved together
-with your script file, if your console session contains less than 512 lines.
+Note that this typically occurs (console dependent) by default when you quit your `R` session. If an `.Rhistory` file already exists from a previous session, the current session is appended to the end of this file and saved. Thus, by design, a complete log of your work is saved together with your script file, if your console session contains less than 512 lines.
 
 Save specific objects:
+
 ```{r}
 #| eval: false
 save(object_1, object_2, object_3, file = "rObjects123.RData")
 ```
 
 Restore or load previous sessions or objects:
+
 ```{r}
 #| eval: false
 load("mySession.RData")        # load from the working directory
@@ -72,6 +76,7 @@ read_excel(path='path/to/file/excelworkbook.xls')
 This function has an optional argument `sheet` to indicate the sheet in the excel file if it contains multiple sheets. Optionally, with `range` a cell range can be indicated.
 
 Load `.Rhistory` file to access the history from the console:
+
 ```{r}
 #| eval: false
 loadhistory()
