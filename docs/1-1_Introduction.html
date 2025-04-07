@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basic R Course - Introduction and History</title>
+<title>Introduction and History – Basic R Course</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,13 +116,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1-1_Introduction.html">Introduction and History</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./1-1_Introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introduction and History</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./1-5_Common_Objects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Common Objects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./1-8_Indexing_Subsetting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Indexing and Subsetting</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./2-1_Datacleaning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Cleaning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -257,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./2-4_Analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./2-7_basic_plotting_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Basic plotting</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./2-9_basic_plotting_practicals_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Basic Plotting: Practicals</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./2-12_ggplot2_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ggplot2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./2-14_ggplot2_practicals_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ggplot2: Practicals</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -360,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./3-1_functions_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./3-9_functions_practicals_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions: Practicals</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -436,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./4-1_represearch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reproducible research</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -461,13 +461,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-5_shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-5_basic_markdown_practicals_hints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markdown: Hints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-6_basic_markdown_practicals_solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution Rmarkdown</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-7_shiny.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Shiny</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-6_shiny_practicals_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-8_shiny_practicals_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Shiny: Questions</span></a>
   </div>
 </li>
@@ -475,16 +487,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./4-7_looseends.html" class="sidebar-item-text sidebar-link">
+            <a href="./4-9_looseends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Loose ends</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-8_tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-10_tidyverse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tidyverse</span></a>
   </div>
 </li>
@@ -547,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>authors: Karl Brand and Elizabeth Ribble</strong></p>
+<p><strong>authors: Karl Brand, Elizabeth Ribble and S. Willemsen</strong></p>
 <section id="course-overview" class="level2">
 <h2 class="anchored" data-anchor-id="course-overview">Course Overview</h2>
 <p>In the first part of the course we are introduced to the <code>R</code> software package, or <strong>environment</strong>, and learn about <code>R</code>, how to interact with it and it’s basic programming elements. In the second part of the course we’ll learn how to use <code>R</code> for it’s intended function: doing statistics quickly and effectively.</p>
@@ -558,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <section id="history" class="level3">
 <h3 class="anchored" data-anchor-id="history">History</h3>
-<p>Before <code>R</code> there was the statistical analysis program, <code>S</code>, developed at Bell Laboratories in 1976 by John Chambers. <code>S</code> was later commercialised as <code>S-PLUS</code>. John Chambers is also a current member of the <code>R</code> core group responsible for developing <code>R</code>.</p>
+<p>Before <code>R</code> there was the statistical analysis program, <code>S</code>, developed at Bell Laboratories in 1976 by John Chambers. <code>S</code> was later commercialised as <code>S-PLUS</code>. John Chambers is also a current member of the board of the <code>R</code> Foundation for Statistical Computing.</p>
 <p>Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand begin coding (1991) the <code>S</code> clone, <code>R</code>, as an open source alternative for academic use. Together with the <code>R</code> core group’ they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, <code>R</code>, probably derives from the first letter of the creator’s names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f</p>
 </section>
 </section>
@@ -574,6 +586,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Although <code>R</code> for Windows (and Mac?) ships with a basic text editor, and it’s possible to execute code from the terminal under linux, a fully featured editor increases convenience and productivity. Grab an awesome text editor:</p>
 <p>RStudio: https://www.rstudio.com/products/rstudio/</p>
+<p>Visual Studio Code: https://code.visualstudio.com/</p>
+<p>Positron: https://github.com/posit-dev/positron</p>
 <p>Emacs/ESS: http://ess.r-project.org/index.php?Section=download</p>
 <p>Here’s a full list available editors: https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces</p>
 </section>
@@ -643,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Top right: environment pane</li>
 <li>Bottom left: files pane</li>
 </ul>
-<p>Type your commands in the source pane and send them to <code>R</code> using the keyboard short-cut <kbd aria-hidden="true">Ctrl+Enter</kbd><span class="visually-hidden">Ctrl+Enter</span> This will send the line of code your cursor is on to <code>R</code> if no code is selected; or if there is code selected, then only the selected code is sent. Open RStudio on your PC and try it now. Since programming is all about typing commands using a keyboard, not pointing and clicking, you might appreciate lots of keyboard shortcuts. Here’s an awesome cheatsheet of (RStudio keyboard shortcuts)[https://www.rstudio.com/resources/cheatsheets/].</p>
+<p>Type your commands in the source pane and send them to <code>R</code> using the keyboard short-cut <kbd aria-hidden="true" data-mac="Cmd+Enter" data-windows="Ctrl+Enter"></kbd><span class="visually-hidden"></span>. This will send the line of code your cursor is on to <code>R</code> if no code is selected; or if there is code selected, then only the selected code is sent. Open RStudio on your PC and try it now. (Alternatively you can also pres the ‘Run’ icon just below the file tabs). Since programming is all about typing commands using a keyboard, not pointing and clicking, you might appreciate lots of keyboard shortcuts. Here’s an awesome cheatsheet of (RStudio keyboard shortcuts)[https://www.rstudio.com/resources/cheatsheets/].</p>
 <p>A few other things about RStudio:</p>
 <ul>
 <li>move the focus between panes using the key board shortcuts <kbd aria-hidden="true">Ctrl+1</kbd><span class="visually-hidden">Ctrl+1</span> and <kbd aria-hidden="true">Ctrl+2</kbd><span class="visually-hidden">Ctrl+2</span> for the source and console panes respectively</li>
@@ -656,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="backslashes">Backslashes</h2>
 <p>One more thing I want to mention is how <code>R</code> interprets backslashes and forwardslashes, i.e.&nbsp;\ and / respectively, as relates to defining the locations of files on your PC. James McDonald does a better job of clarifying this than I otherwise would http://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html:</p>
 <blockquote class="blockquote">
-<p>Let’s pause to note a little historical bifurcation that has caused Almost as much strife as the question of exactly what the <delete> key should do. The convention that the slash (/) character is used as a separator in the notation for a filesystem path is not universal. PC-DOS, for example, used the backslash \. Like Fords vs Chevrolets, French vs English, and whether you crack the egg at the big or small end, it doesn’t really matter a rat’s behind which one you use as long as it works. To make it work in R, however, where the *NIX convention of using the backslash as an escape character is respected, you will have to double backslashes in paths for them to be read properly. Thus if the filename above was: ‘1.R’ I would have to refer to it as: ‘c:\JIM\PSYCH\ADOLDRUG\PARTYUSE1.R’ in an R script.</delete></p>
+<p>Let’s pause to note a little historical bifurcation that has caused Almost as much strife as the question of exactly what the <kbd aria-hidden="true">DELETE</kbd><span class="visually-hidden">DELETE</span> key should do. The convention that the slash (/) character is used as a separator in the notation for a filesystem path is not universal. PC-DOS, for example, used the backslash \. Like Fords vs Chevrolets, French vs English, and whether you crack the egg at the big or small end, it doesn’t really matter a rat’s behind which one you use as long as it works. To make it work in R, however, where the *NIX convention of using the backslash as an escape character is respected, you will have to double backslashes in paths for them to be read properly. Thus if the filename above was: ‘1.R’ I would have to refer to it as: ‘c:\JIM\PSYCH\ADOLDRUG\PARTYUSE1.R’ in an R script.</p>
 </blockquote>
 </section>
 <section id="getting-help" class="level2">
@@ -704,10 +718,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><code>R</code> focused search engine: http://www.Rseek.org</p></li>
 <li><p>Aggregator of all R blogs: http://www.r-bloggers.com</p></li>
-<li><p>Quick-R: http://www.statmethods.net/</p></li>
-<li><p><code>R</code> on Youtube: http://www.youtube.com/watch?v=mL27TAJGlWc</p></li>
-<li><p><code>R</code> in two minutes: http://www.twotorials.com/</p></li>
+<li><p>Quick-R: https://www.datacamp.com/doc/r/category/r-documentation</p></li>
+<li><p><code>R</code> Course in one hour: https://www.youtube.com/watch?v=eR-XRSKsuR4</p></li>
 <li><p><em>The</em> list of reference texts: http://www.r-project.org/doc/bib/R-publications.html</p></li>
+<li><p>The Big Book of R: https://www.bigbookofr.com/</p></li>
 <li><p>This course not enough? There’s a excellent free online introduction to R here: https://www.computerworld.com/article/2497143/business-intelligence-beginner-s-guide-to-r-introduction.html</p></li>
 <li><p>And more..</p>
 <ul>
@@ -901,18 +915,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -944,7 +947,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -952,7 +977,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
