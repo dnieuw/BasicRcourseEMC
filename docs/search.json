@@ -318,421 +318,201 @@
     ]
   },
   {
-    "objectID": "2-8_basic_plotting.html",
-    "href": "2-8_basic_plotting.html",
-    "title": "Basic plotting",
-    "section": "",
-    "text": "Scatterplots and Line Graphs",
-    "crumbs": [
-      "Basic plotting",
-      "Basic plotting"
-    ]
-  },
-  {
-    "objectID": "2-8_basic_plotting.html#scatterplots-and-line-graphs",
-    "href": "2-8_basic_plotting.html#scatterplots-and-line-graphs",
-    "title": "Basic plotting",
-    "section": "",
-    "text": "Scatterplots\nThe plot function is the most basic function for plotting continuous data. If we use plot on one variable, the values of the variable will be plotted against their index, i.e., the order of the data within the object they’re stored:\n\nplot(ToothGrowth$len)\n\n\n\n\n\n\n\n\nWith two variables plot puts the first variable on the x-axis and the second variable on the y-axis (y versus x):\n\nplot(ToothGrowth$dose, ToothGrowth$len)\n\n\n\n\n\n\n\n\nMany parameters are available for customizing your plot. See ?par for an extensive list. We will just look at a couple here, like changing the axis labels:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\", ylab = \"Tooth Length\")\n\n\n\n\n\n\n\n\nWe can also add a title:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\", ylab = \"Tooth Length\", main = \"Guinea Pig Tooth Growth by Dosage\")\n\n\n\n\n\n\n\n\nand even change the colors and characters of specific points:\n\nplot(ToothGrowth$dose, \n     ToothGrowth$len, \n     xlab = \"Dose\", \n     ylab = \"Tooth Length\", \n     main = \"Guinea Pig Tooth Growth by Dosage\", \n     col = ToothGrowth$supp, \n     pch = as.numeric(ToothGrowth$supp))\n\n\n\n\n\n\n\n\nThe legend function adds a legend so we can easily identify which points represent which groups:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\", ylab = \"Tooth Length\", main = \"Guinea Pig Tooth Growth by Dosage\", col = ToothGrowth$supp, pch = as.numeric(ToothGrowth$supp))\n\nlegend(1.5, 15, c(\"OJ\", \"VC\"), col = 1:2, pch = 1:2)\n\n\n\n\n\n\n\n\nThe location of the legend can also be specified by stating a region of the plot e.g. “bottomright” to place it in the very bottom righthand corner of the plot.\nThe argument cex stands for “character expansion” and will enlarge the size of points:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\",\n     ylab = \"Tooth Length\", main = \"Guinea Pig Tooth Growth by Dosage\",\n     col = ToothGrowth$supp, pch = as.numeric(ToothGrowth$supp),\n     cex = 2)\n\nlegend(1.5, 15, c(\"OJ\", \"VC\"), col = 1:2, pch = as.numeric(ToothGrowth$supp), cex=2)\n\n\n\n\n\n\n\n\n\n\nLine Graphs\nTo create a plot using lines instead of points, we can actually still use plot, but we need to specify the type of plot we want, e.g.:\n\nplot(ToothGrowth$len, type = \"l\") # note type is the letter l for \"line\"\n\n\n\n\n\n\n\n\n\nplot(ToothGrowth$len, type = \"b\") # note type is the letter b for \"both\"\n\n\n\n\n\n\n\n\nWe can add additional lines by calling lines:\n\nplot(ToothGrowth$len, type = \"l\")\nlines(ToothGrowth$len + 2)\n\n\n\n\n\n\n\n\nThe line type, width, and color can be adjusted as follows:\n\nplot(ToothGrowth$len, type = \"l\")\nlines(ToothGrowth$len + 2, lty = 3, lwd = 3, col = \"darkgreen\")",
-    "crumbs": [
-      "Basic plotting",
-      "Basic plotting"
-    ]
-  },
-  {
-    "objectID": "2-8_basic_plotting.html#bar-charts-and-histograms",
-    "href": "2-8_basic_plotting.html#bar-charts-and-histograms",
-    "title": "Basic plotting",
-    "section": "Bar Charts and Histograms",
-    "text": "Bar Charts and Histograms\n\nBar Charts\nViewing categorical data in a scatterplot often doesn’t make sense. For example, if we want to see the number of guinea pigs who received each dosage, the following doesn’t provide this information in the most intuitive format:\n\nplot(ToothGrowth$dose)\n\n\n\n\n\n\n\n\n\ntable(ToothGrowth$dose)\n\n\n0.5   1   2 \n 20  20  20 \n\n\n\nbarplot(table(ToothGrowth$dose))\n\n\n\n\n\n\n\n\nWe can plot proportions instead of frequencies, as is often helpful (though not in this case):\n\nprops &lt;- table(ToothGrowth$dose)/nrow(ToothGrowth)\nprops\n\n\n      0.5         1         2 \n0.3333333 0.3333333 0.3333333 \n\n\n\nbarplot(props)\n\n\n\n\n\n\n\n\nNote that the y-axis doesn’t quite extend to the height of the bars. The range of the y-axis is easily change in plots by adjusting the parameter ylim (similarly xlim for the x-axis):\n\nbarplot(props, ylim = c(0, .4))\n\n\n\n\n\n\n\n\nYet again, there are many parameters available for customizing the plot. Let’s try changing the width and colors of the bars:\n\nbarplot(props, ylim = c(0, .4), width = .2, col = c(\"blue\", \"white\", \"red\"))\n\n\n\n\n\n\n\n\nAnd we can plot the bars horizontally, if preferable:\n\nbarplot(props, xlim = c(0, .4),\n  width = .2, col = c(\"blue\", \"white\", \"red\"),\n  horiz = TRUE)\n\n\n\n\n\n\n\n\nNote that we adjusted the range of the x-axis now instead of the y-axis.\n\n\nHistograms\nA bar chart is slightly different from a histogram. We use bar charts to plot frequencies (or proportions) of values present in categories. Continuous data don’t have categories, so to make a similar plot we have to create “categories”. They are often called bins or cells and are created by delining ranges in which the frequencies are calculated. Thankfully, R will do this, and plot the histogram, when we call the function hist:\n\nhist(ToothGrowth$len)\n\n\n\n\n\n\n\n\nNote that in a histogram the sides of the cells touch, whereas they do not in a bar chart. We can also plot the proportions, now called “density”, by changing a single parameter:\n\nhist(ToothGrowth$len, freq = FALSE)\n\n\n\n\n\n\n\n\nIn the next graph we plot the histogram with a different bin width by specifying where to make the breakpoints between the bars:\n\nhist(ToothGrowth$len, freq = FALSE, breaks = seq(0, 35, 2))\n\n\n\n\n\n\n\n\nNote how the granularity of the plot changes with the width of the bin. We can also change the breaks by delining the number of cells to use:\n\nhist(ToothGrowth$len, freq = FALSE, breaks = 25)\n\n\n\n\n\n\n\n\nThe same parameters that change the axes and labels are applicable here:\n\nhist(ToothGrowth$len, freq = FALSE, breaks = seq(0, 35, 2),\n  main = \"Histogram of Tooth Growth\", xlab = \"Tooth Length\",\n  ylim = c(0, .07), col = \"orange\")",
-    "crumbs": [
-      "Basic plotting",
-      "Basic plotting"
-    ]
-  },
-  {
-    "objectID": "2-8_basic_plotting.html#boxplots",
-    "href": "2-8_basic_plotting.html#boxplots",
-    "title": "Basic plotting",
-    "section": "Boxplots",
-    "text": "Boxplots\nA boxplot is another graph we use to view the distribution of a continuous variable. It displays the specified quantiles of the data in the following way:\n\nboxplot(ToothGrowth$len)\n\n\n\n\n\n\n\n\nA single boxplot is nice for visualizing the distribution of one variable, but plotting several side by side allows for a simultaneous comparison of distributions. Here we will use the formula notation. The format y ~ x, where y is a numeric vector and x is a factor, tells the boxplot function that we want to separate the continuous y values into as many boxplots as there are levels of the factor x.\n\nboxplot(ToothGrowth$len~ToothGrowth$supp)\n\n\n\n\n\n\n\n\nJust like in the bar chart, we can plot the boxes horizontally and change the colors, labels and axes:\n\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  ylab = \"Supplement Type\", xlab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\n\n\n\n\n\n\n\n\nThe settings of the parameters of a plot, including the margins, can be specified by calling par() before creating a plot. One nice setting we’ll introduce here is how to put multiple plots into one graphics device:\n\npar(mfrow = c(1, 2))\n  boxplot(ToothGrowth$len~ToothGrowth$supp, main = \"Boxplot\",\n  xlab = \"Supplement Type\")\n  \nhist(ToothGrowth$len, main = \"Histogram\", xlab = \"Tooth Length\")\n\n\n\n\n\n\n\n\nThe settings will stay fixed until we close the device (e.g. by calling dev.off()) or reset par (e.g. par(mfrow = c(1, 1))). It is highly recommended to get familiar with the help page for par to control graphing parameters to create custom graphs. Another helpful function is axis, which allows the specification of custom axis labels (e.g. where to put them and at what angle). See ?axis for more information.",
-    "crumbs": [
-      "Basic plotting",
-      "Basic plotting"
-    ]
-  },
-  {
-    "objectID": "2-8_basic_plotting.html#saving-plots",
-    "href": "2-8_basic_plotting.html#saving-plots",
-    "title": "Basic plotting",
-    "section": "Saving Plots",
-    "text": "Saving Plots\nUp until now we have been creating graphs in a single graphics window that gets overwritten every time we create new plots. If we want to save the images created, we can use “Export” in RStudio to specify what type of file we want to write, its size, location, and name.\nAlternatively we can use functions such as png, pdf, and jpeg. Since we can save our code and not our mouse clicks, the use of these functions avoids any confusion about how an image was written, allows for quick simple changes, and provides a convenient way to reproduce multiple, similar plots. For example:\n\n# note: run getwd() to see the working directory -\n# that is the directory to which files will be written\npdf(\"plot1.pdf\", width = 6, height = 9)\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  xlab = \"Supplement Type\", ylab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\ndev.off()\n\npdf(\"plot2.pdf\", width = 4, height = 8)\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  xlab = \"Supplement Type\", ylab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\ndev.off()\n\nNote that you have to call dev.off() to finish writing the image to the file. If more than one device is open, the return of that function will display a number larger than 1.\nThe units for the width and height arguments of pdf are in inches (7 by 7), but the default for e.g. png is pixels (there is an argument units to change it to in, cm, or mm):\n\npng(\"plot1.png\", units = \"in\", res = 300,\n  width = 6, height = 9)\n\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  xlab = \"Supplement Type\", ylab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\n\ndev.off()",
-    "crumbs": [
-      "Basic plotting",
-      "Basic plotting"
-    ]
-  },
-  {
-    "objectID": "2-10_basic_plotting_practicals_questions.html",
-    "href": "2-10_basic_plotting_practicals_questions.html",
+    "objectID": "2-8_Basic_plotting_practical.html",
+    "href": "2-8_Basic_plotting_practical.html",
     "title": "Basic Plotting: Questions",
     "section": "",
     "text": "Use R to do the following exercises on the BOD data\n\nQuestion 1\n\n\nDisplay the built-in dataset called BOD by running BOD.\n\n\n\n\nQuestion 2\n\n\nWhat is the data structure of BOD? What are the dimensions?\n\n\n\n\nQuestion 3\n\n\nWhat are the names of BOD? Use a function other than str.\n\n\n\n\nQuestion 3\n\n\nMake a line graph of demand versus time, where the line is a deep pink dot-dashed line [Hint: run ?par and look for the parameter lty to see the line types]. Add a blue dashed line of 1.1 times the demand and give it a thickness of 2 using the line width parameter lwd. Make sure both lines are entirely visible by adjusting the range of y using the parameter ylim in the original plot.\n\n\n\nUse R to do the following exercises on the chickwts data.\n\nQuestion 4\n\n\nDisplay the built-in chickwts data.\n\n\n\n\nQuestion 5\n\n\nWhat are the names of chickwts? Use a function other than str\n\n\n\n\nQuestion 6\n\n\nWhat are the levels of feed?\n\n\n\n\nQuestion 7\n\n\nMake the following plots in one 2 x 2 image: - A bar chart of the feed types, each bar a different color. - A bar chart of the proportions of feed types, each bar a different color. - A boxplot of the weights by feed type, each box a different color. - A horizontal boxplot of the weights by feed type, each box a different color.\n\n\n\nUse R to do the following exercises on the Puromycin data.\n\nQuestion 8\n\n\nDisplay the built-in Puromycin data.\n\n\n\n\nQuestion 9\n\n\nMake a scatterplot of the rate versus the concentration. Describe the relationship.\n\n\n\n\nQuestion 10\n\n\nMake a scatterplot of the rate versus the log of the concentration. Describe the relationship.\n\n\n\n\nQuestion 11\n\n\nMake a scatterplot of the rate versus the log of the concentration and color the points by treatment group (state). Describe what you see.\n\n\n\n\nQuestion 12\n\n\nMake a scatterplot of the rate versus the log of the concentration, color the points by treatment group (state), label the x-axis “Concentration” and the y-axis “Rate”, and label the plot “Puromycin”.\n\n\n\n\nQuestion 13\n\n\nAdd a legend to the above plot indicating what the points represent.\n\n\n\n\nQuestion 14\n\n\nMake a boxplot of the treated versus untreated rates. Using the function pdf, save the image to a file with a width and height of 7 inches.\n\n\n\n\nQuestion 15\n\n\nMake a histogram of the frequency of concentrations. What is the width of the bins?\n\n\n\n\nQuestion 16\n\n\nMake a histogram of the frequency of concentrations with a bin width of 0.10. How is this different from the histogram above?\n\n\n\n\nQuestion 17\n\n\nPlot the histograms side by side in the same graphic window and make sure they have the same range on the y-axis. Does this make it easier to answer the question of how the two histograms differ?",
     "crumbs": [
-      "Basic Plotting: Practicals",
+      "Basic plotting",
       "Basic Plotting: Questions"
     ]
   },
   {
-    "objectID": "2-11_basic_plotting_practicals_answers.html",
-    "href": "2-11_basic_plotting_practicals_answers.html",
+    "objectID": "2-9_Basic_plotting_answers.html",
+    "href": "2-9_Basic_plotting_answers.html",
     "title": "Basic Plotting: Answers",
     "section": "",
     "text": "Warning\n\n\n\nMake sure that you try the exercises yourself first before looking at the answers\n\n\nUse R to do the following exercises on the BOD data\n\nQuestion 1Answer\n\n\nDisplay the built-in dataset called BOD by running BOD.\n\n\n\nBOD\n\n  Time demand\n1    1    8.3\n2    2   10.3\n3    3   19.0\n4    4   16.0\n5    5   15.6\n6    7   19.8\n\n\n\n\n\n\nQuestion 2Answer\n\n\nWhat is the data structure of BOD? What are the dimensions?\n\n\n\nstr(BOD)\n\n'data.frame':   6 obs. of  2 variables:\n $ Time  : num  1 2 3 4 5 7\n $ demand: num  8.3 10.3 19 16 15.6 19.8\n - attr(*, \"reference\")= chr \"A1.4, p. 270\"\n\ndim(BOD)\n\n[1] 6 2\n\n\n\n\n\n\nQuestion 3Answer\n\n\nWhat are the names of BOD? Use a function other than str.\n\n\n\nnames(BOD)\n\n[1] \"Time\"   \"demand\"\n\n\n\n\n\n\nQuestion 3Answer\n\n\nMake a line graph of demand versus time, where the line is a deep pink dot-dashed line [Hint: run ?par and look for the parameter lty to see the line types]. Add a blue dashed line of 1.1 times the demand and give it a thickness of 2 using the line width parameter lwd. Make sure both lines are entirely visible by adjusting the range of y using the parameter ylim in the original plot.\n\n\n\nplot(BOD$Time, BOD$demand, type = \"l\", lty = 4,\n  col = \"pink\", ylim = c(0, 25))\nlines(BOD$Time, 1.1 * BOD$demand, lwd = 2, col = \"blue\")\n\n\n\n\n\n\n\n\n\n\n\nUse R to do the following exercises on the chickwts data.\n\nQuestion 4Answer\n\n\nDisplay the built-in chickwts data.\n\n\n\nchickwts\n\n   weight      feed\n1     179 horsebean\n2     160 horsebean\n3     136 horsebean\n4     227 horsebean\n5     217 horsebean\n6     168 horsebean\n7     108 horsebean\n8     124 horsebean\n9     143 horsebean\n10    140 horsebean\n11    309   linseed\n12    229   linseed\n13    181   linseed\n14    141   linseed\n15    260   linseed\n16    203   linseed\n17    148   linseed\n18    169   linseed\n19    213   linseed\n20    257   linseed\n21    244   linseed\n22    271   linseed\n23    243   soybean\n24    230   soybean\n25    248   soybean\n26    327   soybean\n27    329   soybean\n28    250   soybean\n29    193   soybean\n30    271   soybean\n31    316   soybean\n32    267   soybean\n33    199   soybean\n34    171   soybean\n35    158   soybean\n36    248   soybean\n37    423 sunflower\n38    340 sunflower\n39    392 sunflower\n40    339 sunflower\n41    341 sunflower\n42    226 sunflower\n43    320 sunflower\n44    295 sunflower\n45    334 sunflower\n46    322 sunflower\n47    297 sunflower\n48    318 sunflower\n49    325  meatmeal\n50    257  meatmeal\n51    303  meatmeal\n52    315  meatmeal\n53    380  meatmeal\n54    153  meatmeal\n55    263  meatmeal\n56    242  meatmeal\n57    206  meatmeal\n58    344  meatmeal\n59    258  meatmeal\n60    368    casein\n61    390    casein\n62    379    casein\n63    260    casein\n64    404    casein\n65    318    casein\n66    352    casein\n67    359    casein\n68    216    casein\n69    222    casein\n70    283    casein\n71    332    casein\n\n\n\n\n\n\nQuestion 5Answer\n\n\nWhat are the names of chickwts? Use a function other than str\n\n\n\nnames(chickwts)\n\n[1] \"weight\" \"feed\"  \n\n\n\n\n\n\nQuestion 6Answer\n\n\nWhat are the levels of feed?\n\n\n\nlevels(chickwts$feed)\n\n[1] \"casein\"    \"horsebean\" \"linseed\"   \"meatmeal\"  \"soybean\"   \"sunflower\"\n\n\n\n\n\n\nQuestion 7Answer\n\n\nMake the following plots in one 2 x 2 image: - A bar chart of the feed types, each bar a different color. - A bar chart of the proportions of feed types, each bar a different color. - A boxplot of the weights by feed type, each box a different color. - A horizontal boxplot of the weights by feed type, each box a different color.\n\n\n\npar(mfrow = c(2, 2))\n\nbarplot(table(chickwts$feed),\n  col = c(\"red\", \"orange\", \"yellow\",\n  \"green\", \"blue\", \"purple\"))\n\nbarplot(table(chickwts$feed)/length(chickwts$feed),\n  col = c(\"red\", \"orange\", \"yellow\",\n  \"green\", \"blue\", \"purple\"))\n\nboxplot(chickwts$weight~chickwts$feed,\n  col = c(\"red\", \"orange\", \"yellow\",\n  \"green\", \"blue\", \"purple\"))\n\nboxplot(chickwts$weight~chickwts$feed,\n  col = c(\"red\", \"orange\", \"yellow\",\n  \"green\", \"blue\", \"purple\"),\n  horizontal = TRUE)\n\n\n\n\n\n\n\n\n\n\n\nUse R to do the following exercises on the Puromycin data.\n\nQuestion 8Answer\n\n\nDisplay the built-in Puromycin data.\n\n\n\nPuromycin\n\n   conc rate     state\n1  0.02   76   treated\n2  0.02   47   treated\n3  0.06   97   treated\n4  0.06  107   treated\n5  0.11  123   treated\n6  0.11  139   treated\n7  0.22  159   treated\n8  0.22  152   treated\n9  0.56  191   treated\n10 0.56  201   treated\n11 1.10  207   treated\n12 1.10  200   treated\n13 0.02   67 untreated\n14 0.02   51 untreated\n15 0.06   84 untreated\n16 0.06   86 untreated\n17 0.11   98 untreated\n18 0.11  115 untreated\n19 0.22  131 untreated\n20 0.22  124 untreated\n21 0.56  144 untreated\n22 0.56  158 untreated\n23 1.10  160 untreated\n\n\n\n\n\n\nQuestion 9Answer\n\n\nMake a scatterplot of the rate versus the concentration. Describe the relationship.\n\n\n\nplot(Puromycin$conc, Puromycin$rate)\n\n\n\n\n\n\n\n\nThe rate increases faster at lower concentrations than at higher concentrations.\n\n\n\n\nQuestion 10Answer\n\n\nMake a scatterplot of the rate versus the log of the concentration. Describe the relationship.\n\n\n\nplot(log(Puromycin$conc), Puromycin$rate)\n\n\n\n\n\n\n\n\nThe two variables have a linear relationship\n\n\n\n\nQuestion 11Answer\n\n\nMake a scatterplot of the rate versus the log of the concentration and color the points by treatment group (state). Describe what you see.\n\n\n\nplot(log(Puromycin$conc), Puromycin$rate, col = Puromycin$state)\n\n\n\n\n\n\n\n\nIt appears that the the treated group has higher rates than the untreated group, on average. (Note that default colors are black for the first level and red for the second level).\n\n\n\n\nQuestion 12Answer\n\n\nMake a scatterplot of the rate versus the log of the concentration, color the points by treatment group (state), label the x-axis “Concentration” and the y-axis “Rate”, and label the plot “Puromycin”.\n\n\n\nplot(log(Puromycin$conc), Puromycin$rate, col = Puromycin$state,\n  xlab = \"Concentration\", ylab = \"Rate\", main = \"Puromycin\")\n\n\n\n\n\n\n\n\n\n\n\n\nQuestion 13Answer\n\n\nAdd a legend to the above plot indicating what the points represent.\n\n\n\nplot(log(Puromycin$conc), Puromycin$rate, col = Puromycin$state,\n  xlab = \"Concentration\", ylab = \"Rate\", main = \"Puromycin\")\n\nlegend(\"topleft\",c(\"Treated\", \"Untreated\"), col = 1:2, pch = 1)\n\n\n\n\n\n\n\n\n\n\n\n\nQuestion 14Answer\n\n\nMake a boxplot of the treated versus untreated rates. Using the function pdf, save the image to a file with a width and height of 7 inches.\n\n\n\npdf(\"puromycin.pdf\",width = 7, height = 7)\nboxplot(Puromycin$rate~Puromycin$state)\ndev.off()\n\n\n\n\n\nQuestion 15Answer\n\n\nMake a histogram of the frequency of concentrations. What is the width of the bins?\n\n\n\nhist(Puromycin$conc)\n\n\n\n\n\n\n\n\nThe bin width is 0.20.\n\n\n\n\nQuestion 16Answer\n\n\nMake a histogram of the frequency of concentrations with a bin width of 0.10. How is this different from the histogram above?\n\n\n\nhist(Puromycin$conc, breaks = seq(0, 1.2, .10))\n\n\n\n\n\n\n\n\nThe bins are narrower, so we see in finer detail the distribution of the concentrations.\n\n\n\n\nQuestion 17Answer\n\n\nPlot the histograms side by side in the same graphic window and make sure they have the same range on the y-axis. Does this make it easier to answer the question of how the two histograms differ?\n\n\n\npar(mfrow = c(1, 2))\nhist(Puromycin$conc, ylim = c(0, 12))\nhist(Puromycin$conc, breaks = seq(0, 1.2, .10), ylim = c(0, 12))\n\n\n\n\n\n\n\n\nIn some situations it may be of use to view plots simultaneously. In this case, on the right we see clearly that more values are between 0 and 0.10 than 0.10 and 0.20 whereas the plot on the left does not display this information. In the histogram on the right we see that no concentrations fall between 0.30 and 0.50, whereas this is not apparent in the histogram on the left.",
     "crumbs": [
-      "Basic Plotting: Practicals",
+      "Basic plotting",
       "Basic Plotting: Answers"
     ]
   },
   {
-    "objectID": "2-13_ggplot2.html",
-    "href": "2-13_ggplot2.html",
-    "title": "Data visualization using ggplot2",
-    "section": "",
-    "text": "Data\nThe basis of each plot is the data. To plot data with ggplot the data needs to be of the class “data.frame”. The structure of your data.frame is important when you want to plot it with ggplot. Each variable you want to use has to be in a separate column in your data.frame. Take for example the “Indometh” data set which comes with R.\n?Indometh\nThe “Indometh”” data set describes the pharmacokinetics of indomethacin after intravenous injection of indomethacin in six subjects. The data.frame has three columns one containing the subject number, one containing the time of sampling in hours, and one containing the indomethacin concentration ug/ml. This data set is easily plotted with ggplot because it is a data.frame and there is a good separation of variables in the columns.\nSubject time conc\n1       1 0.25 1.50\n2       1 0.50 0.94\n3       1 0.75 0.78\n4       1 1.00 0.48\n5       1 1.25 0.37\n6       1 2.00 0.19\nAn example of a badly formatted data set for visualization with ggplot is a data set of monthly deaths from lung diseases in the UK:\n?ldeaths\nThis data set contains three separate data sets for female, male and both male and female deaths (ldeaths, fdeaths, and mdeaths). The columns contain values per month and the rows indicate the year. (also they are not data.frames)\nJan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec\n1974 3035 2552 2704 2554 2014 1655 1721 1524 1596 2074 2199 2512\n1975 2933 2889 2938 2497 1870 1726 1607 1545 1396 1787 2076 2837\n1976 2787 3891 3179 2011 1636 1580 1489 1300 1356 1653 2013 2823\n1977 3102 2294 2385 2444 1748 1554 1498 1361 1346 1564 1640 2293\n1978 2815 3137 2679 1969 1870 1633 1529 1366 1357 1570 1535 2491\n1979 3084 2605 2573 2143 1693 1504 1461 1354 1333 1492 1781 1915\nSince there are two separate data sets, there is no column indicating the sex. There is also no column indicating the year and no column indicating the month. This means that we cannot use these variables in ggplot to visualize, for instance, the difference between the number of deaths in men and women in a certain year. We can use some more advanced R data reshaping to get these data sets in the right shape.\nDeaths Year Month    Sex\n1    901 1974   Jan female\n2    689 1974   Feb female\n3    827 1974   Mar female\n4    677 1974   Apr female\n5    522 1974   May female\n6    406 1974   Jun female\nggplot(data, aes(x=Month, y=Deaths, color=Sex)) + geom_point()\nHowever, it is much more easy to keep in mind that any variable that you want to use as a part of your ggplot should get its own column when you are designing your data set (in Excel). With the data in the right class and the right format we can easily call the ggplot function, and add a scatter plot layer to it.",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-13_ggplot2.html#aesthetics",
-    "href": "2-13_ggplot2.html#aesthetics",
-    "title": "Data visualization using ggplot2",
-    "section": "Aesthetics",
-    "text": "Aesthetics\nAfter figuring out what data to plot it is necessary to indicate how to plot it. Aesthetics are used to indicate how to plot what. As we saw in the plot of the ldeaths data we start with indicating what data.frame to plot and use aes() to indicate what to plot on the x axis, the y axis and what to use as color. We do not have to indicate what to plot where and which color to give to which category. We simply map a column of our data.frame to an aesthetic. Depending on the geom we use there are a number of aesthetics that can be mapped to a variable:\n\nx\ny\ncolor\nfill\nsize\nalpha\nlinetype\nlabels\nshape\ngroup\n\nAesthetics can also be specified per geom layer. This allows plotting multiple geom layers with different aesthetics. However, when using one data source and one geom layer this will result in exactly the same plot.\n\nggplot(data) + geom_point(aes(x=Month, y=Deaths, color=Sex))\n\nWe can also use plotting parameters without mapping them to a variable to change all dots in the geom_point. This can only be done in the geom itself.\n\nggplot(data, aes(x=Month, y=Deaths, color=Sex)) + geom_point(size=3)",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-13_ggplot2.html#geometries",
-    "href": "2-13_ggplot2.html#geometries",
-    "title": "Data visualization using ggplot2",
-    "section": "Geometries",
-    "text": "Geometries\nFor the previous ggplots we have used the geom_point function which generates a scatter plot layer that can be added to the ggplot. “point” is one of the many geometry layers available in the ggplot library. There are over thirty different geoms in ggplot which can be found at http://docs.ggplot2.org/. We will have a look at the plot types that we have already encountered using the basic R plotting functions and replace them with their ggplot counterparts.\n\nScatter plots\nJust like with other objects in R a ggplot object can be saved to a variable using “&lt;-”. This makes it possible to store the basic plot in a variable and add different geoms to it. Geometries are added to a plot using “+”.\n\n#Basic graphics:\nplot(ToothGrowth$len)\n\n\n\n\n\n\n\n\n\np &lt;- ggplot(ToothGrowth)\np + geom_point(aes(x=as.numeric(rownames(ToothGrowth)), y=len), size=2)\n\n\n\n\n\n\n\n\nWe now map the numeric row names of ToothGrowth to the x aesthetic, however, we could also create a new column called index in the data.frame.\n\nToothGrowth$index &lt;- as.numeric(rownames(ToothGrowth))\n\nWhen we change the data of the ggplot object we saved in variable p we need to recreate the ggplot object with the new data set.\n\np &lt;- ggplot(ToothGrowth)\n\n\n\nLine graphs\n\n#Basic graphics:\nplot(ToothGrowth$len, type = \"l\")\n\n\n\n\n\n\n\np + geom_line(aes(x=index, y=len))\n\n\n\n\n\n\n\n\n\n\nBar charts\n\n#Basic graphics:\nbarplot(table(ToothGrowth$dose))\n\n\n\n\n\n\n\np + geom_bar(aes(x=dose))\n\n\n\n\n\n\n\n\nBecause dose is a continuous variable, ggplot creates a x axis with a continuous scale, which is why there is an empty spot for the 1.5 dose. If we want to use a continuous value as a categorical value we can change it into a factor on the fly in the geom function:\n\np + geom_bar(aes(x=as.factor(dose)))\n\n\n\n\n\n\n\n\n\n\nHistograms\n\n#Basic graphics:\nhist(ToothGrowth$len,breaks = 50)\n\n\n\n\n\n\n\np + geom_histogram(aes(x=len), binwidth = 0.5)\n\n\n\n\n\n\n\n\n\n\nBox plots\n\n#Basic graphics:\nboxplot(ToothGrowth$len~ToothGrowth$supp)\n\n\n\n\n\n\n\n\n\np + geom_boxplot(aes(x=supp,y=len))\n\n\n\n\n\n\n\n\nIf we want whiskers in our plot we can add an error bar geom\n\np + geom_errorbar(aes(x=supp, ymin=..., ymax=...),width=0.5)\n\n\n\n\n\n\n\n\n\n\nHowever, as you can see, this geom requires ymin and ymax as aesthetics and does not calculate the values by itself. We could calculate the min and max values for tooth length grouped by supplement, but we will use a trick using ggplot’s box plot statistics function. (if you want to know more, please read more about these “stat” functions online)\nFirst, we add the error bars with the “stat_boxplot” function, and then add the box plots on top of them.\n\np + stat_boxplot(aes(x=supp,y=len), geom=\"errorbar\", width=0.5) + \n    geom_boxplot(aes(x=supp,y=len))\n\n\n\n\n\n\n\n\nAs we can see the aesthetics of both geoms have to be defined separately in this plot. To reduce typing we could also write the ggplot as follows.\n\np &lt;- ggplot(ToothGrowth, aes(x=supp,y=len)) \np + stat_boxplot(geom=\"errorbar\", width=0.5) + geom_boxplot()\n\nWhen the aesthetics are specified in the base ggplot object it is not necessary to specify them in the added layers.\n\n\nHeatmaps\nOne popular way of displaying large grids of data is using a heatmap. The tile geom generates a tile at each provided x and y value and uses the fill aesthetic to fill the tiles according to another variable. The border color of the tiles are can be changed by using the color aesthetic.\n\np &lt;- ggplot(ToothGrowth)\n\np + geom_tile(aes(x = supp, y = as.factor(dose), fill = len), color=\"black\")\n\n\n\n\n\n\n\n\nThere are dedicated packages for plotting heatmaps, which also perform horizontal and vertical clustering of the tiles. These are, however, out of the scope of this course, but it should be easy to find them online.",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-13_ggplot2.html#facets",
-    "href": "2-13_ggplot2.html#facets",
-    "title": "Data visualization using ggplot2",
-    "section": "Facets",
-    "text": "Facets\nApart from using aesthetics to map variables to, ggplot has another feature which can help visualizing data called “facets”. We have added multiple plots to the viewing window before, using “par(mfrow=c(…,…))”. However, after specifying how many plots should be printed in the plot viewer we have to call the plot function multiple times to populate the viewer.\nIf we want to compare the effect of orange juice versus vitamin C depending on the dose we can plot three box plots next to each other.\n\npar(mfrow = c(1, 3))\n\nlow &lt;- ToothGrowth[which(ToothGrowth$dose==0.5),]\nmed &lt;- ToothGrowth[which(ToothGrowth$dose==1),]\nhigh &lt;- ToothGrowth[which(ToothGrowth$dose==2),]\n\nboxplot(low$len~low$supp, main = \"Low dose\", xlab = \"Supplement Type\")\nboxplot(med$len~med$supp, main = \"Medium dose\", xlab = \"Supplement Type\")\nboxplot(high$len~high$supp, main = \"High dose\", xlab = \"Supplement Type\")\n\n\n\n\n\n\n\n\nHowever, using ggplot we can simply map the dose column to a ggplot facet grid. The mapping of variables is not done via a aes(), but in formula form. Variables on the right indicate the columns in the grid and variables on the left indicate the rows of the grid. A “.” can be used if we want to use only one variable for faceting. This will also preserve the scales, making it more easy to compare the three plots. For fun, let’s add the actual data points in an additional geom on top of the box plot.\n\nggplot(ToothGrowth, aes(x=supp,y=len)) + \n    stat_boxplot(geom=\"errorbar\", width=0.5) + \n    geom_boxplot() + geom_point(color=\"red\") + \n    facet_grid(. ~ as.factor(dose))\n\n\n\n\n\n\n\n\nWe can do the same with two variables in a grid.\n\nggplot(ToothGrowth, aes(x=len)) + \n    geom_histogram(bins = 5) + \n    facet_grid(dose ~ as.factor(supp))",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-13_ggplot2.html#scales",
-    "href": "2-13_ggplot2.html#scales",
-    "title": "Data visualization using ggplot2",
-    "section": "Scales",
-    "text": "Scales\nWhen mapping a variable to one of the aesthetics of a ggplot, ggplot uses the default scales. It is however possible to adjust the scales of the plot and their color using the scales functions. The scales that are generally used the most are those for the x, y, color and fill of the plot. The type of function to adjust the scale of one of the aesthetics depends on the aesthetic and the type of variable (continuous or discrete). Some of the possible scale adjustments, such as limits, transformation, breaks, labels, and color, are exemplified by the plot below.\n\nggplot(ToothGrowth, aes(x=index, y=as.factor(dose), color=len)) + \n    geom_point() + \n    scale_x_continuous(limits=c(1,100), trans = \"log2\", \n        breaks=c(2,4,8,16,32,64), \n        label=c(\"two\",\"four\",\"eight\",\"sixteen\",\"thirtytwo\",\"sixtyfour\")) + \n    scale_y_discrete(label=c(\"low\",\"medium\",\"high\")) + \n    scale_color_gradient2(limits=c(0,40), low = \"green\", mid = \"black\", high = \"red\", \n        midpoint = 20)\n\n\n\n\n\n\n\n\nHave a look at the scales chapter at http://ggplot2.tidyverse.org/reference/ to explore the other possibilities!",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-13_ggplot2.html#themes",
-    "href": "2-13_ggplot2.html#themes",
-    "title": "Data visualization using ggplot2",
-    "section": "Themes",
-    "text": "Themes\nUntil now we have simply mapped a variable from our data set to an aesthetics parameter, potentially change the scales, and let ggplot handle the styling of the graph. However, ggplot has many options to customize the style of your plot using themes. There are several standard themes that we can use, however it is possible to create our own style from scratch.\nThe standard themes available in the ggplot package are:\n\ntheme_gray\ntheme_bw\ntheme_linedraw\ntheme_light\ntheme_dark\ntheme_minimal\ntheme_classic\ntheme_void\n\nTo add a standard theme we simply add the theme to the ggplot like we would with a geom.\n\np &lt;- ggplot(ToothGrowth)\np + geom_point(aes(x = index, y = len, color = supp, size = dose)) + theme_light()\n\n\n\n\n\n\n\n\nCustom themes can be made from scratch using the “theme()” function. To have a look at all customization parameters visit http://ggplot2.tidyverse.org/reference/theme.html. Labels can be edited by adding “labs()” to the plot.\n\np &lt;- ggplot(ToothGrowth)\np + geom_point(aes(x = index, y = len, color = supp, size = dose)) + \n    theme(text = element_text(family = \"serif\", colour = \"#6f898e\"), \n      line = element_line(color = \"#163f47\"), \n      rect = element_rect(fill = \"#163f47\", color = \"#163f47\"),\n        axis.text.x = element_text(color=\"black\"), \n        axis.text.y = element_text(color=\"white\"), \n      axis.ticks = element_line(color = \"#6f898e\"), \n      axis.line = element_line(color = \"#163f47\", linetype = 1),\n        legend.background = element_blank(), \n        legend.key = element_blank(), \n        panel.background = element_rect(fill = \"#215c68\", colour = \"#163f47\"), \n        panel.border = element_blank(), \n      panel.grid = element_line(color = \"#163f47\"), \n      panel.grid.major = element_line(color = \"#163f47\"), \n      panel.grid.minor = element_line(color = \"#163f47\"), \n      plot.background = element_rect(fill = NULL, colour = NA, linetype = 0)\n    ) + \n    labs(title=\"Toothgrowth\", \n        subtitle = \"Orange juice or Vitamin C?\", x=\"Index\", y=\"Toothlength\", \n        size=\"Dose\", color=\"Supplement\") +\n    scale_color_manual(label=c(\"Orange juice\",\"Vitamin C\"), \n        values = c(\"VC\"=\"green\",\"OJ\"=\"orange\"))",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-13_ggplot2.html#saving-ggplots",
-    "href": "2-13_ggplot2.html#saving-ggplots",
-    "title": "Data visualization using ggplot2",
-    "section": "Saving ggplots",
-    "text": "Saving ggplots\nWe can save out plots by using the ggsave() function. ggsave takes two argument, the first argument being the ggplot and the second being the location where the file should be saved. If we do not specify the complete path, it will save the plot in our current working directory (getwd()). The type of the file depends on the file extension we use. Possible file extensions are “eps”, “ps”, “tex” (pictex), “pdf”, “jpeg”, “tiff”, “png”, “bmp”, “svg” or “wmf” (windows only).\n\np &lt;- ggplot(ToothGrowth)\n\nmyplot &lt;- p + geom_point(aes(x = index, y = len, color = supp, size = dose))\n\nggsave(\"my_plot.pdf\",myplot)",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-13_ggplot2.html#ggplot2-extensions",
-    "href": "2-13_ggplot2.html#ggplot2-extensions",
-    "title": "Data visualization using ggplot2",
-    "section": "ggplot2 extensions",
-    "text": "ggplot2 extensions\nBasic ggplot functions are enough to create a rich variety of plots. However, depending on the field of research, specific plots are popular to visualize specific types of data. Sometimes these plots cannot be made directly from “basic” ggplot. Since ggplot is an opensource package, several people have extended it fulfill the custom needs of users. Many of these ggplot extension packages can be found online with a quick google. The ggplot2 extensions gallery shows some nice examples of add-ons https://exts.ggplot2.tidyverse.org/gallery/. Below are a handful of examples, which we will not explain in detail, but should serve as a source of inspiration.\n\n\n\nggridgeshttps://cran.r-project.org/web/packages/ggridges/\n\n\n\n\n\nplotROC https://github.com/sachsmc/plotROC\n\n\n\n\n\nsurvminer https://rpkgs.datanovia.com/survminer/index.html",
-    "crumbs": [
-      "ggplot2",
-      "Data visualization using ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-15_ggplot2_practicals_questions.html",
-    "href": "2-15_ggplot2_practicals_questions.html",
+    "objectID": "2-11_ggplot2_practical.html",
+    "href": "2-11_ggplot2_practical.html",
     "title": "ggplot: Questions",
     "section": "",
     "text": "Load the ggplot2 library (install it if you have to) and the diamonds data set using data()\n\n# if needed install.packages(\"ggplot2\")\nlibrary(ggplot2)\ndata(\"diamonds\")\n\n\nQuestion 1\n\n\nExplore the data set using dim(), str() and help(), which variables are continuous, which variables are discrete? Is this data set ready for plotting with ggplot?\n\n\n\n\nQuestion 2\n\n\nUse ggplot to plot a scatterplot of the relationship between the diamonds’ carat a\n\n\n\n\nQuestion 3\n\n\nMake all dots darkblue and set the alpha value to 0.1\n\n\n\n\nQuestion 4\n\n\nVisualize the influence of the color of a diamond on its price by mapping the diamond color to the color aesthetic\n\n\n\n\nQuestion 5\n\n\nUse a ggplot barplot to visualize diamond clarity depending on color, map diamond color to x and diamond clarity to fill\n\n\n\n\nQuestion 6\n\n\nCreate a boxplot of the carat of a diamond based on its clarity and add whiskers using stat_boxplot\n\n\n\n\nQuestion 7\n\n\nAdd a geom_point layer to the previous plot mapping the diamonds price to the color\n\n\n\n\nQuestion 8\n\n\nCreate a histogram of the price of the diamonds and separate the histograms into facets using diamond color, choose a good binwith or number of bins\n\n\n\n\nQuestion 9\n\n\nCreate a grid of facets of the same histogram by comparing both color and cut\n\n\n\n\nQuestion 10\n\n\nUse aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean) to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile\n\n\n\n\nQuestion 11\n\n\nChange the title of the heatmap to “Average prices”\n\n\n\n\nQuestion 12\n\n\nChange the gradient of the fill scale using ‘scale_fill_gradient2’. Have it go from darkblue to white to darkred, set the midpoint to 4500\n\n\n\n\nQuestion 13\n\n\nChoose and add a theme to the heatmap, or create a theme yourself using the options listed at http://ggplot2.tidyverse.org/reference/theme.html",
     "crumbs": [
-      "ggplot2: Practicals",
+      "Data visualization using ggplot2",
       "ggplot: Questions"
     ]
   },
   {
-    "objectID": "2-16_ggplot2_practicals_answers.html",
-    "href": "2-16_ggplot2_practicals_answers.html",
+    "objectID": "2-12_ggplot2_answers.html",
+    "href": "2-12_ggplot2_answers.html",
     "title": "ggplot: Answers",
     "section": "",
     "text": "Warning\n\n\n\nMake sure that you try the exercises yourself first before looking at the answers\n\n\n\nQuestion 1Answer 1\n\n\nExplore the data set using dim(), str() and help(), which variables are continuous, which variables are discrete? Is this data set ready for plotting with ggplot?\n\n\nExplore the data set using dim(), str() and help(), which variables are continuous, which variables are discrete? Is this data set ready for plotting with ggplot?\n\ndim(diamonds)\nstr(diamonds)\nhelp(diamonds)\n\n\n\n\n\nQuestion 2Answer 2\n\n\nUse ggplot to plot a scatterplot of the relationship between the diamonds’ carat and their price\n\n\nUse ggplot to plot a scatterplot of the relationship between the diamonds’ carat and their price\n\nggplot() + geom_point(data=diamonds, aes(x=carat, y=price))\n\n#or\n\nggplot(diamonds) + geom_point(aes(x=carat, y=price))\n\n#or\n\nggplot(diamonds, aes(x=carat, y=price)) + geom_point()\n\nCut, color, and clarity are factors, and therefore discrete. The others are numeric continuous variables.\n\n\n\n\nQuestion 3Answer 3\n\n\nMake all dots darkblue and set the alpha value to 0.1\n\n\nMake all dots darkblue and set the alpha value to 0.1\n\nggplot(diamonds, aes(x=carat, y=price)) + geom_point(color=\"darkblue\", alpha=0.1)\n\n\n\n\n\nQuestion 4Answer 4\n\n\nVisualize the influence of the color of a diamond on its price by mapping the diamond color to the color aesthetic\n\n\nVisualize the influence of the color of a diamond on its price by mapping the diamond color to the color aesthetic\n\n#The color of the dots will be overwritten if we specify it statically  \n#in the geom_point function itself\nggplot(diamonds, aes(x=carat, y=price, color=color)) + geom_point(alpha=0.1)\n\n\n\n\n\nQuestion 5Answer 5\n\n\nUse a ggplot barplot to visualize diamond clarity depending on color, map diamond color to x and diamond clarity to fill\n\n\nUse a ggplot barplot to visualize diamond clarity depending on color, map diamond color to x and diamond clarity to fill\n\nggplot(diamonds, aes(x=color, fill=clarity)) + geom_bar()\n\n\n\n\n\nQuestion 6Answer 6\n\n\nCreate a boxplot of the carat of a diamond based on its clarity and add whiskers using stat_boxplot\n\n\nCreate a boxplot of the carat of a diamond based on its clarity and add whiskers using stat_boxplot\n\nggplot(diamonds, aes(x=clarity, y=carat)) + \n    stat_boxplot(geom=\"errorbar\", width=0.5) + \n    geom_boxplot()\n\n\n\n\n\nQuestion 7Answer 7\n\n\nAdd a geom_point layer to the previous plot mapping the diamonds price to the color\n\n\nAdd a geom_point layer to the previous plot mapping the diamonds price to the color\n\nggplot(diamonds, aes(x=clarity, y=carat)) + \n    stat_boxplot(geom=\"errorbar\", width=0.5) + \n    geom_boxplot() + \n    geom_point(aes(color=price))\n\n\n\n\n\nQuestion 8Answer 8\n\n\nCreate a histogram of the price of the diamonds and separate the histograms into facets using diamond color, choose a good binwith or number of bins\n\n\nCreate a histogram of the price of the diamonds and separate the histograms into facets using diamond color, choose a good binwith or number of bins\n\nggplot(diamonds, aes(x=price)) + \n    geom_histogram(binwidth = 100) + \n    facet_grid(color ~ .)\n\n\n\n\n\nQuestion 9Answer 9\n\n\nCreate a grid of facets of the same histogram by comparing both color and cut\n\n\nCreate a grid of facets of the same histogram by comparing both color and cut\n\nggplot(diamonds, aes(x=price)) + \n    geom_histogram(binwidth = 100) + \n    facet_grid(color ~ cut)\n\n\n\n\n\nQuestion 10Answer 10\n\n\nUse aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean) to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile\n\n\nUse aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean) to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile\n\n#Aggregate uses a function (in this case mean) to aggregate all variables \n#in a given data.frame by a list of variables given in \"by\"\nmean.price &lt;- aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)\n\nggplot(mean.price, aes(x=cut, y=color, fill=price)) + \n    geom_tile()\n\n\n\n\n\nQuestion 11Answer 11\n\n\nChange the title of the heatmap to “Average prices”\n\n\nChange the title of the heatmap to “Average prices”\n\nggplot(mean.price, aes(x=cut, y=color, fill=price)) + \n    geom_tile() + \n    labs(title=\"Average prices\")\n\n\n\n\n\nQuestion 12Answer 12\n\n\nChange the gradient of the fill scale using ‘scale_fill_gradient2’. Have it go from darkblue to white to darkred, set the midpoint to 4500\n\n\nChange the gradient of the fill scale using ‘scale_fill_gradient2’. Have it go from darkblue to white to darkred, set the midpoint to 4500\n\nggplot(mean.price, aes(x=cut, y=color, fill=price)) + \n    geom_tile() + \n    labs(title=\"Average prices\") + \n    scale_fill_gradient2(low=\"darkblue\", mid=\"white\", high=\"darkred\", midpoint = 4500)\n\n\n\n\n\nQuestion 13Answer 13\n\n\nChoose and add a theme to the heatmap, or create a theme yourself using the options listed at http://ggplot2.tidyverse.org/reference/theme.html\n\n\nChoose and add a theme to the heatmap, or create a theme yourself using the options listed at http://ggplot2.tidyverse.org/reference/theme.html\n\nggplot(mean.price, aes(x=cut, y=color, fill=price)) + \n    geom_tile() + \n    labs(title=\"Average prices\") + \n    scale_fill_gradient2(low=\"darkblue\", mid=\"white\", high=\"darkred\", midpoint = 4500) + \n    theme_minimal()",
     "crumbs": [
-      "ggplot2: Practicals",
+      "Data visualization using ggplot2",
       "ggplot: Answers"
     ]
   },
   {
-    "objectID": "3-2_functions_examples.html",
-    "href": "3-2_functions_examples.html",
-    "title": "Example functions",
-    "section": "",
-    "text": "Built-in Named Functions\nR has an extensive set of built-in functions, a few of which are listed below:\nFirst six elements/rows:\n\nhead()\n\nLast six elements/rows:\n\ntail()\n\nGenerate a sequence of values:\n\nseq(from=1, to=10, by=2)\n\n[1] 1 3 5 7 9\n\n\nCreate numbers from string numbers:\n\nas.numeric(c(\"1\",\"2\",\"3\",\"4\"))\n\n[1] 1 2 3 4\n\n\nSort a vector alphabetically or numerically:\n\nsort(c(3,4,2,5,1))\n\n[1] 1 2 3 4 5\n\n\nRetrieve the maximum value from a vector:\n\nmax(c(111,333,444,55,6,777,999))\n\n[1] 999\n\n\nGenerate 10 random numbers from a normal distribution with mean 0 and standard deviation 1:\n\nrnorm(10)\n\n [1]  0.9866386 -1.1907724  0.2789528 -1.7088421 -1.4149879 -2.0231506\n [7] -0.6020468 -0.0540384  0.2104971 -1.5843795\n\n\nFor a (very long) list of all named functions available in base-R have a look at this website:\nhttps://stat.ethz.ch/R-manual/R-patched/library/base/html/00Index.html",
-    "crumbs": [
-      "Functions",
-      "Example functions"
-    ]
-  },
-  {
-    "objectID": "3-3_functions_arguments.html",
-    "href": "3-3_functions_arguments.html",
-    "title": "Function arguments",
-    "section": "",
-    "text": "Input of Functions\nEach function accepts one or more values passed to it as arguments, performs computations or operations on those values, and returns a single result.\nTo use a function, type the name of the function with the values of its argument(s) in parentheses ( ), then hit ‘Enter’. For example:\n\nsqrt(2)\n\n[1] 1.414214\n\n\nValues passed as arguments can be in the form of variables, such as x below:\n\nx &lt;- 2\n\nsqrt(x)\n\n[1] 1.414214\n\n\nor they can be entire expressions, such as x^2 + 5 below:\n\nsqrt(x^2 + 5)\n\n[1] 3\n\n\nMost functions take multiple arguments, each of which has a name, and some of which are optional. One way to see what arguments a function takes and which ones are optional is to use the function args().Another way to view a function’s arguments is to look at its help file by typing a ? in front of the function ’s name like so: ?sqrt\nFor example, to see what arguments round() takes (using args()), we’d type:\n\nargs(round)\n\nfunction (x, digits = 0, ...) \nNULL\n\n\nWe see that round() has two arguments, x, a numeric value to be rounded, and digits, an integer specifying the number of decimal places to round to. Thus to round 4.679 to 2 decimal places, we type:\n\nround(4.679, 2)\n\n[1] 4.68\n\n\n\n\nOptional Arguments and Default Values\nThe specification digits = 0 in the output from args(round) tells us that digits has a default value of 0. This means that it’s an optional argument and if no value is passed for that argument, rounding is done to 0 decimal places (i.e. to the nearest integer).\n\n\nPositional Matching and Named Argument Matching\nWhen we type round(4.679, 2) R knows, by positional matching, that the first value, 4.679, is the value to be rounded and the second one, 2, is the number of decimal places to round to.\nWe can also specify values for the arguments by name. For example:\n\nround(x = 4.679, digits = 2)\n\n[1] 4.68\n\n\nWhen named argument matching is used, as above, the order of the arguments is irrelevant. For example, we get the same result by typing:\n\nround(digits = 2, x = 4.679)\n\n[1] 4.68\n\n\nThe two types of argument specification (positional and named argument matching) can be mixed in the same function call:\n\nround(4.679, digits=2)\n\n[1] 4.68\n\n\nAlthough it may be confusing, it is also possible to specify the first argument in the second position, by using named argument matching for the second argument like so:\n\nround(digits=2, 4.679)\n\n[1] 4.68\n\n\n\n\n\n\n\n\nTip\n\n\n\nFor readability of your code it is advisable to name most of the arguments when calling a function",
-    "crumbs": [
-      "Functions",
-      "Function arguments"
-    ]
-  },
-  {
-    "objectID": "3-4_functions_custom.html",
-    "href": "3-4_functions_custom.html",
-    "title": "Creating your own functions",
-    "section": "",
-    "text": "Example of custom function\nEach line inside the function is an object assignment, a function call, a subsetting, a conditional statement, an if/else statement, a for loop, etc. - basically anything you have now learned how to do in R that you want the function to do!\nBelow is an easy example that calculates the mean of two values (x and y):\nmean_xy &lt;- function(x, y){\n  (x + y)/2\n}\nThis function can be used the same way as how you have been using functions before:\nmean_xy(2,6)\n\n[1] 4\nOr:\nmean_xy(x = 2, y = 6)\n\n[1] 4",
-    "crumbs": [
-      "Functions",
-      "Creating your own functions"
-    ]
-  },
-  {
-    "objectID": "3-4_functions_custom.html#function-environments",
-    "href": "3-4_functions_custom.html#function-environments",
-    "title": "Creating your own functions",
-    "section": "Function environments",
-    "text": "Function environments\nEach function, whether built-in or user-defined, has an associated environment, which can be thought of as a container that holds all of the objects present at the time the function is created.\nWhen a function is created on the command line, it’s environment is the so-called “Global Environment”:\n\nw &lt;- 2\nf &lt;- function(y) {\n  d &lt;- 3\n  return(d * (w + y))\n}\nenvironment(f)\n\n&lt;environment: R_GlobalEnv&gt;\n\n\nThe function objects() (or ls()), when called from the command line, lists the objects in the Global Environment:\n\nobjects()\n\n [1] \"Ages\"                   \"calc4\"                  \"data\"                  \n [4] \"f\"                      \"mean_vector\"            \"mean_x\"                \n [7] \"mean_xy\"                \"mean_xy_2\"              \"mean_xy_3\"             \n[10] \"my_descriptives\"        \"my_descriptives2\"       \"my_descriptives2_wrong\"\n[13] \"myFun\"                  \"PatientID\"              \"w\"                     \n[16] \"x\"                     \n\n\n\nGlobal and Local Variables\nIn the function f() defined above, the variable w is said to be global to f() and the variable d, because it’s created within f(), is said to be local to f(). Global variables (like w) are visible from within a function, but local variables (like d) aren’t visible from outside the function. In fact, local variables are temporary, and disappear when the function call is completed:\n\nf(y = 1)\nd\n\nYou get an error: Error in eval(expr, envir, enclos) : object ‘d’ not found, indicating that the variable d does not exist in the ‘Global Environment’.\nWhen a global and local variable share the same name, the local variable is used:\n\nw &lt;- 2\nd &lt;- 4\n\nf &lt;- function(y) {\n  d &lt;- 3\n  return(d * (w + y))\n}\n\nf(y = 1)\n\n[1] 9\n\n\nNote also that when an assignment takes place within a function, and the local variable shares its name with an existing global variable, only the local variable is affected:\n\nw &lt;- 2\nd &lt;- 4 # This value of d will remain unchanged.\n\nf &lt;- function(y) {\n  d &lt;- 3 # This doesnt affect the value of d in the global environment\n  return(d * (w + y))\n}\n\nf(y = 1)\n\n[1] 9\n\nd\n\n[1] 4",
-    "crumbs": [
-      "Functions",
-      "Creating your own functions"
-    ]
-  },
-  {
-    "objectID": "3-5_functions_conditional.html",
-    "href": "3-5_functions_conditional.html",
-    "title": "Conditional execution using if and else",
-    "section": "",
-    "text": "If? Then! Else?\nSometimes we’ll want R to execute a statement only if a certain condition is met. This can be accomplished via the if() and (optionally) else statements:\n\nif()    # Used to execute a statement only if the given condition\n        # is met\nelse    # Used to specify an alternative statement to be executed \n        # if the condition given in if() isn't met\n\nSuch conditional execution commands have the forms:\n\nif (condition) {\n  statement1\n}\n\nand\n\nif (condition) {\n  statement1\n} else {\n  statement2\n}\n\nwhere condition is a logical expression (i.e. it evaluates to TRUE or FALSE)\nIn both cases above, if condition is TRUE, statement1 is executed. If condition is FALSE, then in the first case nothing happens, but in the second case, statement2 is executed.\nHere’s a simple example:\n\nx &lt;- 5\nif (x &lt; 10) {\n  y &lt;- 0\n}\ny\n\n[1] 0\n\n\nHere’s another:\n\nif (x &gt;= 10) {\n  y &lt;- 1\n  } else {\n    y &lt;- 0\n}\ny\n\n[1] 0\n\n\nIt is also possible to write short if/else statements on a single line, in that case you do not have to include { }:\n\ny &lt;- if(x &gt;= 10) 1 else 0\ny\n\n[1] 0\n\n\nBe aware that when using such conditional assignment statements, in the absence of else, if() returns NULL if the condition isn’t met. So:\n\ny &lt;- if(x &gt;= 10) 1\ny\n\nNULL\n\n\n\n\nNested if() Statements\nIn addition, if() statements can be nested. The form for nested if() statements is\n\nif(condition1) {\n  if(condition2) {\n    statement1 \n  } else {\n    statement2\n  }\n}\n\nThe else always refers to the most recent if(), but to keep our code readable, we use tab indentation for every level of nesting in our nested if-else statements.\n\n\nif() else() statements in functions\nThe (nested) if() else() statements can be used in functions. In the next example, we expand on the earlier function my_descriptives. The function now first checks whether the function is numeric or a factor. For numeric variables, the negative values are removed and the summary statistics provided. For factors, the negative level (-1) is removed and a table of the variable is given.\n\nmy_descriptives &lt;- function(x){\n  if(class(x) == \"numeric\"){\n    x.trim &lt;- x[x&gt;0]\n    summary(x.trim)\n  } else if (class(x) == \"factor\"){\n    x.trim &lt;- droplevels(x[x!=-1])\n    table(x.trim)\n  }\n}\n\nThe function can now be applied to numeric variables and factors:\n\nmy_descriptives(data$Ages)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   24.0    38.0    45.5    45.0    52.0    69.0 \n\nmy_descriptives(data$Sex)\n\nx.trim\n 0  1 \n11 13 \n\n\nAgain, we compare the output with the standard summary() and table() output:\n\nsummary(data$Ages)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  -50.0    38.0    45.0    41.2    52.0    69.0 \n\ntable(data$Sex)\n\n\n-1  0  1 \n 1 11 13 \n\n\nApart form nesting if() statements it is also possible to string multiple if statements together like so:\n\nwhatAnimalSound &lt;- function(animal){\n  if(animal == \"cat\") {\n    return(\"Meow!\")\n  } else if (animal == \"frog\") {\n    return(\"Ribbit!\")\n  } else if (animal == \"dog\") {\n    return(\"Woof!\")\n  } else {\n    return(paste0(\"I don't know what sound a '\",animal,\"' makes...\"))\n  }\n}\n\n\nwhatAnimalSound(\"dog\")\n\n[1] \"Woof!\"\n\nwhatAnimalSound(\"bird\")\n\n[1] \"I don't know what sound a 'bird' makes...\"\n\n\n\n\n\n\n\n\nTip\n\n\n\nNotice that the last statement can be else, but to string together multiple statements you have to use if else.\n\n\n\n\nVectorized if-else: The ifelse() Function\nSometimes we’ll need to create a vector whose values depend on whether or not the values in another vector satisfies some condition. In that case we can use the ifelse() function, which works on a vector of values by repeating the same conditional statement for every value in the vector.\nifelse() takes argument test, the condition to be met, yes, the return value (or vector of values) when test is TRUE, and no, the return values (or vector of values) when test is FALSE.\nFor example, here we convert the values in height to \"short\" or \"tall\" based on whether they are larger than 69 or not:\n\nheight &lt;- c(69, 71, 67, 66, 72, 71, 61, 65, 73, 70, 68, 74)\n\nhtCategory &lt;- ifelse(height &gt; 69, yes = \"tall\", no = \"short\")\n\nhtCategory\n\n [1] \"short\" \"tall\"  \"short\" \"short\" \"tall\"  \"tall\"  \"short\" \"short\" \"tall\" \n[10] \"tall\"  \"short\" \"tall\" \n\n\nThe ifelse function is a very simple way of applying a test to a vector of values. To apply a more complicated function to a vector or to apply a function to multiple rows of a matrix or a dataframe we can use the apply functions which will be discussed later on.",
-    "crumbs": [
-      "Functions",
-      "Conditional execution using if and else"
-    ]
-  },
-  {
-    "objectID": "3-6_functions_terminating.html",
-    "href": "3-6_functions_terminating.html",
-    "title": "Terminating a function with returns, errors, and warnings",
-    "section": "",
-    "text": "The following functions are useful for terminating a function call or just printing a warning message:\n\nreturn()     # Terminate a function call and return a value.\nstop()       # Terminate a function call and print an error message.\nwarning()    # Print a warning message (without terminating the \n             # function call).\n\n\nTerminating a Function Call Using if() and return()\nOne way to terminate a function call is with return() which, when encountered, immediately terminates the call and returns a value. For example:\n\nmySign &lt;- function(x) {\n  if(x &lt; 0) return(\"Negative\")\n  if(x &gt; 0) return(\"Positive\")\n  return(\"Zero\")\n}\n\nPassing mySign() the value x = 13 produces the following:\n\nmySign(x = 13)\n\n[1] \"Positive\"\n\n\n(Note that the last line, return(\"Zero\"), was never encountered during the call to my.sign().)\n\n\nTerminating a Function Call and Printing an Error Message Using if() and stop()\nAnother way to terminate a function call is with stop(), which then prints an error message without returning a value. Here’s an example:\n\nmyRatio &lt;- function(x, y) {\n  if(y == 0) stop(\"Cannot divide by 0\")\n  return(x/y)\n}\n\nAn attempt to pass the value 0 for y now results in the following:\n\nmyRatio(x = 3, y = 0)\n\nError in myRatio(x = 3, y = 0): Cannot divide by 0\n\n\n(Note that the last line, return(x/y), was never encountered during the call to myRatio())\n\n\nPrinting a Warning Message Using if() and warning()\nwarning() just prints a warning message to the screen without terminating the function call. Here’s an example:\n\nmyRatio &lt;- function(x, y) {\n  if(y == 0) warning(\"Attempt made to divide by 0\")\n  return(x/y)\n}\n\nNow when we pass the value 0 for y the function call isn’t terminated (the special value Inf is returned), but we get the warning message:\n\nmyRatio(x = 3, y = 0)\n\nWarning in myRatio(x = 3, y = 0): Attempt made to divide by 0\n\n\n[1] Inf\n\n\nBy adding error messages and warnings to you functions it is easier for you and others using your scripts to figure out what went wrong if your script doesn’t return the anticipated answer.",
-    "crumbs": [
-      "Functions",
-      "Terminating a function with returns, errors, and warnings"
-    ]
-  },
-  {
-    "objectID": "3-7_functions_looping.html",
-    "href": "3-7_functions_looping.html",
-    "title": "Looping",
-    "section": "",
-    "text": "for() Loops\nfor() loops are used when we know in advance how many iterations the loop should perform. The general form of a for() loop is:\nfor(i in sequence) {\n  statement1\n  statement2\n  .\n  .\n  .\n  statementq\n}\nwhere sequence is a vector, i (whose name you’re free to change) assumes the values in sequence one after another, each time triggering another iteration of the loop during which statements 1 through q are executed. The statements usually involve the variable i.\nHere’s an example. Suppose we have the data frame describing someone’s coin collection:\ncoins &lt;- data.frame(Coin = c(\"penny\", \"quarter\", \"nickel\", \"quarter\", \"dime\", \"penny\"),\n                    Year = c(1943, 1905, 1889, 1960, 1937, 1900),\n                    Mint = c(\"Den\", \"SF\", \"Phil\", \"Den\", \"SF\", \"Den\"),\n                    Condition = c(\"good\", \"fair\", \"excellent\", \"good\", \"poor\", \"good\"),\n                    Value = c(12.00, 55.00, 300.00, 40.00, 18.00, 28.00),\n                    Price = c(15.00, 45.00, 375.00, 25.00, 20.00, 20.00))\ncoins\n\n     Coin Year Mint Condition Value Price\n1   penny 1943  Den      good    12    15\n2 quarter 1905   SF      fair    55    45\n3  nickel 1889 Phil excellent   300   375\n4 quarter 1960  Den      good    40    25\n5    dime 1937   SF      poor    18    20\n6   penny 1900  Den      good    28    20\nIf we type:\ncolMeans(coins)\n\nError in colMeans(coins): 'x' must be numeric\nwe get an error message because some of the columns are non-numeric. We can compute the means of the numeric columns by looping over the columns, each time checking whether it’s numeric before computing it’s mean:\nmeans &lt;- NULL\nfor(i in 1:ncol(coins)) {\n  if (is.numeric(coins[ , i])) {\n    means &lt;- c(means, mean(coins[ , i]))\n  }\n}\nThe result is:\nmeans\n\n[1] 1922.33333   75.50000   83.33333",
-    "crumbs": [
-      "Functions",
-      "Looping"
-    ]
-  },
-  {
-    "objectID": "3-7_functions_looping.html#looping-over-list-elements",
-    "href": "3-7_functions_looping.html#looping-over-list-elements",
-    "title": "Looping",
-    "section": "Looping Over List Elements",
-    "text": "Looping Over List Elements\nIn the next example, we loop over the elements of a list, printing a list element and recording it’s length during each iteration:\n\nmyList &lt;- list(\n  w = c(4, 4, 5, 5, 6, 6),\n  x = c(\"a\", \"b\", \"c\"),\n  y = c(5, 10, 15),\n  z = c(\"r\", \"s\", \"t\", \"u\", \"v\")\n)\n\nlengths &lt;- NULL\n\nfor(i in myList) {\n  print(i)\n  lengths &lt;- c(lengths, length(i))\n}\n\n[1] 4 4 5 5 6 6\n[1] \"a\" \"b\" \"c\"\n[1]  5 10 15\n[1] \"r\" \"s\" \"t\" \"u\" \"v\"\n\nlengths\n\n[1] 6 3 3 5\n\n\nThese examples are very simple, but looping is a very powerful programming structure for automating analyses, or data processing.\nIn the next chapter we will look at the apply() family of functions, that have been designed for applying functions to a data set in several convenient ways.",
-    "crumbs": [
-      "Functions",
-      "Looping"
-    ]
-  },
-  {
-    "objectID": "3-8_functions_apply.html",
-    "href": "3-8_functions_apply.html",
-    "title": "Using apply functions",
-    "section": "",
-    "text": "Once you have written a function, you would like to apply it to some piece of data. As described in the previous chapter you can simply enter some values as arguments of the function and run it. However, usually you would like to run the function on all of your data. To do that you could write a for loop that loops through you data and applies the function to the whole dataset. However, there is a special family of functions in R that make it easier to apply your function to a range of different data classes in different ways. This family of functions are called apply functions.\nThe apply functions make it easier to run functions over vectors, matrixes, and data.frames. We will discuss four functions of the apply family that are regularly used apply(), lapply(), sapply() and tapply().\n\nUsing apply on matrices\nThe apply function works by “applying” a specified function to an data object. It requires 3 arguments: the data, a so-called “MARGIN”, and a function. The data can be a vector, data.frame or a matrix. The MARGIN indicates whether you want to apply the function to the rows or the columns of your data, or both. To apply the function to the rows the MARGIN should be 1, to apply it to the columns it should be 2 and to apply it to both it should be c(1,2). The function can be an existing function, such as sum() or mean(), or your own custom function.\nAs an example we will apply the function max() to some data, in this case a matrix.\nFirst we create a matrix of 10 by 10.\n\nmat &lt;- matrix(1:100,nrow=10)\n\nmat\n\n      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]\n [1,]    1   11   21   31   41   51   61   71   81    91\n [2,]    2   12   22   32   42   52   62   72   82    92\n [3,]    3   13   23   33   43   53   63   73   83    93\n [4,]    4   14   24   34   44   54   64   74   84    94\n [5,]    5   15   25   35   45   55   65   75   85    95\n [6,]    6   16   26   36   46   56   66   76   86    96\n [7,]    7   17   27   37   47   57   67   77   87    97\n [8,]    8   18   28   38   48   58   68   78   88    98\n [9,]    9   19   29   39   49   59   69   79   89    99\n[10,]   10   20   30   40   50   60   70   80   90   100\n\n\nThen we apply our function “max” to the matrix rows, indicated with a 1 (notice that we do not run the function by writing max(), but we just give the name of the function that should be run: max).\n\napply(mat, 1, max)\n\n [1]  91  92  93  94  95  96  97  98  99 100\n\n\nThe result of applying the function max to the rows of the matrix is a vector containing the maximal values for each row.\nWe can also determine the maximal value in each column by using 2 as the MARGIN value.\n\napply(mat, 2, max)\n\n [1]  10  20  30  40  50  60  70  80  90 100\n\n\nAs mentionned before, it is also possible to apply the functions to each element in the matrix by using c(1,2). In that case it doesn’t make sense to determine the maximum value, so lets take the square root.\n\napply(mat, c(1,2), sqrt)\n\n          [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]\n [1,] 1.000000 3.316625 4.582576 5.567764 6.403124 7.141428 7.810250 8.426150\n [2,] 1.414214 3.464102 4.690416 5.656854 6.480741 7.211103 7.874008 8.485281\n [3,] 1.732051 3.605551 4.795832 5.744563 6.557439 7.280110 7.937254 8.544004\n [4,] 2.000000 3.741657 4.898979 5.830952 6.633250 7.348469 8.000000 8.602325\n [5,] 2.236068 3.872983 5.000000 5.916080 6.708204 7.416198 8.062258 8.660254\n [6,] 2.449490 4.000000 5.099020 6.000000 6.782330 7.483315 8.124038 8.717798\n [7,] 2.645751 4.123106 5.196152 6.082763 6.855655 7.549834 8.185353 8.774964\n [8,] 2.828427 4.242641 5.291503 6.164414 6.928203 7.615773 8.246211 8.831761\n [9,] 3.000000 4.358899 5.385165 6.244998 7.000000 7.681146 8.306624 8.888194\n[10,] 3.162278 4.472136 5.477226 6.324555 7.071068 7.745967 8.366600 8.944272\n          [,9]     [,10]\n [1,] 9.000000  9.539392\n [2,] 9.055385  9.591663\n [3,] 9.110434  9.643651\n [4,] 9.165151  9.695360\n [5,] 9.219544  9.746794\n [6,] 9.273618  9.797959\n [7,] 9.327379  9.848858\n [8,] 9.380832  9.899495\n [9,] 9.433981  9.949874\n[10,] 9.486833 10.000000\n\n\nBecause sqrt also works on matrices, it is actually unnecessary to use apply to run it for each element in the matrix. In cases where functions cannot directly be run on a matrix, apply offers a short and readible alternative to writing a nested for loop.\n\n\nUsing lapply on lists to return lists\nThe lapply function is used to run a function on list objects. Let’s assume we have a list of different sized matrices and we would like to know the dimensions of these matrices. We can then run the function “dim” on the list using lapply. lapply only requires a list object and a function as arguments and always returns a list of results.\n\nmylist &lt;- list(matrix(1:16,nrow=4), matrix(1:9,nrow=3),matrix(1:4,nrow=2))\n\nlapply(mylist, dim)\n\n[[1]]\n[1] 4 4\n\n[[2]]\n[1] 3 3\n\n[[3]]\n[1] 2 2\n\n\nBecause dataframes are lists of lists, it is also possible to run lapply on dataframes. In that case lapply will apply the function to the columns of the data.frame object and it returns a list of values.\n\ndf &lt;- data.frame(\"col1\"=c(1,1,1,1), \"col2\"=c(2,2,2,2), \"col3\"=c(3,3,3,3))\n\nlapply(df, sum)\n\n$col1\n[1] 4\n\n$col2\n[1] 8\n\n$col3\n[1] 12\n\n\n\n\nUsing lapply alternative sapply\nsapply is a user-friendly version of lapply. The difference with lapply is that sapply tries to turn the list of results into a more user-friendly format, such as a vector or a matrix.\nFor the first example the results are turned into a matrix.\n\nsapply(mylist, dim)\n\n     [,1] [,2] [,3]\n[1,]    4    3    2\n[2,]    4    3    2\n\n\nFor the second example, the results are turned into a vector.\n\nsapply(df, sum)\n\ncol1 col2 col3 \n   4    8   12 \n\n\nThere is no difference between lapply and sapply in how the data is used, but it gives you more flexibility in how the results are created.\n\n\nUsing tapply on groups of data\ntapply lets you apply a function on groupings of your data. Imagine that you have a dataset in which a grouping factor separates your data into two groups of patients. With tapply you can apply a function to those two groups separately. The only thing tapply requires is the column you would like to apply the function to, the grouping factor and the function you would like to apply.\n\npatients &lt;- data.frame(\"group\"=paste('grp',c(1,1,1,1,1,1,2,2,2,2,2,2),sep='-'), \"outcome\"=rnorm(12))\npatients\n\n   group     outcome\n1  grp-1  0.31233191\n2  grp-1  0.28405394\n3  grp-1  0.67533333\n4  grp-1  0.94253993\n5  grp-1  0.47577169\n6  grp-1  1.06795389\n7  grp-2 -0.43177722\n8  grp-2  1.08692743\n9  grp-2 -0.97557876\n10 grp-2 -1.02199703\n11 grp-2  0.08718425\n12 grp-2 -1.16000962\n\ntapply(patients$outcome, patients$group, mean)\n\n     grp-1      grp-2 \n 0.6263308 -0.4025418 \n\n\nIt is also possible to use multiple factors in a list to create groups, which returns a matrix.\n\npatients &lt;- data.frame(\"group\"=paste('grp',c(1,1,1,1,1,1,2,2,2,2,2,2),sep='-'),\n                       \"serotype\"=c(\"A\",\"B\",\"A\",\"B\",\"A\",\"B\",\"A\",\"B\",\"A\",\"B\",\"A\",\"B\"),\n                       \"outcome\"=rnorm(12))\n\ntapply(patients$outcome, list(patients$group, patients$serotype), mean)\n\n                A          B\ngrp-1 -0.15011090 -0.2177756\ngrp-2 -0.01297469 -0.1910979\n\n\nThese are some (trivial) examples of how you can use the apply family of functions to quickly apply a function to your data. It is possible to do the same thing by using for loops, but apply functions are generally faster to write and read. In some cases using apply to run your function can also increase the speed of your code. More on increasing the speed of your code will follow in later lectures.",
-    "crumbs": [
-      "Functions",
-      "Using apply functions"
-    ]
-  },
-  {
-    "objectID": "3-10_functions_practicals_questions.html",
-    "href": "3-10_functions_practicals_questions.html",
-    "title": "Functions: Questions",
+    "objectID": "3-2_Functions1_practical.html",
+    "href": "3-2_Functions1_practical.html",
+    "title": "Functions1: Questions",
     "section": "",
     "text": "Function Arguments",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Questions"
+      "Functions 1",
+      "Functions1: Questions"
     ]
   },
   {
-    "objectID": "3-10_functions_practicals_questions.html#function-arguments",
-    "href": "3-10_functions_practicals_questions.html#function-arguments",
-    "title": "Functions: Questions",
+    "objectID": "3-2_Functions1_practical.html#function-arguments",
+    "href": "3-2_Functions1_practical.html#function-arguments",
+    "title": "Functions1: Questions",
     "section": "",
     "text": "Question 1\n\n\nLook at the help file for the function mean().\nHow many arguments does the function have?\nWhat types of vectors are accepted?\nWhat is the default setting for dealing with NA values?\n\n\n\n\nQuestion 2\n\n\nUse the function mean() to calculate the mean of the following values:\n\n\n\n\n\n\nNote\n\n\n\nnote the NA and use named argument matching\n\n\n\nc(1, 2, NA, 6)\n\n\n\n\n\nQuestion 3\n\n\nDo Q2 again but rearrange the arguments.\n\n\n\n\nQuestion 4\n\n\nDo Q2 again using positional matching.\n\n\n\n\nQuestion 5\n\n\nDetermine the class of mean() using class().\n\n\n\n\nQuestion 6\n\n\nDetermine the class of mean() using str().\n\n\n\n\nQuestion 7\n\n\nDetermine the class of the value output in Q4 using class().\n\n\n\n\nQuestion 8\n\n\nDetermine the class of the value output in Q4 using str().",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Questions"
+      "Functions 1",
+      "Functions1: Questions"
     ]
   },
   {
-    "objectID": "3-10_functions_practicals_questions.html#function-environment-and-scoping",
-    "href": "3-10_functions_practicals_questions.html#function-environment-and-scoping",
-    "title": "Functions: Questions",
+    "objectID": "3-2_Functions1_practical.html#function-environment-and-scoping",
+    "href": "3-2_Functions1_practical.html#function-environment-and-scoping",
+    "title": "Functions1: Questions",
     "section": "Function environment and scoping",
     "text": "Function environment and scoping\n\nQuestion 9\n\n\nFor each of the following sets of commands, give the value that will be returned by the last command. Try to answer without using R.\n\n\n\n\nw &lt;- 5\nf &lt;- function(y) {\n  return(w + y)\n}\nf(y = 2)\n\n\n\n\n\nw &lt;- 5\nf &lt;- function(y) {\n  w &lt;- 4\n  return(w + y)\n}\nf(y = 2)\n\n\n\n\n\nQuestion 10\n\n\nAmong the variables w, d, and y, which are global to f() and which are local? What is the value of z when executing f(w)\n\nw &lt;- 2\nf &lt;- function(y) {\n  d &lt;- 3\n  h &lt;- function(z) {\n    return(z + d)\n  }\n  return(y * h(y))\n}\n\n\n\n\n\nQuestion 11\n\n\nDo the following in R:\n\nTry:\n\n\nmyFun1 &lt;- function(a) {\n  b &lt;- 3\n  myFun2(a)\n}\n\nmyFun2 &lt;- function(y) {\n  return(y + a + b)\n}\n\nmyFun1(10)\n\nWhat happens?\n\nNow try:\n\n\na &lt;- 1\nb &lt;- 2\nmyFun1(10)\n\nWhat happens?",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Questions"
+      "Functions 1",
+      "Functions1: Questions"
     ]
   },
   {
-    "objectID": "3-10_functions_practicals_questions.html#if-else-and-ifelse-and-vectorization",
-    "href": "3-10_functions_practicals_questions.html#if-else-and-ifelse-and-vectorization",
-    "title": "Functions: Questions",
-    "section": "if(), else, and ifelse() and Vectorization",
-    "text": "if(), else, and ifelse() and Vectorization\n\nQuestion 12\n\n\nWrite a function called ‘evenOrOdd’ involving if and else that takes an argument x and returns “Even” or “Odd” depending on whether or not x is divisible by 2. (Do not use the ifelse() function).\n\n\n\n\nQuestion 13\n\n\nIs your function ‘evenOrOdd’ vectorized? Check by passing it the vector:\n\nw &lt;- c(3, 6, 6, 4, 7, 9, 11, 6)\n\n\n\n\n\nQuestion 14\n\n\nAnother way to determine if each element of a vector is even or odd is to use the ifelse() function, which serves as a vectorized version if and else. Use ifelse() to obtain “Even” or “Odd” for each element of w.",
-    "crumbs": [
-      "Functions: Practicals",
-      "Functions: Questions"
-    ]
-  },
-  {
-    "objectID": "3-10_functions_practicals_questions.html#terminating-a-function-with-returns-errors-and-warnings",
-    "href": "3-10_functions_practicals_questions.html#terminating-a-function-with-returns-errors-and-warnings",
-    "title": "Functions: Questions",
-    "section": "Terminating a function with returns, errors, and warnings",
-    "text": "Terminating a function with returns, errors, and warnings\nThe functions warning() and stop() are used to print a warning message and to stop the execution of the function call and print an error message. For example:\n\nnoNegMean &lt;- function(x) {\n  if(all(x &lt; 0)) {\n    stop(\"All values in x are negative\")\n  }\n  \n  if(any(x &lt; 0)) {\n    x[x &lt; 0] &lt;- 0\n    warning(\"Negative values in x replaced by zero\")\n  }\n  \n  return(mean(x))\n}\n\n\nQuestion 15\n\n\nCopy the above code and then pass noNegMean() a vector containing some negative and some positive values. What happens?\n\n\n\n\nQuestion 16\n\n\nWhat happens when you pass noNegMean() a vector containing all negative values?\n\n\n\n\nQuestion 17\n\n\nWrite a function ratio() that takes two arguments, x and y, and attempts to compute the ratio x/y.\nIf both x == 0 & y == 0, the function should stop and print an error message about dividing 0 by 0.\nIf y == 0 (but not x), the function should print a warning message about dividing by 0, and then return x/y (which will be Inf).\nIn all other cases, it should return x/y.\nTest your ratio() function first using two nonzero values for x and y, then using a nonzero x but y = 0, and finally using x = 0 and y = 0.",
-    "crumbs": [
-      "Functions: Practicals",
-      "Functions: Questions"
-    ]
-  },
-  {
-    "objectID": "3-10_functions_practicals_questions.html#looping-using-for-loops-and-the-apply-functions",
-    "href": "3-10_functions_practicals_questions.html#looping-using-for-loops-and-the-apply-functions",
-    "title": "Functions: Questions",
-    "section": "Looping using for() loops and the apply functions",
-    "text": "Looping using for() loops and the apply functions\n\nQuestion 18\n\n\nCopy this is a function to determine if a number is a prime number:\n\nisPrime &lt;- function(num){\n  if (num == 2) {\n    return(TRUE)\n  }\n  if(num &gt; 1) {\n    for(i in 2:(num-1)) {\n      if ((num %% i) == 0) {\n        return(FALSE)\n      }\n    }\n  } else {\n    return(FALSE)\n  }\n  \n  return(TRUE)\n}\n\nCopy this matrix for which we would like to check if a number is a prime number:\n\nmat &lt;- matrix(1:100, nrow=10)\n\nUse the apply() function to calculate the prime number for each number in the matrix.\nWhat numbers from 1 until 100 are prime numbers?\n\n\n\n\nQuestion 19\n\n\nCopy the following command to create a list containing two generations of the famous Kennedy family:\n\nKennedys &lt;- list(\n    JosephJr = character(0),\n    John = c(\"Caroline\", \"JohnJr\", \"Patrick\"),\n    Rosemary = character(0),\n    Kathleen = character(0),\n    Eunice = c(\"RobertIII\", \"Maria\", \"Timothy\", \"Mark\", \"Anthony\"),\n    Patricia = c(\"Christopher\", \"Sydney\", \"Victoria\", \"Robin\"),\n    Robert = c(\"Kathleen\", \"JosephII\", \"RobertJr\", \"David\", \n               \"MaryC\", \"Michael\", \"MaryK\", \"Christopher\", \n               \"Matthew\", \"Douglas\", \"Rory\"),\n    Jean = c(\"Stephen\", \"William\", \"Amanda\", \"Kym\"),\n    Edward = c(\"Kara\", \"EdwardJr\", \"Patrick\")\n)\n\nUse a for() loop to loop over the list of the first generation of Kennedys, keeping track of how many children each one has in a vector.\n\n\n\n\nQuestion 20\n\n\nNow, using the lapply() function, loop over the list of the first generation of Kennedys and keep track of how many children each Kennedy has. What is the class of the output?\n\n\n\n\nQuestion 21\n\n\nAnswer Question 20 again using the sapply() function. What is the class of the output?\n\n\n\n\nQuestion 22\n\n\nLoad the “diamonds” dataset from the ggplot2 package by running library(gglot2) and calculate the average price of diamonds by color and clarity using the tapply() function.",
-    "crumbs": [
-      "Functions: Practicals",
-      "Functions: Questions"
-    ]
-  },
-  {
-    "objectID": "3-11_functions_practicals_answers.html",
-    "href": "3-11_functions_practicals_answers.html",
-    "title": "Functions: Answers",
+    "objectID": "3-3_Functions1_answers.html",
+    "href": "3-3_Functions1_answers.html",
+    "title": "Functions1: Answers",
     "section": "",
     "text": "Function Arguments",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Answers"
+      "Functions 1",
+      "Functions1: Answers"
     ]
   },
   {
-    "objectID": "3-11_functions_practicals_answers.html#function-arguments",
-    "href": "3-11_functions_practicals_answers.html#function-arguments",
-    "title": "Functions: Answers",
+    "objectID": "3-3_Functions1_answers.html#function-arguments",
+    "href": "3-3_Functions1_answers.html#function-arguments",
+    "title": "Functions1: Answers",
     "section": "",
     "text": "Question 1Answer\n\n\nLook at the help file for the function mean().\nHow many arguments does the function have?\nWhat types of vectors are accepted?\nWhat is the default setting for dealing with NA values?\n\n\nThree arguments (plus further arguments).\nNumerical and logical vectors are accepted.\nThe default setting is to NOT remove NA (missing) values.\n\n\n\n\nQuestion 2Answer\n\n\nUse the function mean() to calculate the mean of the following values:\n\n\n\n\n\n\nNote\n\n\n\nnote the NA and use named argument matching\n\n\n\nc(1, 2, NA, 6)\n\n\n\n\nmean(x = c(1, 2, NA, 6), na.rm = TRUE)\n\n[1] 3\n\n\n\n\n\n\nQuestion 3Answer\n\n\nDo Q2 again but rearrange the arguments.\n\n\n\nmean(na.rm = TRUE, x = c(1, 2, NA, 6))\n\n[1] 3\n\n\n\n\n\n\nQuestion 4Answer\n\n\nDo Q2 again using positional matching.\n\n\n\nmean(c(1, 2, NA, 6), 0, TRUE)\n\n[1] 3\n\n\n\n\n\n\nQuestion 5Answer\n\n\nDetermine the class of mean() using class().\n\n\n\nclass(mean)\n\n[1] \"function\"\n\n\nThe class is function.\n\n\n\n\nQuestion 6Answer\n\n\nDetermine the class of mean() using str().\n\n\n\nstr(mean)\n\nfunction (x, ...)  \n\n\nThe class is function.\n\n\n\n\nQuestion 7Answer\n\n\nDetermine the class of the value output in Q4 using class().\n\n\n\nclass(mean(c(1, 2, NA, 6), 0, TRUE))\n\n[1] \"numeric\"\n\n\nThe class is numeric\n\n\n\n\nQuestion 8Answer\n\n\nDetermine the class of the value output in Q4 using str().\n\n\n\nstr(mean(c(1, 2, NA, 6), 0, TRUE))\n\n num 3\n\n\nThe num means the class is numeric.",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Answers"
+      "Functions 1",
+      "Functions1: Answers"
     ]
   },
   {
-    "objectID": "3-11_functions_practicals_answers.html#function-environment-and-scoping",
-    "href": "3-11_functions_practicals_answers.html#function-environment-and-scoping",
-    "title": "Functions: Answers",
+    "objectID": "3-3_Functions1_answers.html#function-environment-and-scoping",
+    "href": "3-3_Functions1_answers.html#function-environment-and-scoping",
+    "title": "Functions1: Answers",
     "section": "Function environment and scoping",
     "text": "Function environment and scoping\n\nQuestion 9Answer\n\n\nFor each of the following sets of commands, give the value that will be returned by the last command. Try to answer without using R.\n\n\n\n\nw &lt;- 5\nf &lt;- function(y) {\n  return(w + y)\n}\nf(y = 2)\n\n\n\n\n\nw &lt;- 5\nf &lt;- function(y) {\n  w &lt;- 4\n  return(w + y)\n}\nf(y = 2)\n\n\n\n\nThis will return 7 because w is 5 and we are evaluating the function at y = 2\nThis will return 6 because w is reassigned as 4 inside the function and we are evaluating the function at y = 2.\n\n\n\n\n\nQuestion 10Answer\n\n\nAmong the variables w, d, and y, which are global to f() and which are local? What is the value of z when executing f(w)\n\nw &lt;- 2\nf &lt;- function(y) {\n  d &lt;- 3\n  h &lt;- function(z) {\n    return(z + d)\n  }\n  return(y * h(y))\n}\n\n\n\nThe object w is global to f() while d and y are local to f().\nz is 2, because it takes the value of y when executing h(y) in function f(), which takes the value of global variable w when executing f(w)\n\n\n\n\nQuestion 11Answer\n\n\nDo the following in R:\n\nTry:\n\n\nmyFun1 &lt;- function(a) {\n  b &lt;- 3\n  myFun2(a)\n}\n\nmyFun2 &lt;- function(y) {\n  return(y + a + b)\n}\n\nmyFun1(10)\n\nWhat happens?\n\nNow try:\n\n\na &lt;- 1\nb &lt;- 2\nmyFun1(10)\n\nWhat happens?\n\n\n\nWe get an error message because a and b are local to myFun1 so the function myFun2 can’t find them in the global environment.\nWe get get the value 13 because the values a and b are global so myFun2 can find them and use them in its commands.",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Answers"
+      "Functions 1",
+      "Functions1: Answers"
     ]
   },
   {
-    "objectID": "3-11_functions_practicals_answers.html#if-else-and-ifelse-and-vectorization",
-    "href": "3-11_functions_practicals_answers.html#if-else-and-ifelse-and-vectorization",
-    "title": "Functions: Answers",
-    "section": "if(), else, and ifelse() and Vectorization",
-    "text": "if(), else, and ifelse() and Vectorization\n\nQuestion 12Anwser\n\n\nWrite a function called ‘evenOrOdd’ involving if and else that takes an argument x and returns “Even” or “Odd” depending on whether or not x is divisible by 2. (Do not use the ifelse() function).\n\n\n\nevenOrOdd &lt;- function(x) {\n  if(x %% 2 == 0) {\n    return(\"Even\")\n  } else {\n    return(\"Odd\")\n  }\n}\n\n\n\n\n\nQuestion 13Answer\n\n\nIs your function ‘evenOrOdd’ vectorized? Check by passing it the vector:\n\nw &lt;- c(3, 6, 6, 4, 7, 9, 11, 6)\n\n\n\n\nevenOrOdd(w)\n\nError in if (x%%2 == 0) {: the condition has length &gt; 1\n\n\nAn error is given, because x in if(x %% 2 == 0) is longer than 1.\n\n\n\n\nQuestion 14Answer\n\n\nAnother way to determine if each element of a vector is even or odd is to use the ifelse() function, which serves as a vectorized version if and else. Use ifelse() to obtain “Even” or “Odd” for each element of w.\n\n\n\nifelse(w %% 2 == 0, \"Even\", \"Odd\")\n\n[1] \"Odd\"  \"Even\" \"Even\" \"Even\" \"Odd\"  \"Odd\"  \"Odd\"  \"Even\"",
+    "objectID": "3-5_Functions2_practical.html",
+    "href": "3-5_Functions2_practical.html",
+    "title": "Functions2: Questions",
+    "section": "",
+    "text": "if(), else, and ifelse() and Vectorization",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Answers"
+      "Functions 2",
+      "Functions2: Questions"
     ]
   },
   {
-    "objectID": "3-11_functions_practicals_answers.html#terminating-a-function-with-returns-errors-and-warnings",
-    "href": "3-11_functions_practicals_answers.html#terminating-a-function-with-returns-errors-and-warnings",
-    "title": "Functions: Answers",
+    "objectID": "3-5_Functions2_practical.html#if-else-and-ifelse-and-vectorization",
+    "href": "3-5_Functions2_practical.html#if-else-and-ifelse-and-vectorization",
+    "title": "Functions2: Questions",
+    "section": "",
+    "text": "Question 12\n\n\nWrite a function called ‘evenOrOdd’ involving if and else that takes an argument x and returns “Even” or “Odd” depending on whether or not x is divisible by 2. (Do not use the ifelse() function).\n\n\n\n\nQuestion 13\n\n\nIs your function ‘evenOrOdd’ vectorized? Check by passing it the vector:\n\nw &lt;- c(3, 6, 6, 4, 7, 9, 11, 6)\n\n\n\n\n\nQuestion 14\n\n\nAnother way to determine if each element of a vector is even or odd is to use the ifelse() function, which serves as a vectorized version if and else. Use ifelse() to obtain “Even” or “Odd” for each element of w.",
+    "crumbs": [
+      "Functions 2",
+      "Functions2: Questions"
+    ]
+  },
+  {
+    "objectID": "3-5_Functions2_practical.html#terminating-a-function-with-returns-errors-and-warnings",
+    "href": "3-5_Functions2_practical.html#terminating-a-function-with-returns-errors-and-warnings",
+    "title": "Functions2: Questions",
+    "section": "Terminating a function with returns, errors, and warnings",
+    "text": "Terminating a function with returns, errors, and warnings\nThe functions warning() and stop() are used to print a warning message and to stop the execution of the function call and print an error message. For example:\n\nnoNegMean &lt;- function(x) {\n  if(all(x &lt; 0)) {\n    stop(\"All values in x are negative\")\n  }\n  \n  if(any(x &lt; 0)) {\n    x[x &lt; 0] &lt;- 0\n    warning(\"Negative values in x replaced by zero\")\n  }\n  \n  return(mean(x))\n}\n\n\nQuestion 15\n\n\nCopy the above code and then pass noNegMean() a vector containing some negative and some positive values. What happens?\n\n\n\n\nQuestion 16\n\n\nWhat happens when you pass noNegMean() a vector containing all negative values?\n\n\n\n\nQuestion 17\n\n\nWrite a function ratio() that takes two arguments, x and y, and attempts to compute the ratio x/y.\nIf both x == 0 & y == 0, the function should stop and print an error message about dividing 0 by 0.\nIf y == 0 (but not x), the function should print a warning message about dividing by 0, and then return x/y (which will be Inf).\nIn all other cases, it should return x/y.\nTest your ratio() function first using two nonzero values for x and y, then using a nonzero x but y = 0, and finally using x = 0 and y = 0.",
+    "crumbs": [
+      "Functions 2",
+      "Functions2: Questions"
+    ]
+  },
+  {
+    "objectID": "3-5_Functions2_practical.html#looping-using-for-loops-and-the-apply-functions",
+    "href": "3-5_Functions2_practical.html#looping-using-for-loops-and-the-apply-functions",
+    "title": "Functions2: Questions",
+    "section": "Looping using for() loops and the apply functions",
+    "text": "Looping using for() loops and the apply functions\n\nQuestion 18\n\n\nCopy this is a function to determine if a number is a prime number:\n\nisPrime &lt;- function(num){\n  if (num == 2) {\n    return(TRUE)\n  }\n  if(num &gt; 1) {\n    for(i in 2:(num-1)) {\n      if ((num %% i) == 0) {\n        return(FALSE)\n      }\n    }\n  } else {\n    return(FALSE)\n  }\n  \n  return(TRUE)\n}\n\nCopy this matrix for which we would like to check if a number is a prime number:\n\nmat &lt;- matrix(1:100, nrow=10)\n\nUse the apply() function to calculate the prime number for each number in the matrix.\nWhat numbers from 1 until 100 are prime numbers?\n\n\n\n\nQuestion 19\n\n\nCopy the following command to create a list containing two generations of the famous Kennedy family:\n\nKennedys &lt;- list(\n    JosephJr = character(0),\n    John = c(\"Caroline\", \"JohnJr\", \"Patrick\"),\n    Rosemary = character(0),\n    Kathleen = character(0),\n    Eunice = c(\"RobertIII\", \"Maria\", \"Timothy\", \"Mark\", \"Anthony\"),\n    Patricia = c(\"Christopher\", \"Sydney\", \"Victoria\", \"Robin\"),\n    Robert = c(\"Kathleen\", \"JosephII\", \"RobertJr\", \"David\", \n               \"MaryC\", \"Michael\", \"MaryK\", \"Christopher\", \n               \"Matthew\", \"Douglas\", \"Rory\"),\n    Jean = c(\"Stephen\", \"William\", \"Amanda\", \"Kym\"),\n    Edward = c(\"Kara\", \"EdwardJr\", \"Patrick\")\n)\n\nUse a for() loop to loop over the list of the first generation of Kennedys, keeping track of how many children each one has in a vector.\n\n\n\n\nQuestion 20\n\n\nNow, using the lapply() function, loop over the list of the first generation of Kennedys and keep track of how many children each Kennedy has. What is the class of the output?\n\n\n\n\nQuestion 21\n\n\nAnswer Question 20 again using the sapply() function. What is the class of the output?\n\n\n\n\nQuestion 22\n\n\nLoad the “diamonds” dataset from the ggplot2 package by running library(gglot2) and calculate the average price of diamonds by color and clarity using the tapply() function.",
+    "crumbs": [
+      "Functions 2",
+      "Functions2: Questions"
+    ]
+  },
+  {
+    "objectID": "3-6_Functions2_answers.html",
+    "href": "3-6_Functions2_answers.html",
+    "title": "Functions2: Answers",
+    "section": "",
+    "text": "if(), else, and ifelse() and Vectorization",
+    "crumbs": [
+      "Functions 2",
+      "Functions2: Answers"
+    ]
+  },
+  {
+    "objectID": "3-6_Functions2_answers.html#if-else-and-ifelse-and-vectorization",
+    "href": "3-6_Functions2_answers.html#if-else-and-ifelse-and-vectorization",
+    "title": "Functions2: Answers",
+    "section": "",
+    "text": "Question 12Anwser\n\n\nWrite a function called ‘evenOrOdd’ involving if and else that takes an argument x and returns “Even” or “Odd” depending on whether or not x is divisible by 2. (Do not use the ifelse() function).\n\n\n\nevenOrOdd &lt;- function(x) {\n  if(x %% 2 == 0) {\n    return(\"Even\")\n  } else {\n    return(\"Odd\")\n  }\n}\n\n\n\n\n\nQuestion 13Answer\n\n\nIs your function ‘evenOrOdd’ vectorized? Check by passing it the vector:\n\nw &lt;- c(3, 6, 6, 4, 7, 9, 11, 6)\n\n\n\n\nevenOrOdd(w)\n\nError in if (x%%2 == 0) {: the condition has length &gt; 1\n\n\nAn error is given, because x in if(x %% 2 == 0) is longer than 1.\n\n\n\n\nQuestion 14Answer\n\n\nAnother way to determine if each element of a vector is even or odd is to use the ifelse() function, which serves as a vectorized version if and else. Use ifelse() to obtain “Even” or “Odd” for each element of w.\n\n\n\nifelse(w %% 2 == 0, \"Even\", \"Odd\")\n\n[1] \"Odd\"  \"Even\" \"Even\" \"Even\" \"Odd\"  \"Odd\"  \"Odd\"  \"Even\"",
+    "crumbs": [
+      "Functions 2",
+      "Functions2: Answers"
+    ]
+  },
+  {
+    "objectID": "3-6_Functions2_answers.html#terminating-a-function-with-returns-errors-and-warnings",
+    "href": "3-6_Functions2_answers.html#terminating-a-function-with-returns-errors-and-warnings",
+    "title": "Functions2: Answers",
     "section": "Terminating a function with returns, errors, and warnings",
     "text": "Terminating a function with returns, errors, and warnings\nThe functions warning() and stop() are used to print a warning message and to stop the execution of the function call and print an error message. For example:\n\nnoNegMean &lt;- function(x) {\n  if(all(x &lt; 0)) {\n    stop(\"All values in x are negative\")\n  }\n  \n  if(any(x &lt; 0)) {\n    x[x &lt; 0] &lt;- 0\n    warning(\"Negative values in x replaced by zero\")\n  }\n  \n  return(mean(x))\n}\n\n\nQuestion 15Answer\n\n\nCopy the above code and then pass noNegMean() a vector containing some negative and some positive values. What happens?\n\n\n\nnoNegMean(c(-1,0,1))\n\nWarning in noNegMean(c(-1, 0, 1)): Negative values in x replaced by zero\n\n\n[1] 0.3333333\n\n\nWe get the warning message and it returned 0.3333, which is the average of c(0, 0, 1).\n\n\n\n\nQuestion 16Answer\n\n\nWhat happens when you pass noNegMean() a vector containing all negative values?\n\n\n\nnoNegMean(c(-1,-1,-1))\n\nError in noNegMean(c(-1, -1, -1)): All values in x are negative\n\n\nWe get the error message and nothing is returned.\n\n\n\n\nQuestion 17Answer\n\n\nWrite a function ratio() that takes two arguments, x and y, and attempts to compute the ratio x/y.\nIf both x == 0 & y == 0, the function should stop and print an error message about dividing 0 by 0.\nIf y == 0 (but not x), the function should print a warning message about dividing by 0, and then return x/y (which will be Inf).\nIn all other cases, it should return x/y.\nTest your ratio() function first using two nonzero values for x and y, then using a nonzero x but y = 0, and finally using x = 0 and y = 0.\n\n\n\nratio &lt;- function(x,y) {\n  if(x == 0 & y == 0) {\n    stop(\"Cannot divide zero by zero.\")\n  }\n\n  if(y == 0) {\n    warning(\"Cannot divide by zero.\")\n  }\n\n  ratio &lt;- x/y\n  return(ratio)\n}\n\n\nratio(2,3)\n\n[1] 0.6666667\n\nratio(0,0)\n\nError in ratio(0, 0): Cannot divide zero by zero.\n\nratio(1,0)\n\nWarning in ratio(1, 0): Cannot divide by zero.\n\n\n[1] Inf",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Answers"
+      "Functions 2",
+      "Functions2: Answers"
     ]
   },
   {
-    "objectID": "3-11_functions_practicals_answers.html#looping-using-for-loops-and-the-apply-functions",
-    "href": "3-11_functions_practicals_answers.html#looping-using-for-loops-and-the-apply-functions",
-    "title": "Functions: Answers",
+    "objectID": "3-6_Functions2_answers.html#looping-using-for-loops-and-the-apply-functions",
+    "href": "3-6_Functions2_answers.html#looping-using-for-loops-and-the-apply-functions",
+    "title": "Functions2: Answers",
     "section": "looping using for() loops and the apply functions",
     "text": "looping using for() loops and the apply functions\n\nQuestion 18Answer\n\n\nCopy this is a function to determine if a number is a prime number:\n\nisPrime &lt;- function(num){\n  if (num == 2) {\n    return(TRUE)\n  }\n  if(num &gt; 1) {\n    for(i in 2:(num-1)) {\n      if ((num %% i) == 0) {\n        return(FALSE)\n      }\n    }\n  } else {\n    return(FALSE)\n  }\n  \n  return(TRUE)\n}\n\nCopy this matrix for which we would like to check if a number is a prime number:\n\nmat &lt;- matrix(1:100, nrow=10)\n\nUse the apply() function to calculate the prime number for each number in the matrix.\nWhat numbers from 1 until 100 are prime numbers?\n\n\n\napply(mat, c(1,2), isPrime)\n\n       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]\n [1,] FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE\n [2,]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [3,]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE\n [4,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [5,]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [6,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [7,]  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE\n [8,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [9,] FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE\n[10,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n\n\n\nmat[apply(mat, c(1,2), isPrime)]\n\n [1]  2  3  5  7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97\n\n\n\n\n\n\nQuestion 19Answer\n\n\nCopy the following command to create a list containing two generations of the famous Kennedy family:\n\nKennedys &lt;- list(\n    JosephJr = character(0),\n    John = c(\"Caroline\", \"JohnJr\", \"Patrick\"),\n    Rosemary = character(0),\n    Kathleen = character(0),\n    Eunice = c(\"RobertIII\", \"Maria\", \"Timothy\", \"Mark\", \"Anthony\"),\n    Patricia = c(\"Christopher\", \"Sydney\", \"Victoria\", \"Robin\"),\n    Robert = c(\"Kathleen\", \"JosephII\", \"RobertJr\", \"David\", \n               \"MaryC\", \"Michael\", \"MaryK\", \"Christopher\", \n               \"Matthew\", \"Douglas\", \"Rory\"),\n    Jean = c(\"Stephen\", \"William\", \"Amanda\", \"Kym\"),\n    Edward = c(\"Kara\", \"EdwardJr\", \"Patrick\")\n)\n\nUse a for() loop to loop over the list of the first generation of Kennedys, keeping track of how many children each one has in a vector.\n\n\n\nchildren &lt;- NULL\nfor(i in Kennedys){\n  children &lt;- c(children, length(i))\n}\nchildren\n\n[1]  0  3  0  0  5  4 11  4  3\n\n\n\n\n\n\nQuestion 20Answer\n\n\nNow, using the lapply() function, loop over the list of the first generation of Kennedys and keep track of how many children each Kennedy has. What is the class of the output?\n\n\n\nresult &lt;- lapply(Kennedys, length)\nresult\n\n$JosephJr\n[1] 0\n\n$John\n[1] 3\n\n$Rosemary\n[1] 0\n\n$Kathleen\n[1] 0\n\n$Eunice\n[1] 5\n\n$Patricia\n[1] 4\n\n$Robert\n[1] 11\n\n$Jean\n[1] 4\n\n$Edward\n[1] 3\n\nclass(result)\n\n[1] \"list\"\n\n\n\n\n\n\nQuestion 21Answer\n\n\nAnswer Question 20 again using the sapply() function. What is the class of the output?\n\n\n\nresult &lt;- sapply(Kennedys, length)\nresult\n\nJosephJr     John Rosemary Kathleen   Eunice Patricia   Robert     Jean \n       0        3        0        0        5        4       11        4 \n  Edward \n       3 \n\nclass(result)\n\n[1] \"integer\"\n\n\n\n\n\n\nQuestion 22Answer\n\n\nLoad the “diamonds” dataset from the ggplot2 package by running library(gglot2) and calculate the average price of diamonds by color and clarity using the tapply() function.\n\n\n\nlibrary(ggplot2)\ntapply(diamonds$price, list(diamonds$color, diamonds$clarity), mean)\n\n        I1      SI2      SI1      VS2      VS1     VVS2     VVS1       IF\nD 3863.024 3931.101 2976.146 2587.226 3030.159 3351.128 2947.913 8307.370\nE 3488.422 4173.826 3161.838 2750.942 2856.294 2499.674 2219.820 3668.506\nF 3342.182 4472.625 3714.226 3756.795 3796.718 3475.513 2804.277 2750.836\nG 3545.693 5021.684 3774.787 4416.256 4131.362 3845.283 2866.821 2558.034\nH 4453.414 6099.895 5032.415 4722.414 3780.689 2649.067 1845.658 2287.870\nI 4302.185 7002.649 5355.020 5690.506 4633.184 2968.233 2034.862 1994.937\nJ 5254.060 6520.958 5186.048 5311.059 4884.461 5142.397 4034.176 3363.882",
     "crumbs": [
-      "Functions: Practicals",
-      "Functions: Answers"
+      "Functions 2",
+      "Functions2: Answers"
     ]
   },
   {
@@ -934,16 +714,6 @@
     ]
   },
   {
-    "objectID": "3-1_functions_intro.html",
-    "href": "3-1_functions_intro.html",
-    "title": "Functions",
-    "section": "",
-    "text": "Functions are things you can do. R comes with predefined functions which do many things from basic file management to complex statistics. To get started, below are some often used functions. This default set of functions is easily extended by defining your own functions and adding those defined by others conveniently in CRAN and BioConductor packages:\nhttp://stat.ethz.ch/R-manual/R-patched/library/base/html/00Index.html\nhttp://cran.r-project.org/web/packages/available_packages_by_name.html\nhttp://www.bioconductor.org/packages/release/bioc/\nFunctions are expressed as:\nfunction.name(), e.g., t.test() or, an operator, e.g., +\nEasily obtain functions from other R users using install.packages():\ninstall.packages(\"packageName\")\nPackages are basically a collection of new functions made by people around the world managed by the “CRAN” package repository team.\nThe package name must be quoted when installing. Besides installing the package on your PC, you need to load it into your R session before you can use it:\nlibrary(packageName)",
-    "crumbs": [
-      "Functions"
-    ]
-  },
-  {
     "objectID": "4-1_represearch.html",
     "href": "4-1_represearch.html",
     "title": "Reproducible research",
@@ -961,36 +731,6 @@
     "text": "As an appendix to this course we also discuss the tidyverse. This is a collection of packages that replicates some of the core functionality of R.",
     "crumbs": [
       "Loose ends"
-    ]
-  },
-  {
-    "objectID": "2-7_basic_plotting_intro.html",
-    "href": "2-7_basic_plotting_intro.html",
-    "title": "Basic plotting",
-    "section": "",
-    "text": "R is a very powerful tool for producing custom graphics ranging from basic scatterplots to 3D plots. In this introduction to plotting we will learn how to create basic graphs like scatterplots, line graphs and bar charts, as well as histograms and boxplots, all of which are available in the base package. Different methods for saving plots will be introduced. We will use the data ToothGrowth throughout the following examples:\n\ndata(ToothGrowth)\nstr(ToothGrowth)\n\n'data.frame':   60 obs. of  3 variables:\n $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...\n $ supp: Factor w/ 2 levels \"OJ\",\"VC\": 2 2 2 2 2 2 2 2 2 2 ...\n $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...",
-    "crumbs": [
-      "Basic plotting"
-    ]
-  },
-  {
-    "objectID": "2-12_ggplot2_intro.html",
-    "href": "2-12_ggplot2_intro.html",
-    "title": "ggplot2",
-    "section": "",
-    "text": "Grammar of graphics\nThe grammar of graphics consists of a number of “layers”, which generate a ggplot when correctly put together. These five basic layers will be discussed here:",
-    "crumbs": [
-      "ggplot2"
-    ]
-  },
-  {
-    "objectID": "2-12_ggplot2_intro.html#grammar-of-graphics",
-    "href": "2-12_ggplot2_intro.html#grammar-of-graphics",
-    "title": "ggplot2",
-    "section": "",
-    "text": "Data\nAesthetics\nGeometries\nFacets\nScales\nThemes",
-    "crumbs": [
-      "ggplot2"
     ]
   },
   {
@@ -1128,7 +868,7 @@
     "href": "1-5_Common_Objects.html#functions",
     "title": "Common Objects",
     "section": "functions",
-    "text": "functions\nFunctions are used to do something. We have already seen several of them. Like mode, class and as.integer and you will see lots more. Note that in R functions are objects too.\n\nmode(mode)   # like all objects functions have a mode\n\n[1] \"function\"\n\nclass(mode)\n\n[1] \"function\"\n\nprint(mode)  \n\nfunction (x) \n{\n    if (is.expression(x)) \n        return(\"expression\")\n    if (is.call(x)) \n        return(switch(deparse(x[[1L]])[1L], `(` = \"(\", \"call\"))\n    if (is.name(x)) \n        \"name\"\n    else switch(tx &lt;- typeof(x), double = , integer = \"numeric\", \n        closure = , builtin = , special = \"function\", tx)\n}\n&lt;bytecode: 0x000001a01f896120&gt;\n&lt;environment: namespace:base&gt;\n\n# do not worry if you do not understand the meaning of what is printed yet\n\nNote that operators are functions to. When you want to use them in the same way as normal functions just put them between back-ticks (“`”):\n\nmode(`+`)   \n\n[1] \"function\"\n\n`+`(1, 1)\n\n[1] 2\n\n\nBase R has many factions but many more are come from various extension packages. These can be installed using install.packages() :\n\ninstall.packages(\"packageName\",\n                 lib = \"/directory/to/my custom R library\",\n                 repos = \"http://cran.xl-mirror.nl\")\n\n# usually lib and repos can be omitted (left at the default)\n\nThe package name must be quoted when installing.\n\nlibrary(\"packageName\")      ## quotes are optional when loading a package\n\nFunctions will be discussed in more detail later.",
+    "text": "functions\nFunctions are used to do something. We have already seen several of them. Like mode, class and as.integer and you will see lots more. Note that in R functions are objects too.\n\nmode(mode)   # like all objects functions have a mode\n\n[1] \"function\"\n\nclass(mode)\n\n[1] \"function\"\n\nprint(mode)  \n\nfunction (x) \n{\n    if (is.expression(x)) \n        return(\"expression\")\n    if (is.call(x)) \n        return(switch(deparse(x[[1L]])[1L], `(` = \"(\", \"call\"))\n    if (is.name(x)) \n        \"name\"\n    else switch(tx &lt;- typeof(x), double = , integer = \"numeric\", \n        closure = , builtin = , special = \"function\", tx)\n}\n&lt;bytecode: 0x00000258808a2190&gt;\n&lt;environment: namespace:base&gt;\n\n# do not worry if you do not understand the meaning of what is printed yet\n\nNote that operators are functions to. When you want to use them in the same way as normal functions just put them between back-ticks (“`”):\n\nmode(`+`)   \n\n[1] \"function\"\n\n`+`(1, 1)\n\n[1] 2\n\n\nBase R has many factions but many more are come from various extension packages. These can be installed using install.packages() :\n\ninstall.packages(\"packageName\",\n                 lib = \"/directory/to/my custom R library\",\n                 repos = \"http://cran.xl-mirror.nl\")\n\n# usually lib and repos can be omitted (left at the default)\n\nThe package name must be quoted when installing.\n\nlibrary(\"packageName\")      ## quotes are optional when loading a package\n\nFunctions will be discussed in more detail later.",
     "crumbs": [
       "Common Objects"
     ]
@@ -1151,6 +891,156 @@
     "text": "mode, storage.mode and type are closely related concepts, we will not discuss the differences here. See also ?mode.↩︎\nThere are a few more like complex and raw which we will not discuss.↩︎",
     "crumbs": [
       "Common Objects"
+    ]
+  },
+  {
+    "objectID": "2-7_Basic_plotting.html",
+    "href": "2-7_Basic_plotting.html",
+    "title": "Basic plotting",
+    "section": "",
+    "text": "Scatterplots and Line Graphs",
+    "crumbs": [
+      "Basic plotting"
+    ]
+  },
+  {
+    "objectID": "2-7_Basic_plotting.html#scatterplots-and-line-graphs",
+    "href": "2-7_Basic_plotting.html#scatterplots-and-line-graphs",
+    "title": "Basic plotting",
+    "section": "",
+    "text": "Scatterplots\nThe plot function is the most basic function for plotting continuous data. If we use plot on one variable, the values of the variable will be plotted against their index, i.e., the order of the data within the object they’re stored:\n\nplot(ToothGrowth$len)\n\n\n\n\n\n\n\n\nWith two variables plot puts the first variable on the x-axis and the second variable on the y-axis (y versus x):\n\nplot(ToothGrowth$dose, ToothGrowth$len)\n\n\n\n\n\n\n\n\nMany parameters are available for customizing your plot. See ?par for an extensive list. We will just look at a couple here, like changing the axis labels:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\", ylab = \"Tooth Length\")\n\n\n\n\n\n\n\n\nWe can also add a title:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\", ylab = \"Tooth Length\", main = \"Guinea Pig Tooth Growth by Dosage\")\n\n\n\n\n\n\n\n\nand even change the colors and characters of specific points:\n\nplot(ToothGrowth$dose, \n     ToothGrowth$len, \n     xlab = \"Dose\", \n     ylab = \"Tooth Length\", \n     main = \"Guinea Pig Tooth Growth by Dosage\", \n     col = ToothGrowth$supp, \n     pch = as.numeric(ToothGrowth$supp))\n\n\n\n\n\n\n\n\nThe legend function adds a legend so we can easily identify which points represent which groups:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\", ylab = \"Tooth Length\", main = \"Guinea Pig Tooth Growth by Dosage\", col = ToothGrowth$supp, pch = as.numeric(ToothGrowth$supp))\n\nlegend(1.5, 15, c(\"OJ\", \"VC\"), col = 1:2, pch = 1:2)\n\n\n\n\n\n\n\n\nThe location of the legend can also be specified by stating a region of the plot e.g. “bottomright” to place it in the very bottom righthand corner of the plot.\nThe argument cex stands for “character expansion” and will enlarge the size of points:\n\nplot(ToothGrowth$dose, ToothGrowth$len, xlab = \"Dose\",\n     ylab = \"Tooth Length\", main = \"Guinea Pig Tooth Growth by Dosage\",\n     col = ToothGrowth$supp, pch = as.numeric(ToothGrowth$supp),\n     cex = 2)\n\nlegend(1.5, 15, c(\"OJ\", \"VC\"), col = 1:2, pch = as.numeric(ToothGrowth$supp), cex=2)\n\n\n\n\n\n\n\n\n\n\nLine Graphs\nTo create a plot using lines instead of points, we can actually still use plot, but we need to specify the type of plot we want, e.g.:\n\nplot(ToothGrowth$len, type = \"l\") # note type is the letter l for \"line\"\n\n\n\n\n\n\n\n\n\nplot(ToothGrowth$len, type = \"b\") # note type is the letter b for \"both\"\n\n\n\n\n\n\n\n\nWe can add additional lines by calling lines:\n\nplot(ToothGrowth$len, type = \"l\")\nlines(ToothGrowth$len + 2)\n\n\n\n\n\n\n\n\nThe line type, width, and color can be adjusted as follows:\n\nplot(ToothGrowth$len, type = \"l\")\nlines(ToothGrowth$len + 2, lty = 3, lwd = 3, col = \"darkgreen\")",
+    "crumbs": [
+      "Basic plotting"
+    ]
+  },
+  {
+    "objectID": "2-7_Basic_plotting.html#bar-charts-and-histograms",
+    "href": "2-7_Basic_plotting.html#bar-charts-and-histograms",
+    "title": "Basic plotting",
+    "section": "Bar Charts and Histograms",
+    "text": "Bar Charts and Histograms\n\nBar Charts\nViewing categorical data in a scatterplot often doesn’t make sense. For example, if we want to see the number of guinea pigs who received each dosage, the following doesn’t provide this information in the most intuitive format:\n\nplot(ToothGrowth$dose)\n\n\n\n\n\n\n\n\n\ntable(ToothGrowth$dose)\n\n\n0.5   1   2 \n 20  20  20 \n\n\n\nbarplot(table(ToothGrowth$dose))\n\n\n\n\n\n\n\n\nWe can plot proportions instead of frequencies, as is often helpful (though not in this case):\n\nprops &lt;- table(ToothGrowth$dose)/nrow(ToothGrowth)\nprops\n\n\n      0.5         1         2 \n0.3333333 0.3333333 0.3333333 \n\n\n\nbarplot(props)\n\n\n\n\n\n\n\n\nNote that the y-axis doesn’t quite extend to the height of the bars. The range of the y-axis is easily change in plots by adjusting the parameter ylim (similarly xlim for the x-axis):\n\nbarplot(props, ylim = c(0, .4))\n\n\n\n\n\n\n\n\nYet again, there are many parameters available for customizing the plot. Let’s try changing the width and colors of the bars:\n\nbarplot(props, ylim = c(0, .4), width = .2, col = c(\"blue\", \"white\", \"red\"))\n\n\n\n\n\n\n\n\nAnd we can plot the bars horizontally, if preferable:\n\nbarplot(props, xlim = c(0, .4),\n  width = .2, col = c(\"blue\", \"white\", \"red\"),\n  horiz = TRUE)\n\n\n\n\n\n\n\n\nNote that we adjusted the range of the x-axis now instead of the y-axis.\n\n\nHistograms\nA bar chart is slightly different from a histogram. We use bar charts to plot frequencies (or proportions) of values present in categories. Continuous data don’t have categories, so to make a similar plot we have to create “categories”. They are often called bins or cells and are created by delining ranges in which the frequencies are calculated. Thankfully, R will do this, and plot the histogram, when we call the function hist:\n\nhist(ToothGrowth$len)\n\n\n\n\n\n\n\n\nNote that in a histogram the sides of the cells touch, whereas they do not in a bar chart. We can also plot the proportions, now called “density”, by changing a single parameter:\n\nhist(ToothGrowth$len, freq = FALSE)\n\n\n\n\n\n\n\n\nIn the next graph we plot the histogram with a different bin width by specifying where to make the breakpoints between the bars:\n\nhist(ToothGrowth$len, freq = FALSE, breaks = seq(0, 35, 2))\n\n\n\n\n\n\n\n\nNote how the granularity of the plot changes with the width of the bin. We can also change the breaks by delining the number of cells to use:\n\nhist(ToothGrowth$len, freq = FALSE, breaks = 25)\n\n\n\n\n\n\n\n\nThe same parameters that change the axes and labels are applicable here:\n\nhist(ToothGrowth$len, freq = FALSE, breaks = seq(0, 35, 2),\n  main = \"Histogram of Tooth Growth\", xlab = \"Tooth Length\",\n  ylim = c(0, .07), col = \"orange\")",
+    "crumbs": [
+      "Basic plotting"
+    ]
+  },
+  {
+    "objectID": "2-7_Basic_plotting.html#boxplots",
+    "href": "2-7_Basic_plotting.html#boxplots",
+    "title": "Basic plotting",
+    "section": "Boxplots",
+    "text": "Boxplots\nA boxplot is another graph we use to view the distribution of a continuous variable. It displays the specified quantiles of the data in the following way:\n\nboxplot(ToothGrowth$len)\n\n\n\n\n\n\n\n\nA single boxplot is nice for visualizing the distribution of one variable, but plotting several side by side allows for a simultaneous comparison of distributions. Here we will use the formula notation. The format y ~ x, where y is a numeric vector and x is a factor, tells the boxplot function that we want to separate the continuous y values into as many boxplots as there are levels of the factor x.\n\nboxplot(ToothGrowth$len~ToothGrowth$supp)\n\n\n\n\n\n\n\n\nJust like in the bar chart, we can plot the boxes horizontally and change the colors, labels and axes:\n\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  ylab = \"Supplement Type\", xlab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\n\n\n\n\n\n\n\n\nThe settings of the parameters of a plot, including the margins, can be specified by calling par() before creating a plot. One nice setting we’ll introduce here is how to put multiple plots into one graphics device:\n\npar(mfrow = c(1, 2))\n  boxplot(ToothGrowth$len~ToothGrowth$supp, main = \"Boxplot\",\n  xlab = \"Supplement Type\")\n  \nhist(ToothGrowth$len, main = \"Histogram\", xlab = \"Tooth Length\")\n\n\n\n\n\n\n\n\nThe settings will stay fixed until we close the device (e.g. by calling dev.off()) or reset par (e.g. par(mfrow = c(1, 1))). It is highly recommended to get familiar with the help page for par to control graphing parameters to create custom graphs. Another helpful function is axis, which allows the specification of custom axis labels (e.g. where to put them and at what angle). See ?axis for more information.",
+    "crumbs": [
+      "Basic plotting"
+    ]
+  },
+  {
+    "objectID": "2-7_Basic_plotting.html#saving-plots",
+    "href": "2-7_Basic_plotting.html#saving-plots",
+    "title": "Basic plotting",
+    "section": "Saving Plots",
+    "text": "Saving Plots\nUp until now we have been creating graphs in a single graphics window that gets overwritten every time we create new plots. If we want to save the images created, we can use “Export” in RStudio to specify what type of file we want to write, its size, location, and name.\nAlternatively we can use functions such as png, pdf, and jpeg. Since we can save our code and not our mouse clicks, the use of these functions avoids any confusion about how an image was written, allows for quick simple changes, and provides a convenient way to reproduce multiple, similar plots. For example:\n\n# note: run getwd() to see the working directory -\n# that is the directory to which files will be written\npdf(\"plot1.pdf\", width = 6, height = 9)\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  xlab = \"Supplement Type\", ylab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\ndev.off()\n\npdf(\"plot2.pdf\", width = 4, height = 8)\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  xlab = \"Supplement Type\", ylab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\ndev.off()\n\nNote that you have to call dev.off() to finish writing the image to the file. If more than one device is open, the return of that function will display a number larger than 1.\nThe units for the width and height arguments of pdf are in inches (7 by 7), but the default for e.g. png is pixels (there is an argument units to change it to in, cm, or mm):\n\npng(\"plot1.png\", units = \"in\", res = 300,\n  width = 6, height = 9)\n\nboxplot(ToothGrowth$len~ToothGrowth$supp,\n  col = c(\"darkgreen\", \"purple\"),\n  xlab = \"Supplement Type\", ylab = \"Tooth Length\",\n  ylim = c(0, 40), horizontal = TRUE)\n\ndev.off()",
+    "crumbs": [
+      "Basic plotting"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html",
+    "href": "2-10_ggplot2.html",
+    "title": "Data visualization using ggplot2",
+    "section": "",
+    "text": "Grammar of graphics\nThe grammar of graphics consists of a number of “layers”, which generate a ggplot when correctly put together. These five basic layers will be discussed here:",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#grammar-of-graphics",
+    "href": "2-10_ggplot2.html#grammar-of-graphics",
+    "title": "Data visualization using ggplot2",
+    "section": "",
+    "text": "Data\nAesthetics\nGeometries\nFacets\nScales\nThemes",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#data",
+    "href": "2-10_ggplot2.html#data",
+    "title": "Data visualization using ggplot2",
+    "section": "Data",
+    "text": "Data\nThe basis of each plot is the data. To plot data with ggplot the data needs to be of the class “data.frame”. The structure of your data.frame is important when you want to plot it with ggplot. Each variable you want to use has to be in a separate column in your data.frame. Take for example the “Indometh” data set which comes with R.\n\n?Indometh\n\nThe “Indometh”” data set describes the pharmacokinetics of indomethacin after intravenous injection of indomethacin in six subjects. The data.frame has three columns one containing the subject number, one containing the time of sampling in hours, and one containing the indomethacin concentration ug/ml. This data set is easily plotted with ggplot because it is a data.frame and there is a good separation of variables in the columns.\n\n\n  Subject time conc\n1       1 0.25 1.50\n2       1 0.50 0.94\n3       1 0.75 0.78\n4       1 1.00 0.48\n5       1 1.25 0.37\n6       1 2.00 0.19\n\n\nAn example of a badly formatted data set for visualization with ggplot is a data set of monthly deaths from lung diseases in the UK:\n\n?ldeaths\n\nThis data set contains three separate data sets for female, male and both male and female deaths (ldeaths, fdeaths, and mdeaths). The columns contain values per month and the rows indicate the year. (also they are not data.frames)\n\n\n      Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec\n1974 3035 2552 2704 2554 2014 1655 1721 1524 1596 2074 2199 2512\n1975 2933 2889 2938 2497 1870 1726 1607 1545 1396 1787 2076 2837\n1976 2787 3891 3179 2011 1636 1580 1489 1300 1356 1653 2013 2823\n1977 3102 2294 2385 2444 1748 1554 1498 1361 1346 1564 1640 2293\n1978 2815 3137 2679 1969 1870 1633 1529 1366 1357 1570 1535 2491\n1979 3084 2605 2573 2143 1693 1504 1461 1354 1333 1492 1781 1915\n\n\nSince there are two separate data sets, there is no column indicating the sex. There is also no column indicating the year and no column indicating the month. This means that we cannot use these variables in ggplot to visualize, for instance, the difference between the number of deaths in men and women in a certain year. We can use some more advanced R data reshaping to get these data sets in the right shape.\n\n\n  Deaths Year Month    Sex\n1    901 1974   Jan female\n2    689 1974   Feb female\n3    827 1974   Mar female\n4    677 1974   Apr female\n5    522 1974   May female\n6    406 1974   Jun female\n\n\n\nggplot(data, aes(x=Month, y=Deaths, color=Sex)) + geom_point()\n\n\n\n\n\n\n\n\nHowever, it is much more easy to keep in mind that any variable that you want to use as a part of your ggplot should get its own column when you are designing your data set (in Excel). With the data in the right class and the right format we can easily call the ggplot function, and add a scatter plot layer to it.",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#aesthetics",
+    "href": "2-10_ggplot2.html#aesthetics",
+    "title": "Data visualization using ggplot2",
+    "section": "Aesthetics",
+    "text": "Aesthetics\nAfter figuring out what data to plot it is necessary to indicate how to plot it. Aesthetics are used to indicate how to plot what. As we saw in the plot of the ldeaths data we start with indicating what data.frame to plot and use aes() to indicate what to plot on the x axis, the y axis and what to use as color. We do not have to indicate what to plot where and which color to give to which category. We simply map a column of our data.frame to an aesthetic. Depending on the geom we use there are a number of aesthetics that can be mapped to a variable:\n\nx\ny\ncolor\nfill\nsize\nalpha\nlinetype\nlabels\nshape\ngroup\n\nAesthetics can also be specified per geom layer. This allows plotting multiple geom layers with different aesthetics. However, when using one data source and one geom layer this will result in exactly the same plot.\n\nggplot(data) + geom_point(aes(x=Month, y=Deaths, color=Sex))\n\nWe can also use plotting parameters without mapping them to a variable to change all dots in the geom_point. This can only be done in the geom itself.\n\nggplot(data, aes(x=Month, y=Deaths, color=Sex)) + geom_point(size=3)",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#geometries",
+    "href": "2-10_ggplot2.html#geometries",
+    "title": "Data visualization using ggplot2",
+    "section": "Geometries",
+    "text": "Geometries\nFor the previous ggplots we have used the geom_point function which generates a scatter plot layer that can be added to the ggplot. “point” is one of the many geometry layers available in the ggplot library. There are over thirty different geoms in ggplot which can be found at http://docs.ggplot2.org/. We will have a look at the plot types that we have already encountered using the basic R plotting functions and replace them with their ggplot counterparts.\n\nScatter plots\nJust like with other objects in R a ggplot object can be saved to a variable using “&lt;-”. This makes it possible to store the basic plot in a variable and add different geoms to it. Geometries are added to a plot using “+”.\n\n#Basic graphics:\nplot(ToothGrowth$len)\n\n\n\n\n\n\n\n\n\np &lt;- ggplot(ToothGrowth)\np + geom_point(aes(x=as.numeric(rownames(ToothGrowth)), y=len), size=2)\n\n\n\n\n\n\n\n\nWe now map the numeric row names of ToothGrowth to the x aesthetic, however, we could also create a new column called index in the data.frame.\n\nToothGrowth$index &lt;- as.numeric(rownames(ToothGrowth))\n\nWhen we change the data of the ggplot object we saved in variable p we need to recreate the ggplot object with the new data set.\n\np &lt;- ggplot(ToothGrowth)\n\n\n\nLine graphs\n\n#Basic graphics:\nplot(ToothGrowth$len, type = \"l\")\n\n\n\n\n\n\n\np + geom_line(aes(x=index, y=len))\n\n\n\n\n\n\n\n\n\n\nBar charts\n\n#Basic graphics:\nbarplot(table(ToothGrowth$dose))\n\n\n\n\n\n\n\np + geom_bar(aes(x=dose))\n\n\n\n\n\n\n\n\nBecause dose is a continuous variable, ggplot creates a x axis with a continuous scale, which is why there is an empty spot for the 1.5 dose. If we want to use a continuous value as a categorical value we can change it into a factor on the fly in the geom function:\n\np + geom_bar(aes(x=as.factor(dose)))\n\n\n\n\n\n\n\n\n\n\nHistograms\n\n#Basic graphics:\nhist(ToothGrowth$len,breaks = 50)\n\n\n\n\n\n\n\np + geom_histogram(aes(x=len), binwidth = 0.5)\n\n\n\n\n\n\n\n\n\n\nBox plots\n\n#Basic graphics:\nboxplot(ToothGrowth$len~ToothGrowth$supp)\n\n\n\n\n\n\n\n\n\np + geom_boxplot(aes(x=supp,y=len))\n\n\n\n\n\n\n\n\nIf we want whiskers in our plot we can add an error bar geom\n\np + geom_errorbar(aes(x=supp, ymin=..., ymax=...),width=0.5)\n\n\n\n\n\n\n\n\n\n\nHowever, as you can see, this geom requires ymin and ymax as aesthetics and does not calculate the values by itself. We could calculate the min and max values for tooth length grouped by supplement, but we will use a trick using ggplot’s box plot statistics function. (if you want to know more, please read more about these “stat” functions online)\nFirst, we add the error bars with the “stat_boxplot” function, and then add the box plots on top of them.\n\np + stat_boxplot(aes(x=supp,y=len), geom=\"errorbar\", width=0.5) + \n    geom_boxplot(aes(x=supp,y=len))\n\n\n\n\n\n\n\n\nAs we can see the aesthetics of both geoms have to be defined separately in this plot. To reduce typing we could also write the ggplot as follows.\n\np &lt;- ggplot(ToothGrowth, aes(x=supp,y=len)) \np + stat_boxplot(geom=\"errorbar\", width=0.5) + geom_boxplot()\n\nWhen the aesthetics are specified in the base ggplot object it is not necessary to specify them in the added layers.\n\n\nHeatmaps\nOne popular way of displaying large grids of data is using a heatmap. The tile geom generates a tile at each provided x and y value and uses the fill aesthetic to fill the tiles according to another variable. The border color of the tiles are can be changed by using the color aesthetic.\n\np &lt;- ggplot(ToothGrowth)\n\np + geom_tile(aes(x = supp, y = as.factor(dose), fill = len), color=\"black\")\n\n\n\n\n\n\n\n\nThere are dedicated packages for plotting heatmaps, which also perform horizontal and vertical clustering of the tiles. These are, however, out of the scope of this course, but it should be easy to find them online.",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#facets",
+    "href": "2-10_ggplot2.html#facets",
+    "title": "Data visualization using ggplot2",
+    "section": "Facets",
+    "text": "Facets\nApart from using aesthetics to map variables to, ggplot has another feature which can help visualizing data called “facets”. We have added multiple plots to the viewing window before, using “par(mfrow=c(…,…))”. However, after specifying how many plots should be printed in the plot viewer we have to call the plot function multiple times to populate the viewer.\nIf we want to compare the effect of orange juice versus vitamin C depending on the dose we can plot three box plots next to each other.\n\npar(mfrow = c(1, 3))\n\nlow &lt;- ToothGrowth[which(ToothGrowth$dose==0.5),]\nmed &lt;- ToothGrowth[which(ToothGrowth$dose==1),]\nhigh &lt;- ToothGrowth[which(ToothGrowth$dose==2),]\n\nboxplot(low$len~low$supp, main = \"Low dose\", xlab = \"Supplement Type\")\nboxplot(med$len~med$supp, main = \"Medium dose\", xlab = \"Supplement Type\")\nboxplot(high$len~high$supp, main = \"High dose\", xlab = \"Supplement Type\")\n\n\n\n\n\n\n\n\nHowever, using ggplot we can simply map the dose column to a ggplot facet grid. The mapping of variables is not done via a aes(), but in formula form. Variables on the right indicate the columns in the grid and variables on the left indicate the rows of the grid. A “.” can be used if we want to use only one variable for faceting. This will also preserve the scales, making it more easy to compare the three plots. For fun, let’s add the actual data points in an additional geom on top of the box plot.\n\nggplot(ToothGrowth, aes(x=supp,y=len)) + \n    stat_boxplot(geom=\"errorbar\", width=0.5) + \n    geom_boxplot() + geom_point(color=\"red\") + \n    facet_grid(. ~ as.factor(dose))\n\n\n\n\n\n\n\n\nWe can do the same with two variables in a grid.\n\nggplot(ToothGrowth, aes(x=len)) + \n    geom_histogram(bins = 5) + \n    facet_grid(dose ~ as.factor(supp))",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#scales",
+    "href": "2-10_ggplot2.html#scales",
+    "title": "Data visualization using ggplot2",
+    "section": "Scales",
+    "text": "Scales\nWhen mapping a variable to one of the aesthetics of a ggplot, ggplot uses the default scales. It is however possible to adjust the scales of the plot and their color using the scales functions. The scales that are generally used the most are those for the x, y, color and fill of the plot. The type of function to adjust the scale of one of the aesthetics depends on the aesthetic and the type of variable (continuous or discrete). Some of the possible scale adjustments, such as limits, transformation, breaks, labels, and color, are exemplified by the plot below.\n\nggplot(ToothGrowth, aes(x=index, y=as.factor(dose), color=len)) + \n    geom_point() + \n    scale_x_continuous(limits=c(1,100), trans = \"log2\", \n        breaks=c(2,4,8,16,32,64), \n        label=c(\"two\",\"four\",\"eight\",\"sixteen\",\"thirtytwo\",\"sixtyfour\")) + \n    scale_y_discrete(label=c(\"low\",\"medium\",\"high\")) + \n    scale_color_gradient2(limits=c(0,40), low = \"green\", mid = \"black\", high = \"red\", \n        midpoint = 20)\n\n\n\n\n\n\n\n\nHave a look at the scales chapter at http://ggplot2.tidyverse.org/reference/ to explore the other possibilities!",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#themes",
+    "href": "2-10_ggplot2.html#themes",
+    "title": "Data visualization using ggplot2",
+    "section": "Themes",
+    "text": "Themes\nUntil now we have simply mapped a variable from our data set to an aesthetics parameter, potentially change the scales, and let ggplot handle the styling of the graph. However, ggplot has many options to customize the style of your plot using themes. There are several standard themes that we can use, however it is possible to create our own style from scratch.\nThe standard themes available in the ggplot package are:\n\ntheme_gray\ntheme_bw\ntheme_linedraw\ntheme_light\ntheme_dark\ntheme_minimal\ntheme_classic\ntheme_void\n\nTo add a standard theme we simply add the theme to the ggplot like we would with a geom.\n\np &lt;- ggplot(ToothGrowth)\np + geom_point(aes(x = index, y = len, color = supp, size = dose)) + theme_light()\n\n\n\n\n\n\n\n\nCustom themes can be made from scratch using the “theme()” function. To have a look at all customization parameters visit http://ggplot2.tidyverse.org/reference/theme.html. Labels can be edited by adding “labs()” to the plot.\n\np &lt;- ggplot(ToothGrowth)\np + geom_point(aes(x = index, y = len, color = supp, size = dose)) + \n    theme(text = element_text(family = \"serif\", colour = \"#6f898e\"), \n      line = element_line(color = \"#163f47\"), \n      rect = element_rect(fill = \"#163f47\", color = \"#163f47\"),\n        axis.text.x = element_text(color=\"black\"), \n        axis.text.y = element_text(color=\"white\"), \n      axis.ticks = element_line(color = \"#6f898e\"), \n      axis.line = element_line(color = \"#163f47\", linetype = 1),\n        legend.background = element_blank(), \n        legend.key = element_blank(), \n        panel.background = element_rect(fill = \"#215c68\", colour = \"#163f47\"), \n        panel.border = element_blank(), \n      panel.grid = element_line(color = \"#163f47\"), \n      panel.grid.major = element_line(color = \"#163f47\"), \n      panel.grid.minor = element_line(color = \"#163f47\"), \n      plot.background = element_rect(fill = NULL, colour = NA, linetype = 0)\n    ) + \n    labs(title=\"Toothgrowth\", \n        subtitle = \"Orange juice or Vitamin C?\", x=\"Index\", y=\"Toothlength\", \n        size=\"Dose\", color=\"Supplement\") +\n    scale_color_manual(label=c(\"Orange juice\",\"Vitamin C\"), \n        values = c(\"VC\"=\"green\",\"OJ\"=\"orange\"))",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#saving-ggplots",
+    "href": "2-10_ggplot2.html#saving-ggplots",
+    "title": "Data visualization using ggplot2",
+    "section": "Saving ggplots",
+    "text": "Saving ggplots\nWe can save out plots by using the ggsave() function. ggsave takes two argument, the first argument being the ggplot and the second being the location where the file should be saved. If we do not specify the complete path, it will save the plot in our current working directory (getwd()). The type of the file depends on the file extension we use. Possible file extensions are “eps”, “ps”, “tex” (pictex), “pdf”, “jpeg”, “tiff”, “png”, “bmp”, “svg” or “wmf” (windows only).\n\np &lt;- ggplot(ToothGrowth)\n\nmyplot &lt;- p + geom_point(aes(x = index, y = len, color = supp, size = dose))\n\nggsave(\"my_plot.pdf\",myplot)",
+    "crumbs": [
+      "Data visualization using ggplot2"
+    ]
+  },
+  {
+    "objectID": "2-10_ggplot2.html#ggplot2-extensions",
+    "href": "2-10_ggplot2.html#ggplot2-extensions",
+    "title": "Data visualization using ggplot2",
+    "section": "ggplot2 extensions",
+    "text": "ggplot2 extensions\nBasic ggplot functions are enough to create a rich variety of plots. However, depending on the field of research, specific plots are popular to visualize specific types of data. Sometimes these plots cannot be made directly from “basic” ggplot. Since ggplot is an opensource package, several people have extended it fulfill the custom needs of users. Many of these ggplot extension packages can be found online with a quick google. The ggplot2 extensions gallery shows some nice examples of add-ons https://exts.ggplot2.tidyverse.org/gallery/. Below are a handful of examples, which we will not explain in detail, but should serve as a source of inspiration.\n\n\n\nggridgeshttps://cran.r-project.org/web/packages/ggridges/\n\n\n\n\n\nplotROC https://github.com/sachsmc/plotROC\n\n\n\n\n\nsurvminer https://rpkgs.datanovia.com/survminer/index.html",
+    "crumbs": [
+      "Data visualization using ggplot2"
     ]
   },
   {
@@ -1204,6 +1094,26 @@
     ]
   },
   {
+    "objectID": "3-1_Functions1.html",
+    "href": "3-1_Functions1.html",
+    "title": "Functions 1",
+    "section": "",
+    "text": "Example functions",
+    "crumbs": [
+      "Functions 1"
+    ]
+  },
+  {
+    "objectID": "3-1_Functions1.html#function-environments",
+    "href": "3-1_Functions1.html#function-environments",
+    "title": "Functions 1",
+    "section": "Function environments",
+    "text": "Function environments\nEach function, whether built-in or user-defined, has an associated environment, which can be thought of as a container that holds all of the objects present at the time the function is created.\nWhen a function is created on the command line, it’s environment is the so-called “Global Environment”:\n\nw &lt;- 2\nf &lt;- function(y) {\n  d &lt;- 3\n  return(d * (w + y))\n}\nenvironment(f)\n\n&lt;environment: R_GlobalEnv&gt;\n\n\nThe function objects() (or ls()), when called from the command line, lists the objects in the Global Environment:\n\nobjects()\n\n [1] \"Ages\"                   \"calc4\"                  \"data\"                  \n [4] \"f\"                      \"mean_vector\"            \"mean_x\"                \n [7] \"mean_xy\"                \"mean_xy_2\"              \"mean_xy_3\"             \n[10] \"my_descriptives\"        \"my_descriptives2\"       \"my_descriptives2_wrong\"\n[13] \"myFun\"                  \"PatientID\"              \"w\"                     \n[16] \"x\"                     \n\n\n\nGlobal and Local Variables\nIn the function f() defined above, the variable w is said to be global to f() and the variable d, because it’s created within f(), is said to be local to f(). Global variables (like w) are visible from within a function, but local variables (like d) aren’t visible from outside the function. In fact, local variables are temporary, and disappear when the function call is completed:\n\nf(y = 1)\nd\n\nYou get an error: Error in eval(expr, envir, enclos) : object ‘d’ not found, indicating that the variable d does not exist in the ‘Global Environment’.\nWhen a global and local variable share the same name, the local variable is used:\n\nw &lt;- 2\nd &lt;- 4\n\nf &lt;- function(y) {\n  d &lt;- 3\n  return(d * (w + y))\n}\n\nf(y = 1)\n\n[1] 9\n\n\nNote also that when an assignment takes place within a function, and the local variable shares its name with an existing global variable, only the local variable is affected:\n\nw &lt;- 2\nd &lt;- 4 # This value of d will remain unchanged.\n\nf &lt;- function(y) {\n  d &lt;- 3 # This doesnt affect the value of d in the global environment\n  return(d * (w + y))\n}\n\nf(y = 1)\n\n[1] 9\n\nd\n\n[1] 4",
+    "crumbs": [
+      "Functions 1"
+    ]
+  },
+  {
     "objectID": "2-4_Analysis.html",
     "href": "2-4_Analysis.html",
     "title": "Analysis",
@@ -1241,6 +1151,36 @@
     "text": "Regression\n\nLinear regression\nThere is a high positive correlation between birth weight and gestational age, but this says nothing about predictive power of the variables. We would like to explain how gestational age influences changes in birth weight.\n\nplot(R_data$pregnancy_length_weeks, R_data$birthweight)\n\n\n\n\n\n\n\ncor(R_data$pregnancy_length_weeks, R_data$birthweight)\n\n[1] 0.9785784\n\n\nWe’ll quantify this relationship using linear regression, distinguishing between an in- dependent, or predictor or explanatory, variable (gestational age) and a dependent, or response or outcome, variable (birth weight). Simple linear regression uses the following model:\n\\(Y_i = \\beta_0 + \\beta_1*X_i + \\varepsilon_i\\)\nwhere \\(1 \\leq i \\leq n\\), the model is a straight line, and error is remaining variation which cannot be explained by the model. The parameters \\(beta_0\\) and \\(\\beta_1\\) are the intercept and slope of a straight line, respectively.\nThe \\(\\beta_0\\) and \\(\\beta_1\\) of the one straight line that best fits the data is estimated via the method of least squares. The “best” line is the one that has the lowest sum of squared residuals. The command to get these estimates in R is lm:\n\nlm1 &lt;- lm(birthweight ~ pregnancy_length_weeks, data = R_data)\nlm1\n\n\nCall:\nlm(formula = birthweight ~ pregnancy_length_weeks, data = R_data)\n\nCoefficients:\n           (Intercept)  pregnancy_length_weeks  \n              -12441.4                   400.3  \n\n\nYou can predict for given values\n\npredict(lm1)[R_data$pregnancy_length_weeks==35]\n\n      12       73      141 \n1568.921 1568.921 1568.921 \n\n\nYou can also use predict() to predict y for x’s that are not already in your data:\n\npredict(lm1, newdata=data.frame(pregnancy_length_weeks=c(seq(25,50,5))))\n\n         1          2          3          4          5          6 \n-2434.0284  -432.5538  1568.9207  3570.3952  5571.8698  7573.3443 \n\n\nbut watch out for extrapolating (predicting outside the range of your data) - clearly we can’t have negative birth weights!\nNow, before we make inference on or, actually, even find and use this line, we must check that the following assumptions hold, otherwise we will not obtain trustworthy results: - relationship between x and y can be described by a straight line - outcomes y are independent - variance of residuals is constant across values of x - residuals follow a normal distribution\nTo get diagnostic plots in R, we can check a histogram of the data and additionally plot our model to check that the residuals are normal and homoscedastic (have constant variance) across the weeks:\n\nhist(R_data$birthweight)\n\n\n\n\n\n\n\npar(mfrow=c(2,2))\nplot(lm1)\n\n\n\n\n\n\n\n\nThe top left plot tells us if our residuals are homoscedastic, and the top right plot displays a quantile-quantile (QQ) plot to check for normality. Here are examples of bad QQ plots and heteroscedasticity:\n\nset.seed(1234)\npar(mfrow=c(2,2))\nx &lt;- sort(rnorm(100))\ny1 &lt;- sort(rt(100,2))\nplot(x, y1, xlim=c(-3,3), xlab=\"normal\", ylab=\"t, df=2\")\nabline(0, 1)\ny2 &lt;- sort(rexp(100))\nplot(x, y2, xlim=c(-3,3), ylim=c(-6,6), xlab=\"normal\", ylab=\"exponential\")\nabline(0, 1)\nplot(x, x^2-5+rexp(100))\nabline(0, 0, col=\"red\")\nplot(x, x*rexp(100))\nabline(0, 0, col=\"red\")\n\n\n\n\n\n\n\n\nHowever, the assumptions reasonably hold for our baby data, so we’ll go ahead and use the model fit to make inference on the slope.\nActually, R has already done the inference…we just need to extract it from the model:\n\nsummary(lm1)\n\n\nCall:\nlm(formula = birthweight ~ pregnancy_length_weeks, data = R_data)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-280.1 -106.7   -2.9  101.2  331.4 \n\nCoefficients:\n                         Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)            -12441.401    242.033  -51.40   &lt;2e-16 ***\npregnancy_length_weeks    400.295      6.142   65.17   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 135.7 on 188 degrees of freedom\nMultiple R-squared:  0.9576,    Adjusted R-squared:  0.9574 \nF-statistic:  4248 on 1 and 188 DF,  p-value: &lt; 2.2e-16\n\n\nR has performed a one-sample t-test on the intercept b1 and slope b0 to determine if they are each statistically significantly different from 0. The probabilities are quite small, so we can reject the null hypothesis that they are equal to 0 and conclude that birthweight significantly increases, on average, by 400 grams per every additional week of gestation. The intercept is (usually) unimportant and we don’t really care that it is different from 0. If the p-value for the slope is not small (e.g. greater than 0.05) then we would say “we do not have enough evidence to reject the null hypothesis that the slope is 0.”\nNow, how good does the model actually fit our data? How well does x predict y? The square of Pearson’s correlation coefficient, r, is a measure of goodness of fit. It is the proportion of variance in y that can be explained by the model (so, x). In our example, r2 is:\n\ncor(R_data$pregnancy_length_weeks, R_data$birthweight)^2\n\n[1] 0.9576157\n\nsummary(lm1)$r.squared\n\n[1] 0.9576157\n\n\nwhich means that 96% of the variability in birth weight can be explained by gestational age.\nSimple linear regression models one y on one x. If we have multiple predictor variables, we use multiple linear regression to determine if the variability in y can be explained by this set of variables. In addition to the assumptions required for a valid simple linear regression, we now include that the covariates have no perfect multicollinearity, that is there is no strong correlation between the multiple x’s. The model is\n\\(Y_i = \\beta_0 + \\beta_1*X_{1i} + ... + \\beta_k*X_{ki}+\\varepsilon_i\\)\nIn R, the addition of an extra variable is quite straightforward:\n\ncor(R_data$pregnancy_length_weeks, R_data$BMI)\n\n[1] 0.01068054\n\nlm2 &lt;- lm(birthweight ~ pregnancy_length_weeks + BMI, data = R_data)\nlm2stats &lt;- summary(lm2)\nlm2stats\n\n\nCall:\nlm(formula = birthweight ~ pregnancy_length_weeks + BMI, data = R_data)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-279.39 -105.78   -1.85  105.25  333.50 \n\nCoefficients:\n                         Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)            -12377.339    253.444 -48.837   &lt;2e-16 ***\npregnancy_length_weeks    400.351      6.147  65.133   &lt;2e-16 ***\nBMI                        -2.738      3.190  -0.858    0.392    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 135.8 on 187 degrees of freedom\nMultiple R-squared:  0.9578,    Adjusted R-squared:  0.9573 \nF-statistic:  2121 on 2 and 187 DF,  p-value: &lt; 2.2e-16\n\n\nSince the 2 variables are uncorrelated, we can add BMI to the model. We see that it does not significantly predict birth weight, but gestational age still does. We use the adjusted \\(r^2\\) to check goodness of fit:\n\nlm2stats$adj.r.squared\n\n[1] 0.9573304\n\n\nSo adding BMI does not help explain any of the variability in birth weight (since r2 was previously already 0.96). This is also confirmed by visualization:\n\nplot(R_data$BMI, R_data$birthweight)\n\n\n\n\n\n\n\n\nNote that the summary function returns a lot of information. If, for example, you wanted to extract only the p-values you could do the following:\n\nnames(lm2stats)\n\n [1] \"call\"          \"terms\"         \"residuals\"     \"coefficients\" \n [5] \"aliased\"       \"sigma\"         \"df\"            \"r.squared\"    \n [9] \"adj.r.squared\" \"fstatistic\"    \"cov.unscaled\" \n\nlm2stats$coef[,4]\n\n           (Intercept) pregnancy_length_weeks                    BMI \n         2.179929e-108          1.815592e-130           3.918778e-01 \n\n\nWe can predict birthweights with new data:\n\npredict(lm2, newdata=data.frame(pregnancy_length_weeks=32,\nBMI=30))\n\n      1 \n351.771 \n\n\nBut we cannot forget to check assumptions!\n\npar(mfrow=c(2,2))\nplot(lm2)\n\n\n\n\n\n\n\npar(mfrow=c(1,1))\nhist(lm2$residuals)\n\n\n\n\n\n\n\n\n\n\nLogistic regression\nThere are many research topics for with the dependent variable y is binary (0/1), e.g.\n\nmortality (dead/alive)\ntreatment response (responder/non-responder)\ndevelopment of disease (yes/no)\n\nand we want to predict the membership of an individual to one of the two categories based on a set of predictors.\nIn this situation we have to work with probabilities, which are numbers between 0 and 1. A value \\(P(y)\\) that is close to 0 means that y is very unlikely to occur, while a value close to 1 means that y is very likely to occur.\nIn simple/multiple linear regression a continuous variable y is predicted by continuous/categorical x(s), but if y can only have 2 values (e.g. y = 0 or y = 1), how do we predict the probability that y = 1 given one or more predictors? Could we apply a linear regression model…?\nwe would try to fit \\(P(y = 1) = \\beta_0 + \\beta_1X\\), which doesn’t work. In linear regression we assume the relationship between x and y is linear, but in the case of binary outcomes this assumption is no longer valid. Results obtained from a linear regression model wouldn’t makes sense! Probabilities beyond the interval (0,1) are not interpretable.\nInstead we’re going to use a logistic curve:\n\\(ln(\\frac{p}{1-p}) = \\beta_0 + \\beta_1X\\)\nThe function \\(ln(p/(1- p))\\) is called a logit of p and it is this function of y that is linear in x instead of y itself.\nThis model formulation assures that the predicted probability of an event falls between 0 and 1, unlike a linear regression model.\nAlso note that we’ve made no assumptions about linearity, normality or homoscedasticity! The values of the intercept and slope are estimated using the maximum likelihood method, which finds the values of the coefficients that make the observed data most likely to occur. Statistical significance of estimate coefficients is testing with the Wald test, which is based on the \\(\\chi^2\\) distribution (though R calls it “z”). The goodness of fit is assessed by deviance, which is based on the differences observed-expected principle. Also, the Akaike information criterion (AIC) gives a measure of the quality of the model. The coefficients are most usefully interpreted with the following:\n\\(e^{\\beta} \\ \\frac{\\textrm{odds after a unit change}}{\\textrm{original odds}}\\)\nand when x is binary, \\(e^{\\beta}\\) is the odds ratio from the 2 by 2 contingency table!\nIn R:\n\nR_data$StatusNew &lt;- factor(R_data$Status, \n                           levels = c(\"normal brain development\", \"intellectual disability\"))\nlevels(R_data$StatusNew)\n\n[1] \"normal brain development\" \"intellectual disability\" \n\nlr1 &lt;- glm(StatusNew ~ BMI, family = binomial(logit), data = R_data)\nsummary(lr1)\n\n\nCall:\nglm(formula = StatusNew ~ BMI, family = binomial(logit), data = R_data)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)  \n(Intercept) -2.40591    1.18095  -2.037   0.0416 *\nBMI          0.08782    0.04822   1.821   0.0685 .\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 259.83  on 189  degrees of freedom\nResidual deviance: 256.44  on 188  degrees of freedom\nAIC: 260.44\n\nNumber of Fisher Scoring iterations: 4\n\n\nso \\(logit(p) = -2.40591+0.08782* BMI\\). Thus the probability of having a baby with an intellectual disability when BMI is 32, is:\n\nlogit_p1 &lt;- -2.40591+0.08782*32\nlogit_p1\n\n[1] 0.40433\n\n\nOr\n\npredict(lr1, newdata = data.frame(BMI = 32), se.fit = TRUE)\n\n$fit\n        1 \n0.4043502 \n\n$se.fit\n[1] 0.3995839\n\n$residual.scale\n[1] 1\n\n\nTo obtain the probability of the event use type = \"response\"\n\npredict(lr1, newdata = data.frame(BMI = 32), se.fit = TRUE, type = \"response\")\n\n$fit\n        1 \n0.5997324 \n\n$se.fit\n        1 \n0.0959215 \n\n$residual.scale\n[1] 1\n\n\nThe coefficient b1 = 0.08782 can be exponentiated to obtain the odds ratio:\n\nsummary(lr1)$coef\n\n               Estimate Std. Error   z value   Pr(&gt;|z|)\n(Intercept) -2.40591055 1.18095490 -2.037259 0.04162413\nBMI          0.08782065 0.04821621  1.821393 0.06854720\n\nb1 &lt;- summary(lr1)$coef[2, 1]\nb1\n\n[1] 0.08782065\n\nexp(b1)\n\n[1] 1.091792\n\n\nLike multiple linear regression, we can add variables into the model here as well:\n\nlr2 &lt;- glm(StatusNew ~ BMI + smoking, family = binomial(logit), data = R_data)\nsummary(lr2)$coef\n\n               Estimate Std. Error   z value    Pr(&gt;|z|)\n(Intercept) -2.52420359 1.22600372 -2.058887 0.039505027\nBMI          0.08128428 0.04997051  1.626645 0.103812552\nsmokingyes   1.34305855 0.38824022  3.459349 0.000541482\n\n\nThus the probability of having a baby with an intellectual disability when BMI is 32, and the mother is a smoker is:\n\nmynewdata &lt;- data.frame(BMI = 32, smoking = factor(\"yes\"))\nlogit_p2 &lt;- predict(lr2, newdata = mynewdata, type = \"response\")\nlogit_p2\n\n        1 \n0.8053309",
     "crumbs": [
       "Analysis"
+    ]
+  },
+  {
+    "objectID": "3-4_Functions2.html",
+    "href": "3-4_Functions2.html",
+    "title": "Functions 2",
+    "section": "",
+    "text": "If? Then! Else?\nSometimes we’ll want R to execute a statement only if a certain condition is met. This can be accomplished via the if() and (optionally) else statements:\nif()    # Used to execute a statement only if the given condition\n        # is met\nelse    # Used to specify an alternative statement to be executed \n        # if the condition given in if() isn't met\nSuch conditional execution commands have the forms:\nif (condition) {\n  statement1\n}\nand\nif (condition) {\n  statement1\n} else {\n  statement2\n}\nwhere condition is a logical expression (i.e. it evaluates to TRUE or FALSE)\nIn both cases above, if condition is TRUE, statement1 is executed. If condition is FALSE, then in the first case nothing happens, but in the second case, statement2 is executed.\nHere’s a simple example:\nx &lt;- 5\nif (x &lt; 10) {\n  y &lt;- 0\n}\ny\n\n[1] 0\nHere’s another:\nif (x &gt;= 10) {\n  y &lt;- 1\n  } else {\n    y &lt;- 0\n}\ny\n\n[1] 0\nIt is also possible to write short if/else statements on a single line, in that case you do not have to include { }:\ny &lt;- if(x &gt;= 10) 1 else 0\ny\n\n[1] 0\nBe aware that when using such conditional assignment statements, in the absence of else, if() returns NULL if the condition isn’t met. So:\ny &lt;- if(x &gt;= 10) 1\ny\n\nNULL",
+    "crumbs": [
+      "Functions 2"
+    ]
+  },
+  {
+    "objectID": "3-4_Functions2.html#for-loops",
+    "href": "3-4_Functions2.html#for-loops",
+    "title": "Functions 2",
+    "section": "for() Loops",
+    "text": "for() Loops\nfor() loops are used when we know in advance how many iterations the loop should perform. The general form of a for() loop is:\n\nfor(i in sequence) {\n  statement1\n  statement2\n  .\n  .\n  .\n  statementq\n}\n\nwhere sequence is a vector, i (whose name you’re free to change) assumes the values in sequence one after another, each time triggering another iteration of the loop during which statements 1 through q are executed. The statements usually involve the variable i.\nHere’s an example. Suppose we have the data frame describing someone’s coin collection:\n\ncoins &lt;- data.frame(Coin = c(\"penny\", \"quarter\", \"nickel\", \"quarter\", \"dime\", \"penny\"),\n                    Year = c(1943, 1905, 1889, 1960, 1937, 1900),\n                    Mint = c(\"Den\", \"SF\", \"Phil\", \"Den\", \"SF\", \"Den\"),\n                    Condition = c(\"good\", \"fair\", \"excellent\", \"good\", \"poor\", \"good\"),\n                    Value = c(12.00, 55.00, 300.00, 40.00, 18.00, 28.00),\n                    Price = c(15.00, 45.00, 375.00, 25.00, 20.00, 20.00))\ncoins\n\n     Coin Year Mint Condition Value Price\n1   penny 1943  Den      good    12    15\n2 quarter 1905   SF      fair    55    45\n3  nickel 1889 Phil excellent   300   375\n4 quarter 1960  Den      good    40    25\n5    dime 1937   SF      poor    18    20\n6   penny 1900  Den      good    28    20\n\n\nIf we type:\n\ncolMeans(coins)\n\nError in colMeans(coins): 'x' must be numeric\n\n\nwe get an error message because some of the columns are non-numeric. We can compute the means of the numeric columns by looping over the columns, each time checking whether it’s numeric before computing it’s mean:\n\nmeans &lt;- NULL\nfor(i in 1:ncol(coins)) {\n  if (is.numeric(coins[ , i])) {\n    means &lt;- c(means, mean(coins[ , i]))\n  }\n}\n\nThe result is:\n\nmeans\n\n[1] 1922.33333   75.50000   83.33333",
+    "crumbs": [
+      "Functions 2"
+    ]
+  },
+  {
+    "objectID": "3-4_Functions2.html#looping-over-list-elements",
+    "href": "3-4_Functions2.html#looping-over-list-elements",
+    "title": "Functions 2",
+    "section": "Looping Over List Elements",
+    "text": "Looping Over List Elements\nIn the next example, we loop over the elements of a list, printing a list element and recording it’s length during each iteration:\n\nmyList &lt;- list(\n  w = c(4, 4, 5, 5, 6, 6),\n  x = c(\"a\", \"b\", \"c\"),\n  y = c(5, 10, 15),\n  z = c(\"r\", \"s\", \"t\", \"u\", \"v\")\n)\n\nlengths &lt;- NULL\n\nfor(i in myList) {\n  print(i)\n  lengths &lt;- c(lengths, length(i))\n}\n\n[1] 4 4 5 5 6 6\n[1] \"a\" \"b\" \"c\"\n[1]  5 10 15\n[1] \"r\" \"s\" \"t\" \"u\" \"v\"\n\nlengths\n\n[1] 6 3 3 5\n\n\nThese examples are very simple, but looping is a very powerful programming structure for automating analyses, or data processing.\nIn the next chapter we will look at the apply() family of functions, that have been designed for applying functions to a data set in several convenient ways.",
+    "crumbs": [
+      "Functions 2"
     ]
   },
   {

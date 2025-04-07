@@ -1,8 +1,0 @@
-# Basic plotting
-
-R is a very powerful tool for producing custom graphics ranging from basic scatterplots to 3D plots. In this introduction to plotting we will learn how to create basic graphs like scatterplots, line graphs and bar charts, as well as histograms and boxplots, all of which are available in the base package. Different methods for saving plots will be introduced. We will use the data ToothGrowth throughout the following examples:
-
-```{r}
-data(ToothGrowth)
-str(ToothGrowth)
-```

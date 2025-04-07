@@ -1,0 +1,224 @@
+# Functions1: Answers {.unnumbered}
+
+::: callout-warning
+Make sure that you try the exercises yourself first before looking at the answers
+:::
+
+## Function Arguments
+
+::: panel-tabset
+### Question 1
+
+Look at the help file for the function `mean()`.
+
+How many arguments does the function have?
+
+What types of vectors are accepted?
+
+What is the default setting for dealing with NA values?
+
+### Answer
+
+Three arguments (plus further arguments).
+
+Numerical and logical vectors are accepted.
+
+The default setting is to NOT remove NA (missing) values.
+:::
+
+::: panel-tabset
+### Question 2
+
+Use the function `mean()` to calculate the mean of the following values:
+
+::: callout-note
+note the `NA` and use named argument matching
+:::
+
+```{r, eval = F}
+c(1, 2, NA, 6)
+```
+
+### Answer
+
+```{r}
+mean(x = c(1, 2, NA, 6), na.rm = TRUE)
+```
+:::
+
+::: panel-tabset
+### Question 3
+
+Do Q2 again but rearrange the arguments.
+
+### Answer
+
+```{r}
+mean(na.rm = TRUE, x = c(1, 2, NA, 6))
+```
+:::
+
+::: panel-tabset
+### Question 4
+
+Do Q2 again using positional matching.
+
+### Answer
+
+```{r}
+mean(c(1, 2, NA, 6), 0, TRUE)
+```
+:::
+
+::: panel-tabset
+### Question 5
+
+Determine the class of `mean()` using `class()`.
+
+### Answer
+
+```{r}
+class(mean)
+```
+
+The class is `function`.
+:::
+
+::: panel-tabset
+### Question 6
+
+Determine the class of `mean()` using `str()`.
+
+### Answer
+
+```{r}
+str(mean)
+```
+
+The class is `function`.
+:::
+
+::: panel-tabset
+### Question 7
+
+Determine the class of the value output in Q4 using `class()`.
+
+### Answer
+
+```{r}
+class(mean(c(1, 2, NA, 6), 0, TRUE))
+```
+
+The class is `numeric`
+:::
+
+::: panel-tabset
+### Question 8
+
+Determine the class of the value output in Q4 using str().
+
+### Answer
+
+```{r}
+str(mean(c(1, 2, NA, 6), 0, TRUE))
+```
+
+The `num` means the class is `numeric`.
+:::
+
+## Function environment and scoping
+
+::: panel-tabset
+### Question 9
+
+For each of the following sets of commands, give the value that will be returned by the last command. Try to answer without using R.
+
+a)  
+
+```{r, eval=F}
+w <- 5
+f <- function(y) {
+  return(w + y)
+}
+f(y = 2)
+```
+
+b)  
+
+```{r, eval=F}
+w <- 5
+f <- function(y) {
+  w <- 4
+  return(w + y)
+}
+f(y = 2)
+```
+
+### Answer
+
+a)  This will return 7 because `w` is 5 and we are evaluating the function at `y = 2`
+
+b)  This will return 6 because `w` is reassigned as 4 inside the function and we are evaluating the function at `y = 2`.
+:::
+
+::: panel-tabset
+### Question 10
+
+Among the variables `w`, `d`, and `y`, which are global to `f()` and which are local? What is the value of z when executing `f(w)`
+
+```{r}
+w <- 2
+f <- function(y) {
+  d <- 3
+  h <- function(z) {
+    return(z + d)
+  }
+  return(y * h(y))
+}
+```
+
+### Answer
+
+The object `w` is global to `f()` while `d` and `y` are local to `f()`.
+
+`z` is 2, because it takes the value of `y` when executing `h(y)` in function `f()`, which takes the value of global variable `w` when executing `f(w)`
+:::
+
+::: panel-tabset
+### Question 11
+
+Do the following in R:
+
+a)  Try:
+
+```{r, eval=F}
+myFun1 <- function(a) {
+  b <- 3
+  myFun2(a)
+}
+
+myFun2 <- function(y) {
+  return(y + a + b)
+}
+
+myFun1(10)
+```
+
+What happens?
+
+b)  Now try:
+
+```{r, eval=F}
+a <- 1
+b <- 2
+myFun1(10)
+```
+
+What happens?
+
+### Answer
+
+a)  We get an error message because `a` and `b` are local to `myFun1` so the function `myFun2` can't find them in the global environment.
+
+b)  We get get the value 13 because the values `a` and `b` are global so `myFun2` can find them and use them in its commands.
+:::

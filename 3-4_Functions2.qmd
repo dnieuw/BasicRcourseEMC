@@ -1,0 +1,460 @@
+# Functions 2 {.unnumbered}
+
+### If? Then! Else?
+
+Sometimes we'll want R to execute a statement only if a certain condition is met. This can be accomplished via the `if()` and (optionally) `else` statements:
+
+```{r, eval=FALSE}
+if()    # Used to execute a statement only if the given condition
+        # is met
+else    # Used to specify an alternative statement to be executed 
+        # if the condition given in if() isn't met
+```
+
+Such ***conditional execution*** commands have the forms:
+
+```{r, eval=FALSE}
+if (condition) {
+  statement1
+}
+```
+
+and
+
+```{r, eval=FALSE}
+if (condition) {
+  statement1
+} else {
+  statement2
+}
+```
+
+where `condition` is a logical expression (i.e. it evaluates to `TRUE` or `FALSE`)
+
+In both cases above, if `condition` is `TRUE`, `statement1` is executed. If `condition` is `FALSE`, then in the first case nothing happens, but in the second case, `statement2` is executed.
+
+Here's a simple example:
+
+```{r}
+x <- 5
+if (x < 10) {
+  y <- 0
+}
+y
+```
+
+Here's another:
+
+```{r}
+if (x >= 10) {
+  y <- 1
+  } else {
+    y <- 0
+}
+y
+```
+
+It is also possible to write short if/else statements on a single line, in that case you do not have to include `{ }`:
+
+```{r}
+y <- if(x >= 10) 1 else 0
+y
+```
+
+Be aware that when using such ***conditional assignment*** statements, in the absence of `else`, `if()` returns `NULL` if the condition isn't met. So:
+
+```{r}
+y <- if(x >= 10) 1
+y
+```
+
+### Nested `if()` Statements
+
+In addition, `if()` statements can be nested. The form for nested `if()` statements is
+
+```{r, eval=FALSE}
+
+if(condition1) {
+  if(condition2) {
+    statement1 
+  } else {
+    statement2
+  }
+}
+```
+
+The `else` always refers to the most recent `if()`, but to keep our code readable, we use tab indentation for every level of nesting in our nested if-else statements.
+
+### `if() else()` statements in functions
+
+The (nested) `if() else()` statements can be used in functions. In the next example, we expand on the earlier function `my_descriptives`. The function now first checks whether the function is `numeric` or a `factor`. For numeric variables, the negative values are removed and the summary statistics provided. For factors, the negative level (`-1`) is removed and a table of the variable is given.
+
+```{r, echo=FALSE}
+PatientID <- 1:25
+Ages <- round(c(rnorm(15, mean = 45, sd = 10), -50, rnorm(9, mean = 45, sd = 10) ) )
+data <- data.frame(PatientID = PatientID, Ages = Ages)
+data$Sex <- as.factor(c(rbinom(24, 1, 0.5),-1))
+```
+
+```{r}
+my_descriptives <- function(x){
+  if(class(x) == "numeric"){
+    x.trim <- x[x>0]
+    summary(x.trim)
+  } else if (class(x) == "factor"){
+    x.trim <- droplevels(x[x!=-1])
+    table(x.trim)
+  }
+}
+```
+
+The function can now be applied to numeric variables and factors:
+
+```{r}
+my_descriptives(data$Ages)
+my_descriptives(data$Sex)
+```
+
+Again, we compare the output with the standard `summary()` and `table()` output:
+
+```{r}
+summary(data$Ages)
+table(data$Sex)
+```
+
+Apart form nesting `if()` statements it is also possible to string multiple if statements together like so:
+
+```{r}
+whatAnimalSound <- function(animal){
+  if(animal == "cat") {
+    return("Meow!")
+  } else if (animal == "frog") {
+    return("Ribbit!")
+  } else if (animal == "dog") {
+    return("Woof!")
+  } else {
+    return(paste0("I don't know what sound a '",animal,"' makes..."))
+  }
+}
+```
+
+```{r}
+whatAnimalSound("dog")
+whatAnimalSound("bird")
+```
+
+::: callout-tip
+Notice that the last statement can be `else`, but to string together multiple statements you have to use `if else`.
+:::
+
+### Vectorized if-else: The `ifelse()` Function
+
+Sometimes we'll need to create a vector whose values depend on whether or not the values in another vector satisfies some condition. In that case we can use the `ifelse()` function, which works on a vector of values by repeating the same conditional statement for every value in the vector.
+
+`ifelse()` takes argument `test`, the condition to be met, `yes`, the return value (or vector of values) when `test` is `TRUE`, and `no`, the return values (or vector of values) when `test` is `FALSE`.
+
+For example, here we convert the values in `height` to `"short"` or `"tall"` based on whether they are larger than 69 or not:
+
+```{r}
+height <- c(69, 71, 67, 66, 72, 71, 61, 65, 73, 70, 68, 74)
+
+htCategory <- ifelse(height > 69, yes = "tall", no = "short")
+
+htCategory
+```
+
+The `ifelse` function is a very simple way of applying a test to a vector of values. To apply a more complicated function to a vector or to apply a function to multiple rows of a matrix or a dataframe we can use the `apply` functions which will be discussed later on.
+
+# Terminating a function with returns, errors, and warnings {.unnumbered}
+
+The following functions are useful for terminating a function call or just printing a warning message:
+
+```{r, eval=FALSE}
+return()     # Terminate a function call and return a value.
+stop()       # Terminate a function call and print an error message.
+warning()    # Print a warning message (without terminating the 
+             # function call).
+```
+
+### Terminating a Function Call Using `if()` and `return()`
+
+One way to terminate a function call is with `return()` which, when encountered, immediately terminates the call and returns a value. For example:
+
+```{r}
+mySign <- function(x) {
+  if(x < 0) return("Negative")
+  if(x > 0) return("Positive")
+  return("Zero")
+}
+```
+
+Passing `mySign()` the value `x = 13` produces the following:
+
+```{r}
+mySign(x = 13)
+```
+
+(Note that the last line, `return("Zero")`, was never encountered during the call to `my.sign()`.)
+
+### Terminating a Function Call and Printing an Error Message Using `if()` and `stop()`
+
+Another way to terminate a function call is with `stop()`, which then prints an error message without returning a value. Here's an example:
+
+```{r}
+myRatio <- function(x, y) {
+  if(y == 0) stop("Cannot divide by 0")
+  return(x/y)
+}
+```
+
+An attempt to pass the value `0` for `y` now results in the following:
+
+```{r, error=TRUE}
+myRatio(x = 3, y = 0)
+```
+
+(Note that the last line, `return(x/y)`, was never encountered during the call to `myRatio()`)
+
+### Printing a Warning Message Using `if()` and `warning()`
+
+`warning()` just prints a warning message to the screen without terminating the function call. Here's an example:
+
+```{r}
+myRatio <- function(x, y) {
+  if(y == 0) warning("Attempt made to divide by 0")
+  return(x/y)
+}
+```
+
+Now when we pass the value `0` for `y` the function call isn't terminated (the special value `Inf` is returned), but we get the warning message:
+
+```{r}
+myRatio(x = 3, y = 0)
+```
+
+By adding error messages and warnings to you functions it is easier for you and others using your scripts to figure out what went wrong if your script doesn't return the anticipated answer.
+
+# Looping {.unnumbered}
+
+Loops are used to iterate (repeat) an R statement (or set of statements). They're implemented in three ways, `for()`, `while()`, and `repeat()`, but the most often used are `for()` loops:
+
+```{r,eval=FALSE}
+for() # Repeat a set of statements a specified number of times
+while() # Repeat a set of statements as long as a specified condition is met
+repeat # Repeat a set of statements until a break command is encountered
+```
+
+Two other commands, break and next, are used, respectively, to terminate a loop's iterations and to skip ahead to the next iteration:
+
+```{r, eval=FALSE}
+break # Terminate a loops iterations
+next # Skip ahead to the next iteration
+```
+
+Here's an example in which each of the three loop types, for(), while(), and repeat, are used to perform a simple task, namely printing the numbers 1\^2; 2\^2; ...; 5\^2 to the screen:
+
+```{r}
+for(i in 1:5) {
+  print(i^2)
+}
+```
+
+```{r}
+i <- 1
+while(i <= 5) {
+  print(i^2)
+  i <- i + 1
+}
+```
+
+```{r}
+i <- 1
+repeat {
+  print(i^2)
+  i <- i + 1
+  if(i > 5) break
+}
+```
+
+## for() Loops
+
+`for()` loops are used when we know in advance how many iterations the loop should perform. The general form of a `for()` loop is:
+
+```{r, eval=F}
+for(i in sequence) {
+  statement1
+  statement2
+  .
+  .
+  .
+  statementq
+}
+```
+
+where `sequence` is a vector, `i` (whose name you're free to change) assumes the values in sequence one after another, each time triggering another iteration of the loop during which statements 1 through q are executed. The statements usually involve the variable `i`.
+
+Here's an example. Suppose we have the data frame describing someone's coin collection:
+
+```{r}
+coins <- data.frame(Coin = c("penny", "quarter", "nickel", "quarter", "dime", "penny"),
+                    Year = c(1943, 1905, 1889, 1960, 1937, 1900),
+                    Mint = c("Den", "SF", "Phil", "Den", "SF", "Den"),
+                    Condition = c("good", "fair", "excellent", "good", "poor", "good"),
+                    Value = c(12.00, 55.00, 300.00, 40.00, 18.00, 28.00),
+                    Price = c(15.00, 45.00, 375.00, 25.00, 20.00, 20.00))
+coins
+```
+
+If we type:
+
+```{r, error=TRUE}
+colMeans(coins)
+```
+
+we get an error message because some of the columns are non-numeric. We can compute the means of the numeric columns by looping over the columns, each time checking whether it's numeric before computing it's mean:
+
+```{r}
+means <- NULL
+for(i in 1:ncol(coins)) {
+  if (is.numeric(coins[ , i])) {
+    means <- c(means, mean(coins[ , i]))
+  }
+}
+```
+
+The result is:
+
+```{r}
+means
+```
+
+## Looping Over List Elements
+
+In the next example, we loop over the elements of a list, printing a list element and recording it's length during each iteration:
+
+```{r}
+myList <- list(
+  w = c(4, 4, 5, 5, 6, 6),
+  x = c("a", "b", "c"),
+  y = c(5, 10, 15),
+  z = c("r", "s", "t", "u", "v")
+)
+
+lengths <- NULL
+
+for(i in myList) {
+  print(i)
+  lengths <- c(lengths, length(i))
+}
+
+lengths
+```
+
+These examples are very simple, but looping is a very powerful programming structure for automating analyses, or data processing.
+
+In the next chapter we will look at the `apply()` family of functions, that have been designed for applying functions to a data set in several convenient ways.
+
+# Using apply functions {.unnumbered}
+
+Once you have written a function, you would like to apply it to some piece of data. As described in the previous chapter you can simply enter some values as arguments of the function and run it. However, usually you would like to run the function on all of your data. To do that you could write a for loop that loops through you data and applies the function to the whole dataset. However, there is a special family of functions in R that make it easier to apply your function to a range of different data classes in different ways. This family of functions are called apply functions.
+
+The apply functions make it easier to run functions over vectors, matrixes, and data.frames. We will discuss four functions of the apply family that are regularly used `apply()`, `lapply()`, `sapply()` and `tapply()`.
+
+### Using apply on matrices
+
+The apply function works by "applying" a specified function to an data object. It requires 3 arguments: the data, a so-called "MARGIN", and a function. The data can be a vector, data.frame or a matrix. The MARGIN indicates whether you want to apply the function to the rows or the columns of your data, or both. To apply the function to the rows the MARGIN should be 1, to apply it to the columns it should be 2 and to apply it to both it should be `c(1,2)`. The function can be an existing function, such as `sum()` or `mean()`, or your own custom function.
+
+As an example we will apply the function `max()` to some data, in this case a matrix.
+
+First we create a matrix of 10 by 10.
+
+```{r}
+mat <- matrix(1:100,nrow=10)
+
+mat
+```
+
+Then we apply our function "max" to the matrix rows, indicated with a 1 (notice that we do not run the function by writing max(), but we just give the name of the function that should be run: max).
+
+```{r}
+apply(mat, 1, max)
+```
+
+The result of applying the function max to the rows of the matrix is a vector containing the maximal values for each row.
+
+We can also determine the maximal value in each column by using 2 as the MARGIN value.
+
+```{r}
+apply(mat, 2, max)
+
+```
+
+As mentionned before, it is also possible to apply the functions to each element in the matrix by using c(1,2). In that case it doesn't make sense to determine the maximum value, so lets take the square root.
+
+```{r}
+apply(mat, c(1,2), sqrt)
+
+```
+
+Because sqrt also works on matrices, it is actually unnecessary to use apply to run it for each element in the matrix. In cases where functions cannot directly be run on a matrix, apply offers a short and readible alternative to writing a nested for loop.
+
+### Using lapply on lists to return lists
+
+The lapply function is used to run a function on list objects. Let's assume we have a list of different sized matrices and we would like to know the dimensions of these matrices. We can then run the function "dim" on the list using lapply. lapply only requires a list object and a function as arguments and always returns a list of results.
+
+```{r}
+mylist <- list(matrix(1:16,nrow=4), matrix(1:9,nrow=3),matrix(1:4,nrow=2))
+
+lapply(mylist, dim)
+```
+
+Because dataframes are lists of lists, it is also possible to run lapply on dataframes. In that case lapply will apply the function to the columns of the data.frame object and it returns a list of values.
+
+```{r}
+df <- data.frame("col1"=c(1,1,1,1), "col2"=c(2,2,2,2), "col3"=c(3,3,3,3))
+
+lapply(df, sum)
+```
+
+### Using lapply alternative sapply
+
+sapply is a user-friendly version of lapply. The difference with lapply is that sapply tries to turn the list of results into a more user-friendly format, such as a vector or a matrix.
+
+For the first example the results are turned into a matrix.
+
+```{r}
+sapply(mylist, dim)
+```
+
+For the second example, the results are turned into a vector.
+
+```{r}
+sapply(df, sum)
+```
+
+There is no difference between lapply and sapply in how the data is used, but it gives you more flexibility in how the results are created.
+
+### Using tapply on groups of data
+
+tapply lets you apply a function on groupings of your data. Imagine that you have a dataset in which a grouping factor separates your data into two groups of patients. With tapply you can apply a function to those two groups separately. The only thing tapply requires is the column you would like to apply the function to, the grouping factor and the function you would like to apply.
+
+```{r}
+
+patients <- data.frame("group"=paste('grp',c(1,1,1,1,1,1,2,2,2,2,2,2),sep='-'), "outcome"=rnorm(12))
+patients
+
+tapply(patients$outcome, patients$group, mean)
+```
+
+It is also possible to use multiple factors in a list to create groups, which returns a matrix.
+
+```{r}
+
+patients <- data.frame("group"=paste('grp',c(1,1,1,1,1,1,2,2,2,2,2,2),sep='-'),
+                       "serotype"=c("A","B","A","B","A","B","A","B","A","B","A","B"),
+                       "outcome"=rnorm(12))
+
+tapply(patients$outcome, list(patients$group, patients$serotype), mean)
+```
+
+These are some (trivial) examples of how you can use the apply family of functions to quickly apply a function to your data. It is possible to do the same thing by using for loops, but apply functions are generally faster to write and read. In some cases using apply to run your function can also increase the speed of your code. More on increasing the speed of your code will follow in later lectures.

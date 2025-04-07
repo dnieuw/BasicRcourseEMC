@@ -28,33 +28,22 @@ book:
       chapters:
         - 2-5_Analysis_practical.qmd
         - 2-6_Analysis_answers.qmd
-    - part: 2-7_basic_plotting_intro.qmd
+    - part: 2-7_Basic_plotting.qmd
       chapters:
-        - 2-8_basic_plotting.qmd
-    - part: 2-9_basic_plotting_practicals_intro.qmd
-      chapters: 
-        - 2-10_basic_plotting_practicals_questions.qmd
-        - 2-11_basic_plotting_practicals_answers.qmd
-    - part: 2-12_ggplot2_intro.qmd
+        - 2-8_Basic_plotting_practical.qmd
+        - 2-9_Basic_plotting_answers.qmd
+    - part: 2-10_ggplot2.qmd
       chapters:
-        - 2-13_ggplot2.qmd
-    - part: 2-14_ggplot2_practicals_intro.qmd
+        - 2-11_ggplot2_practical.qmd
+        - 2-12_ggplot2_answers.qmd
+    - part: 3-1_Functions1.qmd
       chapters:
-        - 2-15_ggplot2_practicals_questions.qmd
-        - 2-16_ggplot2_practicals_answers.qmd
-    - part: 3-1_functions_intro.qmd
+        - 3-2_Functions1_practical.qmd
+        - 3-3_Functions1_answers.qmd
+    - part: 3-4_Functions2.qmd
       chapters:
-        - 3-2_functions_examples.qmd
-        - 3-3_functions_arguments.qmd
-        - 3-4_functions_custom.qmd
-        - 3-5_functions_conditional.qmd
-        - 3-6_functions_terminating.qmd
-        - 3-7_functions_looping.qmd
-        - 3-8_functions_apply.qmd
-    - part: 3-9_functions_practicals_intro.qmd
-      chapters:
-        - 3-10_functions_practicals_questions.qmd
-        - 3-11_functions_practicals_answers.qmd
+        - 3-5_Functions2_practical.qmd
+        - 3-6_Functions2_answers.qmd
     - part: 4-1_represearch.qmd
       chapters:
         - 4-2_basic_markdown.qmd

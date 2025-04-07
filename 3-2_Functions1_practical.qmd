@@ -1,0 +1,144 @@
+# Functions1: Questions {.unnumbered}
+
+## Function Arguments
+
+::: panel-tabset
+### Question 1
+
+Look at the help file for the function `mean()`.
+
+How many arguments does the function have?
+
+What types of vectors are accepted?
+
+What is the default setting for dealing with NA values?
+:::
+
+::: panel-tabset
+### Question 2
+
+Use the function `mean()` to calculate the mean of the following values:
+
+::: callout-note
+note the `NA` and use named argument matching
+:::
+
+```{r, eval = F}
+c(1, 2, NA, 6)
+```
+:::
+
+::: panel-tabset
+### Question 3
+
+Do Q2 again but rearrange the arguments.
+:::
+
+::: panel-tabset
+### Question 4
+
+Do Q2 again using positional matching.
+:::
+
+::: panel-tabset
+### Question 5
+
+Determine the class of `mean()` using `class()`.
+:::
+
+::: panel-tabset
+### Question 6
+
+Determine the class of `mean()` using `str()`.
+:::
+
+::: panel-tabset
+### Question 7
+
+Determine the class of the value output in Q4 using `class()`.
+:::
+
+::: panel-tabset
+### Question 8
+
+Determine the class of the value output in Q4 using str().
+:::
+
+## Function environment and scoping
+
+::: panel-tabset
+### Question 9
+
+For each of the following sets of commands, give the value that will be returned by the last command. Try to answer without using R.
+
+a)  
+
+```{r, eval=F}
+w <- 5
+f <- function(y) {
+  return(w + y)
+}
+f(y = 2)
+```
+
+b)  
+
+```{r, eval=F}
+w <- 5
+f <- function(y) {
+  w <- 4
+  return(w + y)
+}
+f(y = 2)
+```
+:::
+
+::: panel-tabset
+### Question 10
+
+Among the variables `w`, `d`, and `y`, which are global to `f()` and which are local? What is the value of z when executing `f(w)`
+
+```{r}
+w <- 2
+f <- function(y) {
+  d <- 3
+  h <- function(z) {
+    return(z + d)
+  }
+  return(y * h(y))
+}
+```
+:::
+
+::: panel-tabset
+### Question 11
+
+Do the following in R:
+
+a)  Try:
+
+```{r, eval=F}
+myFun1 <- function(a) {
+  b <- 3
+  myFun2(a)
+}
+
+myFun2 <- function(y) {
+  return(y + a + b)
+}
+
+myFun1(10)
+```
+
+What happens?
+
+b)  Now try:
+
+```{r, eval=F}
+a <- 1
+b <- 2
+myFun1(10)
+```
+
+What happens?
+:::
