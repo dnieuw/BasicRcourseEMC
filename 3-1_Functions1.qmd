@@ -1,102 +1,102 @@
 # Functions 1 {.unnumbered}
 
 Functions are things you can do. R comes with predefined functions which do many things from basic file management to complex statistics. To get started, below are some often used functions. This default set of functions is easily extended by defining your own functions and adding those defined by others conveniently in CRAN and BioConductor packages:
-  
-  <http://stat.ethz.ch/R-manual/R-patched/library/base/html/00Index.html>
-  
-  <http://cran.r-project.org/web/packages/available_packages_by_name.html>
-  
-  <http://www.bioconductor.org/packages/release/bioc/>
-  
-  Functions are expressed as:
-  
-  `function.name()`, e.g., `t.test()` or, an operator, e.g., `+`
+
+<http://stat.ethz.ch/R-manual/R-patched/library/base/html/00Index.html>
+
+<http://cran.r-project.org/web/packages/available_packages_by_name.html>
+
+<http://www.bioconductor.org/packages/release/bioc/>
+
+Functions are expressed as:
+
+`function.name()`, e.g., `t.test()` or, an operator, e.g., `+`
 
 Easily obtain functions from other R users using `install.packages()`:
-  
-  `install.packages("packageName")`
+
+`install.packages("packageName")`
 
 Packages are basically a collection of new functions made by people around the world managed by the "CRAN" package repository team.
 
 The package name must be quoted when installing. Besides installing the package on your PC, you need to load it into your R session before you can use it:
-  
-  `library(packageName)`
+
+`library(packageName)`
 
 # Example functions {.unnumbered}
 
 ### Built-in Named Functions
 
 R has an extensive set of built-in functions, a few of which are listed below:
-  
-  First six elements/rows:
-  
-  ```{r, eval=FALSE}
+
+First six elements/rows:
+
+```{r, eval=FALSE}
 head()
 ```
 
 Last six elements/rows:
-  
-  ```{r, eval=FALSE}
+
+```{r, eval=FALSE}
 tail()
 ```
 
 Generate a sequence of values:
-  
-  ```{r}
+
+```{r}
 seq(from=1, to=10, by=2)
 ```
 
 Create numbers from string numbers:
-  
-  ```{r}
+
+```{r}
 as.numeric(c("1","2","3","4"))
 ```
 
 Sort a vector alphabetically or numerically:
-  
-  ```{r}
+
+```{r}
 sort(c(3,4,2,5,1))
 ```
 
 Retrieve the maximum value from a vector:
-  
-  ```{r}
+
+```{r}
 max(c(111,333,444,55,6,777,999))
 ```
 
 Generate 10 random numbers from a normal distribution with mean 0 and standard deviation 1:
-  
-  ```{r}
+
+```{r}
 rnorm(10)
 ```
 
 For a (very long) list of all named functions available in base-R have a look at this website:
-  
-  <https://stat.ethz.ch/R-manual/R-patched/library/base/html/00Index.html>
-  
-  # Function arguments {.unnumbered}
-  
-  ### Input of Functions
-  
-  Each function accepts one or more values passed to it as ***arguments***, performs computations or operations on those values, and returns a single result.
+
+<https://stat.ethz.ch/R-manual/R-patched/library/base/html/00Index.html>
+
+\# Function arguments {.unnumbered}
+
+\### Input of Functions
+
+Each function accepts one or more values passed to it as ***arguments***, performs computations or operations on those values, and returns a single result.
 
 To use a function, type the name of the function with the values of its argument(s) in parentheses `( )`, then hit 'Enter'. For example:
-  
-  ```{r}
+
+```{r}
 sqrt(2)
 ```
 
 Values passed as arguments can be in the form of variables, such as `x` below:
-  
-  ```{r}
+
+```{r}
 x <- 2
 
 sqrt(x)
 ```
 
 or they can be entire expressions, such as `x^2 + 5` below:
-  
-  ```{r}
+
+```{r}
 sqrt(x^2 + 5)
 ```
 
@@ -123,66 +123,66 @@ The specification `digits = 0` in the output from `args(round)` tells us that di
 When we type `round(4.679, 2)` R knows, by positional matching, that the first value, 4.679, is the value to be rounded and the second one, 2, is the number of decimal places to round to.
 
 We can also specify values for the arguments by name. For example:
-  
-  ```{r}
+
+```{r}
 round(x = 4.679, digits = 2)
 ```
 
 When named argument matching is used, as above, the order of the arguments is irrelevant. For example, we get the same result by typing:
-  
-  ```{r}
+
+```{r}
 round(digits = 2, x = 4.679)
 ```
 
 The two types of argument specification (positional and named argument matching) can be mixed in the same function call:
-  
-  ```{r}
+
+```{r}
 round(4.679, digits=2)
 ```
 
 Although it may be confusing, it is also possible to specify the first argument in the second position, by using named argument matching for the second argument like so:
-  
-  ```{r}
+
+```{r}
 round(digits=2, 4.679)
 ```
 
 ::: callout-tip
 For readability of your code it is advisable to name most of the arguments when calling a function
 :::
-  
-  # Creating your own functions {.unnumbered}
-  
-  To write your own function, you need to use the function `function()`. In the brackets `()` you specify argument(s) that will be used in the function (with our without defaults), and in curly brackets `{ }` you specify what the function should do, referring to the argument(s).
+
+\# Creating your own functions {.unnumbered}
+
+To write your own function, you need to use the function `function()`. In the brackets `()` you specify argument(s) that will be used in the function (with our without defaults), and in curly brackets `{ }` you specify what the function should do, referring to the argument(s).
 
 The general form is:
-  
-  ```{r}
+
+```{r}
 myFun <- function(arg1, arg2) {
-  ## Here you type expressions that use the arguments
+## Here you type expressions that use the arguments
 }
 ```
 
 ### Example of custom function
 
 Each line inside the function is an object assignment, a function call, a subsetting, a conditional statement, an if/else statement, a for loop, etc. - basically anything you have now learned how to do in R that you want the function to do!
-  
-  Below is an easy example that calculates the mean of two values (`x` and `y`):
-  
-  ```{r}
+
+Below is an easy example that calculates the mean of two values (`x` and `y`):
+
+```{r}
 mean_xy <- function(x, y){
-  (x + y)/2
+(x + y)/2
 }
 ```
 
 This function can be used the same way as how you have been using functions before:
-  
-  ```{r}
+
+```{r}
 mean_xy(2,6)
 ```
 
 Or:
-  
-  ```{r}
+
+```{r}
 mean_xy(x = 2, y = 6)
 ```
 
@@ -226,11 +226,11 @@ mean_xy_3(x = 1, y = 3)
 Note that z is not returned, if a return statement is encountered in the function anything after that statement is [not executed]{.underline}.
 
 You can create functions with a variable number of arguments using `...`. For example, here’s a function that returns the mean of all the values in a vector of arbitrary length:
-  
-  ```{r}
+
+```{r}
 mean_vector <- function(...){ 
-  z <- mean(c(...))
-  return(z)
+z <- mean(c(...))
+return(z)
 } 
 
 mean_vector(1,2,3)
@@ -238,11 +238,11 @@ mean_vector(1,2,3,4,5,6,7,8,9,10)
 ```
 
 The arguments in a vector do not have to be single values. Functions can be vectorized:
-  
-  ```{r}
+
+```{r}
 mean_x <- function(x){ 
-  z <- mean(x)
-  return(z)
+z <- mean(x)
+return(z)
 } 
 x <- c(1,2,3,4,5)
 mean_x(x)
@@ -275,8 +275,8 @@ data$Sex <- as.factor(c(rbinom(24, 1, 0.5),-1))
 ```
 
 In this data set, there is a variable `Ages`:
-  
-  ```{r}
+
+```{r}
 data$Ages
 ```
 
@@ -287,15 +287,15 @@ my_descriptives(data$Ages)
 ```
 
 Compare the output with using the standard function `mean()`:
-  
-  ```{r}
+
+```{r}
 
 mean(data$Ages)
 ```
 
 In the standard `mean` function, the negative outlier is included and influences the mean!
-  
-  The output of a function does not need to be a scalar. This version of the function `my_decriptives()` provides the whole summary of the variable, instead of only the mean.
+
+The output of a function does not need to be a scalar. This version of the function `my_decriptives()` provides the whole summary of the variable, instead of only the mean.
 
 ```{r}
 my_descriptives <- function(x){
@@ -377,27 +377,27 @@ calc4(x = 1, y = 3) ## overwrites default value of y
 Each function, whether built-in or user-defined, has an associated environment, which can be thought of as a container that holds all of the objects present at the time the function is created.
 
 When a function is created on the command line, it's environment is the so-called "Global Environment":
-  
-  ```{r}
+
+```{r}
 w <- 2
 f <- function(y) {
-  d <- 3
-  return(d * (w + y))
+d <- 3
+return(d * (w + y))
 }
 environment(f)
 ```
 
 The function `objects()` (or `ls()`), when called from the command line, lists the objects in the Global Environment:
-  
-  ```{r}
+
+```{r}
 objects()
 ```
 
 ### Global and Local Variables
 
 In the function `f()` defined above, the variable `w` is said to be global to `f()` and the variable `d`, because it's created within `f()`, is said to be local to `f()`. Global variables (like `w`) are visible from within a function, but local variables (like `d`) aren't visible from outside the function. In fact, local variables are temporary, and disappear when the function call is completed:
-  
-  ```{r, eval=FALSE}
+
+```{r, eval=FALSE}
 f(y = 1)
 d
 ```
@@ -405,28 +405,28 @@ d
 You get an error: [Error in eval(expr, envir, enclos) : object 'd' not found]{style="color: red"}, indicating that the variable d does not exist in the 'Global Environment'.
 
 When a global and local variable share the same name, the local variable is used:
-  
-  ```{r}
+
+```{r}
 w <- 2
 d <- 4
 
 f <- function(y) {
-  d <- 3
-  return(d * (w + y))
+d <- 3
+return(d * (w + y))
 }
 
 f(y = 1)
 ```
 
 Note also that when an assignment takes place within a function, and the local variable shares its name with an existing global variable, only the local variable is affected:
-  
-  ```{r}
+
+```{r}
 w <- 2
 d <- 4 # This value of d will remain unchanged.
 
 f <- function(y) {
-  d <- 3 # This doesnt affect the value of d in the global environment
-  return(d * (w + y))
+d <- 3 # This doesnt affect the value of d in the global environment
+return(d * (w + y))
 }
 
 f(y = 1)
