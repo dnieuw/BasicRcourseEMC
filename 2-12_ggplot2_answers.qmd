@@ -156,18 +156,18 @@ ggplot(diamonds, aes(x=price)) +
 ::: panel-tabset
 ### Question 10
 
-Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+Use `aggregate(diamonds, by = list(mean_cut = diamonds$cut, mean_color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by mean_cut and mean_color using geom_tile
 
 ### Answer 10
 
-Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+Use `aggregate(diamonds, by = list(mean_cut = diamonds$cut, mean_color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by mean_cut and mean_color using geom_tile
 
 ```{r, eval=F}
 #Aggregate uses a function (in this case mean) to aggregate all variables 
 #in a given data.frame by a list of variables given in "by"
-mean.price <- aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)
+mean.price <- aggregate(diamonds, by = list(mean_cut = diamonds$cut, mean_color = diamonds$color), mean)
 
-ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+ggplot(mean.price, aes(x=mean_cut, y=mean_color, fill=price)) + 
 	geom_tile()
 ```
 :::
@@ -182,7 +182,7 @@ Change the title of the heatmap to "Average prices"
 Change the title of the heatmap to "Average prices"
 
 ```{r, eval=F}
-ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+ggplot(mean.price, aes(x=mean_cut, y=mean_color, fill=price)) + 
 	geom_tile() + 
 	labs(title="Average prices")
 ```
@@ -198,7 +198,7 @@ Change the gradient of the fill scale using 'scale_fill_gradient2'. Have it go f
 Change the gradient of the fill scale using 'scale_fill_gradient2'. Have it go from darkblue to white to darkred, set the midpoint to 4500
 
 ```{r, eval=F}
-ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+ggplot(mean.price, aes(x=mean_cut, y=mean_color, fill=price)) + 
 	geom_tile() + 
 	labs(title="Average prices") + 
 	scale_fill_gradient2(low="darkblue", mid="white", high="darkred", midpoint = 4500)
@@ -215,7 +215,7 @@ Choose and add a theme to the heatmap, or create a theme yourself using the opti
 Choose and add a theme to the heatmap, or create a theme yourself using the options listed at <http://ggplot2.tidyverse.org/reference/theme.html>
 
 ```{r, eval=F}
-ggplot(mean.price, aes(x=cut, y=color, fill=price)) + 
+ggplot(mean.price, aes(x=mean_cut, y=mean_color, fill=price)) + 
 	geom_tile() + 
 	labs(title="Average prices") + 
 	scale_fill_gradient2(low="darkblue", mid="white", high="darkred", midpoint = 4500) + 

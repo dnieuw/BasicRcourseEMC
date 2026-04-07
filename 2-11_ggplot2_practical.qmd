@@ -65,7 +65,7 @@ Create a grid of facets of the same histogram by comparing both color and cut
 ::: panel-tabset
 ### Question 10
 
-Use `aggregate(diamonds, by = list(cut = diamonds$cut, color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by cut and color using geom_tile
+Use `aggregate(diamonds, by = list(mean_cut = diamonds$cut, mean_color = diamonds$color), mean)` to calculate the mean of all variables by cut and color. Create a heatmap of the mean prices by mean_cut and mean_color using geom_tile
 :::
 
 ::: panel-tabset
