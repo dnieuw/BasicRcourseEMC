@@ -1,0 +1,26 @@
+color:
+  palette:
+    offwhite: "#fafafa"
+    black: "#000"
+    emcdblue: "#0c2074"
+    emclblue: "#86d2ed"
+    emcmblue: "#0078d1"
+    emcdbluevar: "#00216d"
+    emclbluevar: "#98DDF5"
+    emcverylightblue: "#cfedf8"
+    emcveryverylightblue: "#dcf2fa"
+    emcred: "#DB3324"
+    emcpurple: "#5C37B4"
+    emclila: "#b281e2"
+    emcgreen: "#008080"
+    emcaccent: "#df4512"
+    emcaccent2: "#afcc46"
+    emclightgrey: "#faf9f9"
+    emcdarkgrey: "#868686"
+  background: offwhite
+  foreground: black
+  primary: emcdblue
+  secondary: emcdarkgrey
+  tertiary: emcaccent
+  success: emcgreen
+  danger: emcred

@@ -1,12 +1,10 @@
 # Importing and Saving Data
 
-
-
 Because the typical way of using `R` involves writing text into a file with the `.r` or `.R` extension (e.g. `my-r-file.r`). Hopefully you're you are also doing this for the R commands you will use for this course. Sometimes you will also want to save your data.
 
 ## Creating and saving an R script
 
-You can create a new R file using the menu (File > New File > R script) or by using the keyboard combination {{< kbd win=Ctrl+Shift+N mac=Cmd+Shift+N >}}. You are then prompted for a file name. When you want to save the file you can do so using the menu again (File > Save) or by pressing {{< kbd win=Ctrl+S mac=Cmd+S >}}. Selecting 'File > Save as ...' saves the active file under another name.
+You can create a new R file using the menu (File \> New File \> R script) or by using the keyboard combination {{< kbd win=Ctrl+Shift+N mac=Cmd+Shift+N >}}. You are then prompted for a file name. When you want to save the file you can do so using the menu again (File \> Save) or by pressing {{< kbd win=Ctrl+S mac=Cmd+S >}}. Selecting 'File \> Save as ...' saves the active file under another name.
 
 ## Saving and restoring your session
 
@@ -49,7 +47,7 @@ Restore or load previous sessions or objects:
 load("mySession.RData")        # load from the working directory
 ```
 
-When you save and load objects this way, loaded variables will have the same names as when they were stored. There is also a different way of saving objects where loaded objects are assigned explicitly.
+When you save and load objects this way, loaded variables will have the same names as when they were stored, possibly overwriting existing variables. There is also a different way of saving objects where loaded objects are assigned explicitly.
 
 ```{r}
 myobject <- list(vec=c(1, 2, 3), mat=matrix(1:4,2))
@@ -74,10 +72,3 @@ read_excel(path='path/to/file/excelworkbook.xls')
 ```
 
 This function has an optional argument `sheet` to indicate the sheet in the excel file if it contains multiple sheets. Optionally, with `range` a cell range can be indicated.
-
-Load `.Rhistory` file to access the history from the console:
-
-```{r}
-#| eval: false
-loadhistory()
-```

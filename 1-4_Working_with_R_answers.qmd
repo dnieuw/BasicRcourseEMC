@@ -56,6 +56,8 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
+We will learn more about the format of data sets (or `data.frame`s) later.
+
 ## Basic calculations
 
 ### Expressions {.tabset .tabset-fade .tabset-pills}
@@ -346,15 +348,15 @@ rm(numbers, numbers_2, treatment)
 :::
 
 ::: {.panel-tabset .nav-pills}
-#### Task 2 \*
+#### Task 2 
 
 Remove the vectors `events` and `eyes`.
 
-#### *Hint 2* \*
+#### *Hint 2* 
 
 Use the function `rm(...)`.
 
-#### Solution 2 \*
+#### Solution 2 
 
 ```{r, eval=F}
 rm(events, eyes)

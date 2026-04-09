@@ -1,0 +1,61 @@
+\usepackage{fontspec} % needed for LuaLaTeX/XeLaTeX
+% Choose an emoji font you have; Noto Color Emoji is common
+\newfontfamily\emojifont{Noto Color Emoji}[Renderer=Harfbuzz]
+\newcommand{\emoji}[1]{{\emojifont #1}}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{erasmusblue}{HTML}{00A1E4}
+\definecolor{erasmuslightblue}{HTML}{E6F5FB}
+\definecolor{advancedorange}{HTML}{FF9800}
+\definecolor{advancedlightorange}{HTML}{FFF4E6}
+
+\usepackage[most]{tcolorbox}
+\tcbset{
+  enhanced,
+  breakable,
+  sharp corners,
+  boxsep=0pt,
+  left=28pt,   % room for icon + gutter
+  right=10pt,
+  top=10pt,
+  bottom=10pt,
+  leftrule=5pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  rightrule=0pt,
+}
+
+% A small helper to place an icon at top-left for all split segments
+\newcommand{\CalloutIconOverlays}[1]{%
+  overlay unbroken={\node[anchor=north west] at (frame.north west) {\raisebox{.2ex}{\large \emoji{#1}}};},
+  overlay first={\node[anchor=north west] at (frame.north west) {\raisebox{.2ex}{\large \emoji{#1}}};},
+  overlay middle={\node[anchor=north west] at (frame.north west) {\raisebox{.2ex}{\large \emoji{#1}}};},
+  overlay last={\node[anchor=north west] at (frame.north west) {\raisebox{.2ex}{\large \emoji{#1}}};},
+}
+
+% Redefine callout environments for custom types
+\newenvironment{callout-background}
+{%
+  \begin{tcolorbox}[
+    colback=erasmuslightblue,
+    colframe=erasmusblue,
+    \CalloutIconOverlays{📚}
+  ]
+}
+{%
+  \end{tcolorbox}
+}
+
+% Advanced callout
+\newenvironment{callout-advanced}
+{%
+  \begin{tcolorbox}[
+    colback=advancedlightorange,
+    colframe=advancedorange,
+    \CalloutIconOverlays{🎓}
+  ]
+}
+{%
+  \end{tcolorbox}
+}

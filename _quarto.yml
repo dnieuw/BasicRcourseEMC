@@ -3,8 +3,8 @@ project:
   output-dir: docs
 book:
   title: "Basic R Course"
-  author: "Sara Baart, David Nieuwenhuijse, Sten Willemsen, Sanne Hoeks, Elrozy Andrinopoulou, Elizabeth Ribble, Karl Brand"
-  date: "04-06-2024"
+  author: "Sara Baart, David Nieuwenhuijse, Sten Willemsen, Elrozy Andrinopoulou, Elizabeth Ribble, Karl Brand"
+  date: "04-10-2025"
   chapters:
     - index.qmd
     - part: 1-1_Introduction.qmd
@@ -62,12 +62,23 @@ book:
 
 format:
   html:
+    css: custom.css
     theme:
       light: cosmo
       dark: solar
   pdf:
     documentclass: scrreprt
+    pdf-engine: lualatex   # or xelatex
+    include-in-header:
+      - custom.tex
+      - text: |
+          \usepackage{tcolorbox}
+          \usepackage{fontawesome5}
+          \definecolor{erasmusblue}{HTML}{00A1E4}
+          \definecolor{erasmuslightblue}{HTML}{E6F5FB}
 
-editor: visual
+editor: source
+
+
 
 number-depth: 2

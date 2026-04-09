@@ -67,28 +67,66 @@ Sometimes we want to obtain a subset of the data sets before investigating the d
 
 Using the **heart** data set:\
 
--   Select the first row.\
--   Select the first column.\
--   Select the column `surgery`.
-
+-   Select the first row of the `data.frame` using `[]`.\
+-   Select the second and third column of the `data.frame` using `[]`.\
 :::
 
 ::: {.panel-tabset .nav-pills}
 #### Task 2
 
-Create a matrix that takes the values 1:4 and has 2 rows and 2 columns. You can name this object `mat`. Select the second row of all columns.
+Create a matrix that takes the values 1:6 and has 3 rows and 2 columns. You can name Using the **heart** data set:\
 
+-   Select the column `surgery` of the `data.frame` in multiple ways: \
+  * As a `data.frame` with a single column using single square brackets and a single index
+  * As a `data.frame` with a single column using single square brackets and a double index using `drop=FALSE` \
+  * As a vector using double square brackets. \
+  * As a vector using single square brackets and a double index. \
+  * Using the dolar sign (`$`) operator. \
+- Verify the class of the returned  objects in each case using the `class()` function.
 :::
 
 ::: {.panel-tabset .nav-pills}
 #### Task 3
 
-Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows. Give the name `ar1` to the this array. Select the 2nd row of all columns from each matrix.
+Create a matrix that takes the values 1:6 and has 3 rows and 2 columns. You can name this object `mat`. 
+- Select the second row of all columns.
+- Select the first column.
+- Select the element in the 3rd row and 2nd column.
+:::
 
+
+
+::: callout-advanced
+
+
+::: {.panel-tabset .nav-pills}
+#### Task 4
+
+From the matrix in the previous task, select the element on the 1st row and 2nd column and that on the 3rd row on the 1st column. Use a matrix as an index.
 
 :::
 
-### Subsetting {.tabset .tabset-fade .tabset-pills}
+::: {.panel-tabset .nav-pills}
+#### Task 5
+
+The following table contains the average temperatures (in °C) for January and July in 3 different cities.
+
+| City | Month | 2020 | 2021 | 2023 |
+|:---|---|---|---|---|
+| Rotterdam | January | 6.2 | 3.8 | 5.8 |
+|  | July | 17.0 | 18.0 | 18.0 |
+| Berlin | January | 4.0 | 1.0 | 4.0 |
+|  | July | 17.8 | 19.2 | 20.0 |
+| Athens | January | 8.0 | 11.0 | 11.0 |
+|  | July | 28.0 | 29.0 | 31.0 |
+
+Create an array where the rows denote the different years, the columns the month and the layers the cities. Now list the temperature in January, 2023 in each of the cities. Also calculate the average temperature in July in Rotterdam (use the `mean` function).
+
+:::
+
+:::
+
+### Subsetting a data set {.tabset .tabset-fade .tabset-pills}
 
 ::: {.panel-tabset .nav-pills}
 #### Task 1
@@ -96,9 +134,7 @@ Create an array that consists of 2 matrices. Matrix 1 will consist of the values
 Using the **retinopathy** data set:\
 
 -   Select the `futime` for all `adult` patients.\
--   Select all the variables for patients that received treatment.\
-
-
+-   Select all the variables for patients that received treatment (`trt==1`).\
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -106,20 +142,20 @@ Using the **retinopathy** data set:\
 
 Using the **retinopathy** data set:\
 
--   Select the `age` for patients that have `futime` more than 20.\
+-   Select the `age` for patients that have `futime` more than 20. (When you have time can you think of a second way to do this?)\
 -   Select the `age` for patients that have `futime` more than 20 and are adults.\
--   Select patients that have no missing values in `age`.
-
-
+-   Select only the rows of the left eye. If needed look in the documentation of the data set to find out how variables are encoded.
+-   Select only the rows of adult patients.
+-   Select all rows for patients that have no missing values in `age`.
 :::
 
 ::: {.panel-tabset .nav-pills}
 #### Task 3
 
 Using the **retinopathy** data set:\
-
--   Select only the rows of the left eye.
--   Select only the rows of adult patients.
+-   Calculate the mean risk score for the treated eyes.
+-   Calculate the mean age of patients for which the variable age is not missing.
+-   Create a `summary` of the juvenile patients.
 
 
 :::

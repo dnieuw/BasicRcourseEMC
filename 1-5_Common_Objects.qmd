@@ -1,37 +1,37 @@
 # Common Objects
 
-
 **Authors: Sten Willemsen, Karl Brand and Elizabeth Ribble**
-
 
 # Objects in R
 
 ## Introduction
 
-All the things we work with in R (such as the numbers in the calculations in the previous section) are called **objects**. All objects have a **mode** and a **class**. The **mode** describes how the data is stored in **R** and how it can be used. Text variables for example have to be handled differently than numbers, we cannot multiply two words. 
+All the things we work with in R (such as the numbers in the calculations in the previous section) are called **objects**. All objects have a **mode** and a **class**. The mode (or type) determines how data is stored, and the class determines how functions work with them. For simple objects, these are usually the same. Text variables for example have to be handled differently than numbers, we cannot multiply two words.
 
 Elementary objects can be combined with each other to form more complex objects this leads to several types of containers, like `lists` and `data.frames`
 
 The **class** of an object is an attribute that can be used to further specify how an object is used in **R**. For example it can be used to indicate how it should be printed and plotted. For many objects the class will simply be equal to the mode.
 
-Functions are special objects that can do things with other objectsl, for example the `print` function displays the contents of an object in the console. Functions are the topic of an other chapter but because we obviously want to do something with the various objects we will see we cannot avoid them altogether.
+Functions are special objects that can do things with other objects, for example the `print` function displays the contents of an object in the console. Functions are the topic of an other chapter but because we obviously want to do something with the various objects we will see we cannot avoid them altogether.
 
 ## The elementary data types
 
-The simplest variables just have a single value of a certain data type (Or mode^[`mode`, `storage.mode` and `type` are closely related concepts, we will not discuss the differences here. See also `?mode`.]). The most important data types in R are:^[There are a few more like `complex` and `raw`
- which we will not discuss.]: 
+The simplest variables just have a single value of a certain data type (Or mode[^1-5_common_objects-1]). The most important data types in R are:[^1-5_common_objects-2]:
 
-------------    ---------------------------------------------------
-        mode    description
-------------    ---------------------------------------------------    
-    numeric:    Posibly fractional numerical values like 1.0, 1.2 or 1e12 (that is 10 raised to the power of 12)
-  character:    text, for example 'man', 'woman', 'censored', etc. 
-    logical:    TRUE and FALSE
--------------------------------------------------------------------
+[^1-5_common_objects-1]: `mode`, `storage.mode` and `type` are closely related concepts, we will not discuss the differences here. See also `?mode`.
+
+[^1-5_common_objects-2]: There are a few more like `complex` and `raw` which we will not discuss.
+
+| mode      | description |                                                                                |
+|-----------|----------------------------------------------------------------------------------------------|
+| numeric   | Possibly fractional numerical values like 1.0, 1.2 or 1e12 (that is 10 raised to the power of 12)      |
+| character | Text, for example 'man', 'woman', 'censored', etc.                                                      |
+| logical   | TRUE and FALSE                                                                               |
 
 Let's examine variables of these data types in a bit more detail:
 
 ### Numbers
+
 ```{r}
 mode(1)    
 # for most basic data types the class is the same as the mode
@@ -54,6 +54,7 @@ class(1L) # explicit integer
 ```
 
 ### Text
+
 ```{r}
 # character values should be surrounded by quotes "or '
 class("a")
@@ -65,7 +66,9 @@ mode("1")
 ```
 
 ### Logical
+
 It can only be a **yes** or a **no**. More specifically, a `TRUE` or a `FALSE`.
+
 ```{r}
 class(TRUE)
 class(FALSE)
@@ -78,22 +81,27 @@ Often logical values are he result of comparisons:
 |----------|--------------------------|
 | ==       | Equal to                 |
 | !=       | Not equal to             |
-| >        | Greater than             |
-| <        | Smaller than             |
-| >=       | Greater than or equal to |
-| <=       | Smaller than or equal to |
+| \>       | Greater than             |
+| \<       | Smaller than             |
+| \>=      | Greater than or equal to |
+| \<=      | Smaller than or equal to |
 
 Logival values can be combined using `&` (and) and `|` or, and inverted using `!` (not).
 
 ```{r}
-a <- c(TRUE, TRUE, FALSE, FALSE)
-b <- c(TRUE, FALSE, TRUE, FALSE)
-
-a & b
-a | b
-!a
+true_val <- TRUE
+false_val <- FALSE
+true_val & true_val
+true_val & false_val
+false_val & true_val
+false_val & false_val
+true_val | true_val
+true_val | false_val
+false_val | true_val
+false_val | false_val
+!true_val
+!false_val
 ```
-
 
 ## Vectors
 
@@ -116,23 +124,30 @@ In the output we see that R shows the row number of the first element of each ro
 c(1, 2, 3) * c(4, 5, 6)
 ```
 
-Note that when the lengths do not match they are **recycled**.
+When you perform operations on vectors of different lengths, R automatically **recycles** (repeats) the shorter vector to match the length of the longer one. This can be useful, but it can also lead to unexpected results if you're not careful. One instance in which recycling is handy is when we are working with a vector and a single value. When the longer vector's length is not an exact multiple of the shorter vector's length, R will still recycle, but it will give you a warning:
+
 ```{r}
-c(1, 2, 3, 4) * c(4, 5)
+c(1, 2, 3, 4) * 2
 # if the larger length is not an exact multiple
 # of the smaller this often indicates a mistake
 # and a warning is given
 c(1, 2, 3) * c(4, 5) 
+# When the larger length is not an exact multiple
+# usually no warning is given, but this still 
+# may be a mistake, so be careful!
+c(1, 2, 3, 4) * c(4, 5)
 ```
 
 We can also give names to the elements of a vector:
+
 ```{r}
 named_v <- c(foo=1, bar=2)
 print(named_v)
 mode(named_v)
 class(named_v)
 ```
-When we try to create a vector that consists of different data types they will be converted to a data type that is capable of containing all of them. For example: 
+
+When we try to create a vector that consists of different data types they will be converted to a data type that is capable of containing all of them. For example:
 
 ```{r}
 c("eleven", 12)
@@ -140,13 +155,13 @@ c("eleven", 12)
 
 The second element of the resulting vector is now also of type `character`. In general it is better not to trust this implicit conversion. Instead to it explicitly, in this case by using the function `as.character()`.
 
-An other way to create a vector is by using the function `vector`. `vector('numeric', 8)` creates a numeric vector of length 8. The `vector` function is often used to pre-allocate room where the results of future computations can be stored. 
+An other way to create a vector is by using the function `vector`. `vector('numeric', 8)` creates a numeric vector of length 8. The `vector` function is often used to pre-allocate room where the results of future computations can be stored.
 
-
+One kind of vector that is often used is a sequence of numbers. One way to create them is by using the colon operator `:`. A syntax `a:b` will create a sequence of integers from `a` up to and including `b`. For example `1:4` is equal to the vector `c(1, 2, 3, 4)`.
 
 ## Matrices
-Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to vectors that are two dimensional, that is
-they have both rows and columns. Like simple vectors all elements of a matrix have the same \emph{mode}.
+
+Vectors have just a single dimension (every element is characterized by a single number (index) that indicates its position within the vector). They can be generalized to vectors that are two dimensional, that is they have both rows and columns. Like simple vectors all elements of a matrix have the same \emph{mode}.
 
 ```{r}
 my_matrix <- matrix(data = c(1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
@@ -163,8 +178,11 @@ mode(char_mat)
 length(char_mat) #just counts the number of elements 
 ```
 
+::: callout-advanced
+
 ### Arrays
-We do not have to stop with two dimensions. Arrays are even more general than matrices as they can have any number of dimensions. All elements have to be of the same type.
+
+We do not have to stop with two dimensions. Arrays are even more general than matrices as they can have any number of dimensions. All elements have to be of the same type. You can create an array using the function `array`.
 
 ```{r}
 letters[1:12]
@@ -174,9 +192,17 @@ class(my_array)
 mode(my_array)
 ```
 
+An array can be useful when you are working with data that has more than two dimensions. For example you could use an array to store the results of an experiment that was repeated several times (the first dimension would indicate the patient, the second the variable and the third dimension would then represent the repetition number). Another example where arrays are useful is spatial data or image data where you might have separate dimensions for the patient, x-coordinate of the pixel, y-coordinate of the pixel and the channel (either red, green or blue).
+
+However in practice arrays with more than two dimensions are not used that often. Most of the time when we have data with more than two dimensions we will use other structures like `data.frames` or `lists` (see below).
+
+An array with two dimensions is equivalent to a matrix.
+
+:::
+
 ## Lists
 
-Elements of a vector, matrix or array are always of the same type. A `list` differs from a vector by also allowing its elements to be of a different type. We can make a `list` using the function `list`.
+Elements of a vector, matrix or array are always of the same type. A `list` differs from a vector by also allowing its elements to be of a different type.  We can make a `list` using the function `list`.
 
 ```{r}
 list1 <- list("eleven", 12)
@@ -184,11 +210,13 @@ mode(list1)
 class(list1)
 list2 <- list(c(1, 2, 3), c('foo', 'bar'))
 ```
+
 We can also assign a name to the elements of a list:
 
 ```{r}
 list3 <- list(numbers=c(1, 2, 3), chars=c('foo', 'bar'))
 ```
+
 It is also possible for a list to contain other lists.
 
 ```{r}
@@ -197,15 +225,16 @@ list4 <- list(numbers=c(1, 2, 3), chars=c('aap', 'noot'),
 ```
 
 A useful function for lists is `str`. It gives us its structure.
+
 ```{r}
 str(list4)
 ```
 
+This versatility makes that `list`s are used in many contexts in R. As an example we will see that the object returned by many statistical procedures in R is a `list`. The different elements of the list then contain different parts of the results of the analysis such as the estimated coefficients, standard errors, test statistics, p-values etc.
 
 ### data.frames
-This is a rectangular table in which every column contains a variable and every row an observation. They are similar to the spreadsheets: a
-series, or `list` of equal length columns, or `vectors`. Notably, the columns (`vector`s) can be of different
-classes, **unlike** a matrix or array. 
+
+We saved this data structure for last. But when we will perform data analyses we will work with `data.frame`s a lot. This is a rectangular table in which every column contains a variable and every row an observation. They are similar to the spreadsheets: a series, or `list` of equal length columns, or `vectors`. Notably, the columns (`vector`s) can be of different classes, **unlike** a matrix or array.
 
 ```{r}
 my_df <- data.frame("vec" = c(12, 48), "lets" = letters[1:12])
@@ -220,7 +249,7 @@ Most data sets come in the form of `data.frame`s or can be converted to them so 
 
 ## factors
 
-A `factor`is a special kind of vector for categorical data. The factor contains different integers one for every category. Each unique value has an associated 'label' that tell us what the code means. Factors are frequently used when we model categorical data. An advantage of a factor over a `character` is that we can limit the number of possible outcomes. It is also less likely to make mistakes due to typing errors.  Factors can be created by means of the function `factor()`.
+A `factor`is a special kind of vector for categorical data. The factor contains different integers one for every category. Each unique value has an associated 'label' that tell us what the code means. Factors are frequently used when we model categorical data. An advantage of a factor over a `character` is that we can limit the number of possible outcomes. It is also less likely to make mistakes due to typing errors. Factors can be created by means of the function `factor()`.
 
 ```{r}
 f <- c('male', 'female', 'male')
@@ -228,12 +257,11 @@ factor(f)
 levels(f)
 ```
 
-When a `factor` is displayed R also shows us the unique values the variable can take. These are called the 'levels' of the factor. 
+When a `factor` is displayed R also shows us the unique values the variable can take. These are called the 'levels' of the factor.
 
 ## functions
 
-Functions are used to do something. We have already seen several of them. 
-Like `mode`, `class` and `as.integer` and you will see lots more. Note that in **R** functions are objects too.
+Functions are used to do something. We have already seen several of them. Like `mode`, `class` and `as.integer` and you will see lots more. Note that in **R** functions are objects too.
 
 ```{r}
 mode(mode)   # like all objects functions have a mode
@@ -242,40 +270,47 @@ print(mode)
 # do not worry if you do not understand the meaning of what is printed yet
 ```
 
-Note that operators are functions to. When you want to use them in the same way as normal functions just put them between back-ticks ("`"):
+Note that operators are functions to. When you want to use them in the same way as normal functions just put them between back-ticks ("\`"):
+
 ```{r}
 mode(`+`)   
 `+`(1, 1)
 ```
 
-
-Base **R** has many factions but many more are come from various extension packages. These can be installed using `install.packages()` :
-
-```{r}
-#| eval: false
-install.packages("packageName",
-                 lib = "/directory/to/my custom R library",
-                 repos = "http://cran.xl-mirror.nl")
-
-# usually lib and repos can be omitted (left at the default)
-```
-
-The package name must be quoted when installing.
-
-```{r}
-#| eval: false
-library("packageName")      ## quotes are optional when loading a package
-```
-
 Functions will be discussed in more detail later.
+
+::: callout-advanced
+
+Some functions behave differently depending on the **class** of the object they are applied to. For example the `summary` function will give a different kinds of summaries depending on its argument. Try for example:
+```{r}
+summary(c(1, 2, 3, 4, 5))
+summary(factor(c('m', 'm', 'f')))
+library(survival)
+summary(rats)
+```
+
+
+These kind of functions are called **generic** functions in R. We will not go into detail here but you should be aware that this exists.  
+
+:::
+
 
 ## Missing values
 
-Whenever the value of a variable is missing this is denoted by `NA` in R. Usually this means that the values exists however we do not know it. Sometimes the result of a calculation is not finite (for example when we define a positive or negative number by zero). In this case the result is defined to be `Inf` of `-Inf` in R.  When a value cannot be computed at all (for example when we divide zero by zero) R will define the result as `NaN`, which stands for 'Not a Number'. Finally, R sometimes uses the special value `NULL` to indicate that a variable is not yet defined. Here we will mostly deal with data that is just missing, that is  `NA`.
+Whenever the value of a variable is missing this is denoted by `NA` in R. Usually this means that the values exists however we do not know it. Sometimes the result of a calculation is not finite (for example when we define a positive or negative number by zero). In this case the result is defined to be `Inf` of `-Inf` in R. 
+
+```{r}
+a <- NA
+is.na(a)
+a +1 # any operation with NA results in NA
+```
+
+::: callout-advanced
+
+When a value cannot be computed at all (for example when we divide zero by zero) R will define the result as `NaN`, which stands for 'Not a Number'. Finally, R sometimes uses the special value `NULL` to indicate that a variable is not yet defined. Here we will mostly deal with data that is just missing, that is `NA`.
 
 ```{r}
 a <- c(1, -1, 0, NA, NULL)
-a/0
 is.na(a)
 is.finite(a)
 is.null(a) # note this looks at the whole object
@@ -284,3 +319,5 @@ l[1] <- NULL # deletes elements from a list
 l
 
 ```
+
+:::

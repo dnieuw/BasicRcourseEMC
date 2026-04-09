@@ -1,22 +1,51 @@
+# Introduction and History
 **authors: Karl Brand, Elizabeth Ribble and S. Willemsen**
 
-# Introduction and History
+::: callout-advanced
+test advanced2
+:::
+
+::: callout-advanced
+test1 fgf
+:::
+
+::: callout-xxx
+test2
+:::
+
+::: callout-xxx
+test3
+:::
+
+::: callout-advanced
+test advanced3
+:::
 
 ## Course Overview
 
-In the first part of the course we are introduced to the `R` software package, or **environment**, and learn about `R`, how to interact with it and it's basic programming elements. In the second part of the course we'll learn how to use `R` for it's intended function: doing statistics quickly and effectively.
+In the first part of the course we are introduced to the `R` software package, or **environment**, and learn about `R`, how to interact with it and it's basic programming elements. In the second part of the course you will learn about cleaning data, doing simple statistical analyses and making plot. Throughout the course we will use various illustrate the concepts and methods. The third part of the course focuses more on programming in R using functions and language constructs that control the flow of your program. We will cover essential topics including how to use `R` and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.
 
-We will cover essential topics including how to use `R` and why we use it; objects, classes and functions; and creating, importing, saving, manipulating, combining, sub-setting and plotting data.
+By the end of this course we expect that you can write your own simple scripts and have a reasonable understanding of what's going on when you cut and paste other people's code, which is typical of how people get started with `R` (or any other language for that matter).
 
-By the end of the first couple of introductory days I expect that you can write your own code and have a reasonable understanding of what's going on when you cut and paste other people's code, which is typical of how people get started with `R` (or any other language for that matter).
+As mentioned, in this chapter we will cover the basics and learn: how to install R and RStudio; the basics of wirking with R and RStudio; how to get help; We will also provide some trouble shooting tips. Then in the next chapters of this part of the course we will discuss the basic objects you will work with in R and to make selections so you can work with subsets of your data.
 
 ## Introduction
 
+### What is R
+
+R is a programming language and software environment that is mainly used for statistics and creating graphics. It runs on all standard computing platforms, including Windows, MacOS and Linux. It is free open source software. So it is available for everybody to download and use without cost. It is also highly extensible, with thousands of packages available for various statistical techniques and data manipulation tasks.
+
+One of the success factors of `R` is the large and active user community (especially among statisticians). This means that if you have are problem, it is relatively easy to find help. There are many forums and mailing lists where you can ask questions and get answers from other users. There are also many online resources, such as tutorials, blogs, and documentation, that can help you learn `R` and solve problems.
+
+The R language is modular: base R only has limited functionality, but this functionality can be extended by means of various **packages**. Because of the popularity of R among statisticians new statistical methods will frequently be implemented in `R` first, often by the method's original author. Nowadays there is an enormous amount of extension packages. And the number of packages still seems to be growing at an exponential rate. The quality of these packages varies although there is some kind of quality control on the packages distributed through the official channel [CRAN](https://cran.r-project.org/). 
+
+::: {callout-background}
 ### History
 
-Before `R` there was the statistical analysis program, `S`, developed at Bell Laboratories in 1976 by John Chambers. `S` was later commercialised as `S-PLUS`. John Chambers is also a current member of the board of the `R` Foundation for Statistical Computing.
+Before `R` there was the statistical analysis program, `S`, developed at Bell Laboratories in 1976 by John Chambers. It was developed with the purpose of being useful for interactive data analyses and programming. `S` was later commercialised as `S-PLUS`. S-PLUS contained some features that made working with the language easier (such as a graphical user interface (GUI)). John Chambers is also a current member of the board of the `R` Foundation for Statistical Computing.
 
-Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand begin coding (1991) the `S` clone, `R`, as an open source alternative for academic use. Together with the `R` core group' they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, `R`, probably derives from the first letter of the creator's names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f
+In 1991, Ross Ihaka and Robert Gentleman of Dept of Statistics, University of Auckland, New Zealand created the `S` clone, `R`, as an open source alternative for academic use. Together with the `R` core group' they released version 1 under the GNU Public License (GPL) v2 and v3 in 2000. The name, `R`, probably derives from the first letter of the creator's names. http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f
+:::
 
 ## Get it
 
@@ -42,26 +71,7 @@ Emacs/ESS: http://ess.r-project.org/index.php?Section=download
 
 Here's a full list available editors: https://en.wikipedia.org/wiki/R\_(programming_language)#Interfaces
 
-## What **is** `R` and how do we use it
-
-### Definition(s)
-
--   **Wikipedia:** \`R is a programming language and free software environment for statistical computing and graphics supported by the R Foundation for Statistical Computing. The R language is widely used among statisticians and data miners for developing statistical software\[7\] and data analysis.' http://en.wikipedia.org/wiki/R\_(programming_language)
-
--   **Comprehensive `R` Archive Network (CRAN):** \`R is \`\`GNU S'', a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc.' https://cloud.r-project.org/.
-
--   **The R Journal - Facets of R:** \`This paper considers six characteristics, which we will call facets. They characterize R as:
-
-    -   an interface to computational procedures of many kinds;
-    -   interactive, hands-on in real time;
-    -   functional in its model of programming;
-    -   object-oriented, “everything is an object”;
-    -   modular, built from standardized pieces; and,
-    -   collaborative, a world-wide, open-source effort.'
-
-By [John M. Chambers](https://journal.r-project.org/archive/2009-1/RJournal_2009-1_Chambers.pdf)
-
--   **My definition:** A command based, object oriented and functional language; in contrast to excel which is a cell centric, spreadsheet managing graphical user interface (GUI).
+## How do we use `R`
 
 ### Working with **R**
 
@@ -104,6 +114,27 @@ Assigning a result in a variable is done using `<-`. For example:
 > five + 1
 [1] 6
 ```
+::: callout-note
+
+Note that when we write five at the R command promt, R will print the value of the variable, that is the value stored in this variable. When we wanted to print the exact text `five` we should have put it in quotes, like this:
+
+``` 
+> "five" 
+[1] "five"
+``` 
+
+:::
+
+In R it does not matter if you use single or double quotes as long as they match. Working with text values will be further discussed in the next section.
+
+As we will see an advantage of using R is that we can do calculations on multiple values (or vectors) at once. For example:
+
+```
+> c(1, 2)  + c(1, 3) 
+[1] 2 5
+```
+
+This is of course very convinient in the common setting where we are working on a data set with many observations where we want to do the same calculation on all observations. This will be further discussed later.
 
 ### How we interact with `R`
 
@@ -129,6 +160,48 @@ A few other things about RStudio:
 -   move the focus between panes using the key board shortcuts {{< kbd Ctrl+1 >}} and {{< kbd Ctrl+2 >}} for the source and console panes respectively
 -   the little asterisk next your source code file name indicates unsaved code
 -   **save your source code!**
+
+## R Packages
+
+Base **R** has many factions but many more are come from various extension packages. These can be installed using `install.packages()` :
+
+```{r}
+#| eval: false
+install.packages("packageName",
+                 lib = "/directory/to/my custom R library",
+                 repos = "http://cran.xl-mirror.nl")
+
+# usually lib and repos can be omitted (left at the default)
+```
+
+The package name must be quoted when installing. 
+
+Later when you want to use the package you have to load it first using `library()` :
+
+```{r}
+#| eval: false
+library("packageName")      ## quotes are optional when loading a package
+```
+
+::: callout-note
+You have to install a package only once, but you have to load it every time you start a new R session and want to use it. Usually somewhere at the top of a script, you will find a section with these library commands so it is clear which packages are needed to run in. It is considered bad practice to use `install.packages()` inside a script because it may install packages without the user's consent.
+:::
+
+## Comments
+
+
+To make your scripts more clear you can add comments, to explain what the code is doing, and why it is doing this. Text that represents a comment is indicated by the hash (#) symbol. For example in the code:
+
+```{r, eval = FALSE}
+# load the survival package because we will need the data sets
+library(survival)
+```
+
+The first line does not actually do anything (it is skipped by the interpreter). But it explains to the user why the `library()` call on the next line is included. It is also possible to add comments at the end of a line of code:
+
+```{r, eval = FALSE}
+library(survival) # for data sets
+```
 
 ## Backslashes
 
@@ -178,6 +251,9 @@ rm(list=ls())
 ls()           # quotes are needed
 ```
 
+::: callout-advanced
+If the above does not work, try these:
+
 -   Start `R` without any customisations, i.e., omit loading the `.Rprofile` and `.Renviron` customisation files. From the command line:
 
 ```{bash}
@@ -187,6 +263,7 @@ R --vanilla
 ```
 
 -   `trace.back()` function: very helpful pinpointing the source of an error, and thus its cause.
+:::
 
 ### Further resources
 

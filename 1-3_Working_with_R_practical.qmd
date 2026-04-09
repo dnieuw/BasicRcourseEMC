@@ -56,7 +56,7 @@ https://stat.ethz.ch/R-manual/R-devel/library/survival/html/heart.html
 
 https://stat.ethz.ch/R-manual/R-devel/library/survival/html/retinopathy.html
 
-
+We will learn more about the format of data sets (or `data.frame`s) later.
 
 ## Basic calculations
 
@@ -72,7 +72,6 @@ Use R as a calculator to calculate the following values:
 -   $17 ^4$,
 -   $2 ^  (1/3)$,
 
-
 #### *Hint 1*
 
 Enter the calculations in an R-script and then run the lines using {{< kbd win=Ctrl+Enter mac=Cmd+Enter >}}.
@@ -85,13 +84,12 @@ Enter the calculations in an R-script and then run the lines using {{< kbd win=C
 ```
 :::
 
-
 ### Assignment {.tabset .tabset-fade .tabset-pills}
-::: panel-tabset
 
+::: panel-tabset
 #### Task 2
 
-Now use assignment to calculate (45-2)*3 again. Assign names `a`, `b` and `c` to each of the three values involved, then do the calculation while assigning the name `d` to the result.
+Now use assignment to calculate (45-2)\*3 again. Assign names `a`, `b` and `c` to each of the three values involved, then do the calculation while assigning the name `d` to the result.
 
 #### Hint 2
 
@@ -105,13 +103,10 @@ d <- (a - b) * c
 ```
 
 `a`, `b`, `c`, and `d` are variables. To see their values, you can just type the variable name (e.g. `a`) and use the shortcut {{< kbd win=Ctrl+Enter mac=Cmd+Enter >}} or use the command `print(a)`.
-
-
 :::
 
 ::: panel-tabset
-
-R can do calculations on whole vectors at once. 
+R can do calculations on whole vectors at once.
 
 #### Task 3
 
@@ -127,11 +122,9 @@ v1 <- c(3, 4)
 # now compute the square of each value
 # create v2 in the same way as v1 and calculate the sum
 ```
-
 :::
 
 ::: panel-tabset
-
 #### Task 4
 
 Create a vector of numbers using the function call `seq(1, 9)`. Theck that `1:9` does the same thing. What do `seq(1, 9, by=2)` and `9:1` do?
@@ -140,30 +133,25 @@ Create a vector of numbers using the function call `seq(1, 9)`. Theck that `1:9`
 
 Execute the following code.
 
-
 ```{r}
 # Just type in the given code fragments and see what they do.
 ```
-
-
 :::
 
 ## Loading packages and using the help function
 
 ### Loading packages {.tabset .tabset-fade .tabset-pills}
 
-We will use data sets from the `survival` package. It is important to know how to load packages as they contain most of the functionality of R. 
-
+We will use data sets from the `survival` package. It is important to know how to load packages as they contain most of the functionality of R.
 
 ::: {.panel-tabset .nav-pills}
 #### Task 1
 
- Load the `survival` package using the `library` function.
+Load the `survival` package using the `library` function.
 
 #### *Hint 1*
 
 Use the `library(...)` function. There should be no need to install the package as it is already installed with `R`.
-
 :::
 
 ### Getting help {.tabset .tabset-fade .tabset-pills}
@@ -171,27 +159,24 @@ Use the `library(...)` function. There should be no need to install the package 
 ::: {.panel-tabset .nav-pills}
 #### Task 2
 
- Ask for the documentation of the `heart` data set, using the `help` function. Then do the same for the `retinopathy` data set using `?`.
+Ask for the documentation of the `heart` data set, using the `help` function. Then do the same for the `retinopathy` data set using `?`.
 
 #### *Hint 2*
 
-Use the `help(...)` function and `?`. Remember that the  first form requires quotation marks.
-
+Use the `help(...)` function and `?`. Remember that the first form requires quotation marks.
 :::
 
 ::: {.panel-tabset .nav-pills}
 #### Task 3
 
-Also ask for help on the `c`, `ls`, `rm` and `seq` functions. Check if you can also obtain the documentation for the `c` function if you use `??combine` 
+Also ask for help on the `c`, `ls`, `rm` and `seq` functions. Check if you can also obtain the documentation for the `c` function if you use `??combine`
 
 #### *Hint 3*
 
-Use the `help(...)` fuction, and `?` or `??`. 
-
+Use the `help(...)` fuction, and `?` or `??`.
 :::
 
 ## Importing and Saving Data
-
 
 ### Save your work {.tabset .tabset-fade .tabset-pills}
 
@@ -208,11 +193,11 @@ Use the function `save(...)`. Note that you need to set the working directory.
 :::
 
 ::: {.panel-tabset .nav-pills}
-#### Task 2 \*
+#### Task 2
 
 Save the vectors `events <- heart$event` and `eyes <- retinopathy$eye`. Use the name `vectors_survival`.
 
-#### *Hint 2* \*
+#### *Hint 
 
 Use the function `save(...)`. Note that you need to set the working directory.
 :::
@@ -232,7 +217,6 @@ Use the function `load(...)`.
 :::
 
 At this point it is interesting to check the objects that are in the workspace. To do so look at the Environment tab in the upper-right hand pane. You can also use the `ls()` function to list all objects in the workspace.
-
 
 ### Remove your work {.tabset .tabset-fade .tabset-pills}
 
@@ -257,6 +241,5 @@ Remove the vectors `events` and `eyes`.
 
 Use the function `rm(...)`.
 :::
-
 
 At this point you can inspect the History tab in the upper-right hand pane to see the commands you have executed. If you have made a syntax file check if you can run it in it's entirety without any errors (if you have not you can piece it together from the history). Save the file to disk.

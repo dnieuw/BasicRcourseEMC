@@ -66,8 +66,6 @@ Explore the **heart** and **retinopathy** data sets - print the first six and la
 #### Hint 1
 
 Use the functions `head(...)` and `tail(...)` to investigate the data set. Replace the dots with the name of the data set.
-
-
 :::
 
 ## Common R Objects
@@ -86,8 +84,6 @@ View the vectors `event` and `age` from the **heart** data set.
 #### *Hint 1*
 
 Use the dollar sign to select the variables.
-
-
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -98,8 +94,6 @@ View the vectors `eye` and `risk` from the **retinopathy** data set.
 #### *Hint 2*
 
 Use the dollar sign to select the variables.
-
-
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -110,8 +104,6 @@ Create a numerical vector that consists of the values: 34, 24, 19, 23, 16. Give 
 #### *Hint 3*
 
 Use the c(...) function. Replace the dots with the numbers.
-
-
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -122,8 +114,6 @@ Create a numerical vector that takes the integer values from 1 until 200. Give t
 #### *Hint 4*
 
 Use the c(...) function. Replace the dots with the numbers.
-
-
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -134,8 +124,6 @@ Create a categorical vector that consists of the values: yes, yes, no, no, no, y
 #### *Hint 5* \*
 
 Use the c(...) function. Replace the dots with the categories.
-
-
 :::
 
 ### Matrices and Data Frames {.tabset .tabset-fade .tabset-pills}
@@ -145,13 +133,11 @@ Let's investigate some matrices and data frames.
 ::: {.panel-tabset .nav-pills}
 #### Task 1
 
-Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable.
+Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable. An easy way to do this is to first create a long vector combining the data of both variables and then using the `matrix` function.
 
-#### *Hint 1*
+#### Hint 1
 
 Use the function matrix(...).
-
-
 :::
 
 ::: {.panel-tabset .nav-pills}
@@ -159,39 +145,9 @@ Use the function matrix(...).
 
 Create a data frame using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns, where each column represents each variable.
 
-#### *Hint 2*
+#### Hint 2
 
 Use the function data.frame(...).
-
-
-:::
-
-### Arrays {.tabset .tabset-fade .tabset-pills}
-
-Let's investigate some arrays.
-
-::: {.panel-tabset .nav-pills}
-#### Task 1
-
-Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows.
-
-#### *Hint 1*
-
-Use the function array(...).
-
-
-:::
-
-::: {.panel-tabset .nav-pills}
-#### Task 2 \*
-
-Give the name `ar1` to the previous array. Furthermore, investigate the argument dimnames and change the names of the rows, columns and matrices.
-
-#### *Hint 2* \*
-
-Use the function array(...). Check the help page for the dimnames argument. Note that this must be in a list format.
-
-
 :::
 
 ### Lists {.tabset .tabset-fade .tabset-pills}
@@ -203,21 +159,74 @@ Let's investigate some lists.
 
 Create a list using the vectors `stop` from the **heart** data set and `id`, `risk` from the **retinopathy** data set. Give the names `stop_heart`, `id_reti` and `risk_reti`.
 
-#### *Hint 1*
+#### Hint 1
 
 Use the function list(...).
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 2 🎓
+
+Create a list using the vectors `numbers`, `numbers_2` and `treatment`. These variables can be taken from the exercise called `Vectors`. Give the names: `numbers`, `many_numbers` and `treatment`.
+
+#### Hint 2 🎓
+
+Use the function list(...).
+:::
+
+::: callout-advanced
+
+### Arrays 🎓 {.tabset .tabset-fade .tabset-pills}
+
+An array is a multi-dimensional data structure, perfect for storing data with more than two dimensions (e.g., rows, columns, and "layers"). We will set up a data structure to store grades for 3 students, across 2 different subjects, over 2 academic semesters. An `array` the perfect tool for this job because our data has three dimensions:
+students, subjects and Semesters. Let's build it step-by-step.
+
+::: {.panel-tabset .nav-pills}
+#### Task 1 🎓
+
+First, we need a single vector containing all the data points (grades) that will fill our array.We have 3 students, 2 subjects, and 2 semesters.The total number of grades we need is $3 \times 2 \times 2 = 12$.Let's create a vector with 12 sample grades. R will fill the array "column-wise" (filling the first dimension, then the second, then the third). Create a vector named all_grades containing the following 12 grades.
+```{r}
+#| eval: false
+
+all_grades <- c(8, 9, 5, 8, 9, 8, 7, 9, 8, 8, 9, 8)
+```
+
+Next, we need to tell R the shape of our array. This is done with a numeric vector passed to the `dim` argument of the `array` function. We want 3 students, 2 subjects, and 2 semesters. Setup the vector `dimensions` containing the number of students, subjects and semesters in that order.
+
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 2 🎓
+
+We can build the array using the `array()` function. Pass our variables (`all_grades` and `dimensions`) to the correct arguments (`data` and `dim`). Use `?array` if you need help. Call the resulting object `grades_array`.
+
+#### Hint 2 
+
+Use `array(data = ... , dim = ...)`
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 3 🎓
+
+An array is much more useful if its dimensions have names. Let';s set up the names for our rows, columns and layers. We use the `dimnames` argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array `grades_array` with the correct dimension names.
+
+#### *Hint 3* 
+
+Use the function `array(...)`. Check the help page for the `dimnames` argument. Note that this must be in a `list` format.
 
 
 :::
 
 ::: {.panel-tabset .nav-pills}
-#### Task 2 \*
+#### Task 4 🎓
 
-Create a list using the vectors `numbers`, `numbers_2` and `treatment`. These variables can be taken from the exercise called `Vectors`. Give the names: `numbers`, `many_numbers` and `treatment`.
+Now that you have created the `array`, let's see what it looks like and confirm its structure. Use 
+the `print`, `str`, `dim` and `dimnames` functions to display the contents, structure, and dimensions of the `grades_array`.
 
-#### *Hint 2* \*
 
-Use the function list(...).
-
+```
+:::
 
 :::
+
+

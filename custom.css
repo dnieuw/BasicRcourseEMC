@@ -1,0 +1,52 @@
+/* Base box */
+.callout-bg {
+  position: relative;
+  background-color: #dcf2fa;
+  border-left: 5px solid #afcc46;
+  padding: 0.85rem 1rem 0.85rem 2.5rem; /* space for icon */
+  border-radius: .25rem;
+}
+
+/* The icon */
+.callout-bg::before {
+  content: "📚";               /* your emoji/icon */
+  position: absolute;
+  left: 0.75rem;               /* inside the left gutter */
+  top: 0.9rem;                 /* tweak for vertical alignment */
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* Advanced */
+.callout-advanced {
+  position: relative;
+  background-color: #dcf2fa;
+  border-left: 5px solid #df4512;
+  padding: 0.85rem 1rem 0.85rem 2.5rem;
+  border-radius: .25rem;
+}
+.callout-advanced::before {
+  content: "🎓";               /* or use the SVG background (below) */
+  position: absolute;
+  left: 0.75rem;
+  top: 0.9rem;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* XXX */
+.callout-xxx {
+  position: relative;
+  background-color: #AFA4F6;
+  border-left: 5px solid #FF9800;
+  padding: 0.85rem 1rem 0.85rem 2.5rem;
+  border-radius: .25rem;
+}
+.callout-xxx::before {
+  content: "🎓";
+  position: absolute;
+  left: 0.75rem;
+  top: 0.9rem;
+  font-size: 1.15rem;
+  line-height: 1;
+}

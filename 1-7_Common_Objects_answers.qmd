@@ -143,12 +143,12 @@ Create a numerical vector that takes the integer values from 1 until 200. Give t
 
 #### *Hint 4*
 
-Use the c(...) function. Replace the dots with the numbers.
+Use the colon (`:`) operator. `a:b` generates a vector consisting of the sequence of numbers from `a` to `b`.
 
 #### Solution 4
 
 ```{r vec4-solution, solution = TRUE}
-numbers_2 <- c(1:200)
+numbers_2 <- 1:200
 ```
 :::
 
@@ -175,23 +175,23 @@ Let's investigate some matrices and data frames.
 ::: {.panel-tabset .nav-pills}
 #### Task 1
 
-Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable.
+Create a matrix using the vectors `id` and `age` from the **heart** data set. This matrix should have 2 columns where each column represents each variable. An easy way to do this is to first create a long vector combining the data of both variables and then using the `matrix` function.
 
 #### *Hint 1*
 
-Use the function matrix(...).
+Use  `matrix(c(..., ...), ncol=...)`. Fill in the dots.
 
 #### Solution 1
 
 ```{r mat-solution-1, solution = TRUE}
-matrix(c(heart$id, heart$age), , 2) 
+matrix(c(heart$id, heart$age), ncol=2) 
 ```
 :::
 
 ::: {.panel-tabset .nav-pills}
 #### Task 2
 
-Create a data frame using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns, where each column represents each variable.
+Create a `data.frame` using the vectors `id`, `type` and `trt` from the **retinopathy** data set. This data frame should have 3 columns, where each column represents each variable.
 
 #### *Hint 2*
 
@@ -201,43 +201,6 @@ Use the function data.frame(...).
 
 ```{r dfc-solution, solution = TRUE}
 data.frame(id = retinopathy$id, type = retinopathy$type, trt = retinopathy$trt) 
-```
-:::
-
-### Arrays {.tabset .tabset-fade .tabset-pills}
-
-Let's investigate some arrays.
-
-::: {.panel-tabset .nav-pills}
-#### Task 1
-
-Create an array that consists of 2 matrices. Matrix 1 will consist of the values 1:4 and matrix 2 will consist of the values 5:8. Both matrices will have 2 columns and 2 rows.
-
-#### *Hint 1*
-
-Use the function array(...).
-
-#### Solution 1
-
-```{r ar-solution-1, solution = TRUE}
-array(data = 1:8, dim = c(2, 2, 2))
-```
-:::
-
-::: {.panel-tabset .nav-pills}
-#### Task 2 \*
-
-Give the name `ar1` to the previous array. Furthermore, investigate the argument dimnames and change the names of the rows, columns and matrices.
-
-#### *Hint 2* \*
-
-Use the function array(...). Check the help page for the dimnames argument. Note that this must be in a list format.
-
-#### Solution 2 \*
-
-```{r ar-solution-2, solution = TRUE}
-ar1 <- array(data = 1:8, dim = c(2, 2, 2), 
-             dimnames = list(c("Row1", "Row2"), c("Col1", "Col2"), c("Mat1", "Mat2")))
 ```
 :::
 
@@ -276,3 +239,110 @@ Use the function list(...).
 list(numbers = numbers, many_numbers = numbers_2, treatment = treatment)
 ```
 :::
+
+::: callout-advanced
+
+### Arrays {.tabset .tabset-fade .tabset-pills}
+
+An array is a multi-dimensional data structure, perfect for storing data with more than two dimensions (e.g., rows, columns, and "layers"). We will set up a data structure to store grades for 3 students, across 2 different subjects, over 2 academic semesters. An `array` the perfect tool for this job because our data has three dimensions:
+students, subjects and Semesters. Let's build it step-by-step.
+
+
+
+::: {.panel-tabset .nav-pills}
+#### Task 1
+
+First, we need a single vector containing all the data points (grades) that will fill our array.We have 3 students, 2 subjects, and 2 semesters.The total number of grades we need is $3 \times 2 \times 2 = 12$.Let's create a vector with 12 sample grades. R will fill the array "column-wise" (filling the first dimension, then the second, then the third). Create a vector named all_grades containing the following 12 grades.
+```{r}
+#| eval: false
+
+all_grades <- c(8, 9, 5, 8, 9, 8, 7, 9, 8, 8, 9, 8)
+```
+
+Next, we need to tell R the shape of our array. This is done with a numeric vector passed to the `dim` argument of the `array` function. We want 3 students, 2 subjects, and 2 semesters. Setup the vector `dimensions` containing the number of students, subjects and semesters in that order.
+
+
+#### Solution 1
+
+```{r ar-solution-1, solution = TRUE}
+dimensions <- c(3, 2, 2)
+```
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 2
+
+We can build the array using the `array()` function. Pass our variables (`all_grades` and `dimensions`) to the correct arguments (`data` and `dim`). Use `?array` if you need help. Call the resulting object `grades_array`.
+
+
+#### *Hint 2* 
+
+Use `array(data = ... , dim = ...)`
+
+
+
+#### Solution 2
+
+```{r ar-solution-1b, solution = TRUE}
+all_grades <- c(8, 9, 5, 8, 9, 8, 7, 9, 8, 8, 9, 8)
+dimensions <- c(3, 2, 2)
+grades_array <- array(data = all_grades , dim = dimensions)
+```
+:::
+
+
+
+
+::: {.panel-tabset .nav-pills}
+#### Task 3 
+
+An array is much more useful if its dimensions have names. Let';s set up the names for our rows, columns and layers. We use the `dimnames` argument, which takes a list of character vectors. The order of the list must match the order of our dimensions (students, subjects, semesters). The students are called: Anna, Ben and Clara. The subjects are called: Math and History. The semesters are called: Fall and Spring. Recreate the array `grades_array` with the correct dimension names.
+
+#### *Hint 3* 
+
+Use the function `array(...)`. Check the help page for the `dimnames` argument. Note that this must be in a `list` format.
+
+#### Solution 3 
+
+```{r ar-solution-2, solution = TRUE}
+# Create a list of names for each dimension
+student_names <- c("Ana", "Ben", "Clara")
+subject_names <- c("Math", "History")
+semester_names <- c("Fall", "Spring")
+
+dimension_names <- list(student_names, subject_names, semester_names)
+grades_array <- array(
+  data = all_grades,
+  dim = dimensions,
+  dimnames = dimension_names
+)
+
+```
+:::
+
+::: {.panel-tabset .nav-pills}
+#### Task 4 
+
+Now that you have created the `array`, let's see what it looks like and confirm its structure. Use 
+the `print`, `str`, `dim` and `dimnames` functions to display the contents, structure, and dimensions of the `grades_array`.
+
+#### Solution 4 
+
+```{r ar-solution-2b, solution = TRUE}
+#  Print the array to the console
+print(grades_array)
+
+#  Check the structure of the object
+str(grades_array)
+
+#  Check the dimensions
+dim(grades_array)
+
+#  Check the dimension names
+dimnames(grades_array)
+```
+:::
+
+:::
+
+
